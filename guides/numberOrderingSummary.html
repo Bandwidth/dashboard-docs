@@ -1,0 +1,799 @@
+
+<!DOCTYPE HTML>
+<html lang="">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Order Phone Numbers</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-fonts/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codetabs/codetabs.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="numberOrderingSummary.html">
+    
+    
+    <link rel="prev" href="../">
+    
+
+    </head>
+    <body>
+        
+<div class="book"><link href="../styles/styles.min.css" type="text/css">
+<div class="head">
+     <!-- <div id="banner">
+       <div class="bannerContainer">
+         <p>Due to a change in Github Pages, the API reference requires you to accept an invalid certificate. We are actively working on a fix.</p>
+         <p id="bannerClose">X</p>
+       </div>
+     </div> -->
+   <a href="http://www.bandwidth.com" class="aimg"><div id="headerLogo"></div></a>
+   <h2> &#x203A;&#xA0;Phone Number API Documentation</h2>
+   <!-- <aside class="alert general small" style="margin: 15px 0px 0px 0px !important; position: fixed;left: 440px;">
+   <p>
+   Due to a change in Github Pages, the API reference requires you to accept an invalid certificate.
+   </p>
+   </aside> -->
+   <ul>
+   	<li><a href="https://app.bandwidth.com" class="headerLink" target="_blank">Voice And Messagings Dashbaord</a></li>
+   	<li><a href="https://dashboard.bandwidth.com" class="headerLink" target="_blank">Phone Number Dashboard</a></li>
+   	<li><a href="https://support.bandwidth.com/access/unauthenticated" class="headerLink" target="_blank">Support</a></li>
+   </ul>
+</div>
+
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Overview</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Guides</li>
+        
+        
+    
+        <li class="chapter active" data-level="2.1" data-path="numberOrderingSummary.html">
+            
+                <a href="numberOrderingSummary.html#top">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="numberOrderingSummary.html">
+            
+                <a href="numberOrderingSummary.html#search-for-phone-numbers">
+            
+                    
+                    Search For Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="numberOrderingSummary.html">
+            
+                <a href="numberOrderingSummary.html#order-phone-numbers">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="numberOrderingSummary.html">
+            
+                <a href="numberOrderingSummary.html#get-order-info">
+            
+                    
+                    Fetch Order Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="numberOrderingSummary.html">
+            
+                <a href="numberOrderingSummary.html#disconnect-phone-number">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="numberOrderingSummary.html">
+            
+                <a href="numberOrderingSummary.html#get-disconnect-info">
+            
+                    
+                    Fetch Disconnect Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="..">Order Phone Numbers</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div></div><div class="api-method-code mm-code-first" style="min-height: 0vh;"><div class="api-code-top mm-code-top"></div></div></div>
+
+<h1 id="top">Number Ordering Summary </h1>
+<p>This guide will take you through the <em>basics</em> of searching and ordering phone numbers with the Bandwidth Phone Number API.</p>
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li>You have a <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number Dashboard</a> account</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#search-for-phone-numbers">Searching for new Phone Numbers</a></li>
+<li><a href="#order-phone-numbers">Ordering Phone Numbers</a></li>
+<li><a href="#get-order-info">Fetching Order Info</a></li>
+<li><a href="#disconnect-phone-number">Disconnecting a Phone Number</a></li>
+<li><a href="#get-disconnect-info">Fetching Disconnect Info</a></li>
+</ul>
+<h2 id="search-for-phone-numbers">Searching For Phone Numbers </h2>
+<p>Finding numbers can be achieved by searching the Bandwidth inventory.</p>
+<p>This step is optional &#x2013; the telephone numbers can be ordered directly using search criteria, but if there is need to examine the numbers before activating them on the account, the search can be used to return a list of available numbers.</p>
+<p>There are a number of search approaches that can be used; the NPA NXX search is used for this example.  Please see the <a href="https://test.dashboard.bandwidth.com/apidocs/" target="_blank">API documentation</a> for the other applicable search types.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="get">GET</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/availableNumbers</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="query-parameters">Query Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameters</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>areaCode</code></td>
+<td style="text-align:left">The allowed number ranges are [2-9] for the first digit and [0-9] for both the second and third digits.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>npaNxx</code><br> -or- <br> <code>npaNxxx</code></td>
+<td style="text-align:left">NPA NXX combination to be searched. <br> - Valid npa values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid Nxx values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid x values [0-9].</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>rateCenter</code></td>
+<td style="text-align:left">The abbreviation for the Rate Center</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>state</code></td>
+<td style="text-align:left">The two-letter abbreviation of the state the RateCenter is in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>city</code></td>
+<td style="text-align:left">The name of the city.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>zip</code></td>
+<td style="text-align:left">A five-digit (XXXXX) or nine-digit (XXXXX-XXXX) zip-code value.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lata</code></td>
+<td style="text-align:left">A maximum five digit (XXXXX) numeric format.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>localVanity</code></td>
+<td style="text-align:left">Requested vanity number. Valid range is from 4 to 7 alphanumeric characters</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tollFreeVanity</code></td>
+<td style="text-align:left">The Toll Free requested vanity number. Valid range is from 4 to 7 alphanumeric characters</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tollFreeWildCardPattern</code></td>
+<td style="text-align:left">The requested Toll Free 3 digit wild card pattern. Examples: <code>8**</code>, <code>80*</code>, <code>87*</code>, etc.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>quantity</code></td>
+<td style="text-align:left">The desired quantity of requested numbers. Values range from 1-5000. If no quantity is specified, the default of 5000 is returned.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>enableTNDetail</code></td>
+<td style="text-align:left">If set to true, a list of details associated with the telephone number (rate center abbreviation, rate center host city, state, and LATA) will be displayed along with the telephone number. This value is set to false by default.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LCA</code></td>
+<td style="text-align:left">Local Calling Area. If this parameter is specified then Telephone Numbers that are likely in the Local Calling Area of the stated Rate Center, NPANXX or NPANNXX will be returned, in addition to those that <em>exactly</em> match the query will be returned. Since LCA logic is not always symmetric and not always inclusive of RC and NPANXX search criteria, this result reflects somewhat of an approximation. The parameter value is true or false. The default is true</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>endsIn</code></td>
+<td style="text-align:left">Intended to use with localVanity only. The parameter value is true or false. If set to true, the search will look for only numbers which end in specified localVanity, otherwise localVanity sequence can be met anywhere in last 7 number digits. The default is false.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>orderBy</code></td>
+<td style="text-align:left">The field by which the returned numbers will be sorted. Only supported if at least one of the following search criteria is specified: npaNxx or npaNxxx, rateCenter, city, zip, tollFreeVanity, tollFreeWildCardPattern. Allowed values are fullNumber, npaNxxx, npaNxx, and areaCode&gt;</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>protected</code></td>
+<td style="text-align:left">A query parameter, that governs, how the Protected status of numbers impacts the search results: <br> - <code>None</code> : The numbers returned in the payload will not contain any numbers that are tagged as Protected <br> - <code>ONLY</code> :The numbers returned in the payload will all be tagged as Protected. No &quot;unProtected&quot; numbers will be returned <br> - <code>MIXED</code> : The protected status of the numbers will be ignored in the search - all types of numbers will be returned</td>
+</tr>
+</tbody>
+</table>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-search-by-npa-nxx">Example: Search by NPA NXX</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/availableNumbers?npaNxx=540551&amp;quantity=10</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+</code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">SearchResult</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ResultCount</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">ResultCount</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405515330<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405515329<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402278098<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402270905<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402278089<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402278090<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">SearchResult</span>&gt;</span>
+</span></code></pre>
+<blockquote>
+<p> &#x2139;&#xFE0F;  Notice that only 7 of 10 were returned = that is all that were currently available in that npanxx combination.  Any of these numbers can be reserved or immediately ordered</p>
+</blockquote>
+</div></div></div>
+
+<h2 id="order-phone-numbers">Order Phone Numbers </h2>
+<p>Ordering Phone Numbers for use with the network uses requires you to order specific phone numbers that have been discovered in a search.   This is only <strong>one</strong> of a number of ways to acquire and activate phone numbers.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="post">POST</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="common-request-parameters">Common Request Parameters</h3>
+<p><strong>EVERY</strong> type of order can/must include the parameters below</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Required</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>Quantity</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">The desired quantity of requested numbers. values range from 1-5000. <br><br> Default: <code>5000</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Name</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">The name of the order. Max length restricted to 50 characters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CustomerOrderId</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Optional value for Id set by customer</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SiteId</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">The ID of the Site (<em>or sub-account</em>) that the SIP Peer is to be associated with.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PeerId</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">The ID of the SIP Peer (<em>or location</em>) that the telephone numbers are to be assigned to. <br> <br> &#x26A0;&#xFE0F; The <code>PeerId</code> <strong>MUST</strong> already exist under the <code>Site</code> (<em>or sub-account</em>) EX: <code>/accounts/{accountId}/sites/{siteId}/sippeers/{PeerId}</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PartialAllowed</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">By default all order submissions are fulfilled partially. Setting the <code>PartialAllowed</code> to false would trigger the entire order to be fulfilled (any error encountered such as 1 TN not being available would fail all TNs in the order) <br><br> Default: <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BackOrderRequested</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left"><code>BackOrderRequested</code> will indicate to the system that if the entire quantity of numbers is not available on the first attempt to fill the new number order, the request will be repeated periodically until the request is successful or canceled. <br> <code>true</code> - Backorder numbers if the entire quantity is not available <br><br> Default: <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="order-type-specific-request-parameters">Order Type Specific Request Parameters</h3>
+<p>These parameters <em>may or may not</em> be required based on the type of order.  Check out the reference documentation for more information on the different types of orders</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>TelephoneNumberList</code></td>
+<td style="text-align:left">A list of telephone numbers to order</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>AreaCode</code></td>
+<td style="text-align:left">Allowed ranged: [2-9] for the first digit and [0, 9] for both the second and third digits.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RateCenter</code></td>
+<td style="text-align:left">A text Rate Center name. Must be combined with State information</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>State</code></td>
+<td style="text-align:left">The two-letter abbreviation of the state</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>City</code></td>
+<td style="text-align:left">The name of the city that the Ordered telephone numbers should apply to</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Zip</code></td>
+<td style="text-align:left">A five-digit (XXXXX) or nine-digit (XXXXX-XXXX) format value.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Lata</code></td>
+<td style="text-align:left">A maximum five-digit (XXXXX) numeric format.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EnableLCA</code></td>
+<td style="text-align:left">If set to <code>true</code>, local calling access numbers will be returned for Rate Center, NPA-NXX and NPANXXX orders if numbers are not available for the given criteria. <br><br> Default: <code>true</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Npa-Nxx</code> <br> -or- <br> <code>Npa-Nxxxx</code> <br><br> &#x26A0;&#xFE0F; with <code>EnableLCA</code> : <code>true</code></td>
+<td style="text-align:left">NpaNxx combination to be searched. <br> Valid Npa values: [2-9] for the first digit, and [0-9] for both the second and third digits. <br> Valid Nxx values: [2-9] for the first digit, and [0-9] for both the second and third digits. <br> Valid Xxvalues [0-9]. <br><br> &#x2139;&#xFE0F;  If set to true, enables the ability to get local calling access numbers if numbers are not available for the given criteria.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LocalVanity</code></td>
+<td style="text-align:left">A text string used to request a regular vanity number. Valid range is between 4 and 7 alphanumeric characters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EndsIn</code></td>
+<td style="text-align:left">Intended to use with <code>LocalVanity</code> only. <br> -<code>true</code> : the search will look for only numbers which end in specified <code>LocalVanity</code> <br> -<code>false</code>: <code>LocalVanity</code> sequence can be met anywhere in last 7 number digits. <br><br> Default: <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TollFreeVanity</code></td>
+<td style="text-align:left">A text string used to request a toll free vanity number. Valid range is between 4 and 7 alphanumeric characters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TollFreeWildCardPattern</code></td>
+<td style="text-align:left">A 3-digit wild card pattern for specifying toll free prefixes, comprised of 8 followed by two stars, a digit and a star or two digits</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ReservationIdList</code></td>
+<td style="text-align:left">If a telephone number or numbers have been previously reserved, the ReservationIdList provides the IDs necessary to release the numbers. This only applies to reserved numbers - if no reservation has been placed on the numbers this list is not required.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TnAttributes</code></td>
+<td style="text-align:left">Attributes to be assigned to the telephone number. Optional parameter. Possible values: <code>Protected</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-search-and-order-1-number-in-area-code">Example: Search <strong>AND</strong> Order 1 Number in Area Code</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">POST</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Order</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AreaCode</span>&gt;</span>910<span class="hljs-tag">&lt;/<span class="hljs-name">AreaCode</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Quantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Quantity</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">SiteId</span>&gt;</span>461<span class="hljs-tag">&lt;/<span class="hljs-name">SiteId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Order</span>&gt;</span>
+</span></code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">201</span> Created
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Location</span>: https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/47955555-ce10-456e-8cb9-eb13b9f14cfd
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">OrderResponse</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Order</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2018-01-23T19:56:29.678Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BackOrderRequested</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">BackOrderRequested</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>47955555-67aa-4adb-8c0f-b6894e60c0dc<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AreaCode</span>&gt;</span>910<span class="hljs-tag">&lt;/<span class="hljs-name">AreaCode</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Quantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Quantity</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PartialAllowed</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">PartialAllowed</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">SiteId</span>&gt;</span>461<span class="hljs-tag">&lt;/<span class="hljs-name">SiteId</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Order</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>RECEIVED<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">OrderResponse</span>&gt;</span>
+</span></code></pre>
+</div></div></div>
+
+<h2 id="get-order-info">Fetching Order Information </h2>
+<p>A <code class="get">GET</code> Request to an existing order will return it&apos;s status as well as any information originally used to create the order.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="get">GET</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/{{orderId}}</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="query-parameters">Query Parameters</h3>
+<p>There are no query parameters for fetching information about an existing order.</p>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-fetch-order-information">Example: Fetch Order Information</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/d30eda5a-ce10-456e-8cb9-eb13b9f14cfd</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+</code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">OrderResponse</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CompletedQuantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">CompletedQuantity</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CreatedByUser</span>&gt;</span>jbm<span class="hljs-tag">&lt;/<span class="hljs-name">CreatedByUser</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LastModifiedDate</span>&gt;</span>2018-01-23T19:56:29.782Z<span class="hljs-tag">&lt;/<span class="hljs-name">LastModifiedDate</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderCompleteDate</span>&gt;</span>2018-01-23T19:56:29.782Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCompleteDate</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Order</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2018-01-23T19:56:29.678Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PeerId</span>&gt;</span>651681<span class="hljs-tag">&lt;/<span class="hljs-name">PeerId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BackOrderRequested</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">BackOrderRequested</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AreaCode</span>&gt;</span>910<span class="hljs-tag">&lt;/<span class="hljs-name">AreaCode</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Quantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Quantity</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PartialAllowed</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">PartialAllowed</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">SiteId</span>&gt;</span>24717<span class="hljs-tag">&lt;/<span class="hljs-name">SiteId</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Order</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>COMPLETE<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CompletedNumbers</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">FullNumber</span>&gt;</span>9102414365<span class="hljs-tag">&lt;/<span class="hljs-name">FullNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CompletedNumbers</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Summary</span>&gt;</span>1 number ordered in (910)<span class="hljs-tag">&lt;/<span class="hljs-name">Summary</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">FailedQuantity</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">FailedQuantity</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">OrderResponse</span>&gt;</span>
+</span></code></pre>
+</div></div></div>
+
+<h2 id="disconnect-phone-number">Disconnecting a Phone Number </h2>
+<p>Disconnecting a phone number leaves it in all applicable inventories, but makes it available for activation with a new subscriber.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="post">POST</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="request-parameters">Request Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Required</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>Name</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">The name of the order. Max length restricted to 50 characters</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TelephoneNumberList</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">A list of telephone numbers to disconnect.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DisconnectMode</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">The severity of disconnect order. Typically <code>Normal</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Protected</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Change protected status of telephones during disconnection. Possible values: <code>TRUE</code>, <code>FALSE</code>, <code>UNCHANGED</code>. Typically <code>UNCHANGED</code>.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-create-a-disconnect-request-for-2-phone-numbers">Example: Create a disconnect request for 2 Phone Numbers</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">POST</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrder</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>training run<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrder</span>&gt;</span>
+</span></code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">201</span> Created
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Location</span>: https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects/df2gc2e2-653d-466c-945d-8f292f09ce55
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">orderRequest</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2018-01-23T21:00:23.802Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>df2gc2e2-653d-466c-945d-8f292f09ce55<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectMode</span>&gt;</span>normal<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectMode</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">orderRequest</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>RECEIVED<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
+</span></code></pre>
+</div></div></div>
+
+<h2 id="get-disconnect-info">Fetching Disconnect Information </h2>
+<p>A <code class="get">GET</code> Request to an existing disconnect will return it&apos;s status as well as any information originally used to create the disconnect.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="get">GET</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects/{{disconnectId}}</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="query-parameters">Query Parameters</h3>
+<p>There are no query parameters for fetching information about an existing disconnect.</p>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-fetch-disconnect-information">Example: Fetch Disconnect Information</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects/df2gc2e2-653d-466c-945d-8f292f09ce55</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+</code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectedTelephoneNumberList</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectedTelephoneNumberList</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorList</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">orderRequest</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2015-01-20T21:05:58.026Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>df2gc2e2-653d-466c-945d-8f292f09ce55<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectMode</span>&gt;</span>normal<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectMode</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">orderRequest</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>COMPLETE<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
+</span></code></pre>
+</div></div></div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching &quot;<span class="search-query"></span>&quot;</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching &quot;<span class="search-query"></span>&quot;</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Order Phone Numbers","level":"2.1","depth":1,"next":{"title":"Search For Phone Numbers","level":"2.1.1","depth":2,"anchor":"#search-for-phone-numbers","path":"guides/numberOrderingSummary.md","ref":"guides/numberOrderingSummary.md#search-for-phone-numbers","articles":[]},"previous":{"title":"About","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.8.1","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/numberOrderingSummary.md","mtime":"2018-02-02T20:18:03.317Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-02T20:19:23.633Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-bandwidth-fonts/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-codetabs/codetabs.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+
