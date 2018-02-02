@@ -1,3 +1,3 @@
-# dashboard-docs
+# Bandwidth Phone Number API Docs
 
-Documentation for Bandwidth Dashboard
+Documentation for Bandwidth Phone Number API
