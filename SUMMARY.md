@@ -2,6 +2,7 @@
 
 ## Overview
 * [About](README.md)
+* [API Reference](apiReference.md)
 
 ## Guides
 * [Order Phone Numbers](guides/numberOrderingSummary.md)
