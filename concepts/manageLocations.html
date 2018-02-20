@@ -1,0 +1,702 @@
+
+<!DOCTYPE HTML>
+<html lang="">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Managing SIP Peers (locations)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-fonts/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codetabs/codetabs.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="manageLocations.html">
+    
+    
+    <link rel="prev" href="manageSites.html">
+    
+
+    </head>
+    <body>
+        
+<div class="book"><link href="../styles/styles.min.css" type="text/css">
+<div class="head pnd">
+   <a href="http://www.bandwidth.com" class="aimg"><div class="headerLogo pnd"></div></a>
+   <h2><a href="http://dev.bandwidth.com">Docs for Developers</a> &#xA0;&#x203A;&#xA0; Phone Number API</h2>
+   <ul>
+   	<li class="headerButton"><a href="https://www.bandwidth.com/contact/" target="_blank"><button class="free-trial">Request Access</button></a></li>
+   <li><a href="#" class="headerLink hasSecondary" id="loginTab">Login</a></li>
+   <div class="headerDropdown" style="background-color:#00bcec;">
+     <ul>
+        <li><a href="https://app.bandwidth.com" class="headerLink" target="_blank">Voice &amp; Messaging Dashboard</a></li>
+        <li><a href="https://dashboard.bandwidth.com" class="headerLink" target="_blank">Phone Number Dashboard</a></li>
+     </ul>
+   </div>
+   	<li><a href="https://support.bandwidth.com/access/unauthenticated" class="headerLink" target="_blank">Support</a></li>
+   </ul>
+</div>
+
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="restAPI.html">
+            
+                <a href="restAPI.html#top">
+            
+                    
+                    RESTful API and Environments
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="restAPI.html">
+            
+                <a href="restAPI.html#api-methods">
+            
+                    
+                    API Methods - REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="restAPI.html">
+            
+                <a href="restAPI.html#rest-usage">
+            
+                    
+                    Usage of REST with the Bandwidth Phone Number API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="restAPI.html">
+            
+                <a href="restAPI.html#base-urls">
+            
+                    
+                    Base URLs and Environments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="restAPI.html">
+            
+                <a href="restAPI.html#rest-urls">
+            
+                    
+                    REST URLs and Parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="asyncOrder.html">
+            
+                <a href="asyncOrder.html">
+            
+                    
+                    Asynchronous Order Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="accountConfig.html">
+            
+                <a href="accountConfig.html">
+            
+                    
+                    Account Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="manageSites.html">
+            
+                <a href="manageSites.html">
+            
+                    
+                    Managing Sub-accounts/Sites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#top">
+            
+                    
+                    Managing SIP Peers (locations)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#voice-data-traffic">
+            
+                    
+                    Voice/Data Traffic
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#orig-config">
+            
+                    
+                    Origination service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#orig-config-sms">
+            
+                    
+                    Origination and SMS services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#term-config">
+            
+                    
+                    Termination service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#term-orig-sms">
+            
+                    
+                    Origination, Termination and SMS services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#cnam-config">
+            
+                    
+                    CNAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#delete-sippeer">
+            
+                    
+                    Delete SIP Peer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#move-tn">
+            
+                    
+                    Moving TNs between SIP Peers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API Reference</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../apiReference.html">
+            
+                <a href="../apiReference.html">
+            
+                    
+                    API Reference
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Guides</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#top">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#search-for-phone-numbers">
+            
+                    
+                    Search For Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#order-phone-numbers">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#get-order-info">
+            
+                    
+                    Fetch Order Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../guides/disconnectSummary.html">
+            
+                <a href="../guides/disconnectSummary.html#top">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../guides/disconnectSummary.html">
+            
+                <a href="../guides/disconnectSummary.html#disconnect-phone-number">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../guides/disconnectSummary.html">
+            
+                <a href="../guides/disconnectSummary.html#get-disconnect-info">
+            
+                    
+                    Fetch Disconnect Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="..">Managing SIP Peers (locations)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="top">Managing SIP Peers (locations) </h1>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#about">About SIP Peers (locations)</a></li>
+<li><a href="#voice-data-traffic">Voice/Data Traffic</a></li>
+<li><a href="#orig-config">SIP Peer configuration for use of Origination service</a></li>
+<li><a href="#orig-config-sms">SIP Peer configuration for use of Origination and SMS services</a></li>
+<li><a href="#term-config">SIP Peer configuration for use of Termination service</a></li>
+<li><a href="#term-orig-sms">SIP Peer configuration for use of Origination, Termination and SMS services</a></li>
+<li><a href="#cnam-config">SIP Peer settings for Calling Name and other SIP Peer wide features</a><ul>
+<li><a href="#cnam">Calling Name display</a></li>
+<li><a href="#final-uri">Final Destination URI</a></li>
+</ul>
+</li>
+<li><a href="#delete-sippeer">Deleting a SIP Peer</a></li>
+<li><a href="#move-tn">Moving TNs between SIP Peers</a></li>
+</ul>
+<h2 id="about">About </h2>
+<p>SIP Peer Management enables customers to configure and manage IP addresses and other attributes for their network connections to Bandwidth. Per section 9, the SIP Peer(s) are set up on the Site to manage the numbers assigned to the account.  In the User Interface, the SIP Peer is referenced as a Location instead of a SIP Peer just as a Site is referenced as a Sub Account.</p>
+<p>A SIP Peer is a gateway that sends or receives voice and data traffic to or from Bandwidth&#x2019;s network. Customer must configure a default SIP Peer on the Site within an Account. Before you can create a SIP Peer, a Site (location) must be created. You can have multiple SIP Peers on a Site. Only one default SIP Peer is allowed per Site.</p>
+<p>Aside from being an administration point for IP addresses for network ingress and egress, SIP Peers are also used to associate Telephone Numbers with a Site/Location and Account.  <strong>For a Site to order any Telephone Numbers, at least one SIP Peer must be created for the Site, and one of the SIP Peers needs to be designated as the &#x201C;Default&#x201D; SIP Peer with which to associate numbers.</strong></p>
+<h2 id="voice-data-traffic">Voice/Data Traffic </h2>
+<p>There are three different types of customer calls and messages to and from Bandwidth:</p>
+<ol>
+<li>Origination - Voice calls from PSTN phone numbers that are delivered to customer-owned telephone numbers.</li>
+<li>Termination - Voice calls from customer-owned telephone numbers that are delivered to PSTN or other on-net telephone numbers.</li>
+<li>SMS - Inbound text messages that are delivered to customer-owned telephone numbers and outbound text messages that are delivered to PSTN or other on-net telephone numbers</li>
+</ol>
+<p>These services can be used independently.  The following sections outline how SIP Peers should be configured when different combinations of these services are used.</p>
+<h2 id="orig-config">SIP Peer configuration for use of Origination service </h2>
+<p>Each SIP Peer can be configured with multiple IP addresses that will be used in managing traffic presentation to the Customer.</p>
+<p>The traffic can be presented to the customer IP endpoints using one of two models &#x2013; either as a Random distribution across the available voice host IP endpoints, or using a sequential failover model where traffic is preferentially presented to the first IP address until an endpoint failure is detected.</p>
+<h2 id="orig-config-sms">SIP Peer configuration for use of Origination and SMS services </h2>
+<p>This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. In the example below, the same host is used for receiving and SMS messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple SMS Hosts and Voice Hosts are allowed as required.  The Termination Hosts field is identified with the DataAllowed element to permit SMS Data to flow in to the Bandwidth network.   The optional Port element is permitted if required.</p>
+<p><strong>Note</strong>: In spite of the Termination Hosts data, this configuration can be blocked from Termination traffic with account level constraints</p>
+<h2 id="term-config">SIP Peer configuration for use of Termination service </h2>
+<p>To define a SIP Peer for sending outbound calls (from customer to Bandwidth, the configuration includes parameters called TerminationHosts, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.</p>
+<h2 id="term-orig-sms">SIP Peer configuration for use of Origination, Termination and SMS services </h2>
+<p>A SIP Peer can also be configured for all services, namely the ability to send and receive both voice and text messages.</p>
+<h2 id="cnam-config">SIP Peer settings for Calling Name and other SIP Peer wide features </h2>
+<p>A number of features can be established at the SIP Peer level, including Calling Name Display and Final Destination URI.</p>
+<h3 id="cnam">Calling Name display </h3>
+<p>Enabling Calling Name display (CNAM) for all TNs subtending a SIP Peer is done by configuring the CallingName feature for the SIP Peer.   This involves setting the CNAM Display default behavior on or off (true or false) and then declaring whether that default behavior needs to be enforced or can be overridden at the TN level.</p>
+<h3 id="final-uri">Final Destination URI </h3>
+<p>The network configuration of a SIP Peer includes an optional attribute called <code>finaldestinationuri</code>. This is used when network connectivity to all previously provided hosts/IPs fails. Request format for the configuration of the SIP Peer, using this attribute, is:</p>
+<h2 id="delete-sippeer">Deleting a SIP Peer </h2>
+<p>A SIP peer can be deleted using the DELETE method.</p>
+<p><strong>Note</strong>:  A SIP peer can be deleted only if there are no TNs.</p>
+<h2 id="move-tn">Moving TNs between SIP Peers </h2>
+<p>A <code class="post">POST</code> to the SIP Peer resource can be used to move Telephone Numbers between SIP Peers.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching &quot;<span class="search-query"></span>&quot;</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching &quot;<span class="search-query"></span>&quot;</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Managing SIP Peers (locations)","level":"1.7","depth":1,"next":{"title":"About","level":"1.7.1","depth":2,"anchor":"#about","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#about","articles":[]},"previous":{"title":"Managing Sub-accounts/Sites","level":"1.6","depth":1,"path":"concepts/manageSites.md","ref":"concepts/manageSites.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"concepts/manageLocations.md","mtime":"2018-02-20T22:07:22.137Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-20T22:08:48.588Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-bandwidth-fonts/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-codetabs/codetabs.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+

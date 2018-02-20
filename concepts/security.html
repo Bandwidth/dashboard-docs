@@ -1,0 +1,722 @@
+
+<!DOCTYPE HTML>
+<html lang="">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Security</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-fonts/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codetabs/codetabs.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="restAPI.html">
+    
+    
+    <link rel="prev" href="../">
+    
+
+    </head>
+    <body>
+        
+<div class="book"><link href="../styles/styles.min.css" type="text/css">
+<div class="head pnd">
+   <a href="http://www.bandwidth.com" class="aimg"><div class="headerLogo pnd"></div></a>
+   <h2><a href="http://dev.bandwidth.com">Docs for Developers</a> &#xA0;&#x203A;&#xA0; Phone Number API</h2>
+   <ul>
+   	<li class="headerButton"><a href="https://www.bandwidth.com/contact/" target="_blank"><button class="free-trial">Request Access</button></a></li>
+   <li><a href="#" class="headerLink hasSecondary" id="loginTab">Login</a></li>
+   <div class="headerDropdown" style="background-color:#00bcec;">
+     <ul>
+        <li><a href="https://app.bandwidth.com" class="headerLink" target="_blank">Voice &amp; Messaging Dashboard</a></li>
+        <li><a href="https://dashboard.bandwidth.com" class="headerLink" target="_blank">Phone Number Dashboard</a></li>
+     </ul>
+   </div>
+   	<li><a href="https://support.bandwidth.com/access/unauthenticated" class="headerLink" target="_blank">Support</a></li>
+   </ul>
+</div>
+
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="restAPI.html">
+            
+                <a href="restAPI.html#top">
+            
+                    
+                    RESTful API and Environments
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="restAPI.html">
+            
+                <a href="restAPI.html#api-methods">
+            
+                    
+                    API Methods - REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="restAPI.html">
+            
+                <a href="restAPI.html#rest-usage">
+            
+                    
+                    Usage of REST with the Bandwidth Phone Number API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="restAPI.html">
+            
+                <a href="restAPI.html#base-urls">
+            
+                    
+                    Base URLs and Environments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="restAPI.html">
+            
+                <a href="restAPI.html#rest-urls">
+            
+                    
+                    REST URLs and Parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="asyncOrder.html">
+            
+                <a href="asyncOrder.html">
+            
+                    
+                    Asynchronous Order Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="accountConfig.html">
+            
+                <a href="accountConfig.html">
+            
+                    
+                    Account Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="manageSites.html">
+            
+                <a href="manageSites.html">
+            
+                    
+                    Managing Sub-accounts/Sites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#top">
+            
+                    
+                    Managing SIP Peers (locations)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#voice-data-traffic">
+            
+                    
+                    Voice/Data Traffic
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#orig-config">
+            
+                    
+                    Origination service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#orig-config-sms">
+            
+                    
+                    Origination and SMS services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#term-config">
+            
+                    
+                    Termination service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#term-orig-sms">
+            
+                    
+                    Origination, Termination and SMS services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#cnam-config">
+            
+                    
+                    CNAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#delete-sippeer">
+            
+                    
+                    Delete SIP Peer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="manageLocations.html">
+            
+                <a href="manageLocations.html#move-tn">
+            
+                    
+                    Moving TNs between SIP Peers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API Reference</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../apiReference.html">
+            
+                <a href="../apiReference.html">
+            
+                    
+                    API Reference
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Guides</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#top">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#search-for-phone-numbers">
+            
+                    
+                    Search For Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#order-phone-numbers">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../guides/orderingSummary.html">
+            
+                <a href="../guides/orderingSummary.html#get-order-info">
+            
+                    
+                    Fetch Order Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../guides/disconnectSummary.html">
+            
+                <a href="../guides/disconnectSummary.html#top">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../guides/disconnectSummary.html">
+            
+                <a href="../guides/disconnectSummary.html#disconnect-phone-number">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../guides/disconnectSummary.html">
+            
+                <a href="../guides/disconnectSummary.html#get-disconnect-info">
+            
+                    
+                    Fetch Disconnect Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="..">Security</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="security">Security</h1>
+<p>This guide will cover how to find your credentials for use with  Bandwidth&apos;s <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number API</a></p>
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li>You have a <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number Dashboard</a> account</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#creds-overview">Credential Overview</a><ul>
+<li><a href="#account-id">Account Id</a></li>
+<li><a href="#sub-account-id">Sub-account Id</a></li>
+</ul>
+</li>
+<li><a href="#basic-auth">Basic Auth</a></li>
+</ul>
+<h2 id="creds-overview">Credential overview </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Credential Name</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>username</code></td>
+<td style="text-align:left">Your <strong>username</strong> to <em>log in</em> to the <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number Dashboard</a></td>
+<td style="text-align:left"><code>jdoe</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>password</code></td>
+<td style="text-align:left">Your <strong>password</strong> to <em>log in</em> to the <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number Dashboard</a></td>
+<td style="text-align:left"><code>correct-horse-battery-staple</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>accountId</code></td>
+<td style="text-align:left">Your unique account <strong>id</strong>.  The <code>accountId</code> is used as part of the url to make API requests. <br> Ex: <code>https://dashboard.bandwidth.com/api/accounts/{accountId}/</code></td>
+<td style="text-align:left"><code>920012</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>subAccountId</code> <br> -or- <br> <code>siteId</code></td>
+<td style="text-align:left">Any <strong>id</strong> for any sub-account.  The <code>subAccountId</code> is used as part of the url to make some API requests. <br> Ex: <code>https://dashboard.bandwidth.com/api/accounts/{accountId}/sites/{sideId}</code> <br><br> &#x2139;&#xFE0F; <em>Sub-accounts</em> are also known as <em>sites</em> <br> &#x2139;&#xFE0F; An <em>account</em> can have multiple <em>sub-accounts</em></td>
+<td style="text-align:left"><code>13606</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="account-id">Account Id </h3>
+<ol>
+<li>Log into the <a href="https://dashboard.bandwidth.com" target="_blank">Bandwidth Phone Number Dashboard</a></li>
+<li>Click the Account tab in the menu section to go to your <a href="https://dashboard.bandwidth.com/portal/report/#account:" target="_blank">Account Overview</a></li>
+<li>Under the Account overview section you will see your account ID.</li>
+</ol>
+<p><img src="../images/account_id.png" alt="account_id"></p>
+<h3 id="sub-account-id">Sub-account (or site) Id </h3>
+<p>Sub-accounts and sites refer to the same resource within the Phone Number Dashboard.  Typically the UI (or Dashboard) refers to the resource as a <strong>sub-account</strong> while the API refers to the resource as a <strong>site</strong>.  These are 100% interchangable.</p>
+<ol>
+<li>Navigate to the <a href="https://dashboard.bandwidth.com/portal/report/#subaccounts:" target="_blank">Sub-account page</a><ul>
+<li>Account &gt; Configuration &gt; Sub-accounts</li>
+</ul>
+</li>
+<li>To add a sub account, click the &apos;Add a sub-account&apos; Button</li>
+<li>Once you have at least one sub-account, click the manage button to get the Id.</li>
+</ol>
+<p><img src="../images/subaccount_id.png" alt="sub-account_id"></p>
+<h2 id="basic-auth">Basic Auth </h2>
+<p>The Bandwidth API methods are accessed through HTTPS to protect sensitive customer data against eavesdropping and man-in-the-middle attacks. Basic HTTP authentication is used with encryption via TLS. Basic HTTP authentication is supported by all browsers commonly in use, and the HTTP clients of most programming languages, and is straightforward to implement.
+For examples on client authentication, please review information at: <a href="http://hc.apache.org/httpcomponents-client-ga/examples.html" target="_blank">http://hc.apache.org/httpcomponents-client-ga/examples.html</a></p>
+<p>Contact the Bandwidth Customer Experience Team for new credentials, password resets or access to additional purchased features.
+The bandwidth dashboard requires the use of one of the versions of TLS: as of the appearance of the POODLE SSL vulnerability the support for SSL has been discontinued.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching &quot;<span class="search-query"></span>&quot;</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching &quot;<span class="search-query"></span>&quot;</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Security","level":"1.2","depth":1,"next":{"title":"RESTful API and Environments","level":"1.3","depth":1,"path":"concepts/restAPI.md","ref":"concepts/restAPI.md","articles":[{"title":"API Methods - REST","level":"1.3.1","depth":2,"anchor":"#api-methods","path":"concepts/restAPI.md","ref":"concepts/restAPI.md#api-methods","articles":[]},{"title":"Usage of REST with the Bandwidth Phone Number API","level":"1.3.2","depth":2,"anchor":"#rest-usage","path":"concepts/restAPI.md","ref":"concepts/restAPI.md#rest-usage","articles":[]},{"title":"Base URLs and Environments","level":"1.3.3","depth":2,"anchor":"#base-urls","path":"concepts/restAPI.md","ref":"concepts/restAPI.md#base-urls","articles":[]},{"title":"REST URLs and Parameters","level":"1.3.4","depth":2,"anchor":"#rest-urls","path":"concepts/restAPI.md","ref":"concepts/restAPI.md#rest-urls","articles":[]}]},"previous":{"title":"About","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"concepts/security.md","mtime":"2018-02-20T22:07:22.137Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-20T22:08:48.588Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-bandwidth-fonts/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-codetabs/codetabs.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+

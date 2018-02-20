@@ -1,0 +1,52 @@
+#%RAML 0.8
+---
+title: LcrWorker REST API Documentation
+# Use null host here to trigger automatic replacement in javascript
+baseUri: http://null
+version: v1
+securedBy: [basic]
+securitySchemes:
+   - basic:
+        type: Basic Authentication
+/lcrworker:
+    post:
+          description: open lcr transaction
+          responses:
+            201:
+                description: Transaction started <br>
+                headers:
+                    Location:
+                        description: contains transaction id after last "/" <br>
+                        example: http://0.0.0.0:8090/lcrworker/eae2376d-0dc2-4d37-a800-252c0aa4c088
+            500:
+                description: Transaction failed to start
+    /{transactionId}:
+        post:
+            description: Add transaction action
+            body:
+                application/json:
+                 schema: |
+                        {"method" : "POST",
+                        "payload" : {
+                                "payload" : {"id" : 0, "profileKey" : "Some profile key", "profileName" : "Some profile name", "attributeMap" : { }, "children" : [ ],  "parent" : null, "product" : false},
+                                "type" : "CUSTOMER_PROFILE",
+                                "resourceId" : null
+                                },
+                        "resourceId" : null,
+                        "payloadType" : "com.bandwidth.lcrWorker.transaction.LcrTransactionDto"}
+            responses:
+                200:
+                    description: Transaction action was successfully added
+                400:
+                    description: Transaction is not an open transaction
+                500:
+                    description: It may happen in many cases, e.g. unsupported action, resource lock timeout etc.
+        put:
+            description: Commit transaction, json-body is "COMMIT"
+            responses:
+                200:
+                    description: Transaction action was successfully commited
+                400:
+                    description: Transaction is not an open transaction
+                500:
+                    description: Transaction
