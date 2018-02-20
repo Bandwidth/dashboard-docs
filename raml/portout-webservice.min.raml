@@ -1,0 +1,551 @@
+#%RAML 0.8
+---
+title: Port Out Tool (POT) REST API Documentation
+# Use null host here to trigger automatic replacement in javascript
+baseUri: http://null
+version: v1
+securedBy: [basic]
+securitySchemes:
+   - basic:
+        type: Basic Authentication
+/portout-webservice/portouts: 
+      description: |
+        This API is used to search, create and update internal portouts managed by POT. 
+      get: 
+            description: This resource is used to search for a set of portouts in POT by specifying one or more of the query parameters listed below.
+            queryParameters: 
+              TN: 
+                  description: a TN - 10 Digits 
+                  type: string 
+                  example: 9199918388
+              PON:
+                  description: Purchase Order Number - associated with the processing of the Port-in by third parties
+                  type: string
+                  example: 2578d71f-5e1a-4d6a-a9f4-16cf08f3e4b6
+              supplemental:
+                  description: update type - (NONE, 0), (CANCEL, 1), (UPDATE, 2), (OTHER, 3); 
+                  type: integer
+              internalPort:
+                  description: is portout internal 
+                  type: boolean 
+              focDateLow:
+                  description: date range to search
+                  type: string 
+              focDateHigh:
+                  description:  date range to search
+                  type: string 
+              submitStatus:
+                  description: SUCCESS, FAIL, REJECT;
+                  type: string
+            responses:
+              200:
+                  body: 
+                    application/xml:
+                      example: |
+                              <PortOutSearchResponse>
+                                <Status>
+                                  <Code>200</Code>
+                                  <Description>Request is complete and results returned.</Description>
+                                </Status>
+                                <pon>d82b811e-803a-4996-8a1f-565aab3a86a6</pon>
+                                <errorDetails></errorDetails> 
+                                <PortOutResults>
+                                  <PortOutResult>
+                                    <tn>[10d]</tn>
+                                    <pon>d82b811e-803a-4996-8a1f-565aab3a86a6</pon>
+                                    <supplemental>OrderType</supplemental>
+                                    <internalPort>boolean</internalPort>
+                                    <inService>Boolean</inService>
+                                    <googleNumber>Boolean</googleNumber>
+                                    <googleApproved>Boolean</googleApproved>
+                                    <bandwidthNumber>Boolean</bandwidthNumber>
+                                    <irisNumber>Boolean</irisNumber>
+                                    <accountName>String</accountName>
+                                    <accountId>String</accountId>
+                                    <SubmitStatus>SUCCESS|FAIL|REJECT</SubmitStatus>
+                                    <focDate>Date</focDate>
+                                    <apiCallTime>Date</apiCallTime>
+                                    <submitTime>Date</submitTime>
+                                    <focDate>Date</focDate>
+                                    <immediately>Boolean</immediately>
+                                    <rejectCodes>
+                                      <rejectCode>
+                                         NOT_IN_SERVICE|
+                                         NOT_BANDWIDTH_CLEC|
+                                         GOOGLE_NOT_APPROVED|
+                                         CUSTOMER_MISMATCH|
+                                         MULTIPLE_ACCOUNTS|
+                                         BLOCKED_ACCOUNT|
+                                         OTHER_REJECTED_IN_ORDER|
+                                         OTHER
+                                      </rejectCode>
+                                    </rejectCodes>
+                                  </PortOutResult>
+                                </PortOutResults>
+                              </PortOutSearchResponse>
+      post:
+            description: | 
+                 Creates an internal portout request to POT. At the creation stage, the PON should not be specified in the request as it will be created by POT and returned in the response.
+            body:
+              application/xml:   
+            responses:    
+              201:
+                  description: |
+                      Response for the POST request contains newly generated PON and location field. Example - Location {Base URL}/portout-webservice/portouts/d82b811e-803a-4996-8a1f-565aab3a86a6
+                  body: 
+                      application/xml:
+                        example: |
+                              <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                              <BulkPortOutResponse>
+                                  <PON>d82b811e-803a-4996-8a1f-565aab3a86a6</PON>
+                              </BulkPortOutResponse>"
+              400:
+                  description: Other status codes handled as failed and put into EXCEPTION state. 
+      put:
+            description: Resource that is used to update the portout state.    
+            body:
+              application/xml:   
+            responses:    
+              200:
+                  description: |
+                      Response indicating a successful update of the portout.
+              404: 
+                  description: |
+                      specified PON is not found.
+      /{pon}: 
+        description: |
+          This API is used to update a portout by PON.
+        put: 
+          description: |
+            This resource is used to update (supplement) an existing portout. Users will need to parse the ProcessingStatus field to determine the status of the order after the update. If the ProcessingStatus is EXCEPTION, users will need to parse the ProcessingErrors section for all Error elements that will provide the error description. 
+          body: 
+            application/xml:           
+          responses:    
+            200:
+                description: |
+                   POT successfully received update.
+                body:
+                    application/xml:                         
+                      example: |
+                          <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                              <BulkPortOutResponse>
+                                  <PON>011ff629-ca9d-4cd6-9ebb-e00f3510be91</PON>
+                                  <Status>
+                                     <Code>200</Code>
+                                     <Description>Request is complete and results returned.</Description>
+                                  </Status>
+                                  <ProcessingStatus>EXCEPTION</ProcessingStatus>
+                                  <ProcessingErrors>
+                                     <Error>
+                                      TN [2012001294] was not found to be In Service in either the Iris or MyBWC systems.
+                                     </Error>
+                                     <Error>TN [3035551234] is not a Bandwidth CLEC number.</Error>
+                                  </ProcessingErrors>
+                                  <BulkPortOut>
+                                   <PON></PON>
+                                   <Pin>55678</Pin>
+                                   <NewNetworkSPID>512E</NewNetworkSPID>
+                                   <FocDate>2014-01-31 00:00:00</FocDate>
+                                   <Immediately>false</Immediately>
+                                   <InternalPort>true</InternalPort>
+                                   <Supplemental>NONE</Supplemental>
+                                   <TelephoneNumberList>
+                                       <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                                       <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                                    </TelephoneNumberList>
+                                  </BulkPortOut>
+                             </BulkPortOutResponse>
+            404:
+                description: | 
+                    PON is not found put order into CANCELLED state 
+            500:
+                description: | 
+                    Something failed put order into EXCEPTION state 
+        get: 
+          description: Retrieve info about the portout.
+          queryParameters:
+                PON:
+                    description: Purchase Order Number - associated with the processing of the Port-in by third parties
+                    type: string
+                    example: 2578d71f-5e1a-4d6a-a9f4-16cf08f3e4b6
+          responses:
+                  200:
+                    description: |
+                        This api call searches portouts by given criteria. 
+                    body: 
+                        application/xml:
+                          example: |
+                              <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                              <BulkPortOutResponse>
+                                <PON>2578d71f-5e1a-4d6a-a9f4-16cf08f3e4b6</PON>
+                                <Status>
+                                   <Code>200</Code>
+                                   <Description>Request is complete and results returned.</Description>
+                                </Status>
+                                <ProcessingStatus></ProcessingStatus>
+                                <ProcessingErrors>
+                                  <Error></Error>
+                                </ProcessingErrors>
+                                <BulkPortOut>
+                                   <PON>2578d71f-5e1a-4d6a-a9f4-16cf08f3e4b6</PON>
+                                   <Pin>55678</Pin>
+                                   <FocDate>2015-01-22</FocDate>
+                                   <Supplemental>UPDATE</Supplemental>
+                                   <Immediately>false</Immediately>
+                                   <TelephoneNumberList>
+                                     <TelephoneNumberToPort>2565224455</TelephoneNumberToPort>
+                                   </TelephoneNumberList>
+                                   <InternalPort>true</InternalPort>
+                                </BulkPortOut>
+                              </BulkPortOutResponse>
+        /validate/{pon}:
+            post:
+              description: Validate  PortOutRequest. 
+              body:
+                   application/xml:                         
+              responses:    
+                200:
+                    description: |
+                        The validation response
+                    body: 
+                        application/xml:
+                          example: |
+                                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                <PortOutValidationResponse>
+                                  <Status>
+                                     IrisStatus
+                                  </Status>
+                                  <pon>d82b811e-803a-4996-8a1f-565aab3a86a6</pon>
+                                  <errorDetails></errorDetails>
+                                  <PortOutResults>
+                                    <PortOutResult>
+                                      <tn>[10d]</tn>
+                                      <pon>d82b811e-803a-4996-8a1f-565aab3a86a6</pon>
+                                      <supplemental>OrderType</supplemental>
+                                      <internalPort>boolean</internalPort>
+                                      <inService>Boolean</inService>
+                                      <googleNumber>Boolean</googleNumber>
+                                      <googleApproved>Boolean</googleApproved>
+                                      <bandwidthNumber>Boolean</bandwidthNumber>
+                                      <irisNumber>Boolean</irisNumber>
+                                      <accountName>String</accountName>
+                                      <accountId>String</accountId>
+                                      <SubmitStatus>SUCCESS|FAIL|REJECT</SubmitStatus>
+                                      <focDate>Date</focDate>
+                                      <apiCallTime>Date</apiCallTime>
+                                      <submitTime>Date</submitTime>
+                                      <focDate>Date</focDate>
+                                      <immediately>Boolean</immediately>
+                                      <rejectCodes>
+                                        <rejectCode>
+                                           NOT_IN_SERVICE|
+                                           NOT_BANDWIDTH_CLEC|
+                                           GOOGLE_NOT_APPROVED|
+                                           CUSTOMER_MISMATCH|
+                                           MULTIPLE_ACCOUNTS|
+                                           BLOCKED_ACCOUNT|
+                                           OTHER_REJECTED_IN_ORDER|
+                                           OTHER
+                                        </rejectCode>
+                                      </rejectCodes>
+                                    </PortOutResult>
+                                  </PortOutResults>
+                                </PortOutValidationResponse>
+        /submit/{pon}:
+            post:
+              description: Submit PortOutRequest. 
+              body:
+                   application/xml:                         
+              responses:    
+                200:
+                    description: |
+                        The validation response
+                    body: 
+                        application/xml:
+                          example: |
+                                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                <PortOutSubmissionResponse>
+                                  <Status>
+                                     IrisStatus
+                                  </Status>
+                                  <pon>d82b811e-803a-4996-8a1f-565aab3a86a6</pon>
+                                  <errorDetails></errorDetails> 
+                                  <PortOutResults>
+                                    <PortOutResult>
+                                      <tn>[10d]</tn>
+                                      <pon>d82b811e-803a-4996-8a1f-565aab3a86a6</pon>
+                                      <supplemental>OrderType</supplemental>
+                                      <internalPort>boolean</internalPort>
+                                      <inService>Boolean</inService>
+                                      <googleNumber>Boolean</googleNumber>
+                                      <googleApproved>Boolean</googleApproved>
+                                      <bandwidthNumber>Boolean</bandwidthNumber>
+                                      <irisNumber>Boolean</irisNumber>
+                                      <accountName>String</accountName>
+                                      <accountId>String</accountId>
+                                      <SubmitStatus>SUCCESS|FAIL|REJECT</SubmitStatus>
+                                      <focDate>Date</focDate>
+                                      <apiCallTime>Date</apiCallTime>
+                                      <submitTime>Date</submitTime>
+                                      <focDate>Date</focDate>
+                                      <immediately>Boolean</immediately>
+                                      <rejectCodes>
+                                        <rejectCode>
+                                           NOT_IN_SERVICE|
+                                           NOT_BANDWIDTH_CLEC|
+                                           GOOGLE_NOT_APPROVED|
+                                           CUSTOMER_MISMATCH|
+                                           MULTIPLE_ACCOUNTS|
+                                           BLOCKED_ACCOUNT|
+                                           OTHER_REJECTED_IN_ORDER|
+                                           OTHER
+                                        </rejectCode>
+                                      </rejectCodes>
+                                    </PortOutResult>
+                                  </PortOutResults>
+                                </PortOutSubmissionResponse>
+/{iris.portout.callbacks}/accounts/{accountid}/portouts: 
+      description: |
+             This API is used by POT internally to enqueue a portout request directly in Iris.
+      delete:
+        description: |
+            Cancels a portout enqueued in Iris. 
+        body:
+            application/xml:           
+              example: |
+                    <PortOutRequest>
+                        <BulkPortOut>
+                            <PON>[POT assigned PON]</PON>
+                            <Pin>55678</Pin>
+                            <NewNetworkSPID>512E</NewNetworkSPID>
+                            <FocDate>2012-09-29T15:00:00.000Z</FocDate>  ; either date or date-time
+                            <Immediately>[ true | false ]</Immediately>
+                            <Supplemental>[ NONE | UPDATE | CANCEL ]</Supplemental>
+                            <TelephoneNumberList>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                            </TelephoneNumberList>
+                        </BulkPortOut>
+                    </PortOutRequest>
+        responses:            
+          200:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>200</Code>
+                            <Description>Request is complete and results returned.</Description>
+                          </Status>
+                    </PortOutResponse>
+          400:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>400</Code>
+                            <Description>Please see the error list for more details.</Description>
+                           </Status>
+                           <Errors>Some validation error</Errors>
+                           <PortOutRequest>Original request</PortOutRequest>
+                    </PortOutResponse>
+      put:
+        description: |
+           Updates a portout enqueued in Iris. 
+        body:
+            application/xml:           
+              example: |
+                    <PortOutRequest>
+                        <!-- <PortOutAction>NEW|SUPP|MODIFY|CANCEL</PortOutAction> -->
+                        <BulkPortOut>
+                            <PON>[POT assigned PON]</PON>
+                            <Pin>55678</Pin>
+                            <NewNetworkSPID>512E</NewNetworkSPID>
+                            <FocDate>2012-09-29T15:00:00.000Z</FocDate>  ; either date or date-time
+                            <Immediately>[ true | false ]</Immediately>
+                            <Supplemental>[ NONE | UPDATE | CANCEL ]</Supplemental>
+                            <TelephoneNumberList>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                            </TelephoneNumberList>
+                        </BulkPortOut>
+                    </PortOutRequest>
+        responses:            
+          200:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>200</Code>
+                            <Description>Request is complete and results returned.</Description>
+                          </Status>
+                    </PortOutResponse>
+          400:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>400</Code>
+                            <Description>Please see the error list for more details.</Description>
+                           </Status>
+                           <Errors>Some validation error</Errors>
+                           <PortOutRequest>Original request</PortOutRequest>
+                    </PortOutResponse>
+      post: 
+        description: |
+          Enqueues a portout directly in Iris. 
+        body:
+            application/xml:           
+              example: |
+                    <PortOutRequest>
+                        <BulkPortOut>
+                            <PON>[POT assigned PON]</PON>
+                            <Pin>55678</Pin>
+                            <NewNetworkSPID>512E</NewNetworkSPID>
+                            <FocDate>2012-09-29T15:00:00.000Z</FocDate>  ; either date or date-time
+                            <Immediately>[ true | false ]</Immediately>
+                            <Supplemental>[ NONE | UPDATE | CANCEL ]</Supplemental>
+                            <TelephoneNumberList>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                            </TelephoneNumberList>
+                        </BulkPortOut>
+                    </PortOutRequest>
+        responses:            
+          200:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>200</Code>
+                            <Description>Request is complete and results returned.</Description>
+                          </Status>
+                    </PortOutResponse>
+          400:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>400</Code>
+                            <Description>Please see the error list for more details.</Description>
+                           </Status>
+                           <Errors>Some validation error</Errors>
+                           <PortOutRequest>Original request</PortOutRequest>
+                    </PortOutResponse>
+      /{orderId}:
+       put:
+        description: |
+          Updates a portout enqueued in Iris.  
+        body:
+            application/xml:           
+              example: |
+                    <PortOutRequest>
+                        <PortOutAction>NEW|SUPP|MODIFY|CANCEL</PortOutAction> 
+                        <BulkPortOut>
+                            <PON>[POT assigned PON]</PON>
+                            <Pin>55678</Pin>
+                            <NewNetworkSPID>512E</NewNetworkSPID>
+                            <FocDate>2012-09-29T15:00:00.000Z</FocDate>  <!-- either date or date-time -->
+                            <Immediately>[ true | false ]</Immediately>
+                            <Supplemental>[ NONE | UPDATE | CANCEL ]</Supplemental>
+                            <TelephoneNumberList>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                                <TelephoneNumberToPort>[10d]</TelephoneNumberToPort>
+                            </TelephoneNumberList>
+                        </BulkPortOut>
+                    </PortOutRequest>
+        responses:            
+          200:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>200</Code>
+                            <Description>Request is complete and results returned.</Description>
+                          </Status>
+                    </PortOutResponse>
+          400:
+            body:
+              application/xml:
+                example: |
+                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <PortOutResponse>
+                          <Status>
+                            <Code>400</Code>
+                            <Description>Validation Failed. Please check your input parameters.</Description>
+                           </Status>
+                    </PortOutResponse>
+/{iris.statusupdate.callbacks}/accounts/{accountid}/portins/{orderid}/statusupdate: 
+     description: |
+              This API is used by POT to updating a corresponding portin order in Iris. The error messages listed below that come back with a ProcessingStatus of EXCEPTION should be treated in Iris as an automatic cancellation of the portin.
+              <ul>
+               <li>  "One or more of the numbers submitted already has a pending FOC date. Any changes to this existing port must be submitted as a supplemental port.\n\n" + "TNs found with a pending FOC Date:"<br/></li>
+               <li>  "A submitted order with PON [%s] already exists. Please use a different PON for this order."<br/></li>
+               <li>  "TN [" + phoneNumber + "] was not found to be In Service in either the Iris or MyBWC systems."<br/></li>
+               <li>  "TN [" + phoneNumber + "] is a Google Voice number that has not been approved for porting."<br/></li>
+               <li>  "The TNs specified in the request belong to multiple accounts. All TNs for a single port out request must belong to a single account."<br/></li>
+               <li>  "TN [" + phoneNumber + "] belongs to an Iris or MyBWC account which is blocked from porting. Blocked account ID: [" + accountId + "]"<br/></li>
+               <li>  "TN [" + phoneNumber + "] is not a Bandwidth CLEC number."<br/></li>
+               <li>  "FOC date cannot fall on a holiday."<br/></li>
+               </ul>
+              Errors returned from various portout validations might be compound, for example - "7513: PIN Invalid" <br/> 
+              Errors with codes 7510-7515 treated as recoverable and changes portin order status to EXCEPTION. <br/> 
+              Errors with codes 7516-7519 treated as unrecoverable and changes order status to CANCELLED or in case of LSR order to FAILED. <br/>
+              <ul>
+                <li>"7510: Required Account Code missing<br/></li>
+                <li>"7511: Invalid Account Code<br/></li>
+                <li>"7512: Required PIN missing<br/></li>
+                <li>"7513: PIN Invalid<br/></li>
+                <li>"7514: Required ZIP Code missing<br/></li>
+                <li>"7515: Invalid ZIP Code<br/></li>
+                <li>"7516: Telephone Number not recognized or invalid for this account <TN><br/></li>
+                <li>"7517: Too many Telephone numbers in this request<br/></li>
+                <li>"7518: Telephone Number Not Active <TN><br/></li>
+                <li>"7519: Customer info does not match <Explanation><br/></li>
+               </ul>
+     put:
+          description: 
+            Updates sent to this resource for example when order status is changed.
+          body:
+               application/xml:                         
+                 example: |
+                         <InternalPortEvent>
+                            <ProcessingErrors>
+                                <Error>
+                                    FOC date cannot fall on a holiday
+                                </Error>
+                                <Error>
+                                    7514: Required ZIP Code missing
+                                </Error>
+                            </ProcessingErrors>
+                            <ProcessingStatus>FOC</ProcessingStatus>
+                            <BulkPortOut>
+                               <PON>2578d71f-5e1a-4d6a-a9f4-16cf08f3e4b6</PON>
+                               <Pin>55678</Pin>
+                               <FocDate>2015-01-22</FocDate>
+                               <Supplemental>UPDATE</Supplemental>
+                               <Immediately>false</Immediately>
+                               <TelephoneNumberList>
+                                 <TelephoneNumberToPort>2565224455</TelephoneNumberToPort>
+                               </TelephoneNumberList>
+                               <InternalPort>true</InternalPort>
+                            </BulkPortOut>
+                          </InternalPortEvent>   
+          responses:            
+            200:
+              description: Event accepted
+            400:
+              description: Some validation error

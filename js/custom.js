@@ -27,7 +27,8 @@ module.exports = function ($) {
     'uisetup.html',
     'apisetup.html',
     'orderingSummary.html',
-    'disconnectSummary.html'
+    'disconnectSummary.html',
+    'restAPI.html'
   ];
 
 

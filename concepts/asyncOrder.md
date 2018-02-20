@@ -1,1 +1,5 @@
 # Asynchronous Order Model
+
+Many system requests require the interaction of multiple “back-end” systems, and cannot be guaranteed to complete within a short time interval.  Additionally, for many of these requests it is valuable to retain a persistent record of the transaction or series of transactions.  Ordering Features and Services, and requesting number Porting, both fit into this class of activity.
+
+In these cases, the Bandwidth Phone Number APIs use an Asynchronous model, where the initial request results in the creation of a unique “order”, which is identified by an order-id which is typically returned in the Location header of a POST request.  This order-id is then subsequently used to monitor and update the initial request.  In general, these order-ids are represented by a UUID, and will be preserved at least for the length of time required to fully complete the request.  Their status can be requested at any time, and in cases the request can be modified

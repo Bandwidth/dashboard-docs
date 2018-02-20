@@ -1,0 +1,164 @@
+#%RAML 0.8
+---
+title: Customer Port-out Validation API Documentation
+# Use null host here to trigger automatic replacement in javascript
+baseUri: http://null
+version: v1
+securedBy: [basic]
+securitySchemes:
+   - basic:
+        type: Basic Authentication
+/customer-validation-api: 
+      description: | 
+        The customer validation API is used for portout management purposes and gives the losing side customer the possibility to validate the portout process.
+      post:
+            description: | 
+              The initial request for validation is a post to the pre-configured URL defined by the customer. 
+              This request contains optional elements for:
+              <ul>
+                <li>PIN (optional)</li>
+                <li>Account Number (optional)</li>
+                <li>zipcode (optional)</li>
+                <li>a list of one or more telephone numbers (at least one telephone number must be provided)</li>
+                <li>Subscriber name for information purposes. (optional)</li>
+                <li>PON for information and correlation purposes. (optional)</li>
+              </ul>
+            body:
+              application/xml:   
+                example: |
+                  <?xml version="1.0"?>
+                  <PortOutValidationRequest>
+                      <PON>some_pon</PON>
+                      <Pin>1111</Pin>
+                      <AccountNumber>777</AccountNumber>
+                      <ZipCode>62025</ZipCode>
+                      <SubscriberName>Subscriber Name</SubscriberName>
+                      <TelephoneNumbers>
+                          <TelephoneNumber>2223331000</TelephoneNumber>
+                          <TelephoneNumber>2223331001</TelephoneNumber>
+                      </TelephoneNumbers>
+                  </PortOutValidationRequest>
+            responses:    
+              200:
+                  description: |
+                       <h3>Validation succeed</h3>
+                        If the port-out is considered valid the returned payload contains an indication that the numbers in the request are portable &lt;Portable&gt;true&lt;/Portable&gt; (<b>required</b>), and may play back the PON.<br/>
+                        <div style="border: solid 1px black; padding: 0px">
+                        Response code - 200 OK - validation of the port out request
+                          <pre>
+                          &lt;PortOutValidationResponse&gt;
+                              &lt;Portable&gt;true&lt;/Portable&gt;
+                              &lt;PON&gt;some_pon&lt;/PON&gt;
+                          &lt;/PortOutValidationResponse&gt;
+                          </pre>
+                       </div>
+                       <h3>Validation failed</h3>
+                        In the case where the number should not be ported, a response payload is returned that may indicate the values that would allow a port-out request to be validated.<br/>
+                        <ul>
+                        <li>The &lt;Portable&gt; value <b>must</b> indicate "false"</li>
+                        <li>A recognizable error code values <b>must</b> be returned, unrecognized error codes will be ignored and not treated as error codes</li>
+                        <li>The response payload should contain at least one of the optional fields that could be used to validate the port-out request.</li>
+                        <li>If the returned field/fields was/were not provided in the original request then that indicates that the field was missing from the request and should be provided</li>
+                        <li>If the returned field/fields was/were different than provided then that indicates an error in the requesting information</li>
+                        <li>The list of Telephone Numbers should contain the telephone numbers considered valid.</li>
+                        <li>For the port-out to be considered valid all telephone numbers in the request should be returned - If one telephone number is invalid then the request fails.</li>
+                        </ul><br/>
+                          <div style="border: solid 1px black; padding: 0px 5px">
+                          Response code - 200 OK - a valid request, but the port-out request has failed validation
+                          <pre>
+                          &lt;PortOutValidationResponse&gt;
+                              &lt;Portable&gt;false&lt;/Portable&gt;
+                              &lt;PON&gt;some_pon&lt;/PON&gt;
+                              &lt;Errors&gt;
+                                  &lt;Error&gt;
+                                      &lt;Code&gt;75xx&lt;/Code&gt;
+                                      &lt;Description&gt;Customer api error description&lt;/Description&gt;
+                                  &lt;/Error&gt;
+                                  &lt;Error&gt;
+                                      &lt;Code&gt;75xx&lt;/Code&gt;
+                                      &lt;Description&gt;Customer api error description&lt;/Description&gt;
+                                  &lt;/Error&gt;
+                              &lt;/Errors&gt;
+                              &lt;AcceptableValues&gt;
+                                  &lt;Pin&gt;2222&lt;/Pin&gt;
+                                  &lt;AccountNumber&gt;555&lt;/AccountNumber&gt;
+                                  &lt;ZipCode&gt;02154&lt;/ZipCode&gt;
+                                  &lt;TelephoneNumbers&gt;
+                                      &lt;TelephoneNumber&gt;2223331000&lt;/TelephoneNumber&gt;
+                                  &lt;/TelephoneNumbers&gt;
+                              &lt;/AcceptableValues&gt;
+                          &lt;/PortOutValidationResponse&gt;
+                          </pre>
+                          </div>
+                        The error codes and error explanation payloads defined by Bandwidth describe the various error conditions that may be encountered, to ensure clarity pertaining to the error conditions discovered by our customer.<br/>
+                        <table style="text-align: left; width: 60%;" border="1" cellpadding="2" cellspacing="2">
+                            <thead>
+                              <tr>
+                                <th>Code</th>
+                                <th>Meaning</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>7510</td>
+                                    <td>Required Account Code missing</td>
+                                </tr>
+                                <tr>
+                                    <td>7511</td>
+                                    <td>Invalid Account Code</td>
+                                </tr>
+                                <tr>
+                                    <td>7512</td>
+                                    <td>Required PIN missing</td>
+                                </tr>
+                                <tr>
+                                    <td>7513</td>
+                                    <td>PIN Invalid</td>
+                                </tr>
+                                <tr>
+                                    <td>7514</td>
+                                    <td>Required ZIP Code missing</td>
+                                </tr>
+                                <tr>
+                                    <td>7515</td>
+                                    <td>Invalid ZIP Code</td>
+                                </tr>
+                                <tr>
+                                    <td>7516</td>
+                                    <td>Telephone Number not recognized or invalid for this account <TN></td>
+                                </tr>
+                                <tr>
+                                    <td>7517</td>
+                                    <td>Too many Telephone numbers in this request</td>
+                                </tr>
+                                <tr>
+                                    <td>7518</td>
+                                    <td>Telephone Number Not Active <TN></td>
+                                </tr>
+                                <tr>
+                                    <td>7519</td>
+                                    <td>Customer info does not match <Explanation></td>
+                                </tr>
+                                  <tr>
+                                      <td>7520</td>
+                                      <td>The telephone number must be unlocked by the end user and current service provider <Explanation></td>
+                                  </tr>
+                                <tr>
+                                    <td>7598</td>
+                                    <td>Invalid Request - <explanatory text></td>
+                                </tr>                            
+                                <tr>
+                                    <td>7599</td>
+                                    <td>Fatal Error in Processing</td>
+                                </tr>
+                            </tbody>
+                           </table>
+                       Failure to return a valid response will be considered an <b>approval of the port-out</b> request.<br/>
+                       Failure to return any response will be considered an <b>approval of the port-out</b> request.<br/>
+              400:
+                 description: | 
+                   Numbers <b>will be ported out</b> if a 4xx series response is received by Bandwidth 
+              500:
+                 description: |  
+                   An error in the customer's server - indicating that the request cannot services by the customer. 
+                   Numbers <b>will be ported out</b> if a 5xx series response is received by Bandwidth         
