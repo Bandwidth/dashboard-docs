@@ -1,3 +1,5 @@
 # Bandwidth Phone Number API Docs
 
-Documentation for Bandwidth Phone Number API
+The Bandwidth Phone Number API provides a set of programmable interfaces for customers to easily configure their services, search for phone numbers, order phone numbers, and provision phone numbers on Bandwidth's network.  The API is designed to provide customer's applications with fast and simple access to the services provided by Bandwidth, and is designed to provide fast response times at high volumes in order to support our customer's needs.
+
+The Bandwidth Phone Number API provides an advanced suite of capabilities that are included with the Bandwidth CLEC product offerings, and an enhanced suite of capabilities that are included with the Bandwidth Web Services Amendment commercial agreement.    This enhanced collection of capabilities will allow our customers unsurpassed access and control of all aspects of the Bandwidth CLEC network, through advanced provisioning and management APIs, providing support for dynamic and responsive management and customization of our customer’s business initiatives.

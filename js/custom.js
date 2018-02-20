@@ -26,7 +26,10 @@ module.exports = function ($) {
   var helperPages = [
     'uisetup.html',
     'apisetup.html',
-    'numberOrderingSummary.html',
+    'orderingSummary.html',
+    'disconnectSummary.html',
+    'restAPI.html',
+    'manageLocations.html'
   ];
 
 
