@@ -40,7 +40,7 @@ Usage of the REST model for APIs involves using the tools provided by the REST m
   * REST HTTP <code class="post">POST</code> and <code class="put">PUT</code>
 
 ### DELETE
-DELETE is seldom used.  In most cases, resources are persisted as history records and cannot be deleted.
+<code class="delete">DEL </code> is seldom used.  In most cases, resources are persisted as history records and cannot be deleted.
 
 ##  Base URLs and Environments {#base-urls}
 
