@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Disconnect a Phone Number</title>
+        <title>Order Phone Numbers (Advanced)</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="disconnectSummary.html">
+    <link rel="next" href="advancedOrdering.html">
     
     
-    <link rel="prev" href="orderingSummary.html">
+    <link rel="prev" href="disconnectSummary.html">
     
 
     </head>
@@ -342,7 +342,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.3" data-path="disconnectSummary.html">
+        <li class="chapter " data-level="3.3" data-path="disconnectSummary.html">
             
                 <a href="disconnectSummary.html#top">
             
@@ -387,7 +387,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="advancedOrdering.html">
+        <li class="chapter active" data-level="3.4" data-path="advancedOrdering.html">
             
                 <a href="advancedOrdering.html">
             
@@ -781,7 +781,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Disconnect a Phone Number</a>
+        <a href="..">Order Phone Numbers (Advanced)</a>
     </h1>
 </div>
 
@@ -796,133 +796,167 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div></div><div class="api-method-code mm-code-first" style="min-height: 0vh;"><div class="api-code-top mm-code-top"></div></div></div>
-
-<h1 id="top">Phone Number Disconnect Summary </h1>
-<p><a href="https://test.dashboard.bandwidth.com/apidocs/navsidebar/NumberOrderingSummary.pdf" target="_blank">PDF</a></p>
-<p>Disconnecting a phone number leaves it in all applicable inventories, but makes it available for activation with a new subscriber.</p>
-<h2 id="assumptions">Assumptions</h2>
-<ul>
-<li>You have a <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number Dashboard</a> account</li>
-<li>You have at least one Phone Number to disconnect.</li>
-</ul>
+                                <h1 id="top">Ordering Numbers Advanced </h1>
 <h2 id="overview">Overview</h2>
 <ul>
-<li><a href="#disconnect-phone-number">Disconnecting a Phone Number</a></li>
-<li><a href="#get-disconnect-info">Fetching Disconnect Info</a></li>
+<li><a href="#ordering-overview">Overview of Ordering</a></li>
+<li><a href="#creating-order">Creating an Order</a></li>
+<li><a href="#new-number-req">New Number Order Request Format</a></li>
+<li><a href="#new-number-res">New Number Order Response Format</a></li>
+<li><a href="#backorder-number">Backordering Numbers</a><ul>
+<li><a href="#new-number-states">New Number Order States</a></li>
+<li><a href="#backorder-api">Requesting a backorder via the API</a></li>
+<li><a href="#usage-recommendations">Usage Recommendations:</a></li>
 </ul>
-<h2 id="disconnect-phone-number">Disconnecting a Phone Number </h2>
-<p>Disconnecting a phone number leaves it in all applicable inventories, but makes it available for activation with a new subscriber.</p>
-<h3 id="base-url">Base URL</h3>
-<p><code class="post">POST</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects</code></p>
-<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="request-parameters">Request Parameters</h3>
+</li>
+<li><a href="#update-new-number-order">Updating a new-number order</a></li>
+</ul>
+<h2 id="ordering-overview">Overview of Ordering </h2>
+<p>Orders placed with the Bandwidth Dashboard API are processed as a single-step activity when inventory is available to fulfill the request.  The numbers will be searched for according to the indicated criteria, and, if found, will be activated in the network without intermediate confirmation with the requestor.  Under most conditions, the time between the request for numbers, and the selection and activation of those numbers in the bandwidth network, happens in les than a second.   There are cases in the ordering of numbers where the completion and activation of the telephone numbers in the network is not near-real-time, such as in the case where the numbers are backordered for later completion.  These facts, coupled with the need to persist an order record beyond the activation period of the telephone numbers has motivated the use of an asynchronous model, where the response to the request is an interim response, and the final completion of the order happens at some later time.</p>
+<p>In light of the fact that these interactions are handled in a machine-to-machine manner, coupled with the considerations of our asynchronous model, has motivated us to ensure that an order always has a state, and that state is always available via the API.   The State Transition Diagram describing these states is below.  Any attempt to query an order will indicate one of these states.</p>
+<p><img src="../images/orderStatus.png" alt="order status"></p>
+<p>The meaning of the states is provided in the following table.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Parameter</th>
-<th style="text-align:left">Required</th>
+<th style="text-align:left">State</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>Received</code></td>
+<td style="text-align:left">A transitional state indicating that the order has been received by the system, and is in the process of being implemented.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Complete</code></td>
+<td style="text-align:left">All numbers in the request have been activated in the network. This is a final state.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Partial</code></td>
+<td style="text-align:left">Some of the numbers needed to fulfill the request have been activated in the network, and no more numbers will be activated as part of this order.  This is a final state. See the <code>&lt;PartialAllowed&gt;</code> element described below.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Failed</code></td>
+<td style="text-align:left"><strong>None</strong> of the numbers needed to fulfill the request have been activated in the network, and no more numbers will be activated as part of this order.  This is a final state. See the <code>&lt;PartialAllowed&gt;</code> element described below.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Backordered</code></td>
+<td style="text-align:left">The Bandwidth Phone Number Dashboard may have activated some of the requested numbers in the network, but it is continuing to find and activate more numbers.  An order may remain in this state for a number of days.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="creating-order">Creating an Order </h2>
+<p>The user can order numbers to their account using the HTTP POST Request Format method. This can be done either through a search for available numbers or by passing a description of the specific numbers to be ordered.</p>
+<p>As in other asynchronous workflows, the request to order a new telephone number is created by a POST to a resource dedicated to the purpose to tracking new number requests &#x2013; the <code>accounts/{account-id}/orders</code> resource</p>
+<p>If the request is valid the Bandwidth Phone Number API will create an order resource, and will return an order ID which should be used in querying for the status for an order.  Success will be indicated by a <code>201 Created</code> return code, and will include a link to the Order resource in the Location header of the response.</p>
+<h2 id="new-number-req">New Number Order Request Format </h2>
+<p>All New Number orders are sent to the Bandwidth Dashboard as requests to create a new number order record.  That new number order record is used to report the results of the order, as well as to track the status of the order if it remains open as a back-order for the numbers.</p>
+<p>There are a number of different ways of ordering numbers using the Bandwidth Dashboard APIs, reflecting various approaches that can be used to search the available number inventory.  In summary, the various types are:</p>
+<p>Existing Number orders, used if the numbers are known to be available based on a prior search.</p>
+<ul>
+<li>Area Code / NPA search based orders</li>
+<li>NPA-XXX, and NPA-NXX-X search based orders</li>
+<li>Rate Center search based orders</li>
+<li>State, and City/State search based orders</li>
+<li>ZIP Code search based orders</li>
+<li>LATA search based orders</li>
+<li>Toll free number orders</li>
+</ul>
+<p>These different order types have different parameters that guide the ordering process, and thus have different parameters as part of their order requests.</p>
+<p>The order requests are communicated via a <code class="post">POST</code> API call with a payload that describes the order parameters.</p>
+<h2 id="new-number-res">New Number Order Response Format </h2>
+<p>The network APIs return an XML payload in response to a request. In addition, an HTTP 201 location header message is returned for all requests. Sample is shown here:</p>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">201</span> Created
+<span class="hljs-attribute">Location</span>: https://dashboard.bandwidth.com/api/accounts/{accountId}/orders/{orderId}
+</code></pre>
+<p>The Location header represents the URL that can be fetched representing the current status of a new number order.</p>
+<h2 id="backorder-number">Backordering Numbers </h2>
+<p>If not all of the requested telephone numbers are available at the time that the order is placed, the order can optionally be placed in a &#x201C;Backordered&#x201D; state, for subsequent completion by the Bandwidth Phone Number API.  The order will remain in this state until the order is filled, or until the order is closed.</p>
+<p>An order will be a candidate for backordering if the <code>&lt;BackOrderRequested&gt;</code> element is included in the request payload, with a value of &#x201C;true&#x201D;.</p>
+<h3 id="new-number-states">New Number Order States </h3>
+<p>Orders placed for new numbers usually complete rapidly, returning either all, some or none of the numbers requested, based on the availability of numbers in the Bandwidth available inventory.  The final disposition of the order is reflected in the <code>&lt;OrderStatus&gt;</code> element:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Status</th>
 <th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>Name</code></td>
-<td style="text-align:left">Yes</td>
-<td style="text-align:left">The name of the order. Max length restricted to 50 characters</td>
+<td style="text-align:left"><code>FAILED</code></td>
+<td style="text-align:left">No telephone numbers available</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>TelephoneNumberList</code></td>
-<td style="text-align:left">Yes</td>
-<td style="text-align:left">A list of telephone numbers to disconnect.</td>
+<td style="text-align:left"><code>PARTIAL</code></td>
+<td style="text-align:left">Some but not all of the requested telephone numbers were available and provided</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>DisconnectMode</code></td>
-<td style="text-align:left">No</td>
-<td style="text-align:left">The severity of disconnect order. Typically <code>Normal</code>.</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>Protected</code></td>
-<td style="text-align:left">No</td>
-<td style="text-align:left">Change protected status of telephones during disconnection. Possible values: <code>TRUE</code>, <code>FALSE</code>, <code>UNCHANGED</code>. Typically <code>UNCHANGED</code>.</td>
+<td style="text-align:left"><code>COMPLETED</code></td>
+<td style="text-align:left">All of the requested telephone numbers were provided</td>
 </tr>
 </tbody>
 </table>
-</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-create-a-disconnect-request-for-2-phone-numbers">Example: Create a disconnect request for 2 Phone Numbers</h3>
-<pre><code class="lang-http"><span class="hljs-keyword">POST</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects</span> HTTP/1.1
-<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
-<span class="hljs-attribute">Authorization</span>: {user:password}
-
-<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span><span class="hljs-meta">?&gt;</span></span>
-<span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrder</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>training run<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrder</span>&gt;</span>
-</span></code></pre>
-<h3 id="response">Response</h3>
-<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">201</span> Created
-<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
-<span class="hljs-attribute">Location</span>: https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects/df2gc2e2-653d-466c-945d-8f292f09ce55
-
-<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
-<span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">orderRequest</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2018-01-23T21:00:23.802Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>df2gc2e2-653d-466c-945d-8f292f09ce55<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectMode</span>&gt;</span>normal<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectMode</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">orderRequest</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>RECEIVED<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
-</span></code></pre>
-</div></div></div>
-
-<h2 id="get-disconnect-info">Fetching Disconnect Information </h2>
-<p>A <code class="get">GET</code> Request to an existing disconnect will return it&apos;s status as well as any information originally used to create the disconnect.</p>
-<h3 id="base-url">Base URL</h3>
-<p><code class="get">GET</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects/{{disconnectId}}</code></p>
-<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="query-parameters">Query Parameters</h3>
-<p>There are no query parameters for fetching information about an existing disconnect.</p>
-</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-fetch-disconnect-information">Example: Fetch Disconnect Information</h3>
-<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/disconnects/df2gc2e2-653d-466c-945d-8f292f09ce55</span> HTTP/1.1
-<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
-<span class="hljs-attribute">Authorization</span>: {user:password}
-</code></pre>
-<h3 id="response">Response</h3>
-<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
-<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
-
-<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
-<span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectedTelephoneNumberList</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectedTelephoneNumberList</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ErrorList</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">orderRequest</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2015-01-20T21:05:58.026Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>df2gc2e2-653d-466c-945d-8f292f09ce55<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>7034343704<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">DisconnectMode</span>&gt;</span>normal<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectMode</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderType</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">orderRequest</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>COMPLETE<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">DisconnectTelephoneNumberOrderResponse</span>&gt;</span>
-</span></code></pre>
-</div></div></div>
+<p>If a new number order has been tagged to indicate that telephone numbers are to be backordered and the indicated quantity is not immediately available, then the order will remain active, and the interim status of <strong>BACKORDERED</strong> will be indicated in the <code>&lt;OrderStatus&gt;</code> element when the order is examined with a <code class="get">GET</code>  referencing the <code>order-id</code>.</p>
+<h3 id="backorder-api">Requesting a backorder via the API .</h3>
+<p>If the API call has the <code>&lt;BackOrderRequested&gt;</code> element set to true, then the order will be retained by the Bandwidth Phone Number Dashboard until it can be filled or until it is closed via an API call or GUI status update.</p>
+<p>The <code>&lt;BackOrderRequested&gt;</code> element and the <code>&lt; PartialAllowed&gt;</code> element interact in the completion of the order.  The interaction is described in the following table:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Condition</th>
+<th style="text-align:left">Backorder Requested</th>
+<th style="text-align:left">Partial Allowed</th>
+<th style="text-align:left">Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Requested number of Telephone Numbers is found</td>
+<td style="text-align:left">n/a</td>
+<td style="text-align:left">n/a</td>
+<td style="text-align:left">User gets their TNs</td>
+</tr>
+<tr>
+<td style="text-align:left">Less than the requested quantity is found</td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Available TNs are ordered and the Order is placed into Backordered status for subsequent fulfillment and notification</td>
+</tr>
+<tr>
+<td style="text-align:left">Less than the requested quantity is found</td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">The order is placed into Backordered status for subsequent fulfillment and notification, which will occur only on 100% availability. No numbers will be allocated to the order until the full request can be completely satisfied.</td>
+</tr>
+<tr>
+<td style="text-align:left">Less than the requested quantity is found</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Available TNs are ordered, and the order is completed and transitioned to the terminal &quot;PARTIAL&quot; state indicating that the order was partially filled</td>
+</tr>
+<tr>
+<td style="text-align:left">Less than the requested quantity is found</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">Order Fails. Not enough numbers are available.</td>
+</tr>
+<tr>
+<td style="text-align:left">None Found</td>
+<td style="text-align:left">see above</td>
+<td style="text-align:left">see above</td>
+<td style="text-align:left">Same as for &quot;Less Than&quot;, except that the entire order goes into BackOrder status immediately</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-recommendations">Usage Recommendations: </h3>
+<p>Although there are no restrictions on the order-types for which backorder requests can be submitted via the API, it is recommended to avoid submitting backorders for zipcode, npanxx and npanxxx order types, largely because of the difficulty of filling requests of those types if the inventory is not immediately available.</p>
+<p>In the case of npanxx and npanxxx order types, the specific dial plan elements are often no longer available, and in the case of zipcode orders there are cases where the relationship between zipcode and dial plan is not represented in the available data.</p>
+<h2 id="update-new-number-order">Updating a new-number order </h2>
+<p>With the introduction of Backorder capabilities, new number orders may stay in backordered state for a period while the order is filled.   While in this state it is possible to update the modifiable fields in the record, as well as to request that backorder processing of the order be ended.</p>
+<p>Those updates to incomplete orders are facilitated by a <code class="put">PUT</code> on the <code>order-id</code>.</p>
+<p>Closing a backordered order retains any telephone numbers that have already been assigned to the account, and the order will typically convert its status to <code>PARTIAL</code> state, indicating that some requested numbers were not provided. If no numbers were provided the final state will be <code>FAILED</code>.</p>
 
                                 
                                 </section>
@@ -956,7 +990,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Disconnect a Phone Number","level":"3.3","depth":1,"next":{"title":"Disconnect a Phone Number","level":"3.3.1","depth":2,"anchor":"#disconnect-phone-number","path":"guides/disconnectSummary.md","ref":"guides/disconnectSummary.md#disconnect-phone-number","articles":[]},"previous":{"title":"Fetch Order Info","level":"3.2.3","depth":2,"anchor":"#get-order-info","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#get-order-info","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/disconnectSummary.md","mtime":"2018-02-26T18:43:17.613Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-26T18:44:54.262Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Order Phone Numbers (Advanced)","level":"3.4","depth":1,"next":{"title":"Overview of Ordering","level":"3.4.1","depth":2,"anchor":"#ordering-overview","path":"guides/advancedOrdering.md","ref":"guides/advancedOrdering.md#ordering-overview","articles":[]},"previous":{"title":"Fetch Disconnect Info","level":"3.3.2","depth":2,"anchor":"#get-disconnect-info","path":"guides/disconnectSummary.md","ref":"guides/disconnectSummary.md#get-disconnect-info","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/advancedOrdering.md","mtime":"2018-02-26T18:43:17.613Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-26T18:44:54.262Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
