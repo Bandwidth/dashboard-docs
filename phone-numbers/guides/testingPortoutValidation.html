@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Administrative Functions</title>
+        <title>Testing Port-out Validation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../concepts/manageSites.html">
+    <link rel="next" href="testingPortoutValidation.html">
     
     
-    <link rel="prev" href="testingPortoutValidation.html">
+    <link rel="prev" href="testingPorting.html">
     
 
     </head>
@@ -802,7 +802,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="testingPortoutValidation.html">
+        <li class="chapter active" data-level="4.3" data-path="testingPortoutValidation.html">
             
                 <a href="testingPortoutValidation.html">
             
@@ -867,7 +867,7 @@
         
         
     
-        <li class="chapter active" data-level="5.1" data-path="adminFunctions.html">
+        <li class="chapter " data-level="5.1" data-path="adminFunctions.html">
             
                 <a href="adminFunctions.html">
             
@@ -1455,7 +1455,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Administrative Functions</a>
+        <a href="..">Testing Port-out Validation</a>
     </h1>
 </div>
 
@@ -1470,13 +1470,61 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="administrative-functions">Administrative Functions</h1>
-<h2 id="users">Users</h2>
-<p>The users that have access for an account are accessible via a request to the users resource on the account.</p>
-<h2 id="managing-user-passwords">Managing User Passwords</h2>
-<p>Although at this time the set of users that can access an account is managed directly by Bandwidth Personnel, it is possible to manage the password for a user.  This function is constrained so that a user may only reset their own password, and must place the API call using those credentials.</p>
-<p>The password has a minimum length of 6 characters and a maximum length of 20.</p>
-<p>In the case of a lost password Bandwidth support personnel can provide a password reset.</p>
+                                <h1 id="testing-port-out-validation-in-the-interop-sandbox">Testing Port-out Validation in the Interop Sandbox</h1>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#testing">Testing</a><ul>
+<li><a href="#lsr-portout">Testing an LSR-initiated port out</a></li>
+<li><a href="#port-in">Testing a port-in driven port-out</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="about">About </h2>
+<p>The Port-out Validation API allows approved and contracted customers to confirm the validity of port-out requests on submission, to ensure that the requests include the required FCC-permitted elements of subscriber data, in an attempt to reduce invalid requests.  This API will cause a synchronous API call to the endpoint configured for the account, and expect a response indicating the validity of the data, or any errors found in the data.</p>
+<p>This port out verification API is documented in the <code>/callbacks</code> <code>/portOutValidationCallbackApi</code> section of the <a href="../apiReference.html">API Reference</a></p>
+<p>The port-out process is a two-stage process.</p>
+<ol>
+<li>In the initial stage, a request is made by the prospective winning carrier to remove (port-out) the number from the Bandwidth network so that it can be activated on the winning carrier&#x2019;s network.  At this stage in the process, we will execute the port out validation call-back API to the URL that you provide us, and use the returned information in determining whether the number should be ported out.  If the port-out appears valid a port-out will be scheduled at a later date, and the prospective winning carrier will be informed</li>
+<li>As a completely separate action, on the scheduled date, the telephone number will be removed from service in the Bandwidth number, and enabled for activation in the winning carrier&#x2019;s network.</li>
+</ol>
+<p>These two steps are completely independent.  The port out validation happens at the first stage.   A separate independent notification can be sent when the port-out actually happens (if it happens).  That notification can be an email, or via a different callback documented in the /subscriptions and the <code>/callbacks</code> <code>/notificationCallbackApi</code> sections of the <a href="../apiReference.html">API Reference</a>.  It is important to note that a verification does not mean that a number will port out, or that it will not.  The results of the verification is used to support the process, but the actual decision to remove the number involves other factors, and the number may or may not be removed based on those other factors.  The number is not removed until just before the notification callback API is invoked.</p>
+<h2 id="setup">Setup </h2>
+<p>After you have completed the initial development, and are ready to begin testing your API implementation against a representative system.  The environment for your testing will include a target test system that receives the API calls, a test account in our test environment, and access to an &#x201C;LSR&#x201D; test account in our test environment that you can use to instigate port-outs.</p>
+<p><img src="../images/testingPortOut.md" alt="testing port out"></p>
+<p>You should take the following steps to ensure that a test environment can be set up, and that you are ready to test.</p>
+<ol>
+<li>Make sure that your Bandwidth Representative has the REST API URL that the Bandwidth Dashboard will invoke on detecting a request for a port-out.  This URL needs to be configured into the test system</li>
+<li>Make sure that your Bandwidth Representative provides you access to a &#x201C;target&#x201D; test account from which you can port numbers.  This account may be a &#x201C;loaner&#x2019;, or a test account dedicated to your use.  This is the account that the numbers will be ported away from.</li>
+<li>If necessary, make sure that your Bandwidth Representative has loaded that account with numbers that can be &#x201C;ported out&#x201D;, and that will cause successes and failures.</li>
+<li>Also, get some account credentials for our &#x201C;LSR&#x201D; test account from Bandwidth.  You can use this account to initiate test port-out activities on the numbers that you want to use to perform tests.  This account is analogous to the accounts used by winning carriers to request port-out of a number.</li>
+</ol>
+<p>The interop test system has fictional numbers, and will not result in the port-out of any telephone numbers in real systems.</p>
+<p>Bandwidth will use the information above to configure the test account for your use, and notify you once the configuration is complete.  You will be able to log in to both the target account and the LSR account from the portal using the address <a href="https://test.dashboard.bandwidth.com/portal/#login" target="_blank">https://test.dashboard.bandwidth.com/portal/#login</a> .</p>
+<h2 id="testing">Testing </h2>
+<p>There are two events that will result in a port-out validation: 1) entry of an LSR request, or 2) a &#x201C;circular&#x201D; port-in, which invokes a port-in activity back to the losing account, triggering a port-out activity to match with the port-out.   This test approach allows testing of both events.</p>
+<p>Before you commence testing it is recommended that you log in to the &#x201C;target&#x201D; account and verify that the telephone numbers that you need for testing are present on the account.  This can be validated simply by entering the list of target numbers into the &#x201C;Search Telephone Numbers&#x201D; text box on the right hand side of the main dashboard page.</p>
+<h3 id="lsr-portout">Testing an LSR-initiated port out </h3>
+<p>An LSR submission by a winning carrier can initiate a port-out.  To test an LSR-initiated port out&#x2026;</p>
+<ol>
+<li>Log into the LSR account using the credentials provided.</li>
+<li>Under the &#x201C;Orders&#x201D; menu, select &#x201C;Submit an LSR&#x201D;.  This will present you with a form that you can fill out to request the port-out of one of the numbers currently on the &#x201C;Target&#x201D; account.  Values in the PIN, Account, ZIP will be passed to the Port-out Validation API call that the Dashboard will make to your system.</li>
+<li>This will create an &#x201C;LSR Order&#x201D;, which is the persistent record of the attempt. The results of the request should be presented back to you as a subsequent update of the LSR order.</li>
+<li>Various failure conditions can result, come of which are fatal, like an unrecognizable TN.  Others, like an invalid PIN can be corrected and resubmitted.</li>
+<li>It is recommended that the target FoC date for the LSR port-out request be chosen in the future so that the order can be cancelled, and the Telephone Number preserved for subsequent testing.</li>
+</ol>
+<h3 id="port-in">Testing a port-in driven port-out </h3>
+<p>An API-initiated port-in can also initiate a port-out, resulting in the second approach to testing the port-out validation API implementation.  To test this scenario we use a &#x201C;circular&#x201D; internal port-in; essentially porting the telephone number into the same account on which it was already resident.  To perform this test&#x2026;</p>
+<ol>
+<li>Log into the &#x201C;Target&#x201D; account using the credentials provided</li>
+<li>Under the Orders menu select &#x201C;Port Numbers&#x201D; and fill in the provided form, using one of the telephone numbers already on the Target account.</li>
+<li>On submission, this should create a port-in order that is tied to the requirement to port-out the number.  This in turn will execute the Port-in Validity check API call, and return the results to the port-in order.</li>
+<li>As above, some failure conditions will be fatal, and others can be corrected.</li>
+<li>Again as above it is recommended that the target FoC date be set in the far future, allowing the port-in request to be cancelled.   If this does not happen, the port-in will simply return the telephone number to the account.</li>
+</ol>
+<p>You Bandwidth Representative can assist in the setup of the testing, and in the execution of the tests above using the Bandwidth Dashboard portal</p>
+<p>Feel free to use any of the provided resources to resolve issues that arise.</p>
 
                                 
                                 </section>
@@ -1510,7 +1558,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Administrative Functions","level":"5.1","depth":1,"next":{"title":"Managing Sub-accounts/Sites","level":"5.2","depth":1,"path":"concepts/manageSites.md","ref":"concepts/manageSites.md","articles":[]},"previous":{"title":"Testing","level":"4.3.3","depth":2,"anchor":"#testing","path":"guides/testingPortoutValidation.md","ref":"guides/testingPortoutValidation.md#testing","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/adminFunctions.md","mtime":"2018-02-28T21:36:20.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-28T22:55:06.886Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing Port-out Validation","level":"4.3","depth":1,"next":{"title":"About","level":"4.3.1","depth":2,"anchor":"#about","path":"guides/testingPortoutValidation.md","ref":"guides/testingPortoutValidation.md#about","articles":[]},"previous":{"title":"Unsupported Rate Centers","level":"4.2.10","depth":2,"anchor":"#unsupported-rate-centers","path":"guides/testingPorting.md","ref":"guides/testingPorting.md#unsupported-rate-centers","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/testingPortoutValidation.md","mtime":"2018-02-28T21:57:24.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-28T22:55:06.886Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
