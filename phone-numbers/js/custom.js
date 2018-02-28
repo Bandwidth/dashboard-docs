@@ -29,7 +29,10 @@ module.exports = function ($) {
     'orderingSummary.html',
     'disconnectSummary.html',
     'restAPI.html',
-    'manageLocations.html'
+    'manageLocations.html',
+    'portingPhoneNumbers.html',
+    'managingLineFeatures.html',
+    'reporting.html'
   ];
 
 

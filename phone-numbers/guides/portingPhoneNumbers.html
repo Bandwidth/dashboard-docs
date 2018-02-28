@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Searching Phone Numbers</title>
+        <title>Porting Phone Numbers</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="orderingSummary.html">
+    <link rel="next" href="portingPhoneNumbers.html">
     
     
-    <link rel="prev" href="../apiReference.html">
+    <link rel="prev" href="reservingNumbers.html">
     
 
     </head>
@@ -271,7 +271,7 @@
         
         
     
-        <li class="chapter active" data-level="3.1" data-path="searchForNumbers.html">
+        <li class="chapter " data-level="3.1" data-path="searchForNumbers.html">
             
                 <a href="searchForNumbers.html">
             
@@ -497,7 +497,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="portingPhoneNumbers.html">
+        <li class="chapter active" data-level="3.6" data-path="portingPhoneNumbers.html">
             
                 <a href="portingPhoneNumbers.html#top">
             
@@ -1215,7 +1215,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Searching Phone Numbers</a>
+        <a href="..">Porting Phone Numbers</a>
     </h1>
 </div>
 
@@ -1230,34 +1230,143 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="searching-for-phone-numbers">Searching for Phone Numbers</h1>
-<p>There are a number of different resource paths for querying available telephone numbers in the Bandwidth Phone Number inventory. These are:</p>
+                                <h1 id="top">Porting-in Phone Numbers </h1>
 <ul>
-<li>Area Code or NPA</li>
-<li>AvailableNpaNxx (List of NPA NXX quantities)</li>
-<li>NPA-NXX with Local Calling Area</li>
-<li>NPA-NXX-X with Local Calling Area</li>
-<li>Rate Center</li>
-<li>Toll Free Vanity</li>
-<li>Toll Free Wild Card</li>
-<li>State</li>
-<li>City, State</li>
-<li>Zip code</li>
-<li>Lata (Telecom terminology)</li>
+<li><a href="#about-porting">About Porting</a></li>
+<li><a href="#overview-of-porting">Overview of the Port-in Process</a></li>
+<li><a href="#check-lnp">Checking LNP Availability</a></li>
+<li><a href="#create-lnp">Creating an LNP Order</a></li>
+<li><a href="#loa-upload">LOA Upload</a><ul>
+<li><a href="#supported-file-types">Supported File Types</a></li>
+<li><a href="#curl-example">CURL Example</a></li>
+<li><a href="#file-meta-data">File Meta-Data</a></li>
 </ul>
-<h2 id="search-http-get-request-format">Search HTTP GET Request Format</h2>
-<p>Bandwidth dashboard allows the overall Bandwidth number inventory to be searched using a variety of approaches.  Our customers can use these searches to guide attempts to order numbers.  The various types of available searches are:</p>
+</li>
+<li><a href="#modify-lnp">Modifying an LNP Order (Supp LNP Order)</a></li>
+<li><a href="#cancel-lnp">Canceling LNP Order</a></li>
+<li><a href="#activate-ported-numbers">Activating Ported Numbers</a></li>
+</ul>
+<h2 id="about-porting">About Porting </h2>
+<p>The Bandwidth Phone Number Dashboard provides an API that can be used to submit Port-In requests.  These requests to move phone numbers from a &quot;losing carrier&quot; to Bandwidth are part of the Local Number Portability (LNP) process.  These LNP requests are automatically validated and processed.  If the order fails during processing, it will be held for exception processing.  Customers can catch and fix exceptions 2 different ways:</p>
 <ul>
-<li>Area Code / NPA searches</li>
-<li>NPA-XXX, and NPA-NXX-X searches</li>
-<li>Rate Center searches</li>
-<li>State, and City/State searches</li>
-<li>ZIP Code searches</li>
-<li>LATA searches</li>
-<li>Toll free number searches</li>
+<li>The customer&apos;s application can check the status of port-in orders, and re-submit or cancel them through the API.</li>
+<li>The customer&apos;s LNP team can check the status of port-in orders, and re-submit or cancel them through the Bandwidth Dashboard UI</li>
 </ul>
-<p>These different search types have different query parameters that guide the required searches. The search requests are communicated via a <code class="get">GET</code>  API call where the type of search, the search filters, and controlling parameters such as limits on quantity and payload detail are specified as query parameters in the URL.</p>
-<p>The response to the search request provides a list of available numbers, and if requested some details such as Rate Center and Lata, about the numbers that have been returned.</p>
+<h2 id="overview-of-porting">Overview of the Port-in Process </h2>
+<p>The external events in the porting process are documented in the diagram below.</p>
+<p>NOTE: Exceptions are outlined as synchronous and asynchronous in the Appendix A: LNP Exception Codes.</p>
+<p>The Orders that are managed by the Bandwidth Phone Number Dashboard to implement the above workflow are reported in the order records that are reported through the API calls below.  These &#x201C;order states&#x201D; comply with the state transitions captured in the following diagram:</p>
+<p><img src="../images/portingDiagram.png" alt="Porting Diagram"></p>
+<h2 id="check-lnp">Checking LNP Availability </h2>
+<p>A number or numbers can be checked to see if they can be ported into the Bandwidth Network using an LNPChecker API call.</p>
+<p>The fullcheck query parameter values control the components of the response payload that is returned:</p>
+<h3 id="fullcheck-query-parameter-behvaior"><code>fullcheck</code> Query Parameter Behvaior</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter value</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>false</code> (default)</td>
+<td style="text-align:left">Return only rate center information</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Additional information will be provided on the losing carriers associated with the listed numbers</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>onnetportability</code></td>
+<td style="text-align:left">Provides rate center and losing carrier information for onnet tiers only</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>offnetportabilty</code></td>
+<td style="text-align:left">In addition to on-net information return off-net port information in <code>&lt;PartnerSupportedRateCenters&gt;</code> element with Partner/Vendor that the port will be supported on. Contains a list of the TNs that are supported in partner rate centers, and for which we will manually execute a port if requested for help.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-description">Response Description</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Element</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-<code>SupportedRateCenters</code> <br> -<code>PartnerSupportedRateCenters</code> <br> -<code>UnsupportedRateCenters</code></td>
+<td style="text-align:left">Rate Center information for the indicated set of ratecenters, containing City, State, LATA and the list of TNs for which that Rate Center applies.  <br> The Tier information is provided for offnet rate centers.</td>
+</tr>
+<tr>
+<td style="text-align:left">-<code>SupportedLosingCarriers</code> <br> -<code>UnsupportedLosingCarriers</code></td>
+<td style="text-align:left">Details on the Losing Carrier including name, SPID, whether or not the carrier is a wireless carrier, whether or not account number is required as part of the CSR check, and the anticipated minimum number of days before a FoC date will be granted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create-lnp">Creating an LNP Order </h2>
+<p>The API allows a user to create a new LNP order. An order number will be auto-generated and provided to the customer. The order must pass synchronous and asynchronous validation. Synchronous validation will return validation failures immediately in the response. If synchronous validation passes, but asynchronous validation fails, the customer will not receive the error response until they check the order status.</p>
+<p>As in other asynchronous workflows, the request to port in a number is created by a <code class="post">POST</code> to a resource dedicated to the purpose to tracking requests &#x2013; the <code>accounts/{accountId}/portins</code> resource</p>
+<h2 id="loa-upload">LOA Upload </h2>
+<p>After successfully submitting the Create LNP Order request, an LOA may be uploaded using our LOA API.</p>
+<h3 id="supported-file-types">Supported File Types </h3>
+<p>The following MIME types are supported for the LOA upload file:</p>
+<ul>
+<li>PDF(&#x201C;application/pdf&#x201D;)</li>
+<li>PLAIN(&#x201C;text/plain&#x201D;)</li>
+<li>JPG(&#x201C;image/jpeg&#x201D;)</li>
+<li>TIFF(&#x201C;image/tiff&#x201D;)</li>
+<li>CSV(&#x201C;text/csv&#x201D;)</li>
+<li>XML(&#x201C;application/xml&#x201D;)</li>
+<li>WAV(&#x201C;audio/x-wav&#x201D;)</li>
+<li>ZIP(&#x201C;application/zip&#x201D;)</li>
+</ul>
+<h3 id="curl-example">CURL Example </h3>
+<p>Use the order-id returned in the Create LNP Order response.</p>
+<pre><code class="lang-bash">curl -H <span class="hljs-string">&apos;Content-Type: &lt;MIME Type&gt;&apos;</span> --data-binary <span class="hljs-string">&quot;@&lt;Filename&gt;&quot;</span> &#x2013;iv &lt;Base URL&gt;/portins/&lt;order-id&gt;/loas
+</code></pre>
+<h4 id="example">Example:</h4>
+<pre><code class="lang-bash">curl -H <span class="hljs-string">&apos;Content-Type: application/pdf&apos;</span> --data-binary <span class="hljs-string">&quot;@Test_LOA.pdf&quot;</span> -iv &lt;BASE URL&gt;/portins/&lt;order-id&gt;/loas
+</code></pre>
+<h3 id="file-meta-data">File Meta-Data </h3>
+<p>It is often useful to attach additional data to an order in the form of an attached file, and so the existing LOA capability has been extended to optionally allow different file information to be included with a file, to describe type and purpose information.  The Meta-Data associated with a file includes a file document name and a document type, which is one of:</p>
+<ul>
+<li>LOA</li>
+<li>INVOICE</li>
+<li>CSR</li>
+<li>OTHER</li>
+</ul>
+<h2 id="modify-lnp">Modifying an LNP Order (Supp LNP Order) </h2>
+<p>The API allows a user to modify an existing LNP order. The order number that was generated in the create LNP order request must be provided. Modifications are only allowed for orders that are not yet complete or cancelled. After the FOC date has been received, the billing telephone number and subscriber information cannot be modified, only the FOC date/time can be updated.</p>
+<h2 id="cancel-lnp">Canceling LNP Order </h2>
+<p>The API allows a user to cancel an existing LNP order. The order number that was generated in the create request must be provided. The status of the order shall not be marked as <code>COMPLETE</code> i.e. you cannot cancel a completed order.  The <code class="delete">DEL </code> method is used for this purpose.</p>
+<h2 id="activate-ported-numbers">Activating Ported Numbers </h2>
+<p>The by default the Bandwidth Phone Number Dashboard will activate ported wireline numbers shortly after 11:30 am on the FOC date.</p>
+<p>The Bandwidth Phone Number Dashboard will also support customer &#x201C;on demand&#x201D; activation of numbers on the FOC date, if the intent to use the &#x201C;on demand&#x201D; activation is declared when the Port Order is created.  This declaration is done by including a <code>&lt;Triggered&gt;</code> element in the <code>/portin</code> order request.</p>
+<p>If on demand activation is indicated, then the customer will specify a default activation time in the initial port request, and can request activation of the port at any time up until that default activation time.   If a port has not been activated by the default activation time, the Bandwidth Phone Number Dashboard will activate the port.</p>
+<p>If activation by the default activation time on the FOC date is not achievable it is possible to delay activation for up to the third day after the FOC date, acknowledging that the losing carrier may have removed service from TN on the FOC date.</p>
+<p>Activation and management of on-demand ports is done via the <code>activationStatus</code> resource.  The <code>activationStatus</code> resource is created by the system when activation is available for the port request, and can be modified by <code class="put">PUT</code> to activate the port, or to delay the activation in the case that the manual activation cannot be completed on time.</p>
+<h3 id="payload-parameters">Payload Parameters</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Required</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>AutoActivationDate</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">Date</td>
+<td style="text-align:left">This date controls both the activation of the Port, and delays in activation of the port. <br> <br> - If <code>AutoActivationDate</code> is in the past, then the port will be activated <br> - If <code>AutoActivationDate</code> is in the future then the port will be delayed until the specified time, as long as that new time does not validate other restrictions on the activation of the port.  The typical guard time applied to this capability is 3 business days.</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -1291,7 +1400,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Searching Phone Numbers","level":"3.1","depth":1,"next":{"title":"Order Phone Numbers (lite)","level":"3.2","depth":1,"path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md","articles":[{"title":"Search For Phone Numbers","level":"3.2.1","depth":2,"anchor":"#search-for-phone-numbers","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#search-for-phone-numbers","articles":[]},{"title":"Order Phone Numbers","level":"3.2.2","depth":2,"anchor":"#order-phone-numbers","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#order-phone-numbers","articles":[]},{"title":"Fetch Order Info","level":"3.2.3","depth":2,"anchor":"#get-order-info","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#get-order-info","articles":[]}]},"previous":{"title":"API Reference","level":"2.1","depth":1,"path":"apiReference.md","ref":"apiReference.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/searchForNumbers.md","mtime":"2018-02-28T18:44:15.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-28T21:33:16.620Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Porting Phone Numbers","level":"3.6","depth":1,"next":{"title":"About Porting","level":"3.6.1","depth":2,"anchor":"#about-porting","path":"guides/portingPhoneNumbers.md","ref":"guides/portingPhoneNumbers.md#about-porting","articles":[]},"previous":{"title":"Reserving Phone Numbers","level":"3.5","depth":1,"path":"guides/reservingNumbers.md","ref":"guides/reservingNumbers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/portingPhoneNumbers.md","mtime":"2018-02-28T19:44:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-28T21:33:16.620Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
