@@ -1,5 +1,7 @@
 # Reporting {#top}
 
+## Overview
+
 * [Fetching Information](#fetch-info)
 * [Pagination](#pagination)
 * [Available Inventory: Rate Centers and Cities](#ratecenters)
@@ -34,9 +36,24 @@ The rules are as follows:
 
 These rules apply for both the `/rateCenters` and `/cities` API calls.
 
-|                      | Supported = true                                    | Supported is missing                                                                   |
-| available = true     | Available numbers within the Bandwidth CLEC network | Available numbers within the Bandwidth CLEC network combined with our partner networks |
-| available is missing | Coverage in the Bandwidth CLEC                      | Coverage of the combined Bandwidth CLEC + Partner networks                             |
+
+<table>
+<tr>
+<th align="left"></th>
+<th align="left">Supported = true</th>
+<th align="left">Supported is missing</th>
+</tr>
+<tr>
+<td align="left">available = true</td>
+<td align="left">Available numbers within the Bandwidth CLEC network</td>
+<td align="left">Available numbers within the Bandwidth CLEC network combined with our partner networks</td>
+</tr>
+<tr>
+<td align="left">available is missing</td>
+<td align="left">Coverage in the Bandwidth CLEC</td>
+<td align="left">Coverage of the combined Bandwidth CLEC + Partner networks</td>
+</tr>
+</table>
 
 ## Cities {#cities}
 

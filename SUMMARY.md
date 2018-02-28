@@ -10,6 +10,8 @@
   * [REST URLs and Parameters](concepts/restAPI.md#rest-urls)
 * [Asynchronous Order Model](concepts/asyncOrder.md)
 * [Account Configuration](concepts/accountConfig.md)
+* [Formal API Schema Access](concepts/apiAccessSchema.md)
+* [Secure Callbacks](concepts/secureCallbacks.md)
 
 ## API Reference
 * [API Reference](apiReference.md)
@@ -31,6 +33,8 @@
   * [Backordering Numbers](guides/advancedOrdering.md#backorder-number)
   * [Updating a new-number order](guides/advancedOrdering.md#update-new-number-order)
 * [Reserving Phone Numbers](guides/reservingNumbers.md)
+
+## Porting Phone Numbers Guides
 * [Porting Phone Numbers](guides/portingPhoneNumbers.md)
   * [About Porting](guides/portingPhoneNumbers.md#about-porting)
   * [Overview of the Port-in Process](guides/portingPhoneNumbers.md#overview-of-porting)
@@ -40,6 +44,21 @@
   * [Modifying an LNP Order (Supp LNP Order)](guides/portingPhoneNumbers.md#modify-lnp)
   * [Canceling LNP Order](guides/portingPhoneNumbers.md#cancel-lnp)
   * [Activating Ported Numbers](guides/portingPhoneNumbers.md#activate-ported-numbers)
+* [Testing Porting](guides/testingPorting.md)
+  * [About](guides/testingPorting.md#about)
+  * [Supported Phone Numbers](guides/testingPorting.md#supported-tns)
+  * [Unsupported Phone Numbers](guides/testingPorting.md#unsupported-tns)
+  * [Failed Phone Numbers](guides/testingPorting.md#failed-tns)
+  * [Pass-Fail Phone Numbers](guides/testingPorting.md#pass-fail)
+  * [Succeeded Phone Numbers](guides/testingPorting.md#success-tns)
+  * [Managed Phone Numbers Port](guides/testingPorting.md#managed-ports)
+  * [NPA NXX pairs for testing Porting](guides/testingPorting.md#npa-nxx-pairs)
+  * [Rate Centers for Manual Porting](guides/testingPorting.md#rate-center-manual-porting)
+  * [Unsupported Rate Centers](guides/testingPorting.md#unsupported-rate-centers)
+* [Testing Port-out Validation](guides/testingPortoutValidation.md)
+  * [About](guides/testingPortoutValidation.md#about)
+  * [Setup](guides/testingPortoutValidation.md#setup)
+  * [Testing](guides/testingPortoutValidation.md#testing)
 
 ## Account Management Guides
 * [Administrative Functions](guides/adminFunctions.md)
