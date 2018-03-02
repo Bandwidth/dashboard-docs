@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Reporting</title>
+        <title>Searching Phone Numbers</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="reporting.html">
+    <link rel="next" href="orderingSummary.html">
     
     
-    <link rel="prev" href="managingOrders.html">
+    <link rel="prev" href="../apiReference.html">
     
 
     </head>
@@ -307,7 +307,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="searchForNumbers.html">
+        <li class="chapter active" data-level="3.1" data-path="searchForNumbers.html">
             
                 <a href="searchForNumbers.html">
             
@@ -812,63 +812,63 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html">
             
                     
                     Testing Port-out Validation
             
-                
+                </a>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.1" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3.1" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html#about">
             
                     
                     About
             
-                
+                </a>
             
 
             
-        </span></li>
+        </li>
     
-        <li class="chapter " data-level="4.3.2" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3.2" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html#setup">
             
                     
                     Setup
             
-                
+                </a>
             
 
             
-        </span></li>
+        </li>
     
-        <li class="chapter " data-level="4.3.3" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3.3" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html#testing">
             
                     
                     Testing
             
-                
+                </a>
             
 
             
-        </span></li>
+        </li>
     
 
             </ul>
             
-        </span></li>
+        </li>
     
 
     
@@ -1240,7 +1240,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.3" data-path="reporting.html">
+        <li class="chapter " data-level="6.3" data-path="reporting.html">
             
                 <a href="reporting.html#top">
             
@@ -1465,7 +1465,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Reporting</a>
+        <a href="..">Searching Phone Numbers</a>
     </h1>
 </div>
 
@@ -1480,64 +1480,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="top">Reporting </h1>
-<h2 id="overview">Overview</h2>
+                                <h1 id="searching-for-phone-numbers">Searching for Phone Numbers</h1>
+<p>There are a number of different resource paths for querying available telephone numbers in the Bandwidth Phone Number inventory. These are:</p>
 <ul>
-<li><a href="#fetch-info">Fetching Information</a></li>
-<li><a href="#pagination">Pagination</a></li>
-<li><a href="#ratecenters">Available Inventory: Rate Centers and Cities</a></li>
-<li><a href="#cities">Cities</a></li>
-<li><a href="#npa">Available Inventory: NPA NXX combinations</a></li>
-<li><a href="#billing-apis">Billing Data Records REST APIs for Retrieving zipped files</a></li>
-<li><a href="#post-bdr"><code class="post">POST</code> a BDR zipped file request</a></li>
-<li><a href="#get-bdr"><code class="get">GET</code> a BDR zipped file record</a></li>
+<li>Area Code or NPA</li>
+<li>AvailableNpaNxx (List of NPA NXX quantities)</li>
+<li>NPA-NXX with Local Calling Area</li>
+<li>NPA-NXX-X with Local Calling Area</li>
+<li>Rate Center</li>
+<li>Toll Free Vanity</li>
+<li>Toll Free Wild Card</li>
+<li>State</li>
+<li>City, State</li>
+<li>Zip code</li>
+<li>Lata (Telecom terminology)</li>
 </ul>
-<h2 id="fetch-info">Fetching Information </h2>
-<p>Retrieving information from the Bandwidth Phone Number Dashboard is typically achieved by issuing an HTTP <code class="get">GET</code>  against an identifiable resource.  Rather than repeat all of the resource names in this section, simply suffice it to say that with a few exceptions, a <code class="get">GET</code>  on a resource will yield the available information about that resource.</p>
-<p>Query parameters are used to filter or restrict the information returned to the caller.</p>
-<h2 id="pagination">Pagination </h2>
-<p>Since an account may have a very large number of orders or TNs, the system uses the pagination mechanism to control the number of results that are returned.</p>
-<p>When a query is issued and no pagination parameters are specified, the system returns the http status code of 404 (Not found) with a link in the body of the message that indicates how to specify the pagination parameters.</p>
-<h2 id="ratecenters">Available Inventory: Rate Centers and Cities </h2>
-<p>The Rate Centers and Cities API Calls return information about the Bandwidth CLEC Network, including coverage data, indicating both the extent of on-net and off-net coverage, as well as number availability, again from an on-net and off-net perspective.</p>
-<p>The rules are as follows:</p>
+<h2 id="search-http-get-request-format">Search HTTP GET Request Format</h2>
+<p>Bandwidth dashboard allows the overall Bandwidth number inventory to be searched using a variety of approaches.  Our customers can use these searches to guide attempts to order numbers.  The various types of available searches are:</p>
 <ul>
-<li>If supported=true is specified, then the coverage or availability is reported for the Bandwidth CLEC only.</li>
-<li>If supported=true is omitted, then the coverage or availability is reported for the combination of the Bandwidth CLEC and our partners</li>
-<li>If available=true is applied, then only Rate Centers in which we have available numbers are reported.</li>
-<li>If available is omitted, then all Rate Centers within the scope defined by supported will be returned.</li>
+<li>Area Code / NPA searches</li>
+<li>NPA-XXX, and NPA-NXX-X searches</li>
+<li>Rate Center searches</li>
+<li>State, and City/State searches</li>
+<li>ZIP Code searches</li>
+<li>LATA searches</li>
+<li>Toll free number searches</li>
 </ul>
-<p>These rules apply for both the <code>/rateCenters</code> and <code>/cities</code> API calls.</p>
-<table>
-<tr>
-<th align="left"></th>
-<th align="left">Supported = true</th>
-<th align="left">Supported is missing</th>
-</tr>
-<tr>
-<td align="left">available = true</td>
-<td align="left">Available numbers within the Bandwidth CLEC network</td>
-<td align="left">Available numbers within the Bandwidth CLEC network combined with our partner networks</td>
-</tr>
-<tr>
-<td align="left">available is missing</td>
-<td align="left">Coverage in the Bandwidth CLEC</td>
-<td align="left">Coverage of the combined Bandwidth CLEC + Partner networks</td>
-</tr>
-</table>
-
-<h2 id="cities">Cities </h2>
-<p>The <code>supported</code> and <code>available</code> query parameters used above in the <code>/rateCenters</code> API call operate in an identical manner for the <code>/cities</code> API.</p>
-<h2 id="npa">Available Inventory: NPA NXX combinations </h2>
-<p>The API supports discovering available inventory per NPA-NXX for a user supplied area code and state.</p>
-<h2 id="billing-apis">Billing Data Records REST APIs for Retrieving zipped files </h2>
-<p>This API call allows the user to retrieve Billing Data Records (BDRs) for an account from the network for all billing records created during a specified date range.</p>
-<h3 id="post-bdr"><code class="post">POST</code> a BDR zipped file request </h3>
-<p>The <code class="post">POST</code> to request the retrieval is formatted to indicate the start and end date of the range.  Both dates are required for a valid request.</p>
-<p>A successful response to the <code class="post">POST</code> also returns a link containing a BDR ID, included in the Location header.  This is the Identifier of the successful request, not the identifier of the file containing the BDRs. This link will be used to fetch the zipped file of billing records once the file is ready.</p>
-<h3 id="get-bdr"><code class="get">GET</code> a BDR zipped file record </h3>
-<p>To retrieve the zipped file with the BDR records, a <code class="get">GET</code> is issued on the path returned in the location header.</p>
-<p>If the zip file containing the BDR data is ready, this request will return <code>303 See Other</code> with a Location Header redirecting the request to the BDR zip file content.</p>
+<p>These different search types have different query parameters that guide the required searches. The search requests are communicated via a <code class="get">GET</code>  API call where the type of search, the search filters, and controlling parameters such as limits on quantity and payload detail are specified as query parameters in the URL.</p>
+<p>The response to the search request provides a list of available numbers, and if requested some details such as Rate Center and Lata, about the numbers that have been returned.</p>
 
                                 
                                 </section>
@@ -1571,7 +1541,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Reporting","level":"6.3","depth":1,"next":{"title":"Fetching Information","level":"6.3.1","depth":2,"anchor":"#fetch-info","path":"guides/reporting.md","ref":"guides/reporting.md#fetch-info","articles":[]},"previous":{"title":"Callback URL Notifications","level":"6.2.5","depth":2,"anchor":"#callback-notifications","path":"guides/managingOrders.md","ref":"guides/managingOrders.md#callback-notifications","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/reporting.md","mtime":"2018-03-02T20:02:19.062Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:03:28.447Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Searching Phone Numbers","level":"3.1","depth":1,"next":{"title":"Order Phone Numbers (lite)","level":"3.2","depth":1,"path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md","articles":[{"title":"Search For Phone Numbers","level":"3.2.1","depth":2,"anchor":"#search-for-phone-numbers","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#search-for-phone-numbers","articles":[]},{"title":"Order Phone Numbers","level":"3.2.2","depth":2,"anchor":"#order-phone-numbers","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#order-phone-numbers","articles":[]},{"title":"Fetch Order Info","level":"3.2.3","depth":2,"anchor":"#get-order-info","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#get-order-info","articles":[]}]},"previous":{"title":"API Reference","level":"2.1","depth":1,"path":"apiReference.md","ref":"apiReference.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/searchForNumbers.md","mtime":"2018-02-28T22:56:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:00:58.273Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

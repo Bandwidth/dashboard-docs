@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Managing Line Features</title>
+        <title>Order Phone Numbers (lite)</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="managingLineFeatures.html">
+    <link rel="next" href="orderingSummary.html">
     
     
-    <link rel="prev" href="../concepts/manageLocations.html">
+    <link rel="prev" href="searchForNumbers.html">
     
 
     </head>
@@ -320,7 +320,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="orderingSummary.html">
+        <li class="chapter active" data-level="3.2" data-path="orderingSummary.html">
             
                 <a href="orderingSummary.html#top">
             
@@ -812,63 +812,63 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html">
             
                     
                     Testing Port-out Validation
             
-                
+                </a>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.1" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3.1" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html#about">
             
                     
                     About
             
-                
+                </a>
             
 
             
-        </span></li>
+        </li>
     
-        <li class="chapter " data-level="4.3.2" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3.2" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html#setup">
             
                     
                     Setup
             
-                
+                </a>
             
 
             
-        </span></li>
+        </li>
     
-        <li class="chapter " data-level="4.3.3" data-path="testingPortoutValidation.md">
+        <li class="chapter " data-level="4.3.3" data-path="testingPortoutValidation.html">
             
-                <span>
+                <a href="testingPortoutValidation.html#testing">
             
                     
                     Testing
             
-                
+                </a>
             
 
             
-        </span></li>
+        </li>
     
 
             </ul>
             
-        </span></li>
+        </li>
     
 
     
@@ -1046,7 +1046,7 @@
         
         
     
-        <li class="chapter active" data-level="6.1" data-path="managingLineFeatures.html">
+        <li class="chapter " data-level="6.1" data-path="managingLineFeatures.html">
             
                 <a href="managingLineFeatures.html#top">
             
@@ -1465,7 +1465,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Managing Line Features</a>
+        <a href="..">Order Phone Numbers (lite)</a>
     </h1>
 </div>
 
@@ -1480,255 +1480,333 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="top">Managing Line Options and Features </h1>
+                                <div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div></div><div class="api-method-code mm-code-first" style="min-height: 0vh;"><div class="api-code-top mm-code-top"></div></div></div>
+
+<h1 id="top">Phone Number Ordering Summary </h1>
+<p><a href="https://test.dashboard.bandwidth.com/apidocs/navsidebar/NumberOrderingSummary.pdf" target="_blank">PDF</a></p>
+<p>This guide will take you through the <em>basics</em> of searching and ordering phone numbers with the Bandwidth Phone Number API.</p>
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li>You have a <a href="https://dashboard.bandwidth.com" target="_blank">Phone Number Dashboard</a> account</li>
+</ul>
 <h2 id="overview">Overview</h2>
 <ul>
-<li><a href="#about">About</a></li>
-<li><a href="#single-tn">Single TN Option Assignment</a></li>
-<li><a href="#calling-name-display">Calling Name Display</a><ul>
-<li><a href="#libd">Calling Name Display Update (LIDB)</a></li>
+<li><a href="#search-for-phone-numbers">Searching for new Phone Numbers</a></li>
+<li><a href="#order-phone-numbers">Ordering Phone Numbers</a></li>
+<li><a href="#get-order-info">Fetching Order Info</a></li>
 </ul>
-</li>
-<li><a href="#dlda">Directory Listing and Directory Assistance (DLDA)</a><ul>
-<li><a href="#dlda-fields">DLDA Fields</a></li>
-</ul>
-</li>
-<li><a href="#create-dlda">Creating and Managing a DLDA Order</a></li>
-<li><a href="#get-dlda">Retrieving the history of a DLDA order</a></li>
-<li><a href="#check-dlda">Checking DLDA information associated with a TN</a></li>
-</ul>
-<h2 id="about">About </h2>
-<p>The Bandwidth Phone Number Dashboard allows the association of a number of &#x201C;Option&#x201D; or &#x201C;Feature&#x201D; characteristics with a Telephone Number.</p>
-<p>Initially this capability is restricted to the management of Calling Name Display and Call Forwarding for the TN, but will be expanded to additional &#x201C;Line Features&#x201D; with subsequent releases.</p>
-<p>In addition to the configuration of Calling Name information, other per-TN capabilities already supported by the API will be addressed in this new document section.</p>
-<h2 id="single-tn">Single TN Option Assignment </h2>
-<p>There are a number of TN capabilities that can be easily assigned directly to the Telephone Number(TN) on a per-TN basis.   This set of Per-TN Options includes:</p>
-<ul>
-<li>Call Forwarding</li>
-<li>Rewrite User</li>
-<li>Inbound Calls Number Format</li>
-<li>Remote Party ID Format</li>
-</ul>
-<p>The path for managing these options is: <code>/accounts/{accountId&gt;/sites/{siteId}/sippeers/{sippeerId}/tns/{tn#}</code></p>
-<h2 id="calling-name-display">Calling Name Display </h2>
-<p>In addition to setting Calling Name Display information on a per-TN basis as described above, the Bandwidth Phone Number Dashboard API allows the establishment of Calling Name Display settings for a collection of TNs at a time.  Bandwidth provides this API as a convenience to enable provisioning collections of TNs.  It can support the configuration of up to 1000 TNs in a single call.</p>
-<p>The Calling Line Display is associated with TNs using a <code class="post">POST</code> to the <code>lineOptionOrders</code> resource with a payload that describes the option and its disposition.</p>
-<p>The key elements of the XML payload are:</p>
-<ul>
-<li><code>TelephoneNumber</code>: The TN that Calling Name Display will be activated on</li>
-<li><code>CallingNameDisplay</code>: [<code>on</code> | <code>off</code> | <code>systemdefault</code> ] where <code>systemdefault</code> will result in causing the TN to display the network default behavior.</li>
-</ul>
-<p>The Bandwidth Phone Number API allows the updating of CNAM Display (LIDB) information in the network for Bandwidth TNs managed within the customer&#x2019;s account.  This capability works within the same asynchronous work-order mechanism as is used for managing other delay-prone system interactions, where a &#x201C;work-order&#x201D; is created by the initial API call, and used as a reference for tracking and confirming the subsequent states, and the ultimate success and failure of the result.</p>
-<h3 id="libd">Calling Name Display Update (LIDB) </h3>
-<p>The Request to add LIDB information to the TNs in an account is made by a <code class="post">POST</code> request to the <code>/lidbs</code> resource associated with an account.  This request contains a set of requests, each one specific to an individual TN on the account.</p>
-<h2 id="dlda">Directory Listing and Directory Assistance (DLDA) </h2>
-<p>The DLDA service allows the association of a name and address listing with a Telephone Number or Telephone Numbers in the Bandwidth Phone Number Dashboard system.  The DLDA API follows the asynchronous order processing request model described elsewhere in this document, where a request is submitted, an order ID is returned as an ID of that request or order, and then the request is fulfilled in the background.  The status of the request is reflected in the status of the order, and can be queried at any time.</p>
-<h3 id="dlda-fields">DLDA Fields </h3>
-<p>There are a number of fields involved in submitting a DLDA order, summarized in the table below:</p>
+<h2 id="search-for-phone-numbers">Searching For Phone Numbers </h2>
+<p>Finding numbers can be achieved by searching the Bandwidth inventory.</p>
+<p>This step is optional &#x2013; the telephone numbers can be ordered directly using search criteria, but if there is need to examine the numbers before activating them on the account, the search can be used to return a list of available numbers.</p>
+<p>There are a number of search approaches that can be used; the NPA NXX search is used for this example.  Please see the <a href="https://test.dashboard.bandwidth.com/apidocs/" target="_blank">API documentation</a> for the other applicable search types.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="get">GET</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/availableNumbers</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="query-parameters">Query Parameters</h3>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Field Name</th>
-<th style="text-align:left">Field Meaning and Values</th>
-<th style="text-align:left">API Element</th>
-<th style="text-align:left">required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Listed Telephone Number</td>
-<td style="text-align:left">10 Digit US Number</td>
-<td style="text-align:left"><code>&lt;TelephoneNumber&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Listing Type</td>
-<td style="text-align:left">Listed (in DA &amp; Dir)NonListed (in DA Only),NonPublished (No DA &amp; No Dir)</td>
-<td style="text-align:left"><code>&lt;ListingType&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Type of Account</td>
-<td style="text-align:left">Residential orBusiness</td>
-<td style="text-align:left"><code>&lt;SubscriberType&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Name Last</td>
-<td style="text-align:left">Last Name or First Name of Business</td>
-<td style="text-align:left"><code>&lt;LastName&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Name First</td>
-<td style="text-align:left">First Name or Remaining Name of Business</td>
-<td style="text-align:left"><code>&lt;FirstName&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Name First 2</td>
-<td style="text-align:left">First name of Second Party.  It will be appended to the First Name with an &quot;&amp;&quot;</td>
-<td style="text-align:left"><code>&lt;FirstName2&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Designation</td>
-<td style="text-align:left">Atty, Plmbr, etc&#x2026;</td>
-<td style="text-align:left"><code>&lt;Designation&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Title of Lineage</td>
-<td style="text-align:left">Jr, Sr, III, IV, etc&#x2026;</td>
-<td style="text-align:left"><code>&lt;TitleOfLineage&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Title of Address</td>
-<td style="text-align:left">Rev, Sgt, etc&#x2026;</td>
-<td style="text-align:left"><code>&lt;TitleOfAddress&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Title of Address2</td>
-<td style="text-align:left">Dr, etc..</td>
-<td style="text-align:left"><code>&lt;TitleOfAddress2&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Title of Lineage for Dual Name</td>
-<td style="text-align:left">Jr, Sr, III, IV, etc&#x2026;</td>
-<td style="text-align:left"><code>&lt;TitleOfLineageName2&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Title of Address 1 for Dual Name</td>
-<td style="text-align:left">Rev, Sgt, etc&#x2026;</td>
-<td style="text-align:left"><code>&lt;TitleOfAddressName2&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Title of Address 2 for Dual Name</td>
-<td style="text-align:left">Dr, etc..</td>
-<td style="text-align:left"><code>&lt;TitleOfAddress2Name2&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Place Listing As</td>
-<td style="text-align:left">Business Name Sorting String.  This will be used as a string to control the sorting of the Listing if the Business Name above would not yield the correct results. For example, if 1040 Tax was the listed name; the PLA would be populated as either One Zero Forty Tax, Ten Forty Tax, or One Zero Four Zero Tax. The words within the PLA field will tell the publishers how to alphabetize the listed name.</td>
-<td style="text-align:left"><code>&lt;PlaceListingAs&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Address Indicator</td>
-<td style="text-align:left">Used to control whether the address is listed or not.</td>
-<td style="text-align:left"><code>&lt;ListAddress&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address House Number Prefix</td>
-<td style="text-align:left">Valid USPS Prefix</td>
-<td style="text-align:left"><code>&lt;HousePrefix&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address House Number</td>
-<td style="text-align:left">Valid USPS House Number</td>
-<td style="text-align:left"><code>&lt;HouseNumber&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Street No Suffix</td>
-<td style="text-align:left">Valid USPS Street Number Suffix</td>
-<td style="text-align:left"><code>&lt;HouseSuffix&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Street Directional</td>
-<td style="text-align:left">N = North, S = South, E = East, W = West, NE = Northeast,NW = Northwest, SE = Southeast, SW = Southwest</td>
-<td style="text-align:left"><code>&lt;PreDirectional&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Street Name</td>
-<td style="text-align:left">Valid USPS Street Name</td>
-<td style="text-align:left"><code>&lt;StreetName&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Street Thoroughfare</td>
-<td style="text-align:left">St, Rd, Ct, Dr, etc&#x2026;</td>
-<td style="text-align:left"><code>&lt;StreetSuffix&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Street Directional Suffix</td>
-<td style="text-align:left">N = North, S = South, E = East, W = West, NE = Northeast,NW = Northwest, SE = Southeast, SW = Southwest</td>
-<td style="text-align:left"><code>&lt;PostDirectional&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Location</td>
-<td style="text-align:left">Suite 320, Apartment 104A, 2nd Floor, 3rd Level, etc.</td>
-<td style="text-align:left"><code>&lt;AddressLine2&gt;</code></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address City</td>
-<td style="text-align:left">Valid USPS Community</td>
-<td style="text-align:left"><code>&lt;City&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address State</td>
-<td style="text-align:left">Valid USPS State</td>
-<td style="text-align:left"><code>&lt;StateCode&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-<tr>
-<td style="text-align:left">Listed Address Zip Code</td>
-<td style="text-align:left">Valid USPS Zip Code, zip plus code or international zip code</td>
-<td style="text-align:left"><code>&lt;Zip&gt;</code></td>
-<td style="text-align:left">y</td>
-</tr>
-</tbody>
-</table>
-<h2 id="create-dlda">Creating and Managing a DLDA Order </h2>
-<p>A DLDA order is created with a <code class="post">POST</code> to the <code>/dldas</code> resource of the account. The dldas resource represents the requests made to the Bandwidth Phone Number API to add or otherwise manage a request to associate a name and street address with the telephone number. This API allows the creation and observation of a DLDA work order that causes the update of name and address information in a network Database.</p>
-<h2 id="get-dlda">Retrieving the history of a DLDA order </h2>
-<p>The history of a DLDA order can be retrieved with a <code class="get">GET</code> on the <code>/history</code> resource, using the API signature: <code>/accounts/{accountId}/dldas/{orderid}/history</code></p>
-<h2 id="check-dlda">Checking DLDA information associated with a TN </h2>
-<p>The <code class="get">GET</code> method retrieves detailed information about the phone number.</p>
-<p><code class="get">GET</code> <code>/tns/{tn}/tndetails</code>  retrieves detailed information about the phone number.</p>
-<p>In addition to the name and address information inherent in a DLDA update, the DLDA information associated with the TN includes a <status> value that indicates whether the DLDA information has been successfully registered with the Listing provider, or is in some other state.  Valid values for the <code>&lt;Status&gt;</code> element are:</status></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Status</th>
+<th style="text-align:left">Parameters</th>
 <th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>Success</code></td>
-<td style="text-align:left">The information reported in the payload is the information that has been successfully registered with the Listing Provider.  If a subsequent attempt has been made and failed, the original successful status and information will be retained.  The failure can be interpreted based on the order state.</td>
+<td style="text-align:left"><code>areaCode</code></td>
+<td style="text-align:left">The allowed number ranges are [2-9] for the first digit and [0-9] for both the second and third digits.</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>Failed</code></td>
-<td style="text-align:left">The only attempt to update DLDA information for this TN has failed, and there is no DLDA information associated with the TN with the Listing Provider.</td>
+<td style="text-align:left"><code>npaNxx</code><br> -or- <br> <code>npaNxxx</code></td>
+<td style="text-align:left">NPA NXX combination to be searched. <br> - Valid npa values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid Nxx values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid x values [0-9].</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>Pending-Editable</code></td>
-<td style="text-align:left">An attempt to update DLDA information with the Listing Provider is in progress, but can be altered.</td>
+<td style="text-align:left"><code>rateCenter</code></td>
+<td style="text-align:left">The abbreviation for the Rate Center</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>Pending-Locked</code></td>
-<td style="text-align:left">An attempt to update DLDA information with the Listing Provider is in progress, but cannot be changed at this time.  A new order will be required once the current attempt succeeds or fails.</td>
+<td style="text-align:left"><code>state</code></td>
+<td style="text-align:left">The two-letter abbreviation of the state the RateCenter is in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>city</code></td>
+<td style="text-align:left">The name of the city.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>zip</code></td>
+<td style="text-align:left">A five-digit (XXXXX) or nine-digit (XXXXX-XXXX) zip-code value.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lata</code></td>
+<td style="text-align:left">A maximum five digit (XXXXX) numeric format.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>localVanity</code></td>
+<td style="text-align:left">Requested vanity number. Valid range is from 4 to 7 alphanumeric characters</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tollFreeVanity</code></td>
+<td style="text-align:left">The Toll Free requested vanity number. Valid range is from 4 to 7 alphanumeric characters</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tollFreeWildCardPattern</code></td>
+<td style="text-align:left">The requested Toll Free 3 digit wild card pattern. Examples: <code>8**</code>, <code>80*</code>, <code>87*</code>, etc.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>quantity</code></td>
+<td style="text-align:left">The desired quantity of requested numbers. Values range from 1-5000. If no quantity is specified, the default of 5000 is returned.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>enableTNDetail</code></td>
+<td style="text-align:left">If set to true, a list of details associated with the telephone number (rate center abbreviation, rate center host city, state, and LATA) will be displayed along with the telephone number. This value is set to false by default.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LCA</code></td>
+<td style="text-align:left">Local Calling Area. If this parameter is specified then Telephone Numbers that are likely in the Local Calling Area of the stated Rate Center, NPANXX or NPANNXX will be returned, in addition to those that <em>exactly</em> match the query will be returned. Since LCA logic is not always symmetric and not always inclusive of RC and NPANXX search criteria, this result reflects somewhat of an approximation. The parameter value is true or false. The default is true</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>endsIn</code></td>
+<td style="text-align:left">Intended to use with localVanity only. The parameter value is true or false. If set to true, the search will look for only numbers which end in specified localVanity, otherwise localVanity sequence can be met anywhere in last 7 number digits. The default is false.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>orderBy</code></td>
+<td style="text-align:left">The field by which the returned numbers will be sorted. Only supported if at least one of the following search criteria is specified: npaNxx or npaNxxx, rateCenter, city, zip, tollFreeVanity, tollFreeWildCardPattern. Allowed values are fullNumber, npaNxxx, npaNxx, and areaCode&gt;</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>protected</code></td>
+<td style="text-align:left">A query parameter, that governs, how the Protected status of numbers impacts the search results: <br> - <code>None</code> : The numbers returned in the payload will not contain any numbers that are tagged as Protected <br> - <code>ONLY</code> :The numbers returned in the payload will all be tagged as Protected. No &quot;unProtected&quot; numbers will be returned <br> - <code>MIXED</code> : The protected status of the numbers will be ignored in the search - all types of numbers will be returned</td>
 </tr>
 </tbody>
 </table>
-<p>If the <code>&lt;Status&gt;</code> of the DLDA order impacting the TN is transient, indicating that there is an order in process and the outcome is inconclusive, the DLDA information will be replaced with a link to the order currently processing a DLDA change for that TN.  This will be the case if the status is <code>Pending-Editable</code> or <code>Pending-Locked</code>.</p>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-search-by-npa-nxx">Example: Search by NPA NXX</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/availableNumbers?npaNxx=540551&amp;quantity=10</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+</code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
 
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">SearchResult</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ResultCount</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">ResultCount</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405514342<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405515330<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5405515329<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402278098<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402270905<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402278089<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>5402278090<span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumberList</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">SearchResult</span>&gt;</span>
+</span></code></pre>
+<blockquote>
+<p> &#x2139;&#xFE0F;  Notice that only 7 of 10 were returned = that is all that were currently available in that npanxx combination.  Any of these numbers can be reserved or immediately ordered</p>
+</blockquote>
+</div></div></div>
+
+<h2 id="order-phone-numbers">Order Phone Numbers </h2>
+<p>Ordering Phone Numbers for use with the network uses requires you to order specific phone numbers that have been discovered in a search.   This is only <strong>one</strong> of a number of ways to acquire and activate phone numbers.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="post">POST</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="common-request-parameters">Common Request Parameters</h3>
+<p><strong>EVERY</strong> type of order can/must include the parameters below</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Required</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>Quantity</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">The desired quantity of requested numbers. values range from 1-5000. <br><br> Default: <code>5000</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Name</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">The name of the order. Max length restricted to 50 characters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CustomerOrderId</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Optional value for Id set by customer</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SiteId</code></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">The ID of the Site (<em>or sub-account</em>) that the SIP Peer is to be associated with.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PeerId</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">The ID of the SIP Peer (<em>or location</em>) that the telephone numbers are to be assigned to. <br> <br> &#x26A0;&#xFE0F; The <code>PeerId</code> <strong>MUST</strong> already exist under the <code>Site</code> (<em>or sub-account</em>) EX: <code>/accounts/{accountId}/sites/{siteId}/sippeers/{PeerId}</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PartialAllowed</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">By default all order submissions are fulfilled partially. Setting the <code>PartialAllowed</code> to false would trigger the entire order to be fulfilled (any error encountered such as 1 TN not being available would fail all TNs in the order) <br><br> Default: <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BackOrderRequested</code></td>
+<td style="text-align:left">No</td>
+<td style="text-align:left"><code>BackOrderRequested</code> will indicate to the system that if the entire quantity of numbers is not available on the first attempt to fill the new number order, the request will be repeated periodically until the request is successful or canceled. <br> <code>true</code> - Backorder numbers if the entire quantity is not available <br><br> Default: <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="order-type-specific-request-parameters">Order Type Specific Request Parameters</h3>
+<p>These parameters <em>may or may not</em> be required based on the type of order.  Check out the reference documentation for more information on the different types of orders</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>TelephoneNumberList</code></td>
+<td style="text-align:left">A list of telephone numbers to order</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>AreaCode</code></td>
+<td style="text-align:left">Allowed ranged: [2-9] for the first digit and [0, 9] for both the second and third digits.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RateCenter</code></td>
+<td style="text-align:left">A text Rate Center name. Must be combined with State information</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>State</code></td>
+<td style="text-align:left">The two-letter abbreviation of the state</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>City</code></td>
+<td style="text-align:left">The name of the city that the Ordered telephone numbers should apply to</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Zip</code></td>
+<td style="text-align:left">A five-digit (XXXXX) or nine-digit (XXXXX-XXXX) format value.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Lata</code></td>
+<td style="text-align:left">A maximum five-digit (XXXXX) numeric format.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EnableLCA</code></td>
+<td style="text-align:left">If set to <code>true</code>, local calling access numbers will be returned for Rate Center, NPA-NXX and NPANXXX orders if numbers are not available for the given criteria. <br><br> Default: <code>true</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Npa-Nxx</code> <br> -or- <br> <code>Npa-Nxxxx</code> <br><br> &#x26A0;&#xFE0F; with <code>EnableLCA</code> : <code>true</code></td>
+<td style="text-align:left">NpaNxx combination to be searched. <br> Valid Npa values: [2-9] for the first digit, and [0-9] for both the second and third digits. <br> Valid Nxx values: [2-9] for the first digit, and [0-9] for both the second and third digits. <br> Valid Xxvalues [0-9]. <br><br> &#x2139;&#xFE0F;  If set to true, enables the ability to get local calling access numbers if numbers are not available for the given criteria.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LocalVanity</code></td>
+<td style="text-align:left">A text string used to request a regular vanity number. Valid range is between 4 and 7 alphanumeric characters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EndsIn</code></td>
+<td style="text-align:left">Intended to use with <code>LocalVanity</code> only. <br> -<code>true</code> : the search will look for only numbers which end in specified <code>LocalVanity</code> <br> -<code>false</code>: <code>LocalVanity</code> sequence can be met anywhere in last 7 number digits. <br><br> Default: <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TollFreeVanity</code></td>
+<td style="text-align:left">A text string used to request a toll free vanity number. Valid range is between 4 and 7 alphanumeric characters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TollFreeWildCardPattern</code></td>
+<td style="text-align:left">A 3-digit wild card pattern for specifying toll free prefixes, comprised of 8 followed by two stars, a digit and a star or two digits</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ReservationIdList</code></td>
+<td style="text-align:left">If a telephone number or numbers have been previously reserved, the ReservationIdList provides the IDs necessary to release the numbers. This only applies to reserved numbers - if no reservation has been placed on the numbers this list is not required.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TnAttributes</code></td>
+<td style="text-align:left">Attributes to be assigned to the telephone number. Optional parameter. Possible values: <code>Protected</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-search-and-order-1-number-in-area-code">Example: Search <strong>AND</strong> Order 1 Number in Area Code</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">POST</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Order</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AreaCode</span>&gt;</span>910<span class="hljs-tag">&lt;/<span class="hljs-name">AreaCode</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Quantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Quantity</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">SiteId</span>&gt;</span>461<span class="hljs-tag">&lt;/<span class="hljs-name">SiteId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Order</span>&gt;</span>
+</span></code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">201</span> Created
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Location</span>: https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/47955555-ce10-456e-8cb9-eb13b9f14cfd
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">OrderResponse</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Order</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2018-01-23T19:56:29.678Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BackOrderRequested</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">BackOrderRequested</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>47955555-67aa-4adb-8c0f-b6894e60c0dc<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AreaCode</span>&gt;</span>910<span class="hljs-tag">&lt;/<span class="hljs-name">AreaCode</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Quantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Quantity</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PartialAllowed</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">PartialAllowed</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">SiteId</span>&gt;</span>461<span class="hljs-tag">&lt;/<span class="hljs-name">SiteId</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Order</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>RECEIVED<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">OrderResponse</span>&gt;</span>
+</span></code></pre>
+</div></div></div>
+
+<h2 id="get-order-info">Fetching Order Information </h2>
+<p>A <code class="get">GET</code> Request to an existing order will return it&apos;s status as well as any information originally used to create the order.</p>
+<h3 id="base-url">Base URL</h3>
+<p><code class="get">GET</code><code>https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/{{orderId}}</code></p>
+<div class="api-method"><div class="api-method-definition"><div class="api-definition-top"></div><h3 id="query-parameters">Query Parameters</h3>
+<p>There are no query parameters for fetching information about an existing order.</p>
+</div><div class="api-method-code mm-method-code"><div class="api-method-example"><h3 id="example-fetch-order-information">Example: Fetch Order Information</h3>
+<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/d30eda5a-ce10-456e-8cb9-eb13b9f14cfd</span> HTTP/1.1
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+<span class="hljs-attribute">Authorization</span>: {user:password}
+</code></pre>
+<h3 id="response">Response</h3>
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-Type</span>: application/xml; charset=utf-8
+
+<span class="xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> standalone=<span class="hljs-string">&quot;yes&quot;</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">OrderResponse</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CompletedQuantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">CompletedQuantity</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CreatedByUser</span>&gt;</span>jbm<span class="hljs-tag">&lt;/<span class="hljs-name">CreatedByUser</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LastModifiedDate</span>&gt;</span>2018-01-23T19:56:29.782Z<span class="hljs-tag">&lt;/<span class="hljs-name">LastModifiedDate</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderCompleteDate</span>&gt;</span>2018-01-23T19:56:29.782Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCompleteDate</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Order</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">OrderCreateDate</span>&gt;</span>2018-01-23T19:56:29.678Z<span class="hljs-tag">&lt;/<span class="hljs-name">OrderCreateDate</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PeerId</span>&gt;</span>651681<span class="hljs-tag">&lt;/<span class="hljs-name">PeerId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BackOrderRequested</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">BackOrderRequested</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">AreaCode</span>&gt;</span>910<span class="hljs-tag">&lt;/<span class="hljs-name">AreaCode</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Quantity</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">Quantity</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">AreaCodeSearchAndOrderType</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PartialAllowed</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">PartialAllowed</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">SiteId</span>&gt;</span>24717<span class="hljs-tag">&lt;/<span class="hljs-name">SiteId</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Order</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">OrderStatus</span>&gt;</span>COMPLETE<span class="hljs-tag">&lt;/<span class="hljs-name">OrderStatus</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CompletedNumbers</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">FullNumber</span>&gt;</span>9102414365<span class="hljs-tag">&lt;/<span class="hljs-name">FullNumber</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TelephoneNumber</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CompletedNumbers</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Summary</span>&gt;</span>1 number ordered in (910)<span class="hljs-tag">&lt;/<span class="hljs-name">Summary</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">FailedQuantity</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">FailedQuantity</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">OrderResponse</span>&gt;</span>
+</span></code></pre>
+</div></div></div>
                                 
                                 </section>
                             
@@ -1761,7 +1839,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Managing Line Features","level":"6.1","depth":1,"next":{"title":"About","level":"6.1.1","depth":2,"anchor":"#about","path":"guides/managingLineFeatures.md","ref":"guides/managingLineFeatures.md#about","articles":[]},"previous":{"title":"Moving TNs between SIP Peers","level":"5.3.9","depth":2,"anchor":"#move-tn","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#move-tn","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/managingLineFeatures.md","mtime":"2018-03-02T20:02:19.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:03:28.447Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Order Phone Numbers (lite)","level":"3.2","depth":1,"next":{"title":"Search For Phone Numbers","level":"3.2.1","depth":2,"anchor":"#search-for-phone-numbers","path":"guides/orderingSummary.md","ref":"guides/orderingSummary.md#search-for-phone-numbers","articles":[]},"previous":{"title":"Searching Phone Numbers","level":"3.1","depth":1,"path":"guides/searchForNumbers.md","ref":"guides/searchForNumbers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/orderingSummary.md","mtime":"2018-02-28T22:56:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:00:58.273Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

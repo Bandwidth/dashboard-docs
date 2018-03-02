@@ -1,0 +1,1627 @@
+
+<!DOCTYPE HTML>
+<html lang="">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Managing Orders</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-fonts/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-bandwidth-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codetabs/codetabs.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="managingOrders.html">
+    
+    
+    <link rel="prev" href="managingLineFeatures.html">
+    
+
+    </head>
+    <body>
+        
+    
+
+<!-- begin talkus live embed code -->
+<script>
+  (function(t,a,l,k,u,s,e){if(!t[u]){t[u]=function(){(t[u].q=t[u].q||[]).push(arguments)},t[u].l=1*new Date();s=a.createElement(l),e=a.getElementsByTagName(l)[0];s.async=1;s.src=k;e.parentNode.insertBefore(s,e)}})(window,document,'script','//talkus.io/plugin.beta.js','talkus');
+  talkus('init', 'DScHg5ngjtZpXH3H6', { tag: 'bwdashapi' });
+</script>
+<!-- end talkus live embed code -->
+
+    
+<div class="book"><link href="../styles/styles.min.css" type="text/css">
+<div class="head pnd">
+   <a href="http://www.bandwidth.com" class="aimg"><div class="headerLogo pnd"></div></a>
+   <h2><a href="http://dev.bandwidth.com">Docs for Developers</a> &#xA0;&#x203A;&#xA0; Phone Number API</h2>
+   <ul>
+   	<li class="headerButton"><a href="https://www.bandwidth.com/contact/" target="_blank"><button class="free-trial">Request Access</button></a></li>
+   <li><a href="#" class="headerLink hasSecondary" id="loginTab">Login</a></li>
+   <div class="headerDropdown" style="background-color:#00bcec;">
+     <ul>
+        <li><a href="https://app.bandwidth.com" class="headerLink" target="_blank">Voice &amp; Messaging Dashboard</a></li>
+        <li><a href="https://dashboard.bandwidth.com" class="headerLink" target="_blank">Phone Number Dashboard</a></li>
+     </ul>
+   </div>
+   	<li><a href="https://support.bandwidth.com/access/unauthenticated" class="headerLink" target="_blank">Support</a></li>
+   </ul>
+</div>
+
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../concepts/security.html">
+            
+                <a href="../concepts/security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../concepts/restAPI.html">
+            
+                <a href="../concepts/restAPI.html#top">
+            
+                    
+                    RESTful API and Environments
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../concepts/restAPI.html">
+            
+                <a href="../concepts/restAPI.html#api-methods">
+            
+                    
+                    API Methods - REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../concepts/restAPI.html">
+            
+                <a href="../concepts/restAPI.html#rest-usage">
+            
+                    
+                    Usage of REST with the Bandwidth Phone Number API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../concepts/restAPI.html">
+            
+                <a href="../concepts/restAPI.html#base-urls">
+            
+                    
+                    Base URLs and Environments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../concepts/restAPI.html">
+            
+                <a href="../concepts/restAPI.html#rest-urls">
+            
+                    
+                    REST URLs and Parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../concepts/asyncOrder.html">
+            
+                <a href="../concepts/asyncOrder.html">
+            
+                    
+                    Asynchronous Order Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../concepts/accountConfig.html">
+            
+                <a href="../concepts/accountConfig.html">
+            
+                    
+                    Account Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../concepts/apiAccessSchema.html">
+            
+                <a href="../concepts/apiAccessSchema.html">
+            
+                    
+                    Formal API Schema Access
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../concepts/secureCallbacks.html">
+            
+                <a href="../concepts/secureCallbacks.html">
+            
+                    
+                    Secure Callbacks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API Reference</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../apiReference.html">
+            
+                <a href="../apiReference.html">
+            
+                    
+                    API Reference
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Ordering Number Guides</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="searchForNumbers.html">
+            
+                <a href="searchForNumbers.html">
+            
+                    
+                    Searching Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="orderingSummary.html">
+            
+                <a href="orderingSummary.html#top">
+            
+                    
+                    Order Phone Numbers (lite)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="orderingSummary.html">
+            
+                <a href="orderingSummary.html#search-for-phone-numbers">
+            
+                    
+                    Search For Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="orderingSummary.html">
+            
+                <a href="orderingSummary.html#order-phone-numbers">
+            
+                    
+                    Order Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="orderingSummary.html">
+            
+                <a href="orderingSummary.html#get-order-info">
+            
+                    
+                    Fetch Order Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="disconnectSummary.html">
+            
+                <a href="disconnectSummary.html#top">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="disconnectSummary.html">
+            
+                <a href="disconnectSummary.html#disconnect-phone-number">
+            
+                    
+                    Disconnect a Phone Number
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="disconnectSummary.html">
+            
+                <a href="disconnectSummary.html#get-disconnect-info">
+            
+                    
+                    Fetch Disconnect Info
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html">
+            
+                    
+                    Order Phone Numbers (Advanced)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html#ordering-overview">
+            
+                    
+                    Overview of Ordering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html#creating-order">
+            
+                    
+                    Creating an Order
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html#new-number-req">
+            
+                    
+                    New Number Order Request Format
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.4" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html#new-number-res">
+            
+                    
+                    New Number Order Response Format
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.5" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html#backorder-number">
+            
+                    
+                    Backordering Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.6" data-path="advancedOrdering.html">
+            
+                <a href="advancedOrdering.html#update-new-number-order">
+            
+                    
+                    Updating a new-number order
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="reservingNumbers.html">
+            
+                <a href="reservingNumbers.html">
+            
+                    
+                    Reserving Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Porting Phone Numbers Guides</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#top">
+            
+                    
+                    Porting Phone Numbers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#about-porting">
+            
+                    
+                    About Porting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#overview-of-porting">
+            
+                    
+                    Overview of the Port-in Process
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#check-lnp">
+            
+                    
+                    Checking LNP Availability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#create-lnp">
+            
+                    
+                    Creating an LNP Order
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#loa-upload">
+            
+                    
+                    LOA Upload
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#modify-lnp">
+            
+                    
+                    Modifying an LNP Order (Supp LNP Order)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.7" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#cancel-lnp">
+            
+                    
+                    Canceling LNP Order
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.8" data-path="portingPhoneNumbers.html">
+            
+                <a href="portingPhoneNumbers.html#activate-ported-numbers">
+            
+                    
+                    Activating Ported Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html">
+            
+                    
+                    Testing Porting
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#supported-tns">
+            
+                    
+                    Supported Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#unsupported-tns">
+            
+                    
+                    Unsupported Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#failed-tns">
+            
+                    
+                    Failed Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#pass-fail">
+            
+                    
+                    Pass-Fail Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.6" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#success-tns">
+            
+                    
+                    Succeeded Phone Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.7" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#managed-ports">
+            
+                    
+                    Managed Phone Numbers Port
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.8" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#npa-nxx-pairs">
+            
+                    
+                    NPA NXX pairs for testing Porting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.9" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#rate-center-manual-porting">
+            
+                    
+                    Rate Centers for Manual Porting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.10" data-path="testingPorting.html">
+            
+                <a href="testingPorting.html#unsupported-rate-centers">
+            
+                    
+                    Unsupported Rate Centers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="testingPortoutValidation.html">
+            
+                <a href="testingPortoutValidation.html">
+            
+                    
+                    Testing Port-out Validation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="testingPortoutValidation.html">
+            
+                <a href="testingPortoutValidation.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="testingPortoutValidation.html">
+            
+                <a href="testingPortoutValidation.html#setup">
+            
+                    
+                    Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="testingPortoutValidation.html">
+            
+                <a href="testingPortoutValidation.html#testing">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Account Management Guides</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="adminFunctions.html">
+            
+                <a href="adminFunctions.html">
+            
+                    
+                    Administrative Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../concepts/manageSites.html">
+            
+                <a href="../concepts/manageSites.html">
+            
+                    
+                    Managing Sub-accounts/Sites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#top">
+            
+                    
+                    Managing SIP Peers (locations)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.2" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#voice-data-traffic">
+            
+                    
+                    Voice/Data Traffic
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.3" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#orig-config">
+            
+                    
+                    Origination service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.4" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#orig-config-sms">
+            
+                    
+                    Origination and SMS services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.5" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#term-config">
+            
+                    
+                    Termination service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.6" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#term-orig-sms">
+            
+                    
+                    Origination, Termination and SMS services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.7" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#cnam-config">
+            
+                    
+                    CNAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.8" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#delete-sippeer">
+            
+                    
+                    Delete SIP Peer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.9" data-path="../concepts/manageLocations.html">
+            
+                <a href="../concepts/manageLocations.html#move-tn">
+            
+                    
+                    Moving TNs between SIP Peers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Guides</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#top">
+            
+                    
+                    Managing Line Features
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#single-tn">
+            
+                    
+                    Single TN Option Assignment
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.3" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#calling-name-display">
+            
+                    
+                    Calling Name Display
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.4" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#dlda">
+            
+                    
+                    Directory Listing and Directory Assistance (DLDA)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.5" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#create-dlda">
+            
+                    
+                    Creating and Managing a DLDA Order
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.6" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#get-dlda">
+            
+                    
+                    Retrieving the history of a DLDA order
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.7" data-path="managingLineFeatures.html">
+            
+                <a href="managingLineFeatures.html#check-dlda">
+            
+                    
+                    Checking DLDA information associated with a TN
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.2" data-path="managingOrders.html">
+            
+                <a href="managingOrders.html">
+            
+                    
+                    Managing Orders
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.2.1" data-path="managingOrders.html">
+            
+                <a href="managingOrders.html#about">
+            
+                    
+                    About
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.2" data-path="managingOrders.html">
+            
+                <a href="managingOrders.html#notes-with-orders">
+            
+                    
+                    Associating Notes with Work Orders
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.3" data-path="managingOrders.html">
+            
+                <a href="managingOrders.html#change">
+            
+                    
+                    Order Change Notifications
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.4" data-path="managingOrders.html">
+            
+                <a href="managingOrders.html#email-notifications">
+            
+                    
+                    Email Notifications
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.5" data-path="managingOrders.html">
+            
+                <a href="managingOrders.html#callback-notifications">
+            
+                    
+                    Callback URL Notifications
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="reporting.html">
+            
+                <a href="reporting.html#top">
+            
+                    
+                    Reporting
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.3.1" data-path="reporting.html">
+            
+                <a href="reporting.html#fetch-info">
+            
+                    
+                    Fetching Information
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.2" data-path="reporting.html">
+            
+                <a href="reporting.html#pagination">
+            
+                    
+                    Pagination
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.3" data-path="reporting.html">
+            
+                <a href="reporting.html#ratecenters">
+            
+                    
+                    Available Inventory: Rate Centers and Cities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.4" data-path="reporting.html">
+            
+                <a href="reporting.html#cities">
+            
+                    
+                    Cities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.5" data-path="reporting.html">
+            
+                <a href="reporting.html#npa">
+            
+                    
+                    Available Inventory: NPA NXX combinations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.6" data-path="reporting.html">
+            
+                <a href="reporting.html#billing-apis">
+            
+                    
+                    Billing Data Records REST APIs for Retrieving zipped files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Resources &amp; SDKs</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1">
+            
+                <a target="_blank" href="http://bandwidthdashboard.discussion.community/">
+            
+                    
+                    Forum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2">
+            
+                <a target="_blank" href="https://github.com/Bandwidth/node-bandwidth-iris">
+            
+                    
+                    Node SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3">
+            
+                <a target="_blank" href="https://github.com/Bandwidth/java-bandwidth-iris">
+            
+                    
+                    Java SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4">
+            
+                <a target="_blank" href="https://github.com/Bandwidth/php-bandwidth-iris">
+            
+                    
+                    PHP SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5">
+            
+                <a target="_blank" href="https://github.com/Bandwidth/csharp-bandwidth-iris">
+            
+                    
+                    C# SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6">
+            
+                <a target="_blank" href="https://github.com/Bandwidth/python-bandwidth-iris">
+            
+                    
+                    Python SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7">
+            
+                <a target="_blank" href="https://github.com/Bandwidth/ruby-bandwidth-iris">
+            
+                    
+                    Ruby SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="..">Managing Orders</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="managing-orders">Managing Orders</h1>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#notes-with-orders">Associating Notes with Work Orders</a></li>
+<li><a href="#change">Order Change Notifications</a></li>
+<li><a href="#email-notifications">Email Notifications</a></li>
+<li><a href="#callback-notifications">Callback URL Notifications</a></li>
+</ul>
+<h2 id="about">About </h2>
+<p>The Bandwidth Phone Number Dashboard uses an &#x201C;order&#x201D; model for tracking the changes requested to the provisioned information that controls our customer and end-user experiences.   Major changes to the configuration of the network such as Ordering numbers, Porting in numbers, Porting numbers out, Disconnecting numbers are tracked with work-orders that record the changes and track them through the related work-flow.</p>
+<h2 id="notes-with-orders">Associating Notes with Work Orders </h2>
+<p>The following API calls are used to add notes to various types of work-orders, allowing events that involve the work-order to be tracked and reviewed.  The API can be used with users that have credentials to manage and modify the account that owns the work-order(s).</p>
+<h2 id="change">Order Change Notifications </h2>
+<p>The Bandwidth Phone Number Dashboard has the capability to monitor portins and other work-order types for meaningful events and status changes, and notify one or more email addresses of those events.  The events that cause notification emails are state changes for all viable states for the applicable order-types, as well as for all events that add a Note to the order in question.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Order Type</th>
+<th style="text-align:left">State Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Port-ins</td>
+<td style="text-align:left"><code>PENDING_DOCUMENTS</code>, <code>SUBMITTED</code>, <code>REQUESTED_SUPP</code>, <code>FOC</code>, <code>COMPLETE</code>, <code>EXCEPTION</code>, <code>SNAPBACK</code>, <code>REQUESTED_CANCEL</code>, <code>CANCELLED</code> <br> <br> Note that the <code>PENDING_DOCUMENTS</code> status is transient, and will be typically be followed immediately by <code>SUBMITTED</code> or <code>CANCELLED</code>.  It remains as part of the work-flow for backwards compatibility reasons.</td>
+</tr>
+<tr>
+<td style="text-align:left">Phone Number Orders</td>
+<td style="text-align:left"><code>SUBMITTED</code>, <code>PARTIAL</code>, <code>COMPLETE</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Portouts</td>
+<td style="text-align:left"><code>COMPLETE</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Disconnects</td>
+<td style="text-align:left"><code>COMPLETE</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="email-notifications">Email Notifications </h3>
+<p>The email notification capability enables a user with permissions on an account to configure any email address for notifications.  This level of freedom was provided to allow credentialed users the flexibility to control the destination of the notifications, even if the destination does not share an email address with the account or user.</p>
+<p>The email notification capability also processes responses (replies) to notifications, inserting the reply text into the Notes field of a work order.  This allows the work order to retain a record of the correspondence applicable to the evolution of that order.</p>
+<p>A subscription is a request to be notified by email of events that happen to outstanding work orders.  Subscriptions are associated with accounts, and apply to some or all of the work orders managed by that account.  The API for the notification framework is dedicated to the management of these subscriptions.</p>
+<p>Subscriptions can apply to a specific <code>orderId</code>, or to all order-ids of a certain type.  If the <code>orderId</code> is omitted in the subscription request it means that the subscription request is applicable to all orders of that type.</p>
+<p>Deletion of subscriptions is supported on a one-by-one basis.  Deleting all subscriptions associated with an order requires a <code class="get">GET</code> request of all of those Subscriptions, and deleting them one by one.</p>
+<h2 id="callback-notifications">Callback URL Notifications </h2>
+<p>The Bandwidth dashboard API also allows the establishment of a &#x201C;callback&#x201D; URL that can be used to monitor work-orders or changes.   Rather than receiving an email, the callback URL is invoked, allowing the monitoring system to be notified about the order changes in a machine-to-machine manner.</p>
+<p>To create a Notifications Callback Subscription the customer creates a <code class="post">POST</code> request to the item being monitored (typically an Order or Port-in ) the user creates a <code class="post">POST</code> request to the subscriptions resource associated with the account.</p>
+<p>If the <code>OrderId</code> field is omitted, then the subscription will apply to all orders of the indicated OrderType.</p>
+<p>The <code>&lt;Expiry&gt;</code> value can be very large (100 years in seconds), or set to infinite (-1) if required.  Note that even in the case of a long or infinite expiry, the subscription will be removed once the order (if specified) reaches a final state.</p>
+<p>Updating a subscription is done via a <code class="put">PUT</code> request to the subscription. This can be used to update the expiry request.   Requests to update the expiry are at the whim of the Bandwidth Dashboard.</p>
+<p>Note that the initial state changes for an order may happen very quickly, so subscribing to an order once the system creates it needs to account for the fact that the initial state may be different based on timing factors.  It is recommended that the application creating the subscription check the order status after the subscription is created to ensure the correct initial condition.</p>
+<p>It is possible to remove specific subscriptions by ID.</p>
+<p>Once a subscription with a callback URL is active, changes to the works-orders that are part of the active subscription will be notified by a <code class="post">POST</code> to the provided URL</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching &quot;<span class="search-query"></span>&quot;</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching &quot;<span class="search-query"></span>&quot;</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Managing Orders","level":"6.2","depth":1,"next":{"title":"About","level":"6.2.1","depth":2,"anchor":"#about","path":"guides/managingOrders.md","ref":"guides/managingOrders.md#about","articles":[]},"previous":{"title":"Checking DLDA information associated with a TN","level":"6.1.7","depth":2,"anchor":"#check-dlda","path":"guides/managingLineFeatures.md","ref":"guides/managingLineFeatures.md#check-dlda","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/managingOrders.md","mtime":"2018-03-02T20:00:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:00:58.273Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+
+	<!-- begin usabilla live embed code -->
+	<script type="text/javascript">/*{literal}<![CDATA[*/window.lightningjs||function(c){function g(b,d){d&&(d+=(/\?/.test(d)?"&":"?")+"lv=1");c[b]||function(){var i=window,h=document,j=b,g=h.location.protocol,l="load",k=0;(function(){function b(){a.P(l);a.w=1;c[j]("_load")}c[j]=function(){function m(){m.id=e;return c[j].apply(m,arguments)}var b,e=++k;b=this&&this!=i?this.id||0:0;(a.s=a.s||[]).push([e,b,arguments]);m.then=function(b,c,h){var d=a.fh[e]=a.fh[e]||[],j=a.eh[e]=a.eh[e]||[],f=a.ph[e]=a.ph[e]||[];b&&d.push(b);c&&j.push(c);h&&f.push(h);return m};return m};var a=c[j]._={};a.fh={};a.eh={};a.ph={};a.l=d?d.replace(/^\/\//,(g=="https:"?g:"http:")+"//"):d;a.p={0:+new Date};a.P=function(b){a.p[b]=new Date-a.p[0]};a.w&&b();i.addEventListener?i.addEventListener(l,b,!1):i.attachEvent("on"+l,b);var q=function(){function b(){return["<head></head><",c,' onload="var d=',n,";d.getElementsByTagName('head')[0].",d,"(d.",g,"('script')).",i,"='",a.l,"'\"></",c,">"].join("")}var c="body",e=h[c];if(!e)return setTimeout(q,100);a.P(1);var d="appendChild",g="createElement",i="src",k=h[g]("div"),l=k[d](h[g]("div")),f=h[g]("iframe"),n="document",p;k.style.display="none";e.insertBefore(k,e.firstChild).id=o+"-"+j;f.frameBorder="0";f.id=o+"-frame-"+j;/MSIE[ ]+6/.test(navigator.userAgent)&&(f[i]="javascript:false");f.allowTransparency="true";l[d](f);try{f.contentWindow[n].open()}catch(s){a.domain=h.domain,p="javascript:var d="+n+".open();d.domain='"+h.domain+"';",f[i]=p+"void(0);"}try{var r=f.contentWindow[n];r.write(b());r.close()}catch(t){f[i]=p+'d.write("'+b().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};a.l&&setTimeout(q,0)})()}();c[b].lv="1";return c[b]}var o="lightningjs",k=window[o]=g(o);k.require=g;k.modules=c}({});
+	window.usabilla_live = lightningjs.require("usabilla_live", "//w.usabilla.com/082043b6f63e.js");
+	/*]]>{/literal}*/</script>
+	<!-- end usabilla live embed code -->
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-bandwidth-fonts/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-codetabs/codetabs.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-bandwidth/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+
