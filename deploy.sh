@@ -10,8 +10,10 @@ function doCompile {
   cp -a _book/. out/
 }
 
+skip_deploy=true
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+# if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+if [ "$skip_deploy" = true] ; then
     echo "Skipping deploy; just doing a build."
     doCompile
     exit 0
