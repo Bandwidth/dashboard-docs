@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Managing Sub-accounts/Sites</title>
+        <title>Asynchronous Order Model</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="manageLocations.html">
+    <link rel="next" href="accountConfig.html">
     
     
-    <link rel="prev" href="../guides/adminFunctions.html">
+    <link rel="prev" href="restAPI.html">
     
 
     </head>
@@ -228,7 +228,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="asyncOrder.html">
+        <li class="chapter active" data-level="1.4" data-path="asyncOrder.html">
             
                 <a href="asyncOrder.html">
             
@@ -812,63 +812,63 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html">
+                <span>
             
                     
                     Testing Port-out Validation
             
-                </a>
+                
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.1" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3.1" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html#about">
+                <span>
             
                     
                     About
             
-                </a>
+                
             
 
             
-        </li>
+        </span></li>
     
-        <li class="chapter " data-level="4.3.2" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3.2" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html#setup">
+                <span>
             
                     
                     Setup
             
-                </a>
+                
             
 
             
-        </li>
+        </span></li>
     
-        <li class="chapter " data-level="4.3.3" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3.3" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html#testing">
+                <span>
             
                     
                     Testing
             
-                </a>
+                
             
 
             
-        </li>
+        </span></li>
     
 
             </ul>
             
-        </li>
+        </span></li>
     
 
     
@@ -890,7 +890,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.2" data-path="manageSites.html">
+        <li class="chapter " data-level="5.2" data-path="manageSites.html">
             
                 <a href="manageSites.html">
             
@@ -1465,7 +1465,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Managing Sub-accounts/Sites</a>
+        <a href="..">Asynchronous Order Model</a>
     </h1>
 </div>
 
@@ -1480,10 +1480,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="managing-sub-accountssites">Managing Sub-accounts/Sites</h1>
-<p>Each account may have one or more Sites defined.  Each Site may have one or more SIP Peers defined, which are the objects that contain the endpoints used to send and receive voice and data traffic.  Most customers may only need a single Site and SIP Peer, but this structure allows customers with multiple products, channels, customers and physical locations to easily model their endpoints.  In the Bandwidth Dashboard UI, &quot;Sites&quot; are referred to as &quot;Sub-account&quot;, which is their most frequent use.  SIP Peers are referred to as &quot;Locations&quot; as they are most frequently used to model customer&apos;s physical locations.  Telephone numbers are associated with a single SIP Peer within a Site.  These same rules are applied in the Bandwidth Dashboard UI&apos;s account structure.</p>
-<p>Please note that both the Sites(SubAccounts) and SIP Peers(Locations) are not intended to grow in an unbounded manner.   If you are finding the need to establish more than 50 Sites(SubAccounts), or 250 total SIP Peers(Locations) in order to address your business needs, please consult with your Bandwidth representative before moving beyond these thresholds.  System responsiveness and / or network issues may result if these thresholds are exceeded.</p>
-<p><img src="../images/sites.png" alt="managing sites"></p>
+                                <h1 id="asynchronous-order-model">Asynchronous Order Model</h1>
+<p>Many system requests require the interaction of multiple &#x201C;back-end&#x201D; systems, and cannot be guaranteed to complete within a short time interval.  Additionally, for many of these requests it is valuable to retain a persistent record of the transaction or series of transactions.  Ordering Features and Services, and requesting number Porting, both fit into this class of activity.</p>
+<p>In these cases, the Bandwidth Phone Number APIs use an Asynchronous model, where the initial request results in the creation of a unique &#x201C;order&#x201D;, which is identified by an order-id which is typically returned in the Location header of a <code class="post">POST</code> request.  This <code>order-id</code> is then subsequently used to monitor and update the initial request.  In general, these <code>order-ids</code> are represented by a UUID, and will be preserved at least for the length of time required to fully complete the request.  Their status can be requested at any time, and in cases the request can be modified</p>
 
                                 
                                 </section>
@@ -1517,7 +1516,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Managing Sub-accounts/Sites","level":"5.2","depth":1,"next":{"title":"Managing SIP Peers (locations)","level":"5.3","depth":1,"path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md","articles":[{"title":"About","level":"5.3.1","depth":2,"anchor":"#about","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#about","articles":[]},{"title":"Voice/Data Traffic","level":"5.3.2","depth":2,"anchor":"#voice-data-traffic","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#voice-data-traffic","articles":[]},{"title":"Origination service","level":"5.3.3","depth":2,"anchor":"#orig-config","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#orig-config","articles":[]},{"title":"Origination and SMS services","level":"5.3.4","depth":2,"anchor":"#orig-config-sms","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#orig-config-sms","articles":[]},{"title":"Termination service","level":"5.3.5","depth":2,"anchor":"#term-config","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#term-config","articles":[]},{"title":"Origination, Termination and SMS services","level":"5.3.6","depth":2,"anchor":"#term-orig-sms","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#term-orig-sms","articles":[]},{"title":"CNAM","level":"5.3.7","depth":2,"anchor":"#cnam-config","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#cnam-config","articles":[]},{"title":"Delete SIP Peer","level":"5.3.8","depth":2,"anchor":"#delete-sippeer","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#delete-sippeer","articles":[]},{"title":"Moving TNs between SIP Peers","level":"5.3.9","depth":2,"anchor":"#move-tn","path":"concepts/manageLocations.md","ref":"concepts/manageLocations.md#move-tn","articles":[]}]},"previous":{"title":"Administrative Functions","level":"5.1","depth":1,"path":"guides/adminFunctions.md","ref":"guides/adminFunctions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"concepts/manageSites.md","mtime":"2018-02-28T22:56:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:00:58.273Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Asynchronous Order Model","level":"1.4","depth":1,"next":{"title":"Account Configuration","level":"1.5","depth":1,"path":"concepts/accountConfig.md","ref":"concepts/accountConfig.md","articles":[]},"previous":{"title":"REST URLs and Parameters","level":"1.3.4","depth":2,"anchor":"#rest-urls","path":"concepts/restAPI.md","ref":"concepts/restAPI.md#rest-urls","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"concepts/asyncOrder.md","mtime":"2018-03-02T20:02:19.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:03:28.447Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

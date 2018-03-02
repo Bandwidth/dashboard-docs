@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Account Configuration</title>
+        <title>RESTful API and Environments</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -71,10 +71,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="apiAccessSchema.html">
+    <link rel="next" href="restAPI.html">
     
     
-    <link rel="prev" href="asyncOrder.html">
+    <link rel="prev" href="security.html">
     
 
     </head>
@@ -157,7 +157,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="restAPI.html">
+        <li class="chapter active" data-level="1.3" data-path="restAPI.html">
             
                 <a href="restAPI.html#top">
             
@@ -241,7 +241,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5" data-path="accountConfig.html">
+        <li class="chapter " data-level="1.5" data-path="accountConfig.html">
             
                 <a href="accountConfig.html">
             
@@ -812,63 +812,63 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html">
+                <span>
             
                     
                     Testing Port-out Validation
             
-                </a>
+                
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.1" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3.1" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html#about">
+                <span>
             
                     
                     About
             
-                </a>
+                
             
 
             
-        </li>
+        </span></li>
     
-        <li class="chapter " data-level="4.3.2" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3.2" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html#setup">
+                <span>
             
                     
                     Setup
             
-                </a>
+                
             
 
             
-        </li>
+        </span></li>
     
-        <li class="chapter " data-level="4.3.3" data-path="../guides/testingPortoutValidation.html">
+        <li class="chapter " data-level="4.3.3" data-path="../guides/testingPortoutValidation.md">
             
-                <a href="../guides/testingPortoutValidation.html#testing">
+                <span>
             
                     
                     Testing
             
-                </a>
+                
             
 
             
-        </li>
+        </span></li>
     
 
             </ul>
             
-        </li>
+        </span></li>
     
 
     
@@ -1465,7 +1465,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="..">Account Configuration</a>
+        <a href="..">RESTful API and Environments</a>
     </h1>
 </div>
 
@@ -1480,9 +1480,70 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="account-configuration-model">Account Configuration Model</h1>
-<p>The basic work-flow for configuring an account, and subsequently managing numbers on that account is diagrammed below.  This involves first defining the logical and physical infrastructure, and subsequently adding and managing Telephone Numbers via ordering and Porting.</p>
-<p><img src="../images/account_model.png" alt="account model"></p>
+                                <h1 id="top">RESTful API and Environments </h1>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#api-methods">API Methods - REST</a></li>
+<li><a href="#rest-usage">Usage of REST with the Bandwidth Phone Number API</a></li>
+<li><a href="#base-urls">Base URLs and Environments</a></li>
+<li><a href="#rest-urls">REST URLs and Parameters</a></li>
+</ul>
+<h2 id="api-methods">API Methods - REST </h2>
+<p>Bandwidth API&#x2019;s support REST web service technologies.
+The Bandwidth API&#x2019;s are designed to provide customers with a simple way of interfacing with the number intelligence platform following standard industry practices.  Wikipedia (reference <a href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">http://en.wikipedia.org/wiki/Representational_state_transfer</a>) defines REST as:</p>
+<blockquote>
+<p>A RESTful web service (also called a RESTful web API) is a simple web service implemented using HTTP and the principles of REST. It is a collection of resources, with four defined aspects:</p>
+<ul>
+<li>A base URI for the web service, such as <a href="http://example.com/resources/" target="_blank">http://example.com/resources/</a></li>
+<li>An Internet media type of the data supported by the web service. This is often JSON, XML or YAML but can be any other valid Internet media type.</li>
+<li>A set of operations supported by the web service using HTTP methods (e.g., GET, PUT, POST, or DELETE).
+The API must be hypertext driven.</li>
+</ul>
+</blockquote>
+<h2 id="rest-usage">Usage of REST with the Bandwidth Phone Number API </h2>
+<p>Usage of the REST model for APIs involves using the tools provided by the REST model to create a consistent API experience.  Bandwidth&#x2019;s Phone Number APIs use:</p>
+<h3 id="get">GET</h3>
+<p><code class="get">GET</code>  for querying static resources, often paginating the results to manage large result sets that arise from dealing with large data sets such as Telephone Numbers</p>
+<ul>
+<li>Search available number inventory<ul>
+<li>REST HTTP <code class="get">GET</code></li>
+</ul>
+</li>
+<li>Reporting<ul>
+<li>REST HTTP <code class="get">GET</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="post-and-put">POST and PUT</h3>
+<p><code class="post">POST</code> for creating resources, and <code class="put">PUT</code> for updating resources.  In many cases <code class="post">POST</code> results in the return of an identifier that is used in the subsequent management of that resource.</p>
+<ul>
+<li>Ordering numbers<ul>
+<li>REST HTTP <code class="post">POST</code></li>
+</ul>
+</li>
+<li>SIP Peer Management<ul>
+<li>REST HTTP <code class="post">POST</code> and <code class="put">PUT</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="delete">DELETE</h3>
+<p><code class="delete">DEL </code> is seldom used.  In most cases, resources are persisted as history records and cannot be deleted.</p>
+<h2 id="base-urls">Base URLs and Environments </h2>
+<p>All resources are located at:</p>
+<ul>
+<li>Base URL for Interop &#x2013; <code>https://test.dashboard.bandwidth.com/api</code></li>
+<li>Base URL for Production &#x2013; <code>https://dashboard.bandwidth.com/api</code></li>
+</ul>
+<p>The payload/content of the REST messages is encoded in XML.  To provide information to the endpoints on how to interpret the content, a HTTP Header value is used to identify the content as XML content.  To achieve this the header &#x201C;Content-Type&#x201D; must be set as &#x201C;application/xml&#x201D; for all messages.  The &#x201C;Authorization&#x201D; header is used to include the <a href="security.html">Basic-encoded credentials</a></p>
+<p>API Calls to the Base URL will return an empty document (no content), and not perform any authentication or other processing.  A REST resource is required for any action on the part of the server.</p>
+<h2 id="rest-urls">REST URLs and Parameters </h2>
+<p>Bandwidth attempts to maintain syntactic consistency in the specification and execution of the Bandwidth Dashboard API.  Some of the guidelines that serve as goals are:</p>
+<ul>
+<li>Backwards compatibility &#x2013; Bandwidth remains committed to backwards compatibility in its API implementation, occasionally at the expense of API complexity or additional query parameters.</li>
+<li>Date flexibility &#x2013; for most API calls that have dates as query parameters, the format yyyy-mm-dd or yy-mm-dd will be supported</li>
+<li>Case insensitivity &#x2013; in many but not all cases elements of the REST URI are case insensitive.  Some resource names and identifiers are case sensitive by their nature, and some have not yet been converted to case insensitive parsing.</li>
+<li>Providing generic, robust resource descriptors for URIs remains a focus of the ongoing development, and will be attempted wherever changes can be made that do not violate our commitment to backwards compatibility.</li>
+</ul>
 
                                 
                                 </section>
@@ -1516,7 +1577,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Account Configuration","level":"1.5","depth":1,"next":{"title":"Formal API Schema Access","level":"1.6","depth":1,"path":"concepts/apiAccessSchema.md","ref":"concepts/apiAccessSchema.md","articles":[]},"previous":{"title":"Asynchronous Order Model","level":"1.4","depth":1,"path":"concepts/asyncOrder.md","ref":"concepts/asyncOrder.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"concepts/accountConfig.md","mtime":"2018-02-28T22:56:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:00:58.273Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"RESTful API and Environments","level":"1.3","depth":1,"next":{"title":"API Methods - REST","level":"1.3.1","depth":2,"anchor":"#api-methods","path":"concepts/restAPI.md","ref":"concepts/restAPI.md#api-methods","articles":[]},"previous":{"title":"Security","level":"1.2","depth":1,"path":"concepts/security.md","ref":"concepts/security.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-bandwidth@1.9.2","header","sharing","custom-favicon","toggle-chapters","custom-jquery-postprocessing","-fontsettings","bandwidth-fonts","-highlight","bandwidth-highlight","codetabs","include-html@0.2.0","usabilla","talkus"],"pluginsConfig":{"custom-jquery-postprocessing":{},"search":{},"bandwidth-fonts":{"family":"sans","size":2,"theme":"white"},"talkus":{"talkusId":"DScHg5ngjtZpXH3H6","tag":"bwdashapi"},"layout":{"headerPath":"layouts/header.html"},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-bandwidth":{"languages":[{"lang":"js","name":"Js","default":true},{"lang":"csharp","name":"C#"},{"lang":"ruby","name":"ruby"},{"lang":"shell","name":"cURL"},{"lang":"bash","name":"cURL"}],"split":true,"theme":"light"},"header":{},"customJquery":{"js":"js/custom.js"},"include-html":{},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":"images/favicon.ico","usabilla":{"usabillaId":"082043b6f63e"},"bandwidth-highlight":{},"custom-favicon":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":false,"google":false,"instapaper":false,"twitter":false,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"concepts/restAPI.md","mtime":"2018-03-02T20:02:19.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T20:03:28.447Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
