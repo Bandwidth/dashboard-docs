@@ -1,4 +1,7 @@
-# Searching for Phone Numbers
+{% multimethod %}
+{% endmultimethod %}
+
+# Searching for Phone Numbers {#top}
 
 There are a number of different resource paths for querying available telephone numbers in the Bandwidth Phone Number inventory. These are:
 
