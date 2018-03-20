@@ -32,3 +32,15 @@ Bandwidth dashboard allows the overall Bandwidth number inventory to be searched
 These different search types have different query parameters that guide the required searches. The search requests are communicated via a <code class="get">GET</code>  API call where the type of search, the search filters, and controlling parameters such as limits on quantity and payload detail are specified as query parameters in the URL.
 
 The response to the search request provides a list of available numbers, and if requested some details such as Rate Center and Lata, about the numbers that have been returned.
+
+### Search by Area Code
+
+```http
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SearchResult>
+    <ResultCount>2101</ResultCount>
+    <TelephoneNumberList>
+        <TelephoneNumber>9192415735</TelephoneNumber>
+    </TelephoneNumberList>
+</SearchResult>
+```

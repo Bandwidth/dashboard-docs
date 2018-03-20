@@ -17,6 +17,7 @@
 * [API Reference](apiReference.md)
 
 ## Ordering Number Guides
+* [Ondemand Search and Ordering](guides/onDemandNumberSearchAndOrder.md)
 * [Searching Phone Numbers](guides/searchForNumbers.md)
 * [Order Phone Numbers (lite)](guides/orderingSummary.md)
   * [Search For Phone Numbers](guides/orderingSummary.md#search-for-phone-numbers)
@@ -83,6 +84,7 @@
   * [Creating and Managing a DLDA Order](guides/managingLineFeatures.md#create-dlda)
   * [Retrieving the history of a DLDA order](guides/managingLineFeatures.md#get-dlda)
   * [Checking DLDA information associated with a TN](guides/managingLineFeatures.md#check-dlda)
+* [Managing Subscriptions](guides/managingSubscriptions.md)
 * [Managing Orders](guides/managingOrders.md)
   * [About](guides/managingOrders.md#about)
   * [Associating Notes with Work Orders](guides/managingOrders.md#notes-with-orders)

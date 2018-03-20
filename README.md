@@ -1,5 +1,111 @@
 # Bandwidth Phone Number API Docs
 
-The Bandwidth Phone Number API provides a set of programmable interfaces for customers to easily configure their services, search for phone numbers, order phone numbers, and provision phone numbers on Bandwidth's network.  The API is designed to provide customer's applications with fast and simple access to the services provided by Bandwidth, and is designed to provide fast response times at high volumes in order to support our customer's needs.
+## Base API Url
 
-The Bandwidth Phone Number API provides an advanced suite of capabilities that are included with the Bandwidth CLEC product offerings, and an enhanced suite of capabilities that are included with the Bandwidth Web Services Amendment commercial agreement.    This enhanced collection of capabilities will allow our customers unsurpassed access and control of all aspects of the Bandwidth CLEC network, through advanced provisioning and management APIs, providing support for dynamic and responsive management and customization of our customer’s business initiatives.
+`https://dashboard.bandwidth.com/api/`
+
+## Concepts
+* [About](README.md)
+* [Security](concepts/security.md)
+* [RESTful API and Environments](concepts/restAPI.md)
+  * [API Methods - REST](concepts/restAPI.md#api-methods)
+  * [Usage of REST with the Bandwidth Phone Number API](concepts/restAPI.md#rest-usage)
+  * [Base URLs and Environments](concepts/restAPI.md#base-urls)
+  * [REST URLs and Parameters](concepts/restAPI.md#rest-urls)
+* [Asynchronous Order Model](concepts/asyncOrder.md)
+* [Account Configuration](concepts/accountConfig.md)
+* [Formal API Schema Access](concepts/apiAccessSchema.md)
+* [Secure Callbacks](concepts/secureCallbacks.md)
+
+## API Reference
+* [API Reference](apiReference.md)
+
+## Ordering Number Guides
+* [Searching Phone Numbers](guides/searchForNumbers.md)
+* [Order Phone Numbers (lite)](guides/orderingSummary.md)
+  * [Search For Phone Numbers](guides/orderingSummary.md#search-for-phone-numbers)
+  * [Order Phone Numbers](guides/orderingSummary.md#order-phone-numbers)
+  * [Fetch Order Info](guides/orderingSummary.md#get-order-info)
+* [Disconnect a Phone Number](guides/disconnectSummary.md)
+  * [Disconnect a Phone Number](guides/disconnectSummary.md#disconnect-phone-number)
+  * [Fetch Disconnect Info](guides/disconnectSummary.md#get-disconnect-info)
+* [Order Phone Numbers (Advanced)](guides/advancedOrdering.md)
+  * [Overview of Ordering](guides/advancedOrdering.md#ordering-overview)
+  * [Creating an Order](guides/advancedOrdering.md#creating-order)
+  * [New Number Order Request Format](guides/advancedOrdering.md#new-number-req)
+  * [New Number Order Response Format](guides/advancedOrdering.md#new-number-res)
+  * [Backordering Numbers](guides/advancedOrdering.md#backorder-number)
+  * [Updating a new-number order](guides/advancedOrdering.md#update-new-number-order)
+* [Reserving Phone Numbers](guides/reservingNumbers.md)
+
+## Porting Phone Numbers Guides
+* [Porting Phone Numbers](guides/portingPhoneNumbers.md)
+  * [About Porting](guides/portingPhoneNumbers.md#about-porting)
+  * [Overview of the Port-in Process](guides/portingPhoneNumbers.md#overview-of-porting)
+  * [Checking LNP Availability](guides/portingPhoneNumbers.md#check-lnp)
+  * [Creating an LNP Order](guides/portingPhoneNumbers.md#create-lnp)
+  * [LOA Upload](guides/portingPhoneNumbers.md#loa-upload)
+  * [Modifying an LNP Order (Supp LNP Order)](guides/portingPhoneNumbers.md#modify-lnp)
+  * [Canceling LNP Order](guides/portingPhoneNumbers.md#cancel-lnp)
+  * [Activating Ported Numbers](guides/portingPhoneNumbers.md#activate-ported-numbers)
+* [Testing Porting](guides/testingPorting.md)
+  * [About](guides/testingPorting.md#about)
+  * [Supported Phone Numbers](guides/testingPorting.md#supported-tns)
+  * [Unsupported Phone Numbers](guides/testingPorting.md#unsupported-tns)
+  * [Failed Phone Numbers](guides/testingPorting.md#failed-tns)
+  * [Pass-Fail Phone Numbers](guides/testingPorting.md#pass-fail)
+  * [Succeeded Phone Numbers](guides/testingPorting.md#success-tns)
+  * [Managed Phone Numbers Port](guides/testingPorting.md#managed-ports)
+  * [NPA NXX pairs for testing Porting](guides/testingPorting.md#npa-nxx-pairs)
+  * [Rate Centers for Manual Porting](guides/testingPorting.md#rate-center-manual-porting)
+  * [Unsupported Rate Centers](guides/testingPorting.md#unsupported-rate-centers)
+* [Testing Port-out Validation](guides/testingPortoutValidation.md)
+  * [About](guides/testingPortoutValidation.md#about)
+  * [Setup](guides/testingPortoutValidation.md#setup)
+  * [Testing](guides/testingPortoutValidation.md#testing)
+
+## Account Management Guides
+* [Administrative Functions](guides/adminFunctions.md)
+* [Managing Sub-accounts/Sites](concepts/manageSites.md)
+* [Managing SIP Peers (locations)](concepts/manageLocations.md)
+  * [About](concepts/manageLocations.md#about)
+  * [Voice/Data Traffic](concepts/manageLocations.md#voice-data-traffic)
+  * [Origination service](concepts/manageLocations.md#orig-config)
+  * [Origination and SMS services](concepts/manageLocations.md#orig-config-sms)
+  * [Termination service](concepts/manageLocations.md#term-config)
+  * [Origination, Termination and SMS services](concepts/manageLocations.md#term-orig-sms)
+  * [CNAM](concepts/manageLocations.md#cnam-config)
+  * [Delete SIP Peer](concepts/manageLocations.md#delete-sippeer)
+  * [Moving TNs between SIP Peers](concepts/manageLocations.md#move-tn)
+
+## Guides
+* [Managing Line Features](guides/managingLineFeatures.md)
+  * [About](guides/managingLineFeatures.md#about)
+  * [Single TN Option Assignment](guides/managingLineFeatures.md#single-tn)
+  * [Calling Name Display](guides/managingLineFeatures.md#calling-name-display)
+  * [Directory Listing and Directory Assistance (DLDA)](guides/managingLineFeatures.md#dlda)
+  * [Creating and Managing a DLDA Order](guides/managingLineFeatures.md#create-dlda)
+  * [Retrieving the history of a DLDA order](guides/managingLineFeatures.md#get-dlda)
+  * [Checking DLDA information associated with a TN](guides/managingLineFeatures.md#check-dlda)
+* [Managing Orders](guides/managingOrders.md)
+  * [About](guides/managingOrders.md#about)
+  * [Associating Notes with Work Orders](guides/managingOrders.md#notes-with-orders)
+  * [Order Change Notifications](guides/managingOrders.md#change)
+  * [Email Notifications](guides/managingOrders.md#email-notifications)
+  * [Callback URL Notifications](guides/managingOrders.md#callback-notifications)
+* [Reporting](guides/reporting.md)
+  * [Fetching Information](guides/reporting.md#fetch-info)
+  * [Pagination](guides/reporting.md#pagination)
+  * [Available Inventory: Rate Centers and Cities](guides/reporting.md#ratecenters)
+  * [Cities](guides/reporting.md#cities)
+  * [Available Inventory: NPA NXX combinations](guides/reporting.md#npa)
+  * [Billing Data Records REST APIs for Retrieving zipped files](guides/reporting.md#billing-apis)
+
+## Resources & SDKs
+* [Forum](http://bandwidthdashboard.discussion.community/)
+* [Node SDK](https://github.com/Bandwidth/node-bandwidth-iris)
+* [Java SDK](https://github.com/Bandwidth/java-bandwidth-iris)
+* [PHP SDK](https://github.com/Bandwidth/php-bandwidth-iris)
+* [C# SDK](https://github.com/Bandwidth/csharp-bandwidth-iris)
+* [Python SDK](https://github.com/Bandwidth/python-bandwidth-iris)
+* [Ruby SDK](https://github.com/Bandwidth/ruby-bandwidth-iris)

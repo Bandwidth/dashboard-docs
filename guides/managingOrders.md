@@ -47,7 +47,7 @@ To create a Notifications Callback Subscription the customer creates a <code cla
 
 If the `OrderId` field is omitted, then the subscription will apply to all orders of the indicated OrderType.
 
-The `<Expiry>` value can be very large (100 years in seconds), or set to infinite (-1) if required.  Note that even in the case of a long or infinite expiry, the subscription will be removed once the order (if specified) reaches a final state.
+The `<Expiry>` value can be very large (100 years in seconds).  Note that even in the case of a long expiry, the subscription will be removed once the order (if specified) reaches a final state.
 
 Updating a subscription is done via a <code class="put">PUT</code> request to the subscription. This can be used to update the expiry request.   Requests to update the expiry are at the whim of the Bandwidth Dashboard.
 
