@@ -5,7 +5,7 @@
 
 ## About {#about}
 
-This guide will walk through the recommeded approach to searching and ordering phone numbers using the Bandwidth [Phone Number API](https://dashboard.bandwidth.com).  This will cover how to setup a subscription to manage phone number order alerts, how to search for available phone numbers, and finally how to order phone numbers.
+This guide will walk through the recommended approach to searching and ordering phone numbers using the Bandwidth [Phone Number API](https://dashboard.bandwidth.com).  This will cover how to setup a subscription to manage phone number order alerts, how to search for available phone numbers, and finally how to order phone numbers.
 
 ### Use-cases
 
@@ -18,14 +18,15 @@ This guide is best suited for use-cases where an end-user is assigned a specific
   * [Async Nature of ordering phone numbers](../concepts/asyncOrder.md)
   * [Managing Locations](../concepts/manageLocations.md)
   * [Managing Sites](../concepts/manageSites.md)
+  * Receiving HTTP Callbacks/Webhooks
 
 ## Steps
-[Create Subscription](#create-subscriptions)
+[Create Subscription](#create-subscription)
 [Search for Phone Numbers](#search-for-phone-numbers)
 
 [Test Subscription](#test-subscription)
 
-## Create Subscription for Orders {#create-subscriptions}
+## Create Subscription for Orders {#create-subscription}
 
 The Bandwidth Phone Number API allows users to manage notifications on their account through the `/subscriptions` resource.  Subscriptions can be configured to send a HTTP Callback to a valid publically addressable URL or send an email to a valid email address.
 
@@ -165,7 +166,7 @@ To successfully order a Phone Number that was previously returned in a search on
 | `PeerId`                              | No       | The ID of the SIP Peer (_or location_) that the telephone numbers are to be assigned to. <br> <br> ⚠️ The `PeerId` **MUST** already exist under the `Site` (_or sub-account_) EX: `/accounts/{accountId}/sites/{siteId}/sippeers/{PeerId}`                                                                                                           |
 | `PartialAllowed`                      | No       | By default all order submissions are fulfilled partially. Setting the `PartialAllowed` to false would trigger the entire order to be fulfilled (any error encountered such as 1 TN not being available would fail all TNs in the order) <br><br> Default: `false`                                                                                    |
 | `BackOrderRequested`                  | No       | `BackOrderRequested` will indicate to the system that if the entire quantity of numbers is not available on the first attempt to fill the new number order, the request will be repeated periodically until the request is successful or canceled. <br> `true` - Backorder numbers if the entire quantity is not available <br><br> Default: `false` |
-| `TelephoneNumberList`                 | Yes      | A list of telephone numbers to order.                                                                                                                                                                                                                                                                                                                 |
+| `TelephoneNumberList`                 | Yes      | A list of telephone numbers to order.                                                                                                                                                                                                                                                                                                                |
 | `TelephoneNumberList.TelephoneNumber` | Yes      | `TelephoneNumberList` must have at least one `TelephoneNumber` to order                                                                                                                                                                                                                                                                              |
 
 {% common %}
@@ -179,7 +180,7 @@ Authorization: {user:password}
 
 <Order>
     <CustomerOrderId>123456789</CustomerOrderId>
-    <Name>Existing Number Order</Name>
+    <Name>My Custom Name or UUID of a customer session</Name>
     <ExistingTelephoneNumberOrderType>
         <TelephoneNumberList>
             <TelephoneNumber>5402278098</TelephoneNumber>
@@ -218,16 +219,67 @@ Location: https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/c9dg
 
 {% endextendmethod %}
 
-```xml
+## Receive HTTP Callback with Order Status {#receive-callback}
+
+The Bandwidth Phone Number API will send a HTTP Callback (webhook) to the URL specified in the `<URL>...</URL>` when [creating the subscription](#create-subscription).
+
+The HTTP Callback will contain information if the order was successful or failed.  If status is **anything other than `COMPLETE`** the order has failed.  The most likely scenario is that another customer ordered the desired phone number between the time 'searched' and 'ordered'.  If the order is **not** `COMPLETE`, either try ordering a different phone number, or [search for more numbers](#search-for-phone-numbers).
+
+{% extendmethod %}
+
+### Callback Request Parameters
+
+| Parameter                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|:--------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Status`                                    | Following this tutorial should only yield two possible `Status` values: <br> - `COMPLETE` : The order succeeded and all phone numbers requested were ordered and will be sent in the `<CompletedTelephoneNumbers>` list. <br> - `FAILED` : The order _did not_ succeed (at least 1 phone number sent in the order was unable to be ordered). <br><br> To learn more about the order states, see the [Advanced Ordering Overview](advancedOrdering.md#ordering-overview) |
+| `SubscriptionId`                            | The unique Id associated with the subscription that was configured for `orders`. This is the same value that is returned in `Location` Header when [creating the subscription](#create-subscription).                                                                                                                                                                                                                                                                   |
+| `Message`                                   | A specific message related to the order.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `OrderId`                                   | The unique Id associated with the order. This is the same value that is returned in the `Location` Header when [creating the order](#order-phone-numbers)                                                                                                                                                                                                                                                                                                               |
+| `OrderType`                                 | The specific type of order that was created. <br> For this example, the value will be `orders`. <br><br>For more information see [managing subscriptions](managingSubscriptions.md).                                                                                                                                                                                                                                                                                    |
+| `CompletedTelephoneNumbers`                 | Contains the list of Phone Numbers that were attempted to be ordered.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `CompletedTelephoneNumbers.TelephoneNumber` | The actual Phone Number that was attempted to be ordered.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+
+{% common %}
+
+### Example: Successful Phone Number Order
+
+```http
+POST https://your-server.com HTTP/1.1
+Content-Type: application/xml; charset=utf-8
+Authorization: {user:password}
+
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Notification>
-  <Status>COMPLETE</Status>
-  <SubscriptionId>d8274fa6-e49b-469a-93bf-c7dd17615950</SubscriptionId>
-  <Message>Created a new number order for 1 number from WASHINGTON, VA</Message>
-  <OrderId>a8ef295b-fcf4-44a7-945c-0520c8f49123</OrderId>
-  <OrderType>orders</OrderType>
-  <CompletedTelephoneNumbers>
-    <TelephoneNumber>5402278870</TelephoneNumber>
-  </CompletedTelephoneNumbers>
+    <Status>COMPLETE</Status>
+    <SubscriptionId>d8274fa6-e49b-469a-93bf-c7dd17615950</SubscriptionId>
+    <Message>Created a new number order for 1 number from WASHINGTON, VA</Message>
+    <OrderId>a8ef295b-fcf4-44a7-945c-0520c8f49123</OrderId>
+    <OrderType>orders</OrderType>
+    <CompletedTelephoneNumbers>
+        <TelephoneNumber>5402278098</TelephoneNumber>
+    </CompletedTelephoneNumbers>
 </Notification>
 ```
+
+### Example: Failed Phone Number Order
+
+```http
+POST https://your-server.com HTTP/1.1
+Content-Type: application/xml; charset=utf-8
+Authorization: {user:password}
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Notification>
+    <Status>FAILED</Status>
+    <SubscriptionId>333643f0-3eac-4c8f-8b15-c712f49e09fe</SubscriptionId>
+    <Message>5005: The telephone number is unavailable for ordering</Message>
+    <OrderId>4a58b348-892c-4426-8900-97fc4555c42c</OrderId>
+    <OrderType>orders</OrderType>
+    <CompletedTelephoneNumbers>
+       <TelephoneNumber>5402278098</TelephoneNumber>
+    </CompletedTelephoneNumbers>
+</Notification>
+```
+
+{% endextendmethod %}
+
