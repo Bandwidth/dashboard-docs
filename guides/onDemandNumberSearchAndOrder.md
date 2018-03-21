@@ -21,10 +21,13 @@ This guide is best suited for use-cases where an end-user is assigned a specific
   * Receiving HTTP Callbacks/Webhooks
 
 ## Steps
-[Create Subscription](#create-subscription)
-[Search for Phone Numbers](#search-for-phone-numbers)
 
-[Test Subscription](#test-subscription)
+1. [Create Subscription](#create-subscription)
+2. [Search for Phone Numbers](#search-for-phone-numbers)
+3. [Create order for Phone Numbers](#order-phone-numbers)
+4. [Receive HTTP Callback with order status](#receive-callback)
+5. [Fetch information about order (_optional_)](#get-order-info)
+
 
 ## Create Subscription for Orders {#create-subscription}
 
@@ -283,3 +286,109 @@ Authorization: {user:password}
 
 {% endextendmethod %}
 
+## Fetching Order Information {#get-order-info}
+
+A <code class="get">GET</code> Request to an existing order will return it's status as well as any information originally used to create the order.
+
+### Base URL
+<code class="get">GET</code>`https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/{{orderId}}`
+
+{% extendmethod %}
+
+### Query Parameters
+
+There are no query parameters for fetching information about an existing order.
+
+{% common %}
+
+### Example: Fetch Order Information
+
+```http
+GET https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/4a58b348-892c-4426-8900-97fc4555c42c HTTP/1.1
+Content-Type: application/xml; charset=utf-8
+Authorization: {user:password}
+```
+
+### Example: Successful Order
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/xml; charset=utf-8
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OrderResponse>
+    <CompletedQuantity>1</CompletedQuantity>
+    <CreatedByUser>jbm</CreatedByUser>
+    <ErrorList/>
+    <FailedNumbers/>
+    <LastModifiedDate>2018-03-21T15:28:06.438Z</LastModifiedDate>
+    <OrderCompleteDate>2018-03-21T15:28:06.438Z</OrderCompleteDate>
+    <Order>
+        <CustomerOrderId>123456789</CustomerOrderId>
+        <Name>Existing Number Order</Name>
+        <OrderCreateDate>2018-03-21T15:28:06.359Z</OrderCreateDate>
+        <PeerId>546348</PeerId>
+        <BackOrderRequested>false</BackOrderRequested>
+        <ExistingTelephoneNumberOrderType>
+            <TelephoneNumberList>
+                <TelephoneNumber>5405511247</TelephoneNumber>
+            </TelephoneNumberList>
+        </ExistingTelephoneNumberOrderType>
+        <PartialAllowed>true</PartialAllowed>
+        <SiteId>13606</SiteId>
+    </Order>
+    <OrderStatus>COMPLETE</OrderStatus>
+    <CompletedNumbers>
+        <TelephoneNumber>
+            <FullNumber>5405511247</FullNumber>
+        </TelephoneNumber>
+    </CompletedNumbers>
+    <Summary>1 number ordered in (540)</Summary>
+    <FailedQuantity>0</FailedQuantity>
+</OrderResponse>
+```
+
+### Example: Unsuccessful Order Response
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/xml; charset=utf-8
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OrderResponse>
+    <CompletedQuantity>0</CompletedQuantity>
+    <CreatedByUser>jbm</CreatedByUser>
+    <ErrorList>
+        <Error>
+            <Code>5005</Code>
+            <Description>The telephone number is unavailable for ordering</Description>
+            <TelephoneNumber>5402278098</TelephoneNumber>
+        </Error>
+    </ErrorList>
+    <FailedNumbers>
+        <FullNumber>5402278098</FullNumber>
+    </FailedNumbers>
+    <LastModifiedDate>2018-03-21T15:20:36.212Z</LastModifiedDate>
+    <OrderCompleteDate>2018-03-21T15:20:36.212Z</OrderCompleteDate>
+    <Order>
+        <CustomerOrderId>1234567896</CustomerOrderId>
+        <Name>Existing Number Order 234</Name>
+        <OrderCreateDate>2018-03-21T15:20:36.153Z</OrderCreateDate>
+        <PeerId>546348</PeerId>
+        <BackOrderRequested>false</BackOrderRequested>
+        <ExistingTelephoneNumberOrderType>
+            <TelephoneNumberList>
+                <TelephoneNumber>5402278098</TelephoneNumber>
+            </TelephoneNumberList>
+        </ExistingTelephoneNumberOrderType>
+        <PartialAllowed>true</PartialAllowed>
+        <SiteId>13606</SiteId>
+    </Order>
+    <OrderStatus>FAILED</OrderStatus>
+    <CompletedNumbers/>
+    <Summary>1 number requested</Summary>
+    <FailedQuantity>1</FailedQuantity>
+</OrderResponse>
+```
+
+{% endextendmethod %}

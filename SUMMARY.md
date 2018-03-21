@@ -18,6 +18,11 @@
 
 ## Ordering Number Guides
 * [Ondemand Search and Ordering](guides/onDemandNumberSearchAndOrder.md)
+  * [Create Subscription](guides/onDemandNumberSearchAndOrder.md#create-subscription)
+  * [Search for Phone Numbers](guides/onDemandNumberSearchAndOrder.md#search-for-phone-numbers)
+  * [Create order for Phone Numbers](guides/onDemandNumberSearchAndOrder.md#order-phone-numbers)
+  * [Receive HTTP Callback with order status](guides/onDemandNumberSearchAndOrder.md#receive-callback)
+  * [Fetch information about order](guides/onDemandNumberSearchAndOrder.md#get-order-info)
 * [Searching Phone Numbers](guides/searchForNumbers.md)
 * [Order Phone Numbers (lite)](guides/orderingSummary.md)
   * [Search For Phone Numbers](guides/orderingSummary.md#search-for-phone-numbers)
