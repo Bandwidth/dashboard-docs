@@ -46,6 +46,7 @@ module.exports = function ($) {
       }
     });
   });
+
   var title = $('title').text();
 
 
