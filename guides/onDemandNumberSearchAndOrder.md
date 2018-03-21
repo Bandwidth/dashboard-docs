@@ -309,7 +309,7 @@ Content-Type: application/xml; charset=utf-8
 Authorization: {user:password}
 ```
 
-### Example: Successful Order
+### Example: Successful Order Response
 
 ```http
 HTTP/1.1 200 OK
