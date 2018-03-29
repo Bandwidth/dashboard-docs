@@ -62,10 +62,10 @@
   * [NPA NXX pairs for testing Porting](guides/testingPorting.md#npa-nxx-pairs)
   * [Rate Centers for Manual Porting](guides/testingPorting.md#rate-center-manual-porting)
   * [Unsupported Rate Centers](guides/testingPorting.md#unsupported-rate-centers)
-* [Testing Port-out Validation](guides/testingPortoutValidation.md)
-  * [About](guides/testingPortoutValidation.md#about)
-  * [Setup](guides/testingPortoutValidation.md#setup)
-  * [Testing](guides/testingPortoutValidation.md#testing)
+* [Testing Port-out Validation](guides/testingPortOutValidation.md)
+  * [About](guides/testingPortOutValidation.md#about)
+  * [Setup](guides/testingPortOutValidation.md#setup)
+  * [Testing](guides/testingPortOutValidation.md#testing)
 
 ## Account Management Guides
 * [Administrative Functions](guides/adminFunctions.md)
