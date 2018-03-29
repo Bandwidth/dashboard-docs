@@ -1,74 +1,90 @@
 {
-    "plugins": [
-        "theme-bandwidth@1.9.3",
-        "header",
-        "sharing",
-        "custom-favicon",
-        "toggle-chapters",
-        "custom-jquery-postprocessing",
-        "-fontsettings",
-        "bandwidth-fonts",
-        "-highlight",
-        "bandwidth-highlight",
-        "codetabs",
-        "include-html@0.2.0",
-        "usabilla",
-        "talkus"
-    ],
-    "pluginsConfig": {
-        "theme-bandwidth": {
-            "languages": [
-                {
-                    "lang": "js",
-                    "name": "Js",
-                    "default": true
-                },
-                {
-                    "lang": "csharp",
-                    "name": "C#"
-                },
-                {
-                    "lang": "ruby",
-                    "name": "ruby"
-
-                },
-                {
-                    "lang": "shell",
-                    "name": "cURL"
-                },
-                {
-                    "lang": "bash",
-                    "name": "cURL"
-                }
-            ]
+  "plugins": [
+    "theme-bandwidth@1.9.3",
+    "header",
+    "sharing",
+    "custom-favicon",
+    "toggle-chapters",
+    "custom-jquery-postprocessing",
+    "-fontsettings",
+    "bandwidth-fonts",
+    "-highlight",
+    "bandwidth-highlight",
+    "codetabs",
+    "include-html@0.2.0",
+    "usabilla",
+    "talkus",
+    "save-url-to-file"
+  ],
+  "pluginsConfig": {
+    "theme-bandwidth": {
+      "languages": [
+        {
+          "lang": "js",
+          "name": "Js",
+          "default": true
         },
-        "customJquery": {
-            "js": "js/custom.js"
+        {
+          "lang": "csharp",
+          "name": "C#"
         },
-        "layout": {
-            "headerPath" : "layouts/header.html"
+        {
+          "lang": "ruby",
+          "name": "ruby"
         },
-        "favicon": "images/favicon.ico",
-        "sharing": {
-            "facebook": false,
-            "twitter": false,
-            "google": false,
-            "weibo": false,
-            "instapaper": false,
-            "vk": false,
-            "all": []
+        {
+          "lang": "shell",
+          "name": "cURL"
         },
-        "usabilla" : {
-            "usabillaId" : "082043b6f63e"
-        },
-        "talkus" : {
-            "talkusId": "DScHg5ngjtZpXH3H6",
-            "tag": "bwdashapi"
-        },
-        "fontsettings": {
-            "theme": "white",
-            "family": "sans",
-            "size": 2
+        {
+          "lang": "bash",
+          "name": "cURL"
         }
+      ]
+    },
+    "customJquery": {
+      "js": "js\/custom.js"
+    },
+    "layout": {
+      "headerPath": "layouts\/header.html"
+    },
+    "favicon": "images\/favicon.ico",
+    "sharing": {
+      "facebook": false,
+      "twitter": false,
+      "google": false,
+      "weibo": false,
+      "instapaper": false,
+      "vk": false,
+      "all": [ ]
+    },
+    "usabilla": {
+      "usabillaId": "082043b6f63e"
+    },
+    "talkus": {
+      "talkusId": "DScHg5ngjtZpXH3H6",
+      "tag": "bwdashapi"
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    },
+    "saveUrls": {
+      "urls": [
+        {
+          "url": "https://test.dashboard.bandwidth.com/apidocs/errors.html",
+          "dest": "errors.html"
+        },
+        {
+          "url": "https://test.dashboard.bandwidth.com/apidocs/raml/iris.min.raml",
+          "dest": "raml/iris.min.raml"
+        },
+        {
+          "url": "https://test.dashboard.bandwidth.com/apidocs/scripts/toc.js",
+          "dest": "scripts/toc.js"
+        }
+      ]
     }
+  }
 }

@@ -12,6 +12,7 @@
 * [Account Configuration](concepts/accountConfig.md)
 * [Formal API Schema Access](concepts/apiAccessSchema.md)
 * [Secure Callbacks](concepts/secureCallbacks.md)
+* [Errors](errors.md)
 
 ## API Reference
 * [API Reference](apiReference.md)
