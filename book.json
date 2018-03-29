@@ -74,7 +74,7 @@
       "urls": [
         {
           "url": "https://test.dashboard.bandwidth.com/apidocs/errors.html",
-          "dest": "errors.html"
+          "dest": "live-errors.html"
         },
         {
           "url": "https://test.dashboard.bandwidth.com/apidocs/raml/iris.min.raml",
