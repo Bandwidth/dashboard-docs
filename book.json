@@ -43,12 +43,12 @@
       ]
     },
     "customJquery": {
-      "js": "js\/custom.js"
+      "js": "js/custom.js"
     },
     "layout": {
-      "headerPath": "layouts\/header.html"
+      "headerPath": "layouts/header.html"
     },
-    "favicon": "images\/favicon.ico",
+    "favicon": "images/favicon.ico",
     "sharing": {
       "facebook": false,
       "twitter": false,
