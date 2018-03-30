@@ -305,7 +305,7 @@ Authorization: {user:password}
 
 ### Example: Successful Order Response
 
-For this example, look for `OrderStatus == COMPLETED` and the `CompletedNumbers` list, and `CompletedQuantity == 1` to verify the order was successful.
+For this example, look for OrderStatus == COMPLETED and the CompletedNumbers list, and CompletedQuantity == 1 to verify the order was successful.
 
 ```http
 HTTP/1.1 200 OK
@@ -346,7 +346,7 @@ Content-Type: application/xml; charset=utf-8
 
 ### Example: Unsuccessful Order Response
 
-Otherwise, note that `OrderStatus == FAILED`, the `Error Description` text, and the `FailedNumbers` list.
+Otherwise, note that OrderStatus == FAILED, the Error Description text, and the FailedNumbers list.
 
 ```http
 HTTP/1.1 200 OK
