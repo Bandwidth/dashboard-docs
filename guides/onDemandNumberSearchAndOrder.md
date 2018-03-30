@@ -9,10 +9,12 @@ This guide will walk through the recommended approach to searching and ordering 
 
 ### Use-cases
 
-This guide is best suited for use-cases where an end-user is assigned a specific phone number that may want to customize their phone number.
+This guide is best suited for use-cases where an end-user is assigned a **new** specific phone number and may want to customize their phone number.
+
+In the case where a user would like to keep their existing phone number, follow the [porting guide](./portingPhoneNumbers.md).
 
 ## Assumptions
-* You have signed up for the [Bandwidth Phone Number API](https://bandwidth.com)
+* You have signed up for the [Bandwidth Phone Number API](https://www.bandwidth.com/contact/)
 * You are familiar with:
   * [Your API Credentials](../concepts/security.md)
   * [Async Nature of ordering phone numbers](../concepts/asyncOrder.md)
@@ -33,7 +35,7 @@ This guide is best suited for use-cases where an end-user is assigned a specific
 
 The Bandwidth Phone Number API allows users to manage notifications on their account through the `/subscriptions` resource.  Subscriptions can be configured to send a HTTP Callback to a valid publically addressable URL or send an email to a valid email address.
 
-This guide _only_ covers creating a `<CallbackSubscription>`.  For more information see the full guide on [managing subscriptions](./managingSubscriptions.md)
+This guide _only_ covers creating a `<CallbackSubscription>`.  For more information see the full guide on [managing subscriptions](./managingSubscriptions.md).
 
 ### Base URL
 <code class="post">POST</code>`https://dashboard.bandwidth.com/api/accounts/{{accountId}}/subscriptions`
@@ -42,17 +44,17 @@ This guide _only_ covers creating a `<CallbackSubscription>`.  For more informat
 
 ### Basic Parameters
 
-| Parameter                                  | Required | Description                                                                                                    |
-|:-------------------------------------------|:---------|:---------------------------------------------------------------------------------------------------------------|
-| `OrderType`                                | Yes      | The Specific type of order in which to configure the subscription. <br> For this guide, the value is: `orders` |
-| `CallbackSubscription`                     | Yes      | Contains the information about the callback url                                                                |
-| `CallbackSubscription.URL`                 | Yes      | The URL to send the <code class="post">POST</code> request when order status changes.                          |
-| `CallbackSubscription.Expiry`              | Yes      | How long to keep the subscription active. <br> Can be very large (100 years in seconds `3153600000`)           |
-| `CallbackSubscription.CallbackCredentials` | No       | Container for the authentication credentials for the specified `URL`                                           |
-| `CallbackCredentials.BasicAuthentication`  | No       | Container for Basic Authentication credentials.                                                                |
-| `BasicAuthentication.UserName`             | No       | Username for Basic Authentication scheme. <br> Max 100 characters                                              |
-| `BasicAuthentication.Password`             | No       | Password for Basic Authentication scheme. <br> Encrypted at rest and never returned by the API                 |
-| `CallbackCredentials.PublicKey`            | No       | A BASE64 encoded public key that matches the server specified in the `URL`                                     |
+| Parameter                | Required | Description                                                                                                                                                 |
+|:-------------------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<OrderType>`            | Yes      | The Specific type of order in which to configure the subscription. <br> For this guide, the value is: `orders`                                              |
+| `<CallbackSubscription>` | Yes      | Contains the information about the callback url                                                                                                             |
+| `<Url>`                  | Yes      | The URL to send the <code class="post">POST</code> request when order status changes. <br><br> Part of the `<CallbackSubscription>` element.                |
+| `<Expiry>`               | Yes      | How long to keep the subscription active. <br> Can be very large (100 years in seconds `3153600000`) <br><br> Part of the `<CallbackSubscription>` element. |
+| `<CallbackCredentials>`  | No       | Container for the authentication credentials for the specified `URL`  <br><br> Part of the `<CallbackSubscription>` element.                                |
+| `<BasicAuthentication>`  | No       | Container for Basic Authentication credentials.                                                                                                             |
+| `<UserName>`             | No       | Username for Basic Authentication scheme. <br> Max 100 characters  <br><br> Part of the `<BasicAuthentication>` element.                                    |
+| `<Password>`             | No       | Password for Basic Authentication scheme. <br> Encrypted at rest and never returned by the API <br><br> Part of the `<BasicAuthentication>` element.        |
+| `<PublicKey>`            | No       | A BASE64 encoded public key that matches the server specified in the `URL`  <br><br> Part of the `<BasicAuthentication>` element.                           |
 
 The Basic authentication scheme is straightforward, but the requires a little more explanation. Please read more on [securing HTTP Callbacks](../concepts/secureCallbacks.md)
 
@@ -87,9 +89,9 @@ Authorization: {user:password}
 ## Searching For Phone Numbers {#search-for-phone-numbers}
 Finding numbers can be achieved by searching the Bandwidth inventory.
 
-This step is optional – the telephone numbers can be ordered directly using search criteria, but if there is need to examine the numbers before activating them on the account, the search can be used to return a list of available numbers.
+This step is optional – the telephone numbers can be ordered directly using search criteria, but if there is need to examine the numbers before activating them on the account, the search can be used to return a list of available numbers. Searching **only** provides a list of available numbers that match the search criteria.
 
-There are a number of search approaches that can be used; the NPA NXX search is used for this example.  Please see the [API documentation](https://test.dashboard.bandwidth.com/apidocs/) for the other applicable search types.
+There are a number of search approaches that can be used; the NPA NXX search is used for this example.  Please see the [guide on [searching phone numbers](./searchForNumbers.md) for the other applicable search types.
 
 ### Base URL
 <code class="get">GET</code>`https://dashboard.bandwidth.com/api/accounts/{{accountId}}/availableNumbers`
@@ -98,24 +100,11 @@ There are a number of search approaches that can be used; the NPA NXX search is 
 
 ### Query Parameters
 
-| Parameters                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|:---------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `areaCode`                       | The allowed number ranges are [2-9] for the first digit and [0-9] for both the second and third digits.                                                                                                                                                                                                                                                                                                                                                                  |
-| `npaNxx`<br> -or- <br> `npaNxxx` | NPA NXX combination to be searched. <br> - Valid npa values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid Nxx values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid x values [0-9].                                                                                                                                                                                                   |
-| `rateCenter`                     | The abbreviation for the Rate Center                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `state`                          | The two-letter abbreviation of the state the RateCenter is in.                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `city`                           | The name of the city.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `zip`                            | A five-digit (XXXXX) or nine-digit (XXXXX-XXXX) zip-code value.                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `lata`                           | A maximum five digit (XXXXX) numeric format.                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `localVanity`                    | Requested vanity number. Valid range is from 4 to 7 alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                              |
-| `tollFreeVanity`                 | The Toll Free requested vanity number. Valid range is from 4 to 7 alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                |
-| `tollFreeWildCardPattern`        | The requested Toll Free 3 digit wild card pattern. Examples: `8**`, `80*`, `87*`, etc.                                                                                                                                                                                                                                                                                                                                                                                   |
-| `quantity`                       | The desired quantity of requested numbers. Values range from 1-5000. If no quantity is specified, the default of 5000 is returned.                                                                                                                                                                                                                                                                                                                                       |
-| `enableTNDetail`                 | If set to true, a list of details associated with the telephone number (rate center abbreviation, rate center host city, state, and LATA) will be displayed along with the telephone number. This value is set to false by default.                                                                                                                                                                                                                                      |
-| `LCA`                            | Local Calling Area. If this parameter is specified then Telephone Numbers that are likely in the Local Calling Area of the stated Rate Center, NPANXX or NPANNXX will be returned, in addition to those that *exactly* match the query will be returned. Since LCA logic is not always symmetric and not always inclusive of RC and NPANXX search criteria, this result reflects somewhat of an approximation. The parameter value is true or false. The default is true |
-| `endsIn`                         | Intended to use with localVanity only. The parameter value is true or false. If set to true, the search will look for only numbers which end in specified localVanity, otherwise localVanity sequence can be met anywhere in last 7 number digits. The default is false.                                                                                                                                                                                                 |
-| `orderBy`                        | The field by which the returned numbers will be sorted. Only supported if at least one of the following search criteria is specified: npaNxx or npaNxxx, rateCenter, city, zip, tollFreeVanity, tollFreeWildCardPattern. Allowed values are fullNumber, npaNxxx, npaNxx, and areaCode>                                                                                                                                                                                   |
-| `protected`                      | A query parameter, that governs, how the Protected status of numbers impacts the search results: <br> - `None` : The numbers returned in the payload will not contain any numbers that are tagged as Protected <br> - `ONLY` :The numbers returned in the payload will all be tagged as Protected. No "unProtected" numbers will be returned <br> - `MIXED` : The protected status of the numbers will be ignored in the search - all types of numbers will be returned  |
+| Parameters | Description                                                                                                                                                                                                                                                            |
+|:-----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `npaNxx`   | NPA NXX combination to be searched. <br> - Valid npa values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid Nxx values:[2-9] for the first digit, and [0-9] for both the second and third digits. <br> - Valid x values [0-9]. |
+
+This example only demonstrates searching by `NPA NXX` to learn about the different search types and filtering see the guide on [searching phone numbers](./searchForNumbers.md).
 
 {% common %}
 
@@ -152,7 +141,10 @@ Content-Type: application/xml; charset=utf-8
 
 ## Order Phone Numbers {#order-phone-numbers}
 
-To successfully order a Phone Number that was previously returned in a search on the `/availableNumbers` you will create a `<ExistingTelephoneNumberOrderType>` with a `<TelephoneNumberList>` containing at least 1 phone number.
+* To successfully order a Phone Number that was previously returned in a search on the `/availableNumbers` you will create a `<ExistingTelephoneNumberOrderType>` with a `<TelephoneNumberList>` containing at least 1 phone number.
+* There is no guarantee that the a telephone number appearing in search results will still be available by the time an order request is processed.
+* In this example, the `<TelephoneNumber>`s are known by the previous search.
+* It is worth noting that most orders complete very quickly (less than 1 second).
 
 ### Base URL
 <code class="post">POST</code>`https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders`
@@ -161,16 +153,16 @@ To successfully order a Phone Number that was previously returned in a search on
 
 ### Common Request Parameters
 
-| Parameter                             | Required | Description                                                                                                                                                                                                                                                                                                                                          |
-|:--------------------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Name`                                | Yes      | The name of the order. Max length restricted to 50 characters.                                                                                                                                                                                                                                                                                       |
-| `CustomerOrderId`                     | No       | Optional value for Id set by customer                                                                                                                                                                                                                                                                                                                |
-| `SiteId`                              | Yes      | The ID of the Site (_or sub-account_) that the SIP Peer is to be associated with.                                                                                                                                                                                                                                                                    |
-| `PeerId`                              | No       | The ID of the SIP Peer (_or location_) that the telephone numbers are to be assigned to. <br> <br> ⚠️ The `PeerId` **MUST** already exist under the `Site` (_or sub-account_) EX: `/accounts/{accountId}/sites/{siteId}/sippeers/{PeerId}`                                                                                                           |
-| `PartialAllowed`                      | No       | By default all order submissions are fulfilled partially. Setting the `PartialAllowed` to false would trigger the entire order to be fulfilled (any error encountered such as 1 TN not being available would fail all TNs in the order) <br><br> Default: `false`                                                                                    |
-| `BackOrderRequested`                  | No       | `BackOrderRequested` will indicate to the system that if the entire quantity of numbers is not available on the first attempt to fill the new number order, the request will be repeated periodically until the request is successful or canceled. <br> `true` - Backorder numbers if the entire quantity is not available <br><br> Default: `false` |
-| `TelephoneNumberList`                 | Yes      | A list of telephone numbers to order.                                                                                                                                                                                                                                                                                                                |
-| `TelephoneNumberList.TelephoneNumber` | Yes      | `TelephoneNumberList` must have at least one `TelephoneNumber` to order                                                                                                                                                                                                                                                                              |
+| Parameter               | Required | Description                                                                                                                                                                                                                                                                                                                                          |
+|:------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<Name>`                | Yes      | The name of the order. Max length restricted to 50 characters.                                                                                                                                                                                                                                                                                       |
+| `<CustomerOrderId>`     | No       | Optional value for Id set by customer                                                                                                                                                                                                                                                                                                                |
+| `<SiteId>`              | Yes      | The ID of the Site (_or sub-account_) that the SIP Peer is to be associated with.                                                                                                                                                                                                                                                                    |
+| `<PeerId>`              | No       | The ID of the SIP Peer (_or location_) that the telephone numbers are to be assigned to. <br> <br> ⚠️ The `PeerId` **MUST** already exist under the `Site` (_or sub-account_) <br><br> EX: `/accounts/{accountId}/sites/{siteId}/sippeers/{PeerId}`                                                                                                           |
+| `<PartialAllowed>`      | No       | By default all order submissions are **not** fulfilled partially. Setting the `PartialAllowed` to false would trigger the entire order to be fulfilled (any error encountered such as 1 TN not being available would fail all TNs in the order) <br><br> Default: `false`                                                                            |
+| `<BackOrderRequested>`  | No       | `BackOrderRequested` will indicate to the system that if the entire quantity of numbers is not available on the first attempt to fill the new number order, the request will be repeated periodically until the request is successful or canceled. <br> `true` - Backorder numbers if the entire quantity is not available <br><br> Default: `false` |
+| `<TelephoneNumberList>` | Yes      | A list of telephone numbers to order.                                                                                                                                                                                                                                                                                                                |
+| `<TelephoneNumber>`     | Yes      | `TelephoneNumberList` must have at least one `TelephoneNumber` to order  <br><br> Part of the `<TelephoneNumberList>` element.                                                                                                                                                                                                                       |
 
 {% common %}
 
@@ -226,21 +218,21 @@ Location: https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/c9dg
 
 The Bandwidth Phone Number API will send a HTTP Callback (webhook) to the URL specified in the `<URL>...</URL>` when [creating the subscription](#create-subscription).
 
-The HTTP Callback will contain information if the order was successful or failed.  If status is **anything other than `COMPLETE`** the order has failed.  The most likely scenario is that another customer ordered the desired phone number between the time 'searched' and 'ordered'.  If the order is **not** `COMPLETE`, either try ordering a different phone number, or [search for more numbers](#search-for-phone-numbers).
+The HTTP Callback will contain information if the order was successful or failed.  For our example here, if status is **anything other than `COMPLETE`** the order has failed.  The most likely scenario is that another customer ordered the desired phone number between the time 'searched' and 'ordered'.  If the order is **not** `COMPLETE`, either try ordering a different phone number, or [search for more numbers](#search-for-phone-numbers).
 
 {% extendmethod %}
 
 ### Callback Request Parameters
 
-| Parameter                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|:--------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Status`                                    | Following this tutorial should only yield two possible `Status` values: <br> - `COMPLETE` : The order succeeded and all phone numbers requested were ordered and will be sent in the `<CompletedTelephoneNumbers>` list. <br> - `FAILED` : The order _did not_ succeed (at least 1 phone number sent in the order was unable to be ordered). <br><br> To learn more about the order states, see the [Advanced Ordering Overview](advancedOrdering.md#ordering-overview) |
-| `SubscriptionId`                            | The unique Id associated with the subscription that was configured for `orders`. This is the same value that is returned in `Location` Header when [creating the subscription](#create-subscription).                                                                                                                                                                                                                                                                   |
-| `Message`                                   | A specific message related to the order.                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `OrderId`                                   | The unique Id associated with the order. This is the same value that is returned in the `Location` Header when [creating the order](#order-phone-numbers)                                                                                                                                                                                                                                                                                                               |
-| `OrderType`                                 | The specific type of order that was created. <br> For this example, the value will be `orders`. <br><br>For more information see [managing subscriptions](managingSubscriptions.md).                                                                                                                                                                                                                                                                                    |
-| `CompletedTelephoneNumbers`                 | Contains the list of Phone Numbers that were attempted to be ordered.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `CompletedTelephoneNumbers.TelephoneNumber` | The actual Phone Number that was attempted to be ordered.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Parameter                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|:------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<Status>`                    | Following this tutorial should only yield two possible `Status` values: <br> - `COMPLETE` : The order succeeded and all phone numbers requested were ordered and will be sent in the `<CompletedTelephoneNumbers>` list. <br> - `FAILED` : The order _did not_ succeed (at least 1 phone number sent in the order was unable to be ordered). <br><br> To learn more about the order states, see the [Advanced Ordering Overview](advancedOrdering.md#ordering-overview) |
+| `<SubscriptionId>`            | The unique Id associated with the subscription that was configured for `orders`. This is the same value that is returned in `Location` Header when [creating the subscription](#create-subscription).                                                                                                                                                                                                                                                                   |
+| `<Message>`                   | A specific message related to the order.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `<OrderId>`                   | The unique Id associated with the order. This is the same value that is returned in the `Location` Header when [creating the order](#order-phone-numbers)                                                                                                                                                                                                                                                                                                               |
+| `<OrderType>`                 | The specific type of order that was created. <br> For this example, the value will be `orders`. <br><br>For more information see [managing subscriptions](managingSubscriptions.md).                                                                                                                                                                                                                                                                                    |
+| `<CompletedTelephoneNumbers>` | Contains the list of Phone Numbers that were attempted to be ordered.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `<TelephoneNumber>`           | The actual Phone Number that was attempted to be ordered.  <br><br> Part of the `<CompletedTelephoneNumbers>` element.                                                                                                                                                                                                                                                                                                                                                  |
 
 {% common %}
 
@@ -290,6 +282,8 @@ Authorization: {user:password}
 
 A <code class="get">GET</code> Request to an existing order will return it's status as well as any information originally used to create the order.
 
+In the example below the `orderId` is the `orderId` returned in the 'location' header of the [order phone numbers](#order-phone-numbers) response.
+
 ### Base URL
 <code class="get">GET</code>`https://dashboard.bandwidth.com/api/accounts/{{accountId}}/orders/{{orderId}}`
 
@@ -310,6 +304,8 @@ Authorization: {user:password}
 ```
 
 ### Example: Successful Order Response
+
+For this example, look for `OrderStatus == COMPLETED` and the `CompletedNumbers` list, and `CompletedQuantity == 1` to verify the order was successful.
 
 ```http
 HTTP/1.1 200 OK
@@ -349,6 +345,8 @@ Content-Type: application/xml; charset=utf-8
 ```
 
 ### Example: Unsuccessful Order Response
+
+Otherwise, note that `OrderStatus == FAILED`, the `Error Description` text, and the `FailedNumbers` list.
 
 ```http
 HTTP/1.1 200 OK
