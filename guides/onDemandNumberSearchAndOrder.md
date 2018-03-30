@@ -33,7 +33,7 @@ In the case where a user would like to keep their existing phone number, follow 
 
 ## Create Subscription for Orders {#create-subscription}
 
-The Bandwidth Phone Number API allows users to manage notifications on their account through the `/subscriptions` resource.  Subscriptions can be configured to send a HTTP Callback to a valid publically addressable URL or send an email to a valid email address.
+The Bandwidth Phone Number API allows users to manage notifications on their account through the `/subscriptions` resource.  Subscriptions can be configured to send a HTTP Callback to a valid publicly addressable URL or send an email to a valid email address.
 
 This guide _only_ covers creating a `<CallbackSubscription>`.  For more information see the full guide on [managing subscriptions](./managingSubscriptions.md).
 
