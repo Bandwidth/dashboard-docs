@@ -1578,7 +1578,7 @@ securitySchemes:
                         </tr>
                         <tr>
                           <td>ListingType</td>
-                          <td>Can be LISTED, NON_LISTED or NON_PUBLISHED. The element is required</td>
+                          <td>Can be LISTED, NON\_LISTED or NON\_PUBLISHED. The element is required</td>
                         </tr>
                         <tr>
                           <td>ListingName</td>
@@ -1863,7 +1863,7 @@ securitySchemes:
                                 </tr>
                                 <tr>
                                   <td>ListingType</td>
-                                  <td>Can be LISTED, NON_LISTED or NON_PUBLISHED. The element is required</td>
+                                  <td>Can be LISTED, NON\_LISTED or NON\_PUBLISHED. The element is required</td>
                                 </tr>
                                 <tr>
                                   <td>ListingName</td>
@@ -5047,10 +5047,40 @@ securitySchemes:
                     <b>Putting it all together</b>
                     <br><br>
                     The request to order numbers is performed via a POST to the /orders resource.  As indicated above, the payload of this POST varies depending on the type of search that is to be performed for the numbers, with a unique payload element used to indicate each different order type. <br><br>
-                    The unique components of the payload are described in the table below.  These are combined with the common payload elements in the first table above to create a full order payload.  Some complete payloads are captured in the examples. <br><br>
+                    The unique components of the payload are described in the table below.  These are combined with the common payload components in the first table above to create a full order payload.  Some complete payloads are captured in the examples. <br><br>
+                    The generic response payload is also captured below: <br>
+                    <table style="text-align: left; width: 100%;" border="1"
+                     cellpadding="2" cellspacing="0">
+                        <tbody>
+                            <tr><th>The 'wrapper' Request Payload'</th></tr>
+                            <tr>
+                                <td>
+                                    <pre>
+                    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+                    &lt;Order&gt;
+                        &lt;CustomerOrderId&gt;SJM00001&lt;/CustomerOrderId&gt;
+                        &lt;!--
+                            There are various types of orders, all of which are submitted in the 'xxxOrderType'
+                            element of the Order Request payload.  The 'Payload Segment' elements described in
+                            the table below, which describe the encoding for the various order types, replace
+                            this comment to create a complete payload that includes the order type and the
+                            common elements.
+                            Take a look at the example payloads as well.
+                        --&gt;
+                        &lt;SiteId&gt;202&lt;/SiteId&gt;
+                        &lt;PeerId&gt;518824&lt;/PeerId&gt;
+                        &lt;TnAttributes/&gt;
+                    &lt;/Order&gt;
+                                    </pre>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <table style="text-align: left; width: 100%;" border="1"
                      cellpadding="2" cellspacing="0">
                       <tbody>
+                        <col width="60%">
+                        <col width="40%">
                         <tr>
                           <th>Payload segment</th>
                           <th>Description</th>
@@ -7240,7 +7270,14 @@ securitySchemes:
                                                 </Features>
                                             </Product>
                                             <Product>
-                                                <Name>SMS</Name>
+                                                <Name>MESSAGING</Name>
+                                                <Features>
+                                                  <Feature>SMS</Feature>
+                                                  <Feature>MMS</Feature>
+                                                  <Feature>HTTP</Feature>
+                                                  <Feature>HTTPV2</Feature>
+                                                  <Feature>TollFree</Feature>
+                                                </Features>
                                             </Product>
                                         </Products>
                                     </AccountProductsResponse>
