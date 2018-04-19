@@ -717,6 +717,18 @@
     <td>13559</td>
     <td>Number assignment is not allowed for numbers that are not in service.</td>
   </tr>
+    <tr>
+    <td>13560</td>
+    <td>SMS attribute should be 'ON' for provisioning A2P</td>
+  </tr>
+    <tr>
+    <td>13561</td>
+    <td>A2P provisioning for Toll Free telephone numbers requires Toll Free to be enabled on corresponding Sip peer</td>
+  </tr>
+    <tr>
+    <td>13562</td>
+    <td>A2P provisioning for Long Code telephone numbers requires A2P Long Code with 'DefaultOn' or 'DefaultOff' values on corresponding Sip peer</td>
+  </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
 <table class="fixed">
@@ -1483,10 +1495,6 @@
     <td>Immediate flag is not supported for manual toll free off-net port in orders.</td>
   </tr>
     <tr>
-    <td>7393</td>
-    <td>Triggered is not allowed for manual off-net or  tollfree port-ins</td>
-  </tr>
-    <tr>
     <td>7394</td>
     <td>Immediate is not allowed for tollfree manual off-ner port-ins</td>
   </tr>
@@ -1593,6 +1601,10 @@
     <tr>
     <td>7491</td>
     <td>This order was cancelled due to the following numbers: [%s]. These numbers will need to be disconnected in the system first and this port-in re-submitted afterwards. Please contact your customer support representative for assistance on this.</td>
+  </tr>
+    <tr>
+    <td>7492</td>
+    <td>Customer Activation is not allowed on manual triggered portins</td>
   </tr>
     <tr>
     <td>7510</td>
@@ -2098,6 +2110,10 @@
     <tr>
     <td>16113</td>
     <td>DeleteDldaTnGroups tag is not supported in this request.</td>
+  </tr>
+    <tr>
+    <td>16114</td>
+    <td>StateCode is invalid</td>
   </tr>
   </table>
 <h2>LidbErrorType</h2>
@@ -3239,7 +3255,7 @@
   </tr>
     <tr>
     <td>12019</td>
-    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth</td>
+    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2</td>
   </tr>
     <tr>
     <td>12020</td>
@@ -3657,6 +3673,22 @@
     <td>12125</td>
     <td>Feature '%s' can't be removed manually for product %s</td>
   </tr>
+    <tr>
+    <td>12126</td>
+    <td>A holiday with that date '%s' already exists</td>
+  </tr>
+    <tr>
+    <td>12127</td>
+    <td>A holiday with that date was not found</td>
+  </tr>
+    <tr>
+    <td>12128</td>
+    <td>CampaignId %s should be present in system</td>
+  </tr>
+    <tr>
+    <td>12129</td>
+    <td>MessageClass %s should be present in system</td>
+  </tr>
   </table>
 <h2>AdminValidationError</h2>
 <table class="fixed">
@@ -3834,7 +3866,7 @@
   </tr>
     <tr>
     <td>12543</td>
-    <td>StateCode '%s' is too long. It is must be abbreviation of the two characters</td>
+    <td>StateCode '%s' is invalid. It is must be abbreviation of the two characters</td>
   </tr>
     <tr>
     <td>12544</td>
@@ -4916,6 +4948,26 @@
     <td>12827</td>
     <td>The company name provided is already in use by another account</td>
   </tr>
+    <tr>
+    <td>12829</td>
+    <td>Incorrect date or date format was used, please use yyyy-dd-mm format</td>
+  </tr>
+    <tr>
+    <td>12830</td>
+    <td>The URL "name" value must match the payload Name value.</td>
+  </tr>
+    <tr>
+    <td>12831</td>
+    <td>The ProxyPeerId value must not already exist in the proxypeers table.</td>
+  </tr>
+    <tr>
+    <td>12832</td>
+    <td>The ProxyPeerId value must exist as a SIP Peer ID under the Catapult Account.</td>
+  </tr>
+    <tr>
+    <td>12833</td>
+    <td>One of valid Service is required: %s</td>
+  </tr>
   </table>
 <h2>TerminationError</h2>
 <table class="fixed">
@@ -5108,7 +5160,7 @@
   </tr>
     <tr>
     <td>13531</td>
-    <td>Smpp host '%' has already been provided. Possibly, you forgot to specify host id</td>
+    <td>Smpp host '%s' has already been provided. Possibly, you forgot to specify host id</td>
   </tr>
     <tr>
     <td>13536</td>
@@ -5524,14 +5576,18 @@
   </tr>
     <tr>
     <td>13639</td>
-    <td>A2P Message Class '%s' is not valid.</td>
+    <td>Campaign ID '%s' was not found in list of authorized Campaign IDs.</td>
   </tr>
     <tr>
     <td>13640</td>
-    <td>A2P Message Class is required if at least one of features 'A2pLongCode', 'TollFree' and 'ShortCode' is enabled.</td>
+    <td>A2P Message Class '%s' is not valid.</td>
   </tr>
     <tr>
     <td>13641</td>
+    <td>A2P Message Class is required if at least one of features 'A2pLongCode', 'TollFree' and 'ShortCode' is enabled.</td>
+  </tr>
+    <tr>
+    <td>13642</td>
     <td>A2P Message Class shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled</td>
   </tr>
   </table>
