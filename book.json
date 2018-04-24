@@ -14,8 +14,7 @@
     "include-html@0.2.0",
     "usabilla",
     "talkus",
-    "save-url-to-file",
-    "mouseflow"
+    "save-url-to-file" 
   ],
   "pluginsConfig": {
     "theme-bandwidth": {
