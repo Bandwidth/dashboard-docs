@@ -91,6 +91,11 @@ securitySchemes:
                             example: 5000
                             default: 500
                             required: false
+                        suggestions:
+                            description: The text to search simultaneously through e911locationIds.
+                            type: string
+                            example: name
+                            required: false
                 responses:
                     200:
                         description: |
@@ -10332,13 +10337,73 @@ securitySchemes:
                         </ul>
                       </li>
                     </ul>
+                    <li> A2pSettings </li>
+                    <ul>
+                      <li>MessageClass - [ string {1,64} ] </li>
+                      <li>CampaignId - [ string {1,64} ] </li>
+                      <li>Action - [ <i>asspecified</i> | <i>off</i> | <i>unchanged</i> | <i>systemdefault</i> ] </li>
+                    </ul>
                     </ul>
                     Where:
-                    <ul>
-                    <li type="square"> <i>systemdefault</i> - implies that the element profile value should be removed so that the TN changes back to the default system behavior;</li>
-                    <li type="square"> <i>unchanged</i> - the value should remain unchanged - implies a read before write model.</li>
-                    <li type="square"><u>Leaving the element out of the payload is equivalent to <i>unchanged</i>.</u></li>
-                    </ul>
+                      <ul>
+                        <li>for A2pSettings attribute</li>
+                        <table style="text-align: left; width: 80%;"
+                               border="1" cellpadding="2" cellspacing="0">
+                            <tbody>
+                            <tr>
+                              <th>Number attribute</th>
+                              <th>Action value</th>
+                              <th>Describe of action</th>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>systemdefault</i></td>
+                              <td>Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics. Any values for Class or Campaign ID are not valid</td>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>asspecified</i></td>
+                              <td>Sets the message class and campaign ID - this is the default if unspecified</td>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>off</i></td>
+                              <td>Will set the TN as a 'P' TN. Any values for Class or Campaign ID are not valid</td>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>unchanged</i></td>
+                              <td>Do nothing with respect to A2P</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>systemdefault</i></td>
+                              <td>Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics. Any values for Class or Campaign ID are not valid</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>asspecified</i></td>
+                              <td>Sets the message class and campaign ID - this is the default if unspecified</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>off</i></td>
+                              <td>If the Togglz value is set to 'on' this is invalid for Toll Free telephone numbers. Any values for Class or Campaign ID in the payload are invalid. If the Togglz value is set to off this behaves like and A2P TN, where the characteristics of the TNs is set to 'P'</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>unchanged</i></td>
+                              <td>Do nothing with respect to A2P</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <li>for other attribute</li>
+                        <ul>
+                          <li type="square"> <i>systemdefault</i> - implies that the element profile value should be removed so that the TN changes back to the default system behavior;</li>
+                          <li type="square"> <i>unchanged</i> - the value should remain unchanged - implies a read before write model.</li>
+                          <li type="square"><u>Leaving the element out of the payload is equivalent to <i>unchanged</i>.</u></li>
+                        </ul>
+                      </ul>
                 body:
                     application/xml:
                         example: |
@@ -10353,6 +10418,11 @@ securitySchemes:
                                          <Protected>true</Protected>
                                          <Sms>on</Sms>
                                          <FinalDestinationURI>sip:+12345678901@1.2.3.4:5060</FinalDestinationURI>
+                                         <A2pSettings>
+                                             <MessageClass>M</MessageClass>
+                                             <CampaignId>campaignId010</CampaignId>
+                                             <Action>asspecified</Action>
+                                         </A2pSettings>
                                          <TelephoneNumbers>
                                              <TelephoneNumber>2018551020</TelephoneNumber>
                                          </TelephoneNumbers>

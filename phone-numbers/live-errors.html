@@ -729,6 +729,22 @@
     <td>13562</td>
     <td>A2P provisioning for Long Code telephone numbers requires A2P Long Code with 'DefaultOn' or 'DefaultOff' values on corresponding Sip peer</td>
   </tr>
+    <tr>
+    <td>13563</td>
+    <td>Attribute %s is incompatible with such 'Action' values: 'off, systemDefault, unchanged'</td>
+  </tr>
+    <tr>
+    <td>13564</td>
+    <td>You cannot set Action as 'OFF' for tollfree tns while toggle 'A2P_SIPPEER_RESTRICTIONS' is 'ON'</td>
+  </tr>
+    <tr>
+    <td>13565</td>
+    <td>Please configure A2P on SipPeer before setting 'systemDefault' as Action</td>
+  </tr>
+    <tr>
+    <td>13566</td>
+    <td>Action value is invalid. Valid values are: 'unchanged', 'systemDefault', 'off', 'asSpecified'.</td>
+  </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
 <table class="fixed">
@@ -3583,7 +3599,7 @@
   </tr>
     <tr>
     <td>12103</td>
-    <td>Current %s Account have no Catapult association</td>
+    <td>The operation could not be performed because Account '%s' does not have an Associated Catapult ID configured</td>
   </tr>
     <tr>
     <td>12104</td>
@@ -3688,6 +3704,18 @@
     <tr>
     <td>12129</td>
     <td>MessageClass %s should be present in system</td>
+  </tr>
+    <tr>
+    <td>12130</td>
+    <td>The operation could not be performed because Account '%s' does not have the HTTPV2 Messaging Feature enabled</td>
+  </tr>
+    <tr>
+    <td>12131</td>
+    <td>'suggestions' must be at least %s characters long</td>
+  </tr>
+    <tr>
+    <td>12132</td>
+    <td>'e911locationid' can be used only with E911 address type.</td>
   </tr>
   </table>
 <h2>AdminValidationError</h2>
@@ -4962,7 +4990,7 @@
   </tr>
     <tr>
     <td>12832</td>
-    <td>The ProxyPeerId value must exist as a SIP Peer ID under the Catapult Account.</td>
+    <td>The ProxyPeerId value must exist as a SIP Peer ID.</td>
   </tr>
     <tr>
     <td>12833</td>
@@ -5589,6 +5617,10 @@
     <tr>
     <td>13642</td>
     <td>A2P Message Class shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled</td>
+  </tr>
+    <tr>
+    <td>13643</td>
+    <td>The operation could not be performed because Account %d does not have the HTTPV2 Messaging Feature enabled.</td>
   </tr>
   </table>
 <h2>PotValidationError</h2>
