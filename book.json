@@ -42,6 +42,10 @@
         }
       ]
     },
+    "gtm": {
+        "token": "GTM-P2JT7Z",
+        "virtualPageViews": true
+      },
     "customJquery": {
       "js": "js/custom.js"
     },
