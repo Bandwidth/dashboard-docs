@@ -32,6 +32,7 @@
 * [Disconnect a Phone Number](guides/disconnectSummary.md)
   * [Disconnect a Phone Number](guides/disconnectSummary.md#disconnect-phone-number)
   * [Fetch Disconnect Info](guides/disconnectSummary.md#get-disconnect-info)
+* [Disconnect a Phone Number - Hybrid](guides/hybridDisconnect.md)
 * [Order Phone Numbers (Advanced)](guides/advancedOrdering.md)
   * [Overview of Ordering](guides/advancedOrdering.md#ordering-overview)
   * [Creating an Order](guides/advancedOrdering.md#creating-order)

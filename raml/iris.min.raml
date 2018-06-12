@@ -91,6 +91,11 @@ securitySchemes:
                             example: 5000
                             default: 500
                             required: false
+                        suggestions:
+                            description: The text to search simultaneously through e911locationIds.
+                            type: string
+                            example: name
+                            required: false
                 responses:
                     200:
                         description: |
@@ -1447,7 +1452,7 @@ securitySchemes:
                                 example:
                                     <?xml version="1.0" encoding="UTF-8"?>
                                     <Note>
-                                       <UserId>user id</UserId>
+                                       <UserId>userId</UserId>
                                        <Description>note text</Description>
                                     </Note>
                         responses:
@@ -4578,7 +4583,7 @@ securitySchemes:
                                 example:
                                     <?xml version="1.0" encoding="UTF-8"?>
                                     <Note>
-                                       <UserId>user id</UserId>
+                                       <UserId>userId</UserId>
                                        <Description>note text</Description>
                                     </Note>
                         responses:
@@ -5592,7 +5597,7 @@ securitySchemes:
                                 example:
                                     <?xml version="1.0" encoding="UTF-8"?>
                                     <Note>
-                                       <UserId>user id</UserId>
+                                       <UserId>userId</UserId>
                                        <Description>note text</Description>
                                     </Note>
                         responses:
@@ -5793,13 +5798,12 @@ securitySchemes:
                             </td>
                             <td valign="top">
                                 <p align="center">
-                                    Yes
+                                    No
                                 </p>
                             </td>
                             <td width="351" valign="top">
                                 <p>
-                                    New billing telephone number. Must be supplied if PartialPort = true and BillingTelephoneNumber (BTN) is ported along with other numbers.
-                                    NewBillingTelephoneNumber is allowed only if PartialPort = true.
+                                    This field is used to specify a new billing telephone number on the losing carrier account.
                                     Cannot be the same as BillingTelephoneNumber or be present in the list of ported numbers.
                                 </p>
                             </td>
@@ -6385,11 +6389,8 @@ securitySchemes:
                         example: |
                             <LnpOrder>
                                 <RequestedFocDate>2016-03-25T21:15:00.000Z</RequestedFocDate>
-                                <!-- OPTIONAL -->
                                 <AlternateSpid>X455</AlternateSpid>
-                                <!-- OPTIONAL -->
                                 <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                <!-- OPTIONAL. Required if PartialPort=true and BillingTelephoneNumber is being ported-->
                                 <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                 <SiteId>    SITE ID     </SiteId>
                                 <PeerId>  SIPPEER ID    </PeerId>
@@ -6456,7 +6457,6 @@ securitySchemes:
                                                 <TnAttribute>Protected</TnAttribute>
                                         </TnAttributes>
                                         <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                        <!-- OPTIONAL -->
                                         <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                         <ListOfPhoneNumbers>
                                             <PhoneNumber>9194809871</PhoneNumber>
@@ -6509,7 +6509,6 @@ securitySchemes:
                                                 <TnAttribute>Protected</TnAttribute>
                                         </TnAttributes>
                                         <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                        <!-- OPTIONAL -->
                                         <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                         <ListOfPhoneNumbers>
                                             <PhoneNumber>9194809871</PhoneNumber>
@@ -6559,7 +6558,6 @@ securitySchemes:
                                                 <TnAttribute>Protected</TnAttribute>
                                             </TnAttributes>
                                             <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                            <!-- OPTIONAL -->
                                             <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                             <ListOfPhoneNumbers>
                                                 <PhoneNumber>9194809871</PhoneNumber>
@@ -6586,6 +6584,7 @@ securitySchemes:
                         <li>CustomerOrderId</li>
                         <li>RequestedFocDate</li>
                         <li>BillingTelephoneNumber</li>
+                        <li>NewBillingTelephoneNumber</li>
                         <li>AccountNumber</li>
                         <li>PinNumber</li>
                         <li>TnAttributes elements</li>
@@ -6594,8 +6593,10 @@ securitySchemes:
                         <li>PeerId</li>
                         <li>PartialPort, and</li>
                         <li>LoaAuthorizingPerson</li>
+                        <li>ListOfPhoneNumbers</li>
                         </ul>
                         <p>The AltSpid element can be modified if it is not configured at the system level.
+                        <p>List of phone numbers cann't be modified if order status was/is in FOC or complete state. Doesn't apply for internal port type.
                         <p><b>ResetAddressFields -</b> As stated above the general approach to handling <i>this</i> API call is to replace the elements included in the request body, and leave other preexisting elements in an unmodified condition.  This is typical of a PATCH method, but because of our commitment to backwards compatibility we have elected not to "Fix" this behavior.
                         As a result, providing only a few fields in the street address will result in an update to just those fields. This prevents removal of an element of the address.  The ResetAddressFields element is provided to resolve this issue.  The default setting of 'false' is to consistency with the initial implementation.
                         The recommendation is to replace the entire street address.  This ensures that you are enforcing the street address content of the port-in order.  As part of this recommendation the ResetAddressFields element should be set to true, which will force the street address to be exactly what you specified in the payload.
@@ -6607,6 +6608,7 @@ securitySchemes:
                                     <CustomerOrderId>SJM00002</CustomerOrderId>
                                     <RequestedFocDate>2014-12-04T13:00:00.000Z</RequestedFocDate>
                                     <BillingTelephoneNumber>8045030092</BillingTelephoneNumber>
+                                    <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                     <WirelessInfo>
                                         <AccountNumber>23453245</AccountNumber>
                                         <PinNumber>1111</PinNumber>
@@ -6632,6 +6634,10 @@ securitySchemes:
                                     </Subscriber>
                                     <SiteId>743</SiteId>
                                     <PartialPort>true</PartialPort>
+                                    <ListOfPhoneNumbers>
+                                        <PhoneNumber>2019721004</PhoneNumber>
+                                        <PhoneNumber>2019721005</PhoneNumber>
+                                    </ListOfPhoneNumbers>
                                     <LoaAuthorizingPerson>Steve McKinnon</LoaAuthorizingPerson>
                                 </LnpOrderSupp>
                     responses:
@@ -6649,6 +6655,7 @@ securitySchemes:
                                             <ProcessingStatus>REQUESTED_SUPP</ProcessingStatus>
                                             <RequestedFocDate>2014-12-04T13:00:00Z</RequestedFocDate>
                                             <BillingTelephoneNumber>8045030092</BillingTelephoneNumber>
+                                            <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                             <Triggered>false</Triggered>
                                         </LnpOrderResponse>
                 delete:
@@ -6694,7 +6701,7 @@ securitySchemes:
                                 example:
                                     <?xml version="1.0" encoding="UTF-8"?>
                                     <Note>
-                                       <UserId>user id</UserId>
+                                       <UserId>userId</UserId>
                                        <Description>note text</Description>
                                     </Note>
                         responses:
@@ -9400,7 +9407,7 @@ securitySchemes:
                                                         <SipPeerSmsFeatureResponse>
                                                             <ResponseStatus>
                                                                 <ErrorCode>13637</ErrorCode>
-                                                                <Description>CampaignID shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled</Description>
+                                                                <Description>CampaignID shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled.</Description>
                                                             </ResponseStatus>
                                                         </SipPeerSmsFeatureResponse>
                                 delete:
@@ -10332,13 +10339,73 @@ securitySchemes:
                         </ul>
                       </li>
                     </ul>
+                    <li> A2pSettings </li>
+                    <ul>
+                      <li>MessageClass - [ string {1,64} ] </li>
+                      <li>CampaignId - [ string {1,64} ] </li>
+                      <li>Action - [ <i>asspecified</i> | <i>off</i> | <i>unchanged</i> | <i>systemdefault</i> ] </li>
+                    </ul>
                     </ul>
                     Where:
-                    <ul>
-                    <li type="square"> <i>systemdefault</i> - implies that the element profile value should be removed so that the TN changes back to the default system behavior;</li>
-                    <li type="square"> <i>unchanged</i> - the value should remain unchanged - implies a read before write model.</li>
-                    <li type="square"><u>Leaving the element out of the payload is equivalent to <i>unchanged</i>.</u></li>
-                    </ul>
+                      <ul>
+                        <li>for A2pSettings attribute</li>
+                        <table style="text-align: left; width: 80%;"
+                               border="1" cellpadding="2" cellspacing="0">
+                            <tbody>
+                            <tr>
+                              <th>Number attribute</th>
+                              <th>Action value</th>
+                              <th>Describe of action</th>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>systemdefault</i></td>
+                              <td>Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics. Any values for Class or Campaign ID are not valid</td>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>asspecified</i></td>
+                              <td>Sets the message class and campaign ID - this is the default if unspecified</td>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>off</i></td>
+                              <td>Will set the TN as a 'P' TN. Any values for Class or Campaign ID are not valid</td>
+                            </tr>
+                            <tr>
+                              <td>LongCode</td>
+                              <td><i>unchanged</i></td>
+                              <td>Do nothing with respect to A2P</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>systemdefault</i></td>
+                              <td>Removes the per-TN A2P attributes, and it reverts to the Location/SIP Peer characteristics. Any values for Class or Campaign ID are not valid</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>asspecified</i></td>
+                              <td>Sets the message class and campaign ID - this is the default if unspecified</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>off</i></td>
+                              <td>If the Togglz value is set to 'on' this is invalid for Toll Free telephone numbers. Any values for Class or Campaign ID in the payload are invalid. If the Togglz value is set to off this behaves like and A2P TN, where the characteristics of the TNs is set to 'P'</td>
+                            </tr>
+                            <tr>
+                              <td>TollFree</td>
+                              <td><i>unchanged</i></td>
+                              <td>Do nothing with respect to A2P</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <li>for other attribute</li>
+                        <ul>
+                          <li type="square"> <i>systemdefault</i> - implies that the element profile value should be removed so that the TN changes back to the default system behavior;</li>
+                          <li type="square"> <i>unchanged</i> - the value should remain unchanged - implies a read before write model.</li>
+                          <li type="square"><u>Leaving the element out of the payload is equivalent to <i>unchanged</i>.</u></li>
+                        </ul>
+                      </ul>
                 body:
                     application/xml:
                         example: |
@@ -10353,6 +10420,11 @@ securitySchemes:
                                          <Protected>true</Protected>
                                          <Sms>on</Sms>
                                          <FinalDestinationURI>sip:+12345678901@1.2.3.4:5060</FinalDestinationURI>
+                                         <A2pSettings>
+                                             <MessageClass>M</MessageClass>
+                                             <CampaignId>campaignId010</CampaignId>
+                                             <Action>asspecified</Action>
+                                         </A2pSettings>
                                          <TelephoneNumbers>
                                              <TelephoneNumber>2018551020</TelephoneNumber>
                                          </TelephoneNumbers>
