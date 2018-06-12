@@ -1080,7 +1080,7 @@
   </tr>
     <tr>
     <td>7204</td>
-    <td>All telephone numbers, including the billing telephone number when provided, must belong to the same carrier</td>
+    <td>All telephone numbers, including the billing telephone number (BTN) and new BTN when provided, must belong to the same carrier</td>
   </tr>
     <tr>
     <td>7205</td>
@@ -1595,16 +1595,16 @@
     <td>There are too many telephone numbers in this request</td>
   </tr>
     <tr>
-    <td>7493</td>
-    <td>NewBillingTelephoneNumber must be supplied because port is partial and BillingTelephoneNumber is being ported</td>
+    <td>7491</td>
+    <td>This order was cancelled due to the following numbers: [%s]. These numbers will need to be disconnected in the system first and this port-in re-submitted afterwards. Please contact your customer support representative for assistance on this.</td>
+  </tr>
+    <tr>
+    <td>7492</td>
+    <td>Customer Activation is not allowed on manual triggered portins</td>
   </tr>
     <tr>
     <td>7494</td>
     <td>NewBillingTelephoneNumber is not valid NANPA telephone number</td>
-  </tr>
-    <tr>
-    <td>7495</td>
-    <td>If the NewBillingTelephoneNumber provided, partial port must be set to true</td>
   </tr>
     <tr>
     <td>7496</td>
@@ -1615,12 +1615,20 @@
     <td>NewBillingTelephoneNumber cannot be the same as the BillingTelephoneNumber</td>
   </tr>
     <tr>
-    <td>7491</td>
-    <td>This order was cancelled due to the following numbers: [%s]. These numbers will need to be disconnected in the system first and this port-in re-submitted afterwards. Please contact your customer support representative for assistance on this.</td>
+    <td>7498</td>
+    <td>List of telephone numbers cannot be changed for this port request</td>
   </tr>
     <tr>
-    <td>7492</td>
-    <td>Customer Activation is not allowed on manual triggered portins</td>
+    <td>7499</td>
+    <td>Port type %s cannot be change to %s</td>
+  </tr>
+    <tr>
+    <td>7495</td>
+    <td>Unable to change the TNs on this port. Please ensure that the new TNs are from the same losing carrier as the current TNs.</td>
+  </tr>
+    <tr>
+    <td>7500</td>
+    <td>Unable to change the TNs on this port. Please ensure that the new TNs are from the same vendor as the current TNs.</td>
   </tr>
     <tr>
     <td>7510</td>
@@ -3699,11 +3707,11 @@
   </tr>
     <tr>
     <td>12128</td>
-    <td>CampaignId %s should be present in system</td>
+    <td>A2P Campaign ID '%s' was not found in list of authorized Campaign IDs</td>
   </tr>
     <tr>
     <td>12129</td>
-    <td>MessageClass %s should be present in system</td>
+    <td>A2P Message Class '%s' was not found in list of authorized Message Classes</td>
   </tr>
     <tr>
     <td>12130</td>
@@ -3716,6 +3724,10 @@
     <tr>
     <td>12132</td>
     <td>'e911locationid' can be used only with E911 address type.</td>
+  </tr>
+    <tr>
+    <td>12133</td>
+    <td>There was an error confirming the address. Please check all fields, and confirm that the state / province code uses the up-to-date version</td>
   </tr>
   </table>
 <h2>AdminValidationError</h2>
@@ -3862,7 +3874,7 @@
   </tr>
     <tr>
     <td>12535</td>
-    <td>State abbreviation '%s' is not exist.</td>
+    <td>'%s' is not a valid state / province code </td>
   </tr>
     <tr>
     <td>12536</td>
@@ -4682,11 +4694,11 @@
   </tr>
     <tr>
     <td>12753</td>
-    <td>GlobalAccountNumber '%s' is too long. Max length 16 characters</td>
+    <td>GlobalAccountNumber is required</td>
   </tr>
     <tr>
     <td>12754</td>
-    <td>GlobalAccountNumber '%s' has to contain only alphanumeric and '-' characters.</td>
+    <td>GlobalAccountNumber '%s' has to match pattern 'BW-7XXXXXX', where the X's are digits from 0-9</td>
   </tr>
     <tr>
     <td>12755</td>
@@ -4995,6 +5007,22 @@
     <tr>
     <td>12833</td>
     <td>One of valid Service is required: %s</td>
+  </tr>
+    <tr>
+    <td>12834</td>
+    <td>The value of the DEFAULT_PROXY_SIP_PEER_ID must be one of the values confiuged in /admin/data/proxypeers.</td>
+  </tr>
+    <tr>
+    <td>12835</td>
+    <td>Proxy Peer ID %d is not configured in /admin/data/proxypeers.</td>
+  </tr>
+    <tr>
+    <td>12836</td>
+    <td>The provided Account Id '%s' is not a valid Account Id.</td>
+  </tr>
+    <tr>
+    <td>12837</td>
+    <td>'%s' is not a valid state / province code</td>
   </tr>
   </table>
 <h2>TerminationError</h2>
@@ -5596,11 +5624,11 @@
   </tr>
     <tr>
     <td>13637</td>
-    <td>CampaignID shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled</td>
+    <td>CampaignID shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled.</td>
   </tr>
     <tr>
     <td>13638</td>
-    <td>CampaignID is required if at least one of features 'A2pLongCode', 'TollFree' and 'ShortCode' is enabled</td>
+    <td>CampaignID is required if at least one of features 'A2pLongCode', 'TollFree' and 'ShortCode' is enabled.</td>
   </tr>
     <tr>
     <td>13639</td>
@@ -5608,7 +5636,7 @@
   </tr>
     <tr>
     <td>13640</td>
-    <td>A2P Message Class '%s' is not valid.</td>
+    <td>A2P Message Class '%s' was not found in list of authorized Message Classes.</td>
   </tr>
     <tr>
     <td>13641</td>
@@ -5616,7 +5644,7 @@
   </tr>
     <tr>
     <td>13642</td>
-    <td>A2P Message Class shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled</td>
+    <td>A2P Message Class shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled.</td>
   </tr>
     <tr>
     <td>13643</td>
