@@ -1,5 +1,7 @@
 # Reserving Phone Numbers
 
+Reserves a telephone number for a default time of 4 hours. A successful reservation returns a location header that can be used to retrieve the reservation at a later time.
+
 This API permits a TN wanted by an end user to be placed in a _“Reserved”_ state for a limited period of time.  While in the _“Reserved”_ state the TN will not show up in searches, and cannot be ordered by any other party than the one that placed the TN into the _“Reserved”_ state.  This allows an End User to find a TN that they want to purchase, and be assured that the TN will still be available once the rest of the commercial transaction is complete.  If the TN is not ordered within a timeout period, the _“Reserved”_ state is removed and the TN can once again be ordered.
 
 In addition to the normal work-flow, the API permits the cancellation of a reservation, reporting on outstanding reservations, and provides the mechanism to control access to the capability at the account level.
