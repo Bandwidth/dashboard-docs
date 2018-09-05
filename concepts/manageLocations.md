@@ -74,3 +74,5 @@ A SIP peer can be deleted using the DELETE method.
 ## Moving TNs between SIP Peers {#move-tn}
 
 A <code class="post">POST</code> to the SIP Peer resource can be used to move Telephone Numbers between SIP Peers.
+<br>
+<br>

@@ -78,3 +78,5 @@ A successful response to the <code class="post">POST</code> also returns a link 
 To retrieve the zipped file with the BDR records, a <code class="get">GET</code> is issued on the path returned in the location header.
 
 If the zip file containing the BDR data is ready, this request will return `303 See Other` with a Location Header redirecting the request to the BDR zip file content.
+<br>
+<br>

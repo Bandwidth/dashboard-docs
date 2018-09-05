@@ -16,9 +16,5 @@ User without Admin privileges can retrieve reservations only by using the `Reser
 
 * Ordering a TN that has been reserved is done using the `<ExistingTelephoneNumberOrderType>` order type, and requires that the order contains the ReservationID for any numbers that have been previously reserved.   If the Reservation ID is not included with the order, a Reserved TN will not be successfully ordered.
 * It is also possible to discover reservations pending against a specific TN by interrogating the `TNReservation` resource associated with a TN.  This query is restricted to providing information that does not cross account boundaries.
-
-
-
-
-
-
+<br>
+<br>
