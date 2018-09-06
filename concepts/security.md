@@ -48,4 +48,4 @@ For examples on client authentication, please review information at: http://hc.a
 
 Contact the Bandwidth Customer Experience Team for new credentials, password resets or access to additional purchased features.
 The bandwidth dashboard requires the use of one of the versions of TLS: as of the appearance of the POODLE SSL vulnerability the support for SSL has been discontinued.
-
+<br><br>
