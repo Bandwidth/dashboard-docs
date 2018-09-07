@@ -60,4 +60,4 @@ Bandwidth attempts to maintain syntactic consistency in the specification and ex
 * Date flexibility – for most API calls that have dates as query parameters, the format yyyy-mm-dd or yy-mm-dd will be supported
 * Case insensitivity – in many but not all cases elements of the REST URI are case insensitive.  Some resource names and identifiers are case sensitive by their nature, and some have not yet been converted to case insensitive parsing.
 * Providing generic, robust resource descriptors for URIs remains a focus of the ongoing development, and will be attempted wherever changes can be made that do not violate our commitment to backwards compatibility.
-
+<br><br>

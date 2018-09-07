@@ -110,3 +110,5 @@ In addition to the name and address information inherent in a DLDA update, the D
 | `Pending-Locked`   | An attempt to update DLDA information with the Listing Provider is in progress, but cannot be changed at this time.  A new order will be required once the current attempt succeeds or fails.                                                                                                             |
 
 If the `<Status>` of the DLDA order impacting the TN is transient, indicating that there is an order in process and the outcome is inconclusive, the DLDA information will be replaced with a link to the order currently processing a DLDA change for that TN.  This will be the case if the status is `Pending-Editable` or `Pending-Locked`.
+<br>
+<br>

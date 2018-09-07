@@ -56,6 +56,5 @@ Note that the initial state changes for an order may happen very quickly, so sub
 It is possible to remove specific subscriptions by ID.
 
 Once a subscription with a callback URL is active, changes to the works-orders that are part of the active subscription will be notified by a <code class="post">POST</code> to the provided URL
-
-
-
+<br>
+<br>

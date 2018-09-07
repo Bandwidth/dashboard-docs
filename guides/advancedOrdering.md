@@ -122,5 +122,5 @@ With the introduction of Backorder capabilities, new number orders may stay in b
 Those updates to incomplete orders are facilitated by a <code class="put">PUT</code> on the `order-id`.
 
 Closing a backordered order retains any telephone numbers that have already been assigned to the account, and the order will typically convert its status to `PARTIAL` state, indicating that some requested numbers were not provided. If no numbers were provided the final state will be `FAILED`.
-
-
+<br>
+<br>
