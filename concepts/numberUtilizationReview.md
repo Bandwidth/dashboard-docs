@@ -4,7 +4,7 @@
 
 You will notice your portal has a different look to it! In the upper right, you will see a widget with your number utilization percentage titled End-user number utilization.
 
-![endUserNU](../images/nur-images/enduserNU.png)
+![endUserNU](../images/nur-images/endUserNU.png)
 
 To understand which numbers need to be assigned, hover your mouse over the “reports” tab in the middle of your dashboard. Choose “Reports Dashboard”.
 
