@@ -32,7 +32,7 @@ Your report should begin processing in the upper right hand side of your screen,
 
 ![pastReports](../images/nur-images/pastReports.png)
 
-Click on the CSV to download your report! The report name is initially blank and you can refresh your browser to populate the file name. You can open in Microsoft Excel directly but some manual steps may be required with other programs. Upon opening, you will receive a list of TNs. Please note: If your list is greater than 5k, you can use API documentation found here under /accounts /{accountId} /numbersAssignment.
+Click on the CSV to download your report! The report name is initially blank and you can refresh your browser to populate the file name. You can open in Microsoft Excel directly but some manual steps may be required with other programs. Upon opening, you will receive a list of TNs. Please note: If your list is greater than 5k, you can use API documentation found [here](../apiReference.md) under /accounts /{accountId} /numbersAssignment.
 
 Column B will read as “unknown” next to each TN.
 
