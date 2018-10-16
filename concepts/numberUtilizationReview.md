@@ -4,4 +4,4 @@ Due to telecom regulations, Bandwidth is required to report on what phone number
 
 The API endpoint for using the Number Utilization Review can be found [here](../apiReference.md) under /accounts /{accountId} /numbersAssignment.
 
-A detailed step by step guide to using the Number Utilization Review in the dashboard can be found [here](numberUtilizationReviewDashboard.md).
+A detailed step by step guide to using the Number Utilization Review in the dashboard can be found [here](../guides/numberUtilizationReviewDashboard.md).
