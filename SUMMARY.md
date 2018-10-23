@@ -100,6 +100,7 @@
   * [Email Notifications](guides/managingOrders.md#email-notifications)
   * [Callback URL Notifications](guides/managingOrders.md#callback-notifications)
 * [Number Utilization Review Dashboard](guides/numberUtilizationReviewDashboard.md)
+* [Number Utilization Review API](guides/numberUtilizationReviewAPI.md)
 * [Reporting](guides/reporting.md)
   * [Fetching Information](guides/reporting.md#fetch-info)
   * [Pagination](guides/reporting.md#pagination)
