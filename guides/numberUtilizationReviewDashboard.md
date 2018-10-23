@@ -1,4 +1,4 @@
-# Step By Step Guide To Number Assignment Using the Bandwidth Dashboard (Limited Availability)
+# Step By Step Guide To Number Assignment Using the Bandwidth Dashboard UI (Limited Availability)
 
 ### Bulk assigning up to 5000 TNs with an active end-user
 
