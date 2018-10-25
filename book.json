@@ -13,8 +13,7 @@
     "codetabs",
     "include-html@0.2.0",
     "usabilla",
-    "talkus",
-    "save-url-to-file" 
+    "talkus"
   ],
   "pluginsConfig": {
     "theme-bandwidth": {
