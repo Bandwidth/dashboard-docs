@@ -13,7 +13,8 @@
     "codetabs",
     "include-html@0.2.0",
     "usabilla",
-    "talkus"
+    "talkus",
+    "save-url-to-file"
   ],
   "pluginsConfig": {
     "theme-bandwidth": {
@@ -75,6 +76,22 @@
     },
     "mouseflow": {
       "projectId": "e48d3324-5985-479f-a9fc-7283fb266917"
+    },
+    "saveUrls": {
+      "urls": [
+        {
+          "url": "https://admin.test.dashboard.bandwidth.com/apidocs/errors.html",
+          "dest": "live-errors.html"
+        },
+        {
+          "url": "https://admin.test.dashboard.bandwidth.com/apidocs/raml/iris.min.raml",
+          "dest": "raml/iris.min.raml"
+        },
+        {
+          "url": "https://admin.test.dashboard.bandwidth.com/apidocs/scripts/toc.js",
+          "dest": "scripts/toc.js"
+        }
+      ]
     }
   }
 }
