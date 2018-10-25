@@ -1,6 +1,8 @@
 # Step By Step Guide To Number Assignment Using the Bandwidth Dashboard REST API (Limited Availability)
 
-### Bulk assigning TNs with an active end-user
+This guide is for using the Bandwidth Dashboard API to assign numbers. If you want to use the UI, click [here](numberUtilizationReviewDashboard.md).
+
+### Bulk assigning up to 5000 TNs with an active end-user
 
 The Bandwidth Dashboard REST API Documentation can be found [here](../apiReference.md). The API endpoint for using the Number Utilization Review is ```/accounts /{accountId} /numbersAssignment```.
 

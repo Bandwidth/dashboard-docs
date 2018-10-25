@@ -1,5 +1,7 @@
 # Step By Step Guide To Number Assignment Using the Bandwidth Dashboard UI (Limited Availability)
 
+This guide is for using the Bandwidth Dashboard UI to assign numbers. If you want to use the REST API, click [here](numberUtilizationReviewAPI.md).
+
 ### Bulk assigning up to 5000 TNs with an active end-user
 
 You will notice your portal has a different look to it! In the upper right, you will see a widget with your number utilization percentage titled End-user number utilization.
@@ -32,7 +34,7 @@ Your report should begin processing in the upper right hand side of your screen,
 
 ![pastReports](../images/nur-images/pastReports.png)
 
-Click on the CSV to download your report! The report name is initially blank and you can refresh your browser to populate the file name. You can open in Microsoft Excel directly but some manual steps may be required with other programs. Upon opening, you will receive a list of TNs. Please note: If your list is greater than 5k, you will need to use the Bandwidth Dashboard REST API to retrieve your numbers. The REST API documentation can be found [here](../apiReference.md), and the Number Utilization Review endpoint can be found under ```/accounts /{accountId} /numbersAssignment```.
+Click on the CSV to download your report! The report name is initially blank and you can refresh your browser to populate the file name. You can open in Microsoft Excel directly but some manual steps may be required with other programs. Upon opening, you will receive a list of TNs.
 
 Column B will read as “unknown” next to each TN.
 
