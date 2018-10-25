@@ -8,10 +8,26 @@ The POST method on this endpoint is used to bulk assign/unassign your owned numb
 
 Request
 ```
-curl -X POST https://dashboard.bandwidth.com/api/accounts/{accountId}/numbersAssignment STUFF
+curl -d @phoneNumberFile.xml -u {username}:{password} -X POST https://dashboard.bandwidth.com/api/accounts/{accountId}/numbersAssignment
+```
+
+Here's an example file for your phoneNumberFile.xml parameter
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TelephoneNumbersAssignmentOrder>
+    <CustomerOrderId>12345</CustomerOrderId>
+    <Action>[ ASSIGN | UNASSIGN ]</Action>
+    <TelephoneNumbers>
+        <TelephoneNumber>9199918388</TelephoneNumber>
+        <TelephoneNumber>4158714245</TelephoneNumber>
+        <TelephoneNumber>4352154439</TelephoneNumber>
+        <TelephoneNumber>4352154466</TelephoneNumber>
+    </TelephoneNumbers>
+</TelephoneNumbersAssignmentOrder>
 ```
 
 Response
 ```
-STUFF
+
 ```
