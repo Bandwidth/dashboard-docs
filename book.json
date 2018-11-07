@@ -14,7 +14,7 @@
     "include-html@0.2.0",
     "usabilla",
     "talkus",
-    "save-url-to-file" 
+    "save-url-to-file"
   ],
   "pluginsConfig": {
     "theme-bandwidth": {
@@ -80,15 +80,15 @@
     "saveUrls": {
       "urls": [
         {
-          "url": "https://test.dashboard.bandwidth.com/apidocs/errors.html",
+          "url": "https://admin.test.dashboard.bandwidth.com/apidocs/errors.html",
           "dest": "live-errors.html"
         },
         {
-          "url": "https://test.dashboard.bandwidth.com/apidocs/raml/iris.min.raml",
+          "url": "https://admin.test.dashboard.bandwidth.com/apidocs/raml/iris.min.raml",
           "dest": "raml/iris.min.raml"
         },
         {
-          "url": "https://test.dashboard.bandwidth.com/apidocs/scripts/toc.js",
+          "url": "https://admin.test.dashboard.bandwidth.com/apidocs/scripts/toc.js",
           "dest": "scripts/toc.js"
         }
       ]

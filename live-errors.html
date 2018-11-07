@@ -487,7 +487,7 @@
   </tr>
     <tr>
     <td>5074</td>
-    <td>Telephone number is not is service.</td>
+    <td>Telephone number is not in service.</td>
   </tr>
     <tr>
     <td>5076</td>
@@ -722,12 +722,8 @@
     <td>SMS attribute should be 'ON' for provisioning A2P</td>
   </tr>
     <tr>
-    <td>13561</td>
-    <td>A2P provisioning for Toll Free telephone numbers requires Toll Free to be enabled on corresponding Sip peer</td>
-  </tr>
-    <tr>
     <td>13562</td>
-    <td>A2P provisioning for Long Code telephone numbers requires A2P Long Code with 'DefaultOn' or 'DefaultOff' values on corresponding Sip peer</td>
+    <td>A2P provisioning for Long Code telephone numbers requires permissive A2P Long Code value ('DefaultOn' or 'DefaultOff') to be set on corresponding Sip peer</td>
   </tr>
     <tr>
     <td>13563</td>
@@ -744,6 +740,50 @@
     <tr>
     <td>13566</td>
     <td>Action value is invalid. Valid values are: 'unchanged', 'systemDefault', 'off', 'asSpecified'.</td>
+  </tr>
+    <tr>
+    <td>13567</td>
+    <td>A2P provisioning for Long Code telephone numbers requires A2P to be enabled on account</td>
+  </tr>
+    <tr>
+    <td>13568</td>
+    <td>The NNID provided is not recognized in the system</td>
+  </tr>
+    <tr>
+    <td>13569</td>
+    <td>The ESPID provided is not recognized in the system</td>
+  </tr>
+    <tr>
+    <td>13570</td>
+    <td>The NNID and ESPID provided do not correspond to each other in the system</td>
+  </tr>
+    <tr>
+    <td>13571</td>
+    <td>The NNID provided must be a valid integer</td>
+  </tr>
+    <tr>
+    <td>13572</td>
+    <td>Your account does not have the appropriate permission to modify NNIDs or ESPIDs.</td>
+  </tr>
+    <tr>
+    <td>13573</td>
+    <td>SMS messaging should be enabled on location</td>
+  </tr>
+    <tr>
+    <td>13574</td>
+    <td>Nnid change prohibited. Telephone number '%s' is in PROCESSING</td>
+  </tr>
+    <tr>
+    <td>13575</td>
+    <td>%s does not have permissions to modify NNIDs or ESPIDs.</td>
+  </tr>
+    <tr>
+    <td>13576</td>
+    <td>Waiting to update nnid has expired</td>
+  </tr>
+    <tr>
+    <td>13577</td>
+    <td>SMS messaging should be enabled on telephone number or location</td>
   </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
@@ -1296,7 +1336,7 @@
   </tr>
     <tr>
     <td>7339</td>
-    <td>Telephone numbers '%s' is not valid</td>
+    <td>Telephone numbers '%s' are not valid</td>
   </tr>
     <tr>
     <td>7340</td>
@@ -1428,7 +1468,7 @@
   </tr>
     <tr>
     <td>7372</td>
-    <td>Incorrect Processing Status. Valid values: PENDING_DOCUMENTS, SUBMITTED, REQUESTED_SUPP, FOC, COMPLETE, EXCEPTION, SNAPBACK, REQUESTED_CANCEL, CANCELLED</td>
+    <td>ProcessingStatus '%s' is invalid. Valid values: %s</td>
   </tr>
     <tr>
     <td>7373</td>
@@ -1631,6 +1671,58 @@
     <td>Unable to change the TNs on this port. Please ensure that the new TNs are from the same vendor as the current TNs.</td>
   </tr>
     <tr>
+    <td>7501</td>
+    <td>Telephone numbers are invalid</td>
+  </tr>
+    <tr>
+    <td>7502</td>
+    <td>Telephone number list can not contain duplicates: %s</td>
+  </tr>
+    <tr>
+    <td>7503</td>
+    <td>Telephone numbers are non portable</td>
+  </tr>
+    <tr>
+    <td>7504</td>
+    <td>This order was cancelled due to the following numbers: [%s]. These numbers are external and cannot be processed by Internal Port-in order</td>
+  </tr>
+    <tr>
+    <td>7700</td>
+    <td>Portin order not found</td>
+  </tr>
+    <tr>
+    <td>7701</td>
+    <td>Portin order already relates to another bulk portin order</td>
+  </tr>
+    <tr>
+    <td>7702</td>
+    <td>Order is not in 'DRAFT' state</td>
+  </tr>
+    <tr>
+    <td>7703</td>
+    <td>Put is not allowed for bulk portin with subtending portins assigned</td>
+  </tr>
+    <tr>
+    <td>7704</td>
+    <td>Transition to IN_PROGRESS is not allowed for bulk portin without subtending portins assigned</td>
+  </tr>
+    <tr>
+    <td>7705</td>
+    <td>%s cannot be patched for bulk portin with subtending portins</td>
+  </tr>
+    <tr>
+    <td>7706</td>
+    <td>The bulk port-in API is not enabled</td>
+  </tr>
+    <tr>
+    <td>7707</td>
+    <td>You are not allowed to access the bulk port-in API</td>
+  </tr>
+    <tr>
+    <td>7708</td>
+    <td>AlternateSPID cannot be modified on a non-DRAFT state port-in</td>
+  </tr>
+    <tr>
     <td>7510</td>
     <td>Required Account Code missing</td>
   </tr>
@@ -1697,18 +1789,6 @@
     <tr>
     <td>7999</td>
     <td>An internal error has occurred. Please contact support if this issue is not resolved in 1 business day</td>
-  </tr>
-    <tr>
-    <td>7000</td>
-    <td>Invalid account specified</td>
-  </tr>
-    <tr>
-    <td>7001</td>
-    <td>Validation error</td>
-  </tr>
-    <tr>
-    <td>7998</td>
-    <td>API request timeout</td>
   </tr>
   </table>
 
@@ -1811,10 +1891,6 @@
   </tr>
     <tr>
     <td>7800</td>
-    <td>Document name too long, max 50 characters</td>
-  </tr>
-    <tr>
-    <td>17000</td>
     <td>Document name too long, max 50 characters</td>
   </tr>
   </table>
@@ -2326,7 +2402,7 @@
   </tr>
     <tr>
     <td>8023</td>
-    <td>'%s' is not a valid LocationId. Only alphanumeric values, dashes, underscores and dots are allowed. Max length is 128 characters.</td>
+    <td>'%s' is not a valid LocationId. Only alphanumeric values, dashes, underscores and periods are allowed. Max length is 128 characters.</td>
   </tr>
     <tr>
     <td>8024</td>
@@ -2410,7 +2486,7 @@
   </tr>
     <tr>
     <td>8045</td>
-    <td>'%s' is not a valid Alternate End User Identifier. Identifier can contain alphabetic chars, numbers, dots, colons, dashes, underscores, ats.</td>
+    <td>'%s' is not a valid Alternate End User Identifier. Identifier can contain alphabetic chars, numbers, periods, colons, dashes, underscores, at (@) symbols.</td>
   </tr>
     <tr>
     <td>8046</td>
@@ -2463,6 +2539,14 @@
     <tr>
     <td>8060</td>
     <td>Top Level address is invalid.</td>
+  </tr>
+    <tr>
+    <td>8061</td>
+    <td>This account requires both alternate identifiers and PIDFLO to be enabled on the account in order to provision PIDFLO-enabled endpoints.</td>
+  </tr>
+    <tr>
+    <td>8062</td>
+    <td>The address with Location ID '%s' already exist</td>
   </tr>
   </table>
 
@@ -2558,7 +2642,7 @@
   </tr>
     <tr>
     <td>15518</td>
-    <td>Invalid 'status'. Valid values: pending_documents, submitted, requested_supp, foc, complete, exception, snapback, requested_cancel, cancelled</td>
+    <td>Invalid 'status'. Valid values: draft, pending_documents, submitted, requested_supp, foc, complete, exception, snapback, requested_cancel, cancelled</td>
   </tr>
     <tr>
     <td>15518</td>
@@ -2575,6 +2659,10 @@
     <tr>
     <td>15518</td>
     <td>Invalid 'status'. Valid values: received, processing, complete, partial, failed</td>
+  </tr>
+    <tr>
+    <td>15518</td>
+    <td>Invalid 'status'. Valid values: draft, in_progress, needs_attention, partial, completed, cancelled</td>
   </tr>
     <tr>
     <td>15519</td>
@@ -2753,7 +2841,7 @@
   </tr>
     <tr>
     <td>14500</td>
-    <td>Incorrect order type. Valid values: portins, portouts, orders, disconnects, importToAccounts, dldas, lsrorders, e911s, tnoptions, externalTns, lidbs</td>
+    <td>Incorrect order type. Valid values: portins, portouts, orders, disconnects, importToAccounts, dldas, lsrorders, e911s, tnoptions, externalTns, lidbs, bulkPortins</td>
   </tr>
     <tr>
     <td>14501</td>
@@ -3259,7 +3347,7 @@
   </tr>
     <tr>
     <td>12013</td>
-    <td>Product '%s' does not exist. Valid values: Origination, Termination, MESSAGING, VirtualInventory, E911, TollFree, UcTrunking, EdgeManagement, DedicatedPrivateNetworkTopology, CORE, Iris, NumberManagement</td>
+    <td>Product '%s' does not exist. Valid values: Origination, Termination, MESSAGING, VirtualInventory, E911, TollFree, UcTrunking, EdgeManagement, CORE, Iris, NumberManagement</td>
   </tr>
     <tr>
     <td>12015</td>
@@ -3279,7 +3367,7 @@
   </tr>
     <tr>
     <td>12019</td>
-    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2</td>
+    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, 3RD_PARTY_MESSAGE_ROUTING</td>
   </tr>
     <tr>
     <td>12020</td>
@@ -3728,6 +3816,46 @@
     <tr>
     <td>12133</td>
     <td>There was an error confirming the address. Please check all fields, and confirm that the state / province code uses the up-to-date version</td>
+  </tr>
+    <tr>
+    <td>12134</td>
+    <td>Duplicate host in %s</td>
+  </tr>
+    <tr>
+    <td>12135</td>
+    <td>Couldn't find Catapult account associated with Iris account: %s</td>
+  </tr>
+    <tr>
+    <td>12136</td>
+    <td>Token doesn't exist or doesn't belong to this account.</td>
+  </tr>
+    <tr>
+    <td>12137</td>
+    <td>PomAccount is required.</td>
+  </tr>
+    <tr>
+    <td>12138</td>
+    <td>Type has an invalid value. Please refer to acceptable PomType values.</td>
+  </tr>
+    <tr>
+    <td>12139</td>
+    <td>Pom accountId is required.</td>
+  </tr>
+    <tr>
+    <td>12140</td>
+    <td>No pom account configuration found for account %s </td>
+  </tr>
+    <tr>
+    <td>12141</td>
+    <td>accountId %s is not associated with the requested PomAccount.</td>
+  </tr>
+    <tr>
+    <td>12142</td>
+    <td>UserId cannot be modified using this method. Use 'PUT' instead</td>
+  </tr>
+    <tr>
+    <td>12143</td>
+    <td>Failed to update Cnam dip settings. Account %s has no GAN</td>
   </tr>
   </table>
 <h2>AdminValidationError</h2>
@@ -4845,38 +4973,6 @@
     <td>The ID %s is currently in use on another account. Please contact your Bandwidth representative to assist in resolution of this issue</td>
   </tr>
     <tr>
-    <td>12792</td>
-    <td>The supplied Action '%s' is not valid. Valid values: pre-flight, remove, roll-back, cleanup</td>
-  </tr>
-    <tr>
-    <td>12793</td>
-    <td>The current DPNState '%s' can't be updated by Action '%s'. Acceptable values: %s</td>
-  </tr>
-    <tr>
-    <td>12794</td>
-    <td>Dehubbing still in progress. Please wait until it will be completed.</td>
-  </tr>
-    <tr>
-    <td>12795</td>
-    <td>You should provide Action pre-flight for dehubbing initialization.</td>
-  </tr>
-    <tr>
-    <td>12796</td>
-    <td>The Dedicated Private Network configuration cannot be update if dehubbing process was initialized</td>
-  </tr>
-    <tr>
-    <td>12797</td>
-    <td>Dehubbing process is acceptable only for account with Legacy Termination product</td>
-  </tr>
-    <tr>
-    <td>12798</td>
-    <td>Dehubbing process doesn't support account with enabled sip auth</td>
-  </tr>
-    <tr>
-    <td>12799</td>
-    <td>Yon can't update setting when dehubbing process was failed.</td>
-  </tr>
-    <tr>
     <td>12800</td>
     <td>Can not save password without user name</td>
   </tr>
@@ -4985,10 +5081,6 @@
     <td>Zendesk Base Url invalid</td>
   </tr>
     <tr>
-    <td>12827</td>
-    <td>The company name provided is already in use by another account</td>
-  </tr>
-    <tr>
     <td>12829</td>
     <td>Incorrect date or date format was used, please use yyyy-dd-mm format</td>
   </tr>
@@ -5010,7 +5102,7 @@
   </tr>
     <tr>
     <td>12834</td>
-    <td>The value of the DEFAULT_PROXY_SIP_PEER_ID must be one of the values confiuged in /admin/data/proxypeers.</td>
+    <td>The value of the DEFAULT_PROXY_SIP_PEER_ID must be one of the values configured in /admin/data/proxypeers.</td>
   </tr>
     <tr>
     <td>12835</td>
@@ -5023,6 +5115,50 @@
     <tr>
     <td>12837</td>
     <td>'%s' is not a valid state / province code</td>
+  </tr>
+    <tr>
+    <td>12838</td>
+    <td>Host '%s' intersects with the host '%s' provisioned for another account.</td>
+  </tr>
+    <tr>
+    <td>12939</td>
+    <td>Host '%s' should have the same mask as '%s' that was already provisioned for this account.</td>
+  </tr>
+    <tr>
+    <td>12940</td>
+    <td>E911 hosts cannot be assigned to account with legacy termination.</td>
+  </tr>
+    <tr>
+    <td>12940</td>
+    <td>E911 host '%s':'%s' intersects with the host '%s':'%s' by ports.</td>
+  </tr>
+    <tr>
+    <td>12941</td>
+    <td>Legacy termination cannot be assigned to account with e911 hosts.</td>
+  </tr>
+    <tr>
+    <td>12942</td>
+    <td>NetNumber ID in the link and in the body is not the same.</td>
+  </tr>
+    <tr>
+    <td>12943</td>
+    <td>NetNumber ID is already in use.</td>
+  </tr>
+    <tr>
+    <td>12943</td>
+    <td>Espid '%s' is already in use.</td>
+  </tr>
+    <tr>
+    <td>12944</td>
+    <td>ESPID '%s' is incorrect. It should be alphanumeric and contain 4 characters.</td>
+  </tr>
+    <tr>
+    <td>12945</td>
+    <td>Provisioner id '%s' is too long. Max length 15 characters</td>
+  </tr>
+    <tr>
+    <td>12946</td>
+    <td>Can not save Credentials without User and Password</td>
   </tr>
   </table>
 <h2>TerminationError</h2>
@@ -5255,10 +5391,6 @@
     <td>CustomerTrafficAllowed is only allowed for accounts with TERMINATION</td>
   </tr>
     <tr>
-    <td>13545</td>
-    <td>DataAllowed value is invalid</td>
-  </tr>
-    <tr>
     <td>13546</td>
     <td>CustomerTrafficAllowed '%s' exceeds account setting of '%s'</td>
   </tr>
@@ -5317,10 +5449,6 @@
     <tr>
     <td>13561</td>
     <td>Must have either all host types or none</td>
-  </tr>
-    <tr>
-    <td>13562</td>
-    <td>Must have either no hosts or SmsHosts and TerminationHosts</td>
   </tr>
     <tr>
     <td>13563</td>
@@ -5432,11 +5560,7 @@
   </tr>
     <tr>
     <td>13590</td>
-    <td>The supplied CustomerTrafficAllowed and DataAllowed values on host %s:%s are not allowed for this sippeer</td>
-  </tr>
-    <tr>
-    <td>13591</td>
-    <td>Termination Settings at the SIP Peer level are not allowed for accounts with the 'DedicatedPrivateNetworkTopology' product.</td>
+    <td>The supplied CustomerTrafficAllowed value on host %s:%s are not allowed for this sippeer</td>
   </tr>
     <tr>
     <td>13593</td>
@@ -5640,11 +5764,11 @@
   </tr>
     <tr>
     <td>13641</td>
-    <td>A2P Message Class is required if at least one of features 'A2pLongCode', 'TollFree' and 'ShortCode' is enabled.</td>
+    <td>A2P Message Class is required if 'A2pLongCode' is enabled.</td>
   </tr>
     <tr>
     <td>13642</td>
-    <td>A2P Message Class shouldn't be present if all of features 'A2pLongCode', 'TollFree' and 'ShortCode' are disabled.</td>
+    <td>A2P Message Class shouldn't be present if 'A2pLongCode' is disabled.</td>
   </tr>
     <tr>
     <td>13643</td>
@@ -5877,6 +6001,14 @@
     <tr>
     <td>1015</td>
     <td>Entry for %s already exists</td>
+  </tr>
+    <tr>
+    <td>1016</td>
+    <td>Resource %s does not exist in IRIS.</td>
+  </tr>
+    <tr>
+    <td>1017</td>
+    <td>In order to keep our customers' information secure, Bandwidth users are not allowed to edit credentials.</td>
   </tr>
   </table>
 <h2>ErrorCode</h2>

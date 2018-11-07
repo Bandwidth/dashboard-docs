@@ -12,6 +12,7 @@
 * [Account Configuration](concepts/accountConfig.md)
 * [Formal API Schema Access](concepts/apiAccessSchema.md)
 * [Secure Callbacks](concepts/secureCallbacks.md)
+* [Number Utilization Review](concepts/numberUtilizationReview.md)
 * [Errors](errors.md)
 
 ## API Reference
@@ -98,6 +99,8 @@
   * [Order Change Notifications](guides/managingOrders.md#change)
   * [Email Notifications](guides/managingOrders.md#email-notifications)
   * [Callback URL Notifications](guides/managingOrders.md#callback-notifications)
+* [Number Utilization Review Dashboard](guides/numberUtilizationReviewDashboard.md)
+* [Number Utilization Review API](guides/numberUtilizationReviewAPI.md)
 * [Reporting](guides/reporting.md)
   * [Fetching Information](guides/reporting.md#fetch-info)
   * [Pagination](guides/reporting.md#pagination)
