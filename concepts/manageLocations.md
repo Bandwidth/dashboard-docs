@@ -62,7 +62,7 @@ A number of features can be established at the SIP Peer level, including Calling
 
 ### Calling Name display {#cnam}
 
-Enabling Calling Name display (CNAM) for all TNs subtending a SIP Peer is done by configuring the CallingName feature for the SIP Peer.   This involves setting the CNAM Display default behavior on or off (true or false) and then declaring whether that default behavior needs to be enforced or can be overridden at the TN level.
+Enabling Calling Name display (CNAM) for all TNs subtending a SIP Peer is done by configuring the `CallingName` feature for the SIP Peer.   This involves setting the CNAM `Display` default behavior on or off (true or false) and then declaring whether that default behavior needs to be enforced or can be overridden at the TN level.
 
 ### Final Destination URI {#final-uri}
 
