@@ -30,6 +30,10 @@ There are three different types of customer calls and messages to and from Bandw
 2. Termination - Voice calls from customer-owned telephone numbers that are delivered to PSTN or other on-net telephone numbers.
 3. SMS - Inbound text messages that are delivered to customer-owned telephone numbers and outbound text messages that are delivered to PSTN or other on-net telephone numbers
 
+The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers` can be used to create SIP Peers, and `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}` can be used to update and delete SIP Peers
+
+The API documentation can be found [here](../apiReference.md)
+
 These services can be used independently.  The following sections outline how SIP Peers should be configured when different combinations of these services are used.
 
 ## SIP Peer configuration for use of Origination service {#orig-config}
@@ -40,14 +44,13 @@ The traffic can be presented to the customer IP endpoints using one of two model
 
 ## SIP Peer configuration for use of Origination and SMS services {#orig-config-sms}
 
-This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. In the example below, the same host is used for receiving and SMS messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple SMS Hosts and Voice Hosts are allowed as required.  The Termination Hosts field is identified with the DataAllowed element to permit SMS Data to flow in to the Bandwidth network.   The optional Port element is permitted if required.
+This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. In the example below, the same host is used for receiving and sending SMS messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple SMS Hosts and Voice Hosts are allowed as required.  The Termination Hosts field is identified with the DataAllowed element to permit SMS Data to flow in to the Bandwidth network.   The optional Port element is permitted if required.
 
 **Note**: In spite of the Termination Hosts data, this configuration can be blocked from Termination traffic with account level constraints
 
 ## SIP Peer configuration for use of Termination service {#term-config}
 
-To define a SIP Peer for sending outbound calls (from customer to Bandwidth, the configuration includes parameters called TerminationHosts, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.
-
+To define a SIP Peer for sending outbound calls (from customer to Bandwidth), the configuration includes parameters called TerminationHosts, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.
 
 ## SIP Peer configuration for use of Origination, Termination and SMS services {#term-orig-sms}
 
@@ -74,5 +77,15 @@ A SIP peer can be deleted using the DELETE method.
 ## Moving TNs between SIP Peers {#move-tn}
 
 A <code class="post">POST</code> to the SIP Peer resource can be used to move Telephone Numbers between SIP Peers.
+
+The API endpoint for moving Telephone Numbers is`/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId} /movetns`
+
+Sample XML Request
+```
+<SipPeerTelephoneNumbers>
+    <FullNumber>9199921234</FullNumber>
+    <FullNumber>9199998550</FullNumber>
+</SipPeerTelephoneNumbers>
+```
 <br>
 <br>
