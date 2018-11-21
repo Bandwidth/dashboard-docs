@@ -22,6 +22,10 @@ A SIP Peer is a gateway that sends or receives voice and data traffic to or from
 
 Aside from being an administration point for IP addresses for network ingress and egress, SIP Peers are also used to associate Telephone Numbers with a Site/Location and Account.  **For a Site to order any Telephone Numbers, at least one SIP Peer must be created for the Site, and one of the SIP Peers needs to be designated as the “Default” SIP Peer with which to associate numbers.**
 
+The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers` can be used to create SIP Peers, and `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}` can be used to update and delete SIP Peers
+
+The API documentation along with sample request parameters can be found [here](../apiReference.md)
+
 ## Voice/Data Traffic {#voice-data-traffic}
 
 There are three different types of customer calls and messages to and from Bandwidth:
@@ -29,10 +33,6 @@ There are three different types of customer calls and messages to and from Bandw
 1. Origination - Voice calls from PSTN phone numbers that are delivered to customer-owned telephone numbers.
 2. Termination - Voice calls from customer-owned telephone numbers that are delivered to PSTN or other on-net telephone numbers.
 3. SMS - Inbound text messages that are delivered to customer-owned telephone numbers and outbound text messages that are delivered to PSTN or other on-net telephone numbers
-
-The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers` can be used to create SIP Peers, and `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}` can be used to update and delete SIP Peers
-
-The API documentation can be found [here](../apiReference.md)
 
 These services can be used independently.  The following sections outline how SIP Peers should be configured when different combinations of these services are used.
 
@@ -42,12 +42,9 @@ Each SIP Peer can be configured with multiple IP addresses that will be used in 
 
 The traffic can be presented to the customer IP endpoints using one of two models – either as a Random distribution across the available voice host IP endpoints, or using a sequential failover model where traffic is preferentially presented to the first IP address until an endpoint failure is detected.
 
-## SIP Peer configuration for use of Origination and SMS services {#orig-config-sms}
+The `VoiceHostGroups` field is used to define randomly selected IP addresses, and the `VoiceHosts` field is used to define sequential IP addresses
 
-This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. In the example below, the same host is used for receiving and sending SMS messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple `SmsHosts` and `VoiceHosts` are allowed as required.  The Termination Hosts field is identified with the DataAllowed element to permit SMS Data to flow in to the Bandwidth network.   The optional Port element is permitted if required.
-
-An example of `VoiceHosts` and `SmsHosts` is shown below
-
+Sequential
 ```
     <VoiceHosts>
         <Host>
@@ -57,21 +54,33 @@ An example of `VoiceHosts` and `SmsHosts` is shown below
             <HostName>10.10.10.2</HostName>
         </Host>
     </VoiceHosts>
-    <SmsHosts>
-        <Host>
-            <HostName>10.10.10.1</HostName>
-        </Host>
-        <Host>
-            <HostName>10.10.10.2</HostName>
-        </Host>
-    </SmsHosts>
 ```
 
-**Note**: In spite of the `TerminationHosts` data, this configuration can be blocked from Termination traffic with account level constraints
+Random
+```
+    <VoiceHostGroups>
+        <VoiceHostGroup>
+            <Host>
+                <HostName>10.10.10.1</HostName>
+            </Host>
+            <Host>
+                <HostName>10.10.10.2</HostName>
+            </Host>
+        </VoiceHostGroup>
+    </VoiceHostGroups>
+```
+
+## SIP Peer configuration for use of Origination and SMS services {#orig-config-sms}
+
+This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple `VoiceHosts` are allowed as required. The `TerminationHosts` field is identified with the `DataAllowed` element to permit SMS Data to flow in to the Bandwidth network. The optional `Port` element is permitted if required.
+
+The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId} /products /messaging/features/sms` can be used to set SMS properties
 
 ## SIP Peer configuration for use of Termination service {#term-config}
 
 To define a SIP Peer for sending outbound calls (from customer to Bandwidth), the configuration includes parameters called `TerminationHosts`, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.
+
+**Note**: In spite of the `TerminationHosts` data, this configuration can be blocked from Termination traffic with account level constraints
 
 An example of `TerminationHosts` is shown below
 
