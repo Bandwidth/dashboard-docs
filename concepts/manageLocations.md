@@ -44,13 +44,51 @@ The traffic can be presented to the customer IP endpoints using one of two model
 
 ## SIP Peer configuration for use of Origination and SMS services {#orig-config-sms}
 
-This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. In the example below, the same host is used for receiving and sending SMS messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple SMS Hosts and Voice Hosts are allowed as required.  The Termination Hosts field is identified with the DataAllowed element to permit SMS Data to flow in to the Bandwidth network.   The optional Port element is permitted if required.
+This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. In the example below, the same host is used for receiving and sending SMS messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple `SmsHosts` and `VoiceHosts` are allowed as required.  The Termination Hosts field is identified with the DataAllowed element to permit SMS Data to flow in to the Bandwidth network.   The optional Port element is permitted if required.
 
-**Note**: In spite of the Termination Hosts data, this configuration can be blocked from Termination traffic with account level constraints
+An example of `VoiceHosts` and `SmsHosts` is shown below
+
+```
+    <VoiceHosts>
+        <Host>
+            <HostName>10.10.10.1</HostName>
+        </Host>
+        <Host>
+            <HostName>10.10.10.2</HostName>
+        </Host>
+    </VoiceHosts>
+    <SmsHosts>
+        <Host>
+            <HostName>10.10.10.1</HostName>
+        </Host>
+        <Host>
+            <HostName>10.10.10.2</HostName>
+        </Host>
+    </SmsHosts>
+```
+
+**Note**: In spite of the `TerminationHosts` data, this configuration can be blocked from Termination traffic with account level constraints
 
 ## SIP Peer configuration for use of Termination service {#term-config}
 
-To define a SIP Peer for sending outbound calls (from customer to Bandwidth), the configuration includes parameters called TerminationHosts, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.
+To define a SIP Peer for sending outbound calls (from customer to Bandwidth), the configuration includes parameters called `TerminationHosts`, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.
+
+An example of `TerminationHosts` is shown below
+
+```
+    <TerminationHosts>
+        <TerminationHost>
+            <HostName>2.1.1.9</HostName>
+            <Port>0</Port>
+            <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+        </TerminationHost>
+        <TerminationHost>
+            <HostName>2.1.1.96/30</HostName>
+            <Port>0</Port>
+            <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+        </TerminationHost>
+    </TerminationHosts>
+```
 
 ## SIP Peer configuration for use of Origination, Termination and SMS services {#term-orig-sms}
 
