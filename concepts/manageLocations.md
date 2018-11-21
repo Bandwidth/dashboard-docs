@@ -70,7 +70,7 @@ The network configuration of a SIP Peer includes an optional attribute called `f
 
 ## Deleting a SIP Peer {#delete-sippeer}
 
-A SIP peer can be deleted using the DELETE method.
+A SIP peer can be deleted using the DELETE method on `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}`
 
 **Note**:  A SIP peer can be deleted only if there are no TNs.
 
