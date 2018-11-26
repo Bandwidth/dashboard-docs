@@ -20,9 +20,9 @@ SIP Peer Management enables customers to configure and manage IP addresses and o
 
 A SIP Peer is a gateway that sends or receives voice and data traffic to or from Bandwidth’s network. Customer must configure a default SIP Peer on the Site within an Account. Before you can create a SIP Peer, a Site (location) must be created. You can have multiple SIP Peers on a Site. Only one default SIP Peer is allowed per Site.
 
-Aside from being an administration point for IP addresses for network ingress and egress, SIP Peers are also used to associate Telephone Numbers with a Site/Location and Account.  **For a Site to order any Telephone Numbers, at least one SIP Peer must be created for the Site, and one of the SIP Peers needs to be designated as the “Default” SIP Peer with which to associate numbers.**
+Aside from being an administration point for IP addresses for network ingress and egress, SIP Peers are also used to associate Telephone Numbers with a Site/Location and Account.  **For a Site to order any Telephone Numbers, at least one SIP Peer must be created for the Site, and one of the SIP Peers needs to be designated as the “Default” SIP Peer with which to associate numbers.**.
 
-The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers` can be used to create SIP Peers, and `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}` can be used to update and delete SIP Peers
+The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers` can be used to create SIP Peers, and `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}` can be used to update and delete SIP Peers.
 
 The API documentation along with sample request parameters can be found [here](../apiReference.md)
 
@@ -32,7 +32,7 @@ There are three different types of customer calls and messages to and from Bandw
 
 1. Origination - Voice calls from PSTN phone numbers that are delivered to customer-owned telephone numbers.
 2. Termination - Voice calls from customer-owned telephone numbers that are delivered to PSTN or other on-net telephone numbers.
-3. SMS - Inbound text messages that are delivered to customer-owned telephone numbers and outbound text messages that are delivered to PSTN or other on-net telephone numbers
+3. SMS - Inbound text messages that are delivered to customer-owned telephone numbers and outbound text messages that are delivered to PSTN or other on-net telephone numbers.
 
 These services can be used independently.  The following sections outline how SIP Peers should be configured when different combinations of these services are used.
 
@@ -42,7 +42,7 @@ Each SIP Peer can be configured with multiple IP addresses that will be used in 
 
 The traffic can be presented to the customer IP endpoints using one of two models – either as a Random distribution across the available voice host IP endpoints, or using a sequential failover model where traffic is preferentially presented to the first IP address until an endpoint failure is detected.
 
-The `VoiceHostGroups` field is used to define randomly selected IP addresses, and the `VoiceHosts` field is used to define sequential IP addresses
+The `VoiceHostGroups` field is used to define randomly selected IP addresses, and the `VoiceHosts` field is used to define sequential IP addresses. Examples of each are shown below:
 
 Sequential
 ```
@@ -74,15 +74,15 @@ Random
 
 This section provides information on defining a SIP Peer for receiving inbound calls (from Bandwidth to customer) and text messages. If there is a different host for origination and SMS, that fact can be identified in the tags. Multiple `VoiceHosts` are allowed as required. The `TerminationHosts` field is identified with the `DataAllowed` element to permit SMS Data to flow in to the Bandwidth network. The optional `Port` element is permitted if required.
 
-The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId} /products /messaging/features/sms` can be used to set SMS properties
+The API endpoint `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId} /products /messaging/features/sms` can be used to set SMS properties.
 
 ## SIP Peer configuration for use of Termination service {#term-config}
 
 To define a SIP Peer for sending outbound calls (from customer to Bandwidth), the configuration includes parameters called `TerminationHosts`, specifiying the IP address from which IP voice packets will be presented to the Bandwidth network.
 
-**Note**: In spite of the `TerminationHosts` data, this configuration can be blocked from Termination traffic with account level constraints
+**Note**: In spite of the `TerminationHosts` data, this configuration can be blocked from Termination traffic with account level constraints.
 
-An example of `TerminationHosts` is shown below
+An example of `TerminationHosts` is shown below:
 
 ```
     <TerminationHosts>
@@ -117,7 +117,7 @@ The network configuration of a SIP Peer includes an optional attribute called `f
 
 ## Deleting a SIP Peer {#delete-sippeer}
 
-A SIP peer can be deleted using the DELETE method on `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}`
+A SIP peer can be deleted using the DELETE method on `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}`.
 
 **Note**:  A SIP peer can be deleted only if there are no TNs.
 
@@ -125,7 +125,9 @@ A SIP peer can be deleted using the DELETE method on `/accounts /{accountId} /si
 
 A <code class="post">POST</code> to the SIP Peer resource can be used to move Telephone Numbers between SIP Peers.
 
-The API endpoint for moving Telephone Numbers is`/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId} /movetns`
+The API endpoint for moving Telephone Numbers is`/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId} /movetns`.
+
+Phone numbers are moved from their current SIP Peer to the SIP Peer in the URL.
 
 Sample XML Request
 ```
