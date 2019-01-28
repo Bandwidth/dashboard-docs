@@ -13,7 +13,6 @@
     "codetabs",
     "include-html@0.2.0",
     "usabilla",
-    "talkus",
     "save-url-to-file"
   ],
   "pluginsConfig": {
@@ -64,10 +63,6 @@
     },
     "usabilla": {
       "usabillaId": "73009503da29"
-    },
-    "talkus": {
-      "talkusId": "DScHg5ngjtZpXH3H6",
-      "tag": "bwdashapi"
     },
     "fontsettings": {
       "theme": "white",
