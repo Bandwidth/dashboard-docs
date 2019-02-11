@@ -781,10 +781,6 @@
     <td>13576</td>
     <td>Waiting to update nnid has expired</td>
   </tr>
-    <tr>
-    <td>13577</td>
-    <td>SMS messaging should be enabled on telephone number or location</td>
-  </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
 <table class="fixed">
@@ -831,6 +827,14 @@
     <tr>
     <td>25090</td>
     <td>Unable to import telephone numbers to the Bandwidth Dashboard.</td>
+  </tr>
+    <tr>
+    <td>25100</td>
+    <td>The customer provided telephone numbers with Loa Type 'SUBSCRIBER' is not allowed on this account.</td>
+  </tr>
+    <tr>
+    <td>25110</td>
+    <td>LoaType is absent or invalid. Possible values: carrier, subscriber</td>
   </tr>
   </table>
 <h2>ReservationErrors</h2>
@@ -1512,15 +1516,15 @@
   </tr>
     <tr>
     <td>7383</td>
-    <td>Wireless info is not allowed for tollfree manual off-ner port-ins</td>
+    <td>Wireless info is not allowed for tollfree manual off-net port-ins</td>
   </tr>
     <tr>
     <td>7384</td>
-    <td>Partial port is not allowed for tollfree manual off-ner port-ins</td>
+    <td>Partial port is not allowed for tollfree manual off-net port-ins</td>
   </tr>
     <tr>
     <td>7385</td>
-    <td>Billing telephone number is not allowed for tollfree manual off-ner port-ins</td>
+    <td>Billing telephone number is not allowed for tollfree manual off-net port-ins</td>
   </tr>
     <tr>
     <td>7386</td>
@@ -1552,7 +1556,7 @@
   </tr>
     <tr>
     <td>7394</td>
-    <td>Immediate is not allowed for tollfree manual off-ner port-ins</td>
+    <td>Immediate is not allowed for tollfree manual off-net port-ins</td>
   </tr>
     <tr>
     <td>7395</td>
@@ -1721,6 +1725,10 @@
     <tr>
     <td>7708</td>
     <td>AlternateSPID cannot be modified on a non-DRAFT state port-in</td>
+  </tr>
+    <tr>
+    <td>7709</td>
+    <td>Bulk port-in with id %s cannot be deleted since it is not in draft status.</td>
   </tr>
     <tr>
     <td>7510</td>
@@ -2548,6 +2556,10 @@
     <td>8062</td>
     <td>The address with Location ID '%s' already exist</td>
   </tr>
+    <tr>
+    <td>8063</td>
+    <td>StateCode '%s' is invalid or not supported. Please correct and try the request again.</td>
+  </tr>
   </table>
 
 
@@ -3367,7 +3379,7 @@
   </tr>
     <tr>
     <td>12019</td>
-    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, 3RD_PARTY_MESSAGE_ROUTING</td>
+    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, EXTERNAL_TNS_SLOA</td>
   </tr>
     <tr>
     <td>12020</td>
@@ -3711,7 +3723,7 @@
   </tr>
     <tr>
     <td>12107</td>
-    <td>Application is assigned and can't be removed</td>
+    <td>Cannot Delete Application. Please dis-associate the Locations from the Application before deleting</td>
   </tr>
     <tr>
     <td>12108</td>
@@ -5176,6 +5188,26 @@
     <td>12946</td>
     <td>Can not save Credentials without User and Password</td>
   </tr>
+    <tr>
+    <td>12947</td>
+    <td>Incompatible flags state network_enabled has %s state and provisioning_enabled has %s state</td>
+  </tr>
+    <tr>
+    <td>12948</td>
+    <td>Incompatible accountId state</td>
+  </tr>
+    <tr>
+    <td>12949</td>
+    <td>Update is not supported for account id %s with provisioning status %s</td>
+  </tr>
+    <tr>
+    <td>12950</td>
+    <td>Migration for account id %s does not exist</td>
+  </tr>
+    <tr>
+    <td>12951</td>
+    <td>The permitted values for DeliveryNetwork are: Bandwidth, other</td>
+  </tr>
   </table>
 <h2>TerminationError</h2>
 <table class="fixed">
@@ -5788,7 +5820,11 @@
   </tr>
     <tr>
     <td>13643</td>
-    <td>The operation could not be performed because Account %d does not have the HTTPV2 Messaging Feature enabled.</td>
+    <td>Support for Async could not be set because Account %d does not have the HTTPV2 Messaging Feature enabled.</td>
+  </tr>
+    <tr>
+    <td>13644</td>
+    <td>MMS support on TollFree Telephone Numbers requires that SMS support for TollFree telephone numbers to be active.</td>
   </tr>
   </table>
 <h2>PotValidationError</h2>
