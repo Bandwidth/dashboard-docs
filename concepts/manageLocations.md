@@ -113,8 +113,23 @@ Enabling Calling Name display (CNAM) for all TNs subtending a SIP Peer is done b
 
 ### Final Destination URI {#final-uri}
 
-The network configuration of a SIP Peer includes an optional attribute called `finaldestinationuri`. This is used when network connectivity to all previously provided hosts/IPs fails. Request format for the configuration of the SIP Peer, using this attribute, is:
+The network configuration of a SIP Peer includes an optional attribute called `FinalDestinationUri`. This is used when network connectivity to all previously provided hosts/IPs fails. Request format for the configuration of the SIP Peer, using this attribute, is:
 
+```
+    <FinalDestinationUri>URI</FinalDestinationUri>
+    <TerminationHosts>
+        <TerminationHost>
+            <HostName>2.1.1.9</HostName>
+            <Port>0</Port>
+            <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+        </TerminationHost>
+        <TerminationHost>
+            <HostName>2.1.1.96/30</HostName>
+            <Port>0</Port>
+            <CustomerTrafficAllowed>DOMESTIC</CustomerTrafficAllowed>
+        </TerminationHost>
+    </TerminationHosts>
+```
 ## Deleting a SIP Peer {#delete-sippeer}
 
 A SIP peer can be deleted using the DELETE method on `/accounts /{accountId} /sites /{siteId} /sippeers /{sippeerId}`.

@@ -2183,6 +2183,32 @@ securitySchemes:
                                         </BulkPortinResponse>
                         404:
                             description: The indicated Bulk Port-in order could not be found.
+                delete:
+                    description: |
+                        Delete Bulk Port-in order with subdending port-ins. Deleting a bulk port-in allowed for 'DRAFT' state only.
+                        Deleting a bulk port-in will delete all DRAFT port-ins associated with it.
+                        If a bulk port-in contains a CANCELLED port-in (due to port decomposition finding non-portable TNs),
+                        that port-in will be disassociated with the bulk port-in, but not deleted.
+                    responses:
+                        200:
+                            description: Bulk Port-in order has been successfully deleted.
+                        400:
+                            description: Bad request. Bulk Port-in order not in DRAFT state.
+                            body:
+                                 application/xml:
+                                     example: | 
+                                         <BulkPortinResponse>
+                                             <BulkPortin>
+                                                 <Status>
+                                                     <Code>7709</Code>
+                                                     <Description>Bulk port-in with id d88763f4-8914-4301-bdca-6f409e4cd811 cannot be deleted since it is not in
+                                                         draft status.
+                                                     </Description>
+                                                 </Status>
+                                             </BulkPortin>
+                                         </BulkPortinResponse>
+                        404:
+                            description: The indicated Bulk Port-in order could not be found.
                 /portinList: 
                     description: |
                         The PortinList is a list of Port-in Orders that are all associated with the identified Bulk Port-in.  This endpoint can both retrieve the list as well as restructure the list.
@@ -7636,7 +7662,7 @@ securitySchemes:
                 description: Retrieves the port-in requests for the given account ID.
                 queryParameters:
                     page:
-                        description: The port-in ID of the first order of the page. "1" is used as a convention for the first port-in in the account ID.
+                        description: The port-in ID of the first order of the page. Value "1" is used as a convention for the first port-in in the account ID (Use it to get a first page of orders list).
                         type: string
                         required: true
                         default: 1
@@ -8000,13 +8026,13 @@ securitySchemes:
                                         </LnpOrderResponse>
                 delete:
                     description: |
-                        Cancels the port-in order. This does not remove the order from the system.  It simply places the existing order in a cancelled state.
+                        If portin is in DRAFT state the order will be deleted. Otherwise the call simply places the existing order in a cancelled state.
                         Note that only a pending port-in order can be cancelled; if the order was previously cancelled or completed, then a DELETE will not be possible. 
                     responses:
                         200:
-                            description: The port-in order has been successfully deleted.
+                            description: The port-in order has been successfully deleted/cancelled.
                         400:
-                            description: The port-in order is already processed, and therefore cannot be deleted.
+                            description: Order id is invalid, order does not exist or the port-in order is already processed, and therefore cannot be deleted.
                             body:
                                 application/xml:
                                     example: |
@@ -8625,6 +8651,18 @@ securitySchemes:
                                                   <Feature>HTTP</Feature>
                                                   <Feature>HTTPV2</Feature>
                                                   <Feature>TollFree</Feature>
+                                                </Features>
+                                            </Product>
+                                            <Product>
+                                                <Name>NumberManagement</Name>
+                                                <Features>
+                                                  <Feature>ORDERING</Feature>
+                                                  <Feature>LNP</Feature>
+                                                  <Feature>EXTERNAL_TNS</Feature>
+                                                  <Feature>PROTECTED_TNS</Feature>
+                                                  <Feature>TN_ASSIGNMENT</Feature>
+                                                  <Feature>RESERVATION</Feature>
+                                                  <Feature>LSR</Feature>
                                                 </Features>
                                             </Product>
                                         </Products>
