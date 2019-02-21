@@ -2460,6 +2460,16 @@ securitySchemes:
                                                     <Difference>SubscriberType : "" --&gt; residential</Difference>
                                                 </OrderHistory>
                                             </OrderHistoryWrapper>
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
+                                body:
+                                    application/xml:
+                                        example: |
+                                            <BulkPortInHistoryResponse>
+                                                <ResponseStatus>
+                                                    <Description>The resource does not exist</Description>
+                                                </ResponseStatus>
+                                            </BulkPortInHistoryResponse>
                 /loas: 
                     description: |
                         The LOAS resource allows the uploading and storage of files that are associated with orders.   It use the standard form-data approach for http file upload.  Details of the POST API call that drives the file upload are provided below.
@@ -3533,6 +3543,16 @@ securitySchemes:
                                                     <Status>COMPLETE</Status>
                                                 </OrderHistory>
                                             </OrderHistoryWrapper>
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
+                                body:
+                                    application/xml:
+                                        example: |
+                                            <DldaOrderReportResponse>
+                                                <ResponseStatus>
+                                                    <Description>The resource does not exist</Description>
+                                                </ResponseStatus>
+                                            </DldaOrderReportResponse>
         /e911s: 
             description: |
                 The E911s Resource represents the requests made to the Bandwidth Dashboard API to add or otherwise manage a request to associate a postal address with an endpoint (a telephone number, ACID (alternate caller identifier), or some other unique identifier . This API allows the creation and observation of a "E911" work order that causes an update of a address information in a network database.<br><br>
@@ -3837,7 +3857,7 @@ securitySchemes:
                     &lt;E911Order&gt;
                         &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
                         &lt;Address&gt;
-                          &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                           &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
                           &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
                           &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
@@ -3875,7 +3895,7 @@ securitySchemes:
                         &lt;AlternateEndUserIdentifiers&gt;
                           &lt;AlternateEndUserIdentifier&gt;
                             &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
-                            &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                             &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
                             &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
                             &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
@@ -3901,7 +3921,7 @@ securitySchemes:
                         &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
                         &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
                         &lt;Address&gt;
-                          &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                           &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
                           &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
                           &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
@@ -3915,7 +3935,7 @@ securitySchemes:
                         &lt;AlternateEndUserIdentifiers&gt;
                           &lt;AlternateEndUserIdentifier&gt;
                             &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
-                            &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                             &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
                             &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
                             &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
@@ -3963,7 +3983,7 @@ securitySchemes:
                         &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
                         &lt;AdditionalAddresses&gt;
                           &lt;Address&gt;
-                            &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                             &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
                             &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
                             &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
@@ -3975,7 +3995,7 @@ securitySchemes:
                             &lt;AddressType&gt;E911&lt;/AddressType&gt;
                           &lt;/Address&gt;
                           &lt;Address&gt;
-                            &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                             &lt;HouseNumber&gt;645&lt;/HouseNumber&gt;
                             &lt;PreDirectional&gt;E&lt;/PreDirectional&gt;
                             &lt;StreetName&gt;MANCHESTER&lt;/StreetName&gt;
@@ -4011,7 +4031,7 @@ securitySchemes:
                                             &lt;City&gt;Los Angeles&lt;/City&gt;
                                             &lt;StateCode&gt;CA&lt;/StateCode&gt;
                                             &lt;Zip&gt;90001&lt;/Zip&gt;
-                                            &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                                          &lt;/Address&gt;
                                    &lt;/AdditionalAddresses&gt;
                                  &lt;/E911Order&gt;
@@ -4030,10 +4050,10 @@ securitySchemes:
                         &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
                         &lt;AdditionalAddresses&gt;
                           &lt;Address&gt;
-                            &lt;LocationId&gt;Some128CharacterOrLessString1&lt;/LocationId&gt;
+                            &lt;LocationId&gt;Some32CharacterOrLessString1&lt;/LocationId&gt;
                           &lt;/Address&gt;
                           &lt;Address&gt;
-                            &lt;LocationId&gt;Some128CharacterOrLessString1&lt;/LocationId&gt;
+                            &lt;LocationId&gt;Some32CharacterOrLessString1&lt;/LocationId&gt;
                           &lt;/Address&gt;
                         &lt;/AdditionalAddresses&gt;
                         &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
@@ -4053,7 +4073,7 @@ securitySchemes:
                         &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
                         &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
                         &lt;Address&gt;
-                          &lt;LocationId&gt;Some128CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
                           &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
                           &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
                           &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
@@ -4121,39 +4141,12 @@ securitySchemes:
                         body:
                             application/xml:
                                 example: 
-                                            <?xml version="1.0"?>
+                                    <?xml version="1.0"?>
                                     <E911OrderResponse>
-                                        <ErrorList>
-                                            <Error>
-                                                <TelephoneNumber>9706542332</TelephoneNumber>
-                                                <Code>12345</Code>
-                                                <Description>e911 information cannot be changed because the number is provisioned to another account</Description>
-                                            </Error>
-                                        </ErrorList>
-                                        <E911Order>
-                                            <CustomerOrderId>CustomOrderId1</CustomerOrderId>
-                                            <ProcessingStatus>RECEIVED</ProcessingStatus>
-                                            <TelephoneNumbers>
-                                                <TelephoneNumber>9706542332</TelephoneNumber>
-                                                <TelephoneNumber>9706542333</TelephoneNumber>
-                                            </TelephoneNumbers>
-                                            <CallerName>CustomCallerName</CallerName>
-                                            <Address>
-                                                <HouseNumber>915</HouseNumber>
-                                                <HouseSuffix/>
-                                                <PreDirectional/>
-                                                <StreetName>Elm</StreetName>
-                                                <StreetSuffix>Ave</StreetSuffix>
-                                                <PostDirectional/>
-                                                <AddressLine2/>
-                                                <City>Carpinteria</City>
-                                                <StateCode>CA</StateCode>
-                                                <Zip>93013</Zip>
-                                                <PlusFour/>
-                                                <County/>
-                                                <Country/>
-                                            </Address>
-                                        </E911Order>
+                                        <ResponseStatus>
+                                            <ErrorCode>5070</ErrorCode>
+                                            <Description>Telephone number is invalid.</Description>
+                                        </ResponseStatus>
                                     </E911OrderResponse>
             /{orderid}: 
                 description: |
@@ -4307,6 +4300,10 @@ securitySchemes:
                                             </tbody>
                                         </table>
                                 body: 
+                                    application/xml:
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
+                                body:
                                     application/xml:
         /externalTns: 
             description: |
@@ -5923,6 +5920,16 @@ securitySchemes:
                                                     <Difference>ActualFocDate : "" --&gt; 2015-06-27</Difference>
                                                 </OrderHistory>
                                             </OrderHistoryWrapper>
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
+                                body:
+                                    application/xml:
+                                        example: |
+                                            <LsrOrderReportResponse>
+                                                <ResponseStatus>
+                                                    <Description>The resource does not exist</Description>
+                                                </ResponseStatus>
+                                            </LsrOrderReportResponse>
                 /notes: 
                     # note that this file is shared between 6 order types -
                     #  - orders
@@ -7037,6 +7044,16 @@ securitySchemes:
                                                     <Difference>CustomerOrderId : "" --&gt; hello</Difference>
                                                 </OrderHistory>
                                             </OrderHistoryWrapper>
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
+                                body:
+                                    application/xml:
+                                        example: |
+                                            <ErrorResponse>
+                                                <ResponseStatus>
+                                                    <Description>The resource does not exist</Description>
+                                                </ResponseStatus>
+                                            </ErrorResponse>
         /portins: 
             description: |
                 The portins endpoint is used to manage requests to port a number into the Bandwidth Dashboard API.  Like many other requests, the portins endpoint causes the creation of an <b>order</b> that is used to manage the porting event throughout the lifecycle of the request.
@@ -8154,6 +8171,8 @@ securitySchemes:
                                                     <Status>COMPLETE</Status>
                                                 </OrderHistory>
                                             </OrderHistoryWrapper>
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
                 /activationStatus: 
                     get:
                         description: |
@@ -12024,6 +12043,10 @@ securitySchemes:
                                             </tbody>
                                         </table>
                                 body: 
+                                    application/xml:
+                            404:
+                                description: NOT FOUND - the order id does not exist in the system
+                                body:
                                     application/xml:
         /tnreservation: 
             description: |
