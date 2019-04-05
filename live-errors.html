@@ -781,6 +781,34 @@
     <td>13576</td>
     <td>Waiting to update nnid has expired</td>
   </tr>
+    <tr>
+    <td>13577</td>
+    <td>The importTnOrder API is not enabled</td>
+  </tr>
+    <tr>
+    <td>13578</td>
+    <td>You are not allowed to access the importTnOrder API</td>
+  </tr>
+    <tr>
+    <td>13579</td>
+    <td>Your account does not have the appropriate permission to load LOA for ImportTnOrder.</td>
+  </tr>
+    <tr>
+    <td>13580</td>
+    <td>Your account does not have permissions to modify importTnOrders LOA.</td>
+  </tr>
+    <tr>
+    <td>13581</td>
+    <td>Your account does not have the appropriate permission to load LOA for port-in order.</td>
+  </tr>
+    <tr>
+    <td>13582</td>
+    <td>Your account does not have permissions to modify LOA.</td>
+  </tr>
+    <tr>
+    <td>13583</td>
+    <td>Order Type doesn't have permissions to load LOA.</td>
+  </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
 <table class="fixed">
@@ -1729,6 +1757,10 @@
     <tr>
     <td>7709</td>
     <td>Bulk port-in with id %s cannot be deleted since it is not in draft status.</td>
+  </tr>
+    <tr>
+    <td>7710</td>
+    <td>History is not supported for bulk port-ins or individual port-ins in draft status.</td>
   </tr>
     <tr>
     <td>7510</td>
@@ -2853,7 +2885,7 @@
   </tr>
     <tr>
     <td>14500</td>
-    <td>Incorrect order type. Valid values: portins, portouts, orders, disconnects, importToAccounts, dldas, lsrorders, e911s, tnoptions, externalTns, lidbs, bulkPortins</td>
+    <td>Incorrect order type. Valid values: portins, portouts, orders, disconnects, importToAccounts, dldas, lsrorders, e911s, tnoptions, externalTns, lidbs, bulkPortins, importtnorders, removeImportedTnOrders</td>
   </tr>
     <tr>
     <td>14501</td>
@@ -3379,7 +3411,7 @@
   </tr>
     <tr>
     <td>12019</td>
-    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, EXTERNAL_TNS_SLOA</td>
+    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, IMPORT_TNS, PROTECTED_FROM_IMPORT_TNS, TermHttpVoice, OrigHttpVoice</td>
   </tr>
     <tr>
     <td>12020</td>
@@ -3723,7 +3755,7 @@
   </tr>
     <tr>
     <td>12107</td>
-    <td>Cannot Delete Application. Please dis-associate the Locations from the Application before deleting</td>
+    <td>The Application cannot be removed until references in the following Locations are removed: %s</td>
   </tr>
     <tr>
     <td>12108</td>
@@ -3885,6 +3917,22 @@
     <td>12147</td>
     <td>There is no direct transition from a previous Associated Identifier to a new one. Please, remove previous association</td>
   </tr>
+    <tr>
+    <td>12148</td>
+    <td>Feature '%s' requires presence of '%s' product on the account '%s'.</td>
+  </tr>
+    <tr>
+    <td>12149</td>
+    <td>Feature '%s' required configured Full Termination on the account '%s'.</td>
+  </tr>
+    <tr>
+    <td>12150</td>
+    <td>The HTTP voice feature is required for Account %s</td>
+  </tr>
+    <tr>
+    <td>12151</td>
+    <td>V2 Messaging API Tokens cannot be managed. Check the account is enabled for V2 Messaging</td>
+  </tr>
   </table>
 <h2>AdminValidationError</h2>
 <table class="fixed">
@@ -3943,34 +3991,6 @@
     <tr>
     <td>12512</td>
     <td>Telephone number '%s' is not valid</td>
-  </tr>
-    <tr>
-    <td>12513</td>
-    <td>Role name '%s' is not valid</td>
-  </tr>
-    <tr>
-    <td>12514</td>
-    <td>Permission name '%s' is not valid. Valid values: UPDATE, VIEW</td>
-  </tr>
-    <tr>
-    <td>12515</td>
-    <td>Duplicate roles provided</td>
-  </tr>
-    <tr>
-    <td>12516</td>
-    <td>Duplicate permissions provided</td>
-  </tr>
-    <tr>
-    <td>12517</td>
-    <td>Permissions are required</td>
-  </tr>
-    <tr>
-    <td>12518</td>
-    <td>Username in request body must match user name in URL or be left empty</td>
-  </tr>
-    <tr>
-    <td>12519</td>
-    <td>RoleName in request body must match role name in URL or be left empty</td>
   </tr>
     <tr>
     <td>12520</td>
@@ -4446,7 +4466,7 @@
   </tr>
     <tr>
     <td>12648</td>
-    <td>Invalid property name, valid values are NEW_TERMINATION_IS_ACTIVATED, MAX_REPORT_INSTANCES_ALLOWED_PER_ACCOUNT, MAX_REPORT_INSTANCES_ALLOWED_PER_USER, REPORT_INSTANCE_DEFAULT_EXPIRY_DAYS, REPORT_INSTANCE_MAX_EXPIRY_DAYS, BACKOFFICE_API_USER, BACKOFFICE_API_PASSWORD, BACKOFFICE_URL, AUDIT_AVAILABLE_DBS, DEFAULT_PROXY_SIP_PEER_ID, NUMBER_OF_CHUNKS_PER_NIGHTLY_TN_AUDIT, CHUNK_SIZE_FOR_NIGHTLY_TN_AUDIT, PORTIN_NOTIFICATION_EMAIL, ONNET_PORTING_OVERFLOW_STATE, MAX_NUMBER_OF_TNS_IN_AN_AUTOMATED_PORT, ONNET_PORTING_OVERFLOW_FOR_EXTRA_LARGE_PORTS, ZENDESK_API_REQUESTOR_ID, ZENDESK_API_USER_ID, ZENDESK_API_TOKEN_ID, ZENDESK_API_BASE_URL_ID</td>
+    <td>Invalid property name, valid values are NEW_TERMINATION_IS_ACTIVATED, MAX_REPORT_INSTANCES_ALLOWED_PER_ACCOUNT, MAX_REPORT_INSTANCES_ALLOWED_PER_USER, REPORT_INSTANCE_DEFAULT_EXPIRY_DAYS, REPORT_INSTANCE_MAX_EXPIRY_DAYS, BACKOFFICE_API_USER, BACKOFFICE_API_PASSWORD, BACKOFFICE_URL, AUDIT_AVAILABLE_DBS, DEFAULT_PROXY_SIP_PEER_ID, NUMBER_OF_CHUNKS_PER_NIGHTLY_TN_AUDIT, CHUNK_SIZE_FOR_NIGHTLY_TN_AUDIT, PORTIN_NOTIFICATION_EMAIL, ONNET_PORTING_OVERFLOW_STATE, MAX_NUMBER_OF_TNS_IN_AN_AUTOMATED_PORT, ONNET_PORTING_OVERFLOW_FOR_EXTRA_LARGE_PORTS, ZENDESK_API_REQUESTOR_ID, ZENDESK_API_USER_ID, ZENDESK_API_TOKEN_ID, ZENDESK_API_BASE_URL_ID, V2_MESSAGING_SYSTEM_ROOT_URL, V2_MESSAGING_SYSTEM_ROOT_URL_USER, V2_MESSAGING_SYSTEM_ROOT_URL_PASSWORD, V2_MESSAGING_SYSTEM_APPLICATION_URL, V2_MESSAGING_SYSTEM_APPLICATION_URL_USER, V2_MESSAGING_SYSTEM_APPLICATION_URL_PASSWORD</td>
   </tr>
     <tr>
     <td>12649</td>
@@ -5010,7 +5030,7 @@
   </tr>
     <tr>
     <td>12802</td>
-    <td>The callback URL must use</td>
+    <td>The callback URL must be specified</td>
   </tr>
     <tr>
     <td>12803</td>
@@ -5185,10 +5205,6 @@
     <td>Provisioner id '%s' is too long. Max length 15 characters</td>
   </tr>
     <tr>
-    <td>12946</td>
-    <td>Can not save Credentials without User and Password</td>
-  </tr>
-    <tr>
     <td>12947</td>
     <td>Incompatible flags state network_enabled has %s state and provisioning_enabled has %s state</td>
   </tr>
@@ -5210,7 +5226,91 @@
   </tr>
     <tr>
     <td>12952</td>
-    <td>Feature 'EXTERNAL_TNS_SLOA' can not be deleted. There may be some customer provided TNs with 'subscriber' loa type.</td>
+    <td>Feature 'IMPORT_TNS' can not be deleted. There may be some customer provided TNs with 'subscriber' loa type.</td>
+  </tr>
+    <tr>
+    <td>12953</td>
+    <td>Incorrect Tn Type specified with NNID %s. It should be one from 'OnNetTns, OffNetTns, OffNetCanadianTns, ExternalCustomerOwnedTns, ExternalThirdPartyTns, ExternalCanadianTns, TollFreeTns, ExternalTollFreeTns'</td>
+  </tr>
+    <tr>
+    <td>12954</td>
+    <td>NNID '%s' is incorrect. It should be numeric</td>
+  </tr>
+    <tr>
+    <td>12955</td>
+    <td>NNID '%s' was not found in list of authorized NNIDs</td>
+  </tr>
+    <tr>
+    <td>12956</td>
+    <td>There should be one and only one default NNID per TN Type</td>
+  </tr>
+    <tr>
+    <td>12957</td>
+    <td>The Messaging Routes should not contain duplicate</td>
+  </tr>
+    <tr>
+    <td>12958</td>
+    <td>Invalid property name, valid values are: TPA, VENDORS, BWSPIDS, SBC_NODE_GROUPS, A2P_CLASSES, A2P_CAMPAIGN_IDS, BLOCKED_ACCOUNT, SYSTEM_EVENT_SUBSCRIPTIONS, PROXY_PEERS, NN_ROUTES, SETTINGS, MIGRATION_CONTROLS</td>
+  </tr>
+    <tr>
+    <td>12960</td>
+    <td>CallbackUrl and MsgCallbackUrl can't be present with different values. Only MsgCallbackUrl should be specified.</td>
+  </tr>
+    <tr>
+    <td>12961</td>
+    <td>Invalid HTTP method specified. GET or POST required</td>
+  </tr>
+    <tr>
+    <td>12962</td>
+    <td>%s is set but it is only allowed with ServiceType %s</td>
+  </tr>
+    <tr>
+    <td>12963</td>
+    <td>Callback Status URL is required for Callback Status Method</td>
+  </tr>
+    <tr>
+    <td>12964</td>
+    <td>Service Type of Application could not be changed</td>
+  </tr>
+    <tr>
+    <td>12965</td>
+    <td>There are more than one Network ID for account %s</td>
+  </tr>
+    <tr>
+    <td>12966</td>
+    <td>Failed to retrieve an idForNetwork while creating app</td>
+  </tr>
+    <tr>
+    <td>12967</td>
+    <td>Network Id for newly created app differs from Account one</td>
+  </tr>
+    <tr>
+    <td>12968</td>
+    <td>The %s Feature cannot be removed until the following Locations no longer have their VoiceProtocol set to HTTP: %s</td>
+  </tr>
+    <tr>
+    <td>12969</td>
+    <td>The %s Feature cannot be removed until the following Voice V2 Applications have been removed: %s</td>
+  </tr>
+    <tr>
+    <td>12970</td>
+    <td>Invalid SBC group id</td>
+  </tr>
+    <tr>
+    <td>12971</td>
+    <td>The SBC group %s already exists in the system</td>
+  </tr>
+    <tr>
+    <td>12972</td>
+    <td>The number of SBC nodes added %s exceeds the maximum value %s</td>
+  </tr>
+    <tr>
+    <td>12973</td>
+    <td>Invalid SBC system nodes</td>
+  </tr>
+    <tr>
+    <td>12974</td>
+    <td>Invalid Url provided.</td>
   </tr>
   </table>
 <h2>TerminationError</h2>
@@ -5833,6 +5933,30 @@
     <tr>
     <td>13645</td>
     <td>Please assign SMS or MM4 protocol to HTTP before associating the application to the location.</td>
+  </tr>
+    <tr>
+    <td>13646</td>
+    <td>%s are not allowed for HTTP Voice</td>
+  </tr>
+    <tr>
+    <td>13647</td>
+    <td>Voice protocol '%s' does not exist. Valid values: SIP, HTTP</td>
+  </tr>
+    <tr>
+    <td>13648</td>
+    <td>Application service type '%s' is not allowed for %s.</td>
+  </tr>
+    <tr>
+    <td>13649</td>
+    <td>Http settings are not allowed for  SIP protocol.</td>
+  </tr>
+    <tr>
+    <td>13643</td>
+    <td>Can not assign Http setting for SipPeer because Account %d does not have the '%s' Feature enabled.</td>
+  </tr>
+    <tr>
+    <td>13644</td>
+    <td>Can not remove location which has HTTP voice configured. Please switch it to SIP first.</td>
   </tr>
   </table>
 <h2>PotValidationError</h2>
