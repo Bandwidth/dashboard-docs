@@ -271,40 +271,122 @@ securitySchemes:
                                         </AlternateEndUserIdentifierResponse>
         /applications: 
             description: |
-                The application is a resource that will provide customers with ability to send and receive SMS and MMS to/from outside world using HTTP signalling.  This resource identifies the callback information required to contact the customer for the delivery of a message (or for other communication as required)
+                The application is a resource that provides customers with the ability to control messaging (SMS and MMS) and voice using HTTP signaling. This resource identifies the callback information used to notify the customer about voice and messaging events.
                 The application is represented by an application id.
                 The API calls that are used to manage the details of a customer-defined application are accessed through the /accounts/{accountId}/applications resource. <br>
+                <p>For ServiceType of Messaging-V2 <br>
+                  <ul>
+                    <li> MsgCallbackUrl (CallbackUrl - is deprecated) is required </li>
+                  </ul>
+                </p>
+                <p>For ServiceType of Voice-V2
+                  <ul>
+                    <li> CallInitiatedCallbackUrl - required for voice </li>
+                    <li> CallInitiatedMethod - optional for voice [POST|GET] default is POST if not specified</li>
+                    <li> CallStatusCallbackUrl - optional for voice </li>
+                    <li> CallStatusMethod - optional for voice [POST|GET] default is POST if not specified </li>
+                  </ul>
+                </p>
+                <p>CallbackCreds - can only be specified by External users
+                 <ul>
+                    <li> If you want credentials, both UserId and Password must be specified.</li>
+                    <li> If you do not want passwords, CallbackCreds should be omitted entirely.</li>
+                    <li> UserId and Password should have length between 6 and 63 symbols.</li>
+                  </ul>
+                </p>
             post:
-                description: Create an Application
+                description: Create an Application, CallbackUrl field is deprecated field, use MsgCallbackUrl instead
                 body:
                     application/xml:
                         example:
                             <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                            <!--Messaging-V2 application-->
                             <Application>
                               <ServiceType>Messaging-V2</ServiceType>
                               <AppName>EBVICs</AppName>
-                              <CallbackUrl>https://example.com</CallbackUrl>
+                              <MsgCallbackUrl>http://example.com</MsgCallbackUrl>
                               <CallbackCreds>
                                 <UserId>15jPWZmXdm</UserId>
                                 <Password>xxv3jPsPR2</Password>
                               </CallbackCreds>
+                            </Application>
+                            <!--Voice-V2 application-->
+                            <Application>
+                                <ServiceType>Voice-V2</ServiceType>
+                                <AppName>v1</AppName>
+                                <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+                                <CallInitiatedMethod>GET</CallInitiatedMethod>
+                                <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+                                <CallStatusMethod>GET</CallStatusMethod>
+                                <CallbackCreds>
+                                    <UserId>login123</UserId>
+                                    <Password>password123</Password>
+                                </CallbackCreds>
                             </Application>
                 responses:
                     201:
                         body:
                             application/xml:
                                 example:
+                                    <!--Messaging-V2 application-->
                                     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                                     <ApplicationProvisioningResponse>
                                       <Application>
-                                        <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
+                                        <ApplicationId>d4d1b41d-4c05-47d0-838a-34e4f14e4e3e</ApplicationId>
                                         <ServiceType>Messaging-V2</ServiceType>
                                         <AppName>EBVICs</AppName>
-                                        <CallbackUrl>https://example.com</CallbackUrl>
+                                        <MsgCallbackUrl>http://example.com</MsgCallbackUrl>
                                         <CallbackCreds>
                                           <UserId>15jPWZmXdm</UserId>
-                                        </CallbackCreds>
+                                          </CallbackCreds>
                                       </Application>
+                                    </ApplicationProvisioningResponse>
+                                    <!--Voice-V2 application-->
+                                    <ApplicationProvisioningResponse>
+                                        <Application>
+                                            <ApplicationId>d3e418e9-1833-49c1-b6c7-ca1700f79586</ApplicationId>
+                                            <ServiceType>Voice-V2</ServiceType>
+                                            <AppName>v1</AppName>
+                                            <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+                                            <CallInitiatedMethod>GET</CallInitiatedMethod>
+                                            <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+                                            <CallStatusMethod>GET</CallStatusMethod>
+                                            <CallbackCreds>
+                                                <UserId>login123</UserId>
+                                            </CallbackCreds>
+                                        </Application>
+                                    </ApplicationProvisioningResponse>
+            get:
+                description: |
+                    Lists all Applications<br>
+                    <p>For ServiceType of Messaging-V2 <br>
+                      <ul>
+                        <li> CallbackCreds Password is not returned in response for security reasons </li>
+                      </ul>
+                    </p>
+                responses:
+                    200:
+                        body:
+                            application/xml:
+                                example:
+                                    <ApplicationProvisioningResponse>
+                                        <ApplicationList>
+                                            <Application>
+                                                <ApplicationId>2cfcb382-161c-46d4-8c67-87ca09a72c85</ApplicationId>
+                                                <ServiceType>Messaging-V2</ServiceType>
+                                                <AppName>app1</AppName>
+                                                <MsgCallbackUrl>http://a.com</MsgCallbackUrl>
+                                            </Application>
+                                            <Application>
+                                                <ApplicationId>0cb0112b-5998-4c81-999a-0d3fb5e3f8e2</ApplicationId>
+                                                <ServiceType>Messaging-V2</ServiceType>
+                                                <AppName>app2</AppName>
+                                                <MsgCallbackUrl>http://b.com</MsgCallbackUrl>
+                                                <CallbackCreds>
+                                                    <UserId>15jPWZmXdm</UserId>
+                                                </CallbackCreds>
+                                            </Application>
+                                        </ApplicationList>
                                     </ApplicationProvisioningResponse>
             /{applicationId}:
               get:
@@ -320,7 +402,7 @@ securitySchemes:
                                         <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
                                         <ServiceType>Messaging-V2</ServiceType>
                                         <AppName>qMmmTT</AppName>
-                                        <CallbackUrl>https://example.com</CallbackUrl>
+                                        <MsgCallbackUrl>http://example.com</MsgCallbackUrl>
                                         <CallbackCreds>
                                           <UserId>15jPWZmXdm</UserId>
                                         </CallbackCreds>
@@ -329,22 +411,55 @@ securitySchemes:
               put:
                 description: |
                   Update an Application. <br>
-                  <h4>Considerations: </h4>
-                  A PUT that contains a CallbackCreds element with only a UserId will remove the password. <br>
-                  A PUT that contains a NULL or Empty CallbackCreds element will remove the credentials.
+                   <ul>
+                      <li> ServiceType can have value of Voice-V2 or Messaging-V2 but it can't be changed for existing application </li>
+                   </ul>
+                       <p>For ServiceType of Messaging-V2 <br>
+                         <ul>
+                           <li> MsgCallbackUrl (CallbackUrl - is deprecated) is required </li>
+                         </ul>
+                       </p>
+                       <p>For ServiceType of Voice-V2
+                         <ul>
+                           <li> CallInitiatedCallbackUrl - required for voice </li>
+                           <li> CallInitiatedMethod - optional for voice [POST|GET] default is POST if not specified</li>
+                           <li> CallStatusCallbackUrl - optional for voice </li>
+                           <li> CallStatusMethod - optional for voice [POST|GET] default is POST if not specified </li>
+                         </ul>
+                       </p>
+                       <p>CallbackCreds - can only be specified by External users
+                         <ul>
+                            <li> CallbackCreds with same UserId but different Password will change password</li>
+                            <li> If you want credentials, both UserId and Password must be specified.</li>
+                            <li> If you do not want passwords, CallbackCreds should be omitted entirely.</li>
+                            <li> UserId and Password should have length between 6 and 63 symbols.</li>
+                         </ul>
+                       </p>
                 body:
                      application/xml:
                          example:
                             <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                            <!--Messaging-V2 application-->
                             <Application>
-                              <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
-                              <ServiceType>Messaging-V2</ServiceType>
-                              <AppName>qMmmTT</AppName>
-                              <CallbackUrl>https://example.com</CallbackUrl>
-                              <CallbackCreds>
-                                <UserId>15jPWZmXdm</UserId>
-                                <Password>xxv3jPsPR2</Password>
-                              </CallbackCreds>
+                              <ServiceType>Voice-V2</ServiceType>
+                              <AppName>EBVICs</AppName>
+                              <CallInitiatedCallbackUrl>https://example2.com</CallInitiatedCallbackUrl>
+                              <CallInitiatedMethod>[GET|POST]</CallInitiatedMethod>
+                              <CallStatusCallbackUrl>https://example3.com</CallStatusCallbackUrl>
+                              <CallStatusMethod>[GET|POST]</CallStatusMethod>
+                            </Application>
+                            <!--Voice-V2 application-->
+                            <Application>
+                                <ServiceType>Voice-V2</ServiceType>
+                                <AppName>v1</AppName>
+                                <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+                                <CallInitiatedMethod>GET</CallInitiatedMethod>
+                                <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+                                <CallStatusMethod>GET</CallStatusMethod>
+                                <CallbackCreds>
+                                    <UserId>login123</UserId>
+                                    <Password>password123</Password>
+                                </CallbackCreds>
                             </Application>
                 responses:
                     200:
@@ -355,16 +470,20 @@ securitySchemes:
                                     <ApplicationProvisioningResponse>
                                       <Application>
                                         <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
-                                        <ServiceType>Messaging-V2</ServiceType>
-                                        <AppName>qMmmTT</AppName>
-                                        <CallbackUrl>https://example.com</CallbackUrl>
-                                        <CallbackCreds>
-                                          <UserId>15jPWZmXdm</UserId>
-                                        </CallbackCreds>
+                                        <ServiceType>Voice-V2</ServiceType>
+                                        <AppName>EBVICs</AppName>
+                                        <CallInitiatedCallbackUrl>https://example2.com</CallInitiatedCallbackUrl>
+                                        <CallInitiatedMethod>[GET|POST]</CallInitiatedMethod>
+                                        <CallStatusCallbackUrl>https://example3.com</CallStatusCallbackUrl>
+                                        <CallStatusMethod>[GET|POST]</CallStatusMethod>
                                       </Application>
                                     </ApplicationProvisioningResponse>
               patch:
-                description: Patch update an Application
+                description: |
+                 Patch update an Application<br>
+                  <ul>
+                   <li> CallStatusCallbackUrl can be removed by settings its value to 'remove'  </li>
+                  </ul>
                 body:
                      application/xml:
                          example:
@@ -381,16 +500,18 @@ securitySchemes:
                                     <ApplicationProvisioningResponse>
                                       <Application>
                                         <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
-                                        <ServiceType>Messaging-V2</ServiceType>
-                                        <AppName>XgRIdP</AppName>
-                                        <CallbackUrl>https://example.com</CallbackUrl>
-                                        <CallbackCreds>
-                                          <UserId>15jPWZmXdm</UserId>
-                                        </CallbackCreds>
+                                        <ServiceType>Voice-V2</ServiceType>
+                                        <AppName>EBVICs</AppName>
+                                        <CallInitiatedCallbackUrl>https://example2.com</CallInitiatedCallbackUrl>
+                                        <CallInitiatedMethod>[GET|POST]</CallInitiatedMethod>
+                                        <CallStatusCallbackUrl>https://example3.com</CallStatusCallbackUrl>
+                                        <CallStatusMethod>[GET|POST]</CallStatusMethod>
                                       </Application>
                                     </ApplicationProvisioningResponse>
               delete:
-                  description: Delete an Application
+                  description: |
+                         Delete an Application. <br>
+                         An Application cannot be removed from an account if that Application is referenced by any Location associated with the account.<br>
                   responses:
                       200:
                           body:
@@ -2423,12 +2544,12 @@ securitySchemes:
                             400:
                                 description: The TN List payload was malformed, and the list could not be processed.  No response payload is returned.
                 /history: 
-                    description: This resource retrieves the history of a bulk port-in order.
+                    description: This resource retrieves the history of a bulk port-in order. Obtaining history for a draft bulk port-in is not supported.
                     get:
-                        description: Retrieves the history of the specified bulk port-in order.
+                        description: Retrieves the history of the specified bulk port-in order. Obtaining history for a draft bulk port-in is not supported.
                         responses:
                             200:
-                                description: The history has been successfully retrieved and displayed in the payload.
+                                description: The history has been successfully retrieved and displayed in the payload. History is not supported for bulk port-ins in draft status.
                                 body:
                                     application/xml:
                                         example: |
@@ -2460,6 +2581,13 @@ securitySchemes:
                                                     <Difference>SubscriberType : "" --&gt; residential</Difference>
                                                 </OrderHistory>
                                             </OrderHistoryWrapper>
+                                            <!--The following response will be returned when the bulk port-in is in DRAFT state-->
+                                            <OrderHistoryWrapper>
+                                                <IrisStatus>
+                                                    <Code>7710</Code>
+                                                    <Description>History is not supported for bulk port-ins or individual port-ins in draft status.</Description>
+                                                </IrisStatus>
+                                            </OrderHistoryWrapper>
                             404:
                                 description: NOT FOUND - the order id does not exist in the system
                                 body:
@@ -2488,7 +2616,7 @@ securitySchemes:
                         <br>
                         The file upload is equivalent of the use of CURL to upload a file...<br>
                             <br>
-                        <code> curl -H 'Content-Type: {MIME Type}' --data-binary "@{Filename}" –iv {Base URL}/[portins | bulkPortins]/{order-id}/loas<br>
+                        <code> curl -H 'Content-Type: {MIME Type}' --data-binary "@{Filename}" –iv {Base URL}/[portins | bulkPortins | importtnorders]/{order-id}/loas<br>
                         </code>
                             <br>
                         an example for the upload of a pdf file is...<br>
@@ -4356,6 +4484,12 @@ securitySchemes:
                         example: REMOVE
                         enum: [IMPORT, REMOVE]
                         repeat: false
+                    loaType:
+                        description: whether or not the results should be restricted to CARRIER or SUBSCRIBER orders.  The Default value is "ALL"
+                        type: string
+                        example: SUBSCRIBER
+                        enum: [CARRIER, SUBSCRIBER, ALL]
+                        repeat: false
                 responses:
                     200:
                         description: |
@@ -4388,6 +4522,10 @@ securitySchemes:
                           <td>Action</td>
                           <td>(Required) Indentify the action on external TNs. Allowed values... IMPORT or REMOVE.</td>
                         </tr>
+                        <tr>
+                          <td>LoaType</td>
+                          <td>(Optional) Indentify the LoaType on external TNs. Allowed values... CARRIER or  SUBSCRIBER. Default value is CARRIER</td>
+                        </tr>
                       </tbody>
                     </table>
                 body:
@@ -4399,6 +4537,7 @@ securitySchemes:
                                 <SiteId>743</SiteId>
                                 <SipPeerId>303716</SipPeerId>
                                 <Action>[ IMPORT | REMOVE ]</Action>
+                                <LoaType>[ CARRIER | SUBSCRIBER ]</LoaType>
                                 <TelephoneNumbers>
                                     <TelephoneNumber>9199918388</TelephoneNumber>
                                     <TelephoneNumber>4158714245</TelephoneNumber>
@@ -4431,6 +4570,7 @@ securitySchemes:
                                                 <TelephoneNumber>4352154466</TelephoneNumber>
                                             </TelephoneNumbers>
                                             <Action>IMPORT</Action>
+                                            <LoaType>CARRIER</LoaType>
                                             <ProcessingStatus>RECEIVED</ProcessingStatus>
                                             <Errors/>
                                         </ExternalTnsOrder>
@@ -4478,6 +4618,7 @@ securitySchemes:
                                             <SiteId>743</SiteId>
                                             <SipPeerId>303716</SipPeerId>
                                             <Action>[ IMPORT | REMOVE ]</Action>
+                                            <LoaType>[ CARRIER | SUBSCRIBER ]</LoaType>
                                             <TelephoneNumbers>
                                                 <TelephoneNumber>9199918388</TelephoneNumber>
                                                 <TelephoneNumber>4158714245</TelephoneNumber>
@@ -4689,6 +4830,370 @@ securitySchemes:
                                             </SiteHost>
                                         </SiteHosts>
                                     </SiteHostsResponse>
+        /importTnOrders: 
+            description: |
+                The importtnorders endpoint is used to manage requests to import a number into the Bandwidth Dashboard API.  The importtnorders endpoint causes the creation of an <b>order</b> that is used to manage the import tn event throughout the lifecycle of the request.
+            get:
+                description: Retrieves the importtnorders requests for the given account ID.
+                queryParameters:
+                    status:
+                        description: The status of the importTnOrder being searched for.
+                        type: string
+                        example: PARTIAL
+                        enum: [PROCESSING, COMPLETE, PARTIAL, FAILED]
+                        repeat: true
+                    tn:
+                        description: A Telephone Number (TN) that is referenced in the order
+                        type: string
+                        example: 9199918388
+                    customerOrderId:
+                        description: The Customer Order ID is an ID assigned by the account owner to provide a reference number for the importTnOrder.
+                        type: string
+                        example: ABCCorp12345
+                    createdDateFrom:
+                        description: Checks the order's creation date against this value. Orders that have a creation date after this date will be included. Format is yyyy-MM-dd
+                        type: string
+                        example: 2013-10-22
+                    createdDateTo:
+                        description: Checks the order's creation date against this value. Orders that have a creation date before this date will be included. Format is yyyy-MM-dd
+                        type: string
+                        example: 2013-10-25
+                responses:
+                    200:
+                        description: The descriptive payload for the importTnOrders query provides information about the orders found by the query, including the data associated with the order, the state of the order, and a list of the successfully imported Telephone Numbers, and decriptions of any encountered errors. 
+                        body:
+                            application/xml:
+            post:
+                description: |
+                    Creates a importTnOrders request to add or remove telephone numbers under the given site ID and sippeer ID as specified in the body. Note: the attempt to import a telephone number that is already present in the account will *not* create an error, but will reset all of the  attributes of that telephone number in the Dashboard system as if the telephone number was being imported for the first time
+                    A successfully submitted order will have a status of "PROCESSING". A successfully completed order will have a status of "COMPLETE" if all of the telephone numbers were successfully imported and  "PARTIAL" if some of the telephone numbers were imported. A failed order with will have a staus of "FAILED" and no telephone numbers would have been imported. 
+                    The elements supplied in the payloads are described in the following table:
+                    <table border="1" cellspacing="0" cellpadding="0" width="624">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        <strong>Parameter</strong>
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p>
+                                        <strong>Required</strong>
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        <strong>Description</strong>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        accountId (URL Parameter)
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        The account ID for porting the numbers.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        CustomerOrderId
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        No
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Internal customer order id for tracking the order
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        Name
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Subscriber business / customer name.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        HouseNumber
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Street address number.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        StreetName
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Street name.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        City
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        City.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        StateCode
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Two letter state code.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        Zip
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Zip code.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        LoaAuthorizingPerson
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        First and last name of person who authorized LOA.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        TelephoneNumber
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Ten digit phone number with no dots or dashes. One or more is required. Use a PhoneNumber tag for each phone number in the list.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        SiteId
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        See section on Sites
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        SipPeerId
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        No
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        See section on SIP Peers
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                body:
+                    application/xml:
+                        example: |
+                            <ImportTnOrder>
+                                <CustomerOrderID>ICPA123ABC</CustomerOrderID>
+                                <SiteId>743</SiteId>
+                                <SipPeerId>303716</SipPeerId>
+                                <Subscriber>
+                                    <Name>ABC Inc.</Name>
+                                    <ServiceAddress>
+                                        <HouseNumber>11235</HouseNumber>
+                                        <StreetName>Back</StreetName>
+                                        <City>Denver</City>
+                                        <StateCode>CO</StateCode>
+                                        <Zip>27541</Zip>
+                                        <County>Canyon</County>
+                                    </ServiceAddress>
+                                </Subscriber>
+                                <LoaAuthorizingPerson>The Authguy</LoaAuthorizingPerson>
+                                <TelephoneNumbers>
+                                    <TelephoneNumber>9199918388</TelephoneNumber>
+                                    <TelephoneNumber>4158714245</TelephoneNumber>
+                                    <TelephoneNumber>4352154439</TelephoneNumber>
+                                    <TelephoneNumber>4352154466</TelephoneNumber>
+                                </TelephoneNumbers>
+                            </ImportTnOrder>
+                responses:
+                    201:
+                        description: The order has been created and an order ID will be specified in the payload and in the header.
+                        body:
+                            application/xml:
+                                example: 
+                                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                    <ImportTnOrderResponse>
+                                        <ImportTnOrder>
+                                            <CustomerOrderId>SJM000001</CustomerOrderId>
+                                            <OrderCreateDate>2018-01-20T02:59:54.000Z</OrderCreateDate>
+                                            <AccountId>9900012</AccountId>
+                                            <CreatedByUser>smckinnon</CreatedByUser>
+                                            <OrderId>b05de7e6-0cab-4c83-81bb-9379cba8efd0</OrderId>
+                                            <LastModifiedDate>2018-01-20T02:59:54.000Z</LastModifiedDate>
+                                            <SiteId>202</SiteId>
+                                            <SipPeerId>520565</SipPeerId>
+                                            <Subscriber>
+                                                <Name>ABC Inc.</Name>
+                                                <ServiceAddress>
+                                                    <HouseNumber>11235</HouseNumber>
+                                                    <StreetName>Back</StreetName>
+                                                    <City>Denver</City>
+                                                    <StateCode>CO</StateCode>
+                                                    <Zip>27541</Zip>
+                                                    <County>Canyon</County>
+                                                </ServiceAddress>
+                                            </Subscriber>
+                                            <LoaAuthorizingPerson>The Authguy</LoaAuthorizingPerson>
+                                            <TelephoneNumbers>
+                                                <TelephoneNumber>9199918388</TelephoneNumber>
+                                                <TelephoneNumber>4158714245</TelephoneNumber>
+                                                <TelephoneNumber>4352154439</TelephoneNumber>
+                                                <TelephoneNumber>4352154466</TelephoneNumber>
+                                            </TelephoneNumbers>
+                                            <ProcessingStatus>PROCESSING</ProcessingStatus>
+                                            <Errors/>
+                                        </ImportTnOrder>
+                                    </ImportTnOrderResponse>
+                    400:
+                        description: The order failed; one of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element.
+                        body:
+                            application/xml:
+                                example: 
+                                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                    <ImportTnOrderResponse>
+                                        <ProcessingStatus>FAILED</ProcessingStatus>
+                                        <Errors>
+                                            <Code>7309</Code>
+                                            <Description>The site id was not supplied or is invalid.</Description>
+                                        </Errors>
+                                        <Errors>
+                                            <Code>7312</Code>
+                                            <Description>The sippeer id is invalid.</Description>
+                                        </Errors>
+                                    </ImportTnOrderResponse>
+            /{orderid}: 
+                description: |
+                    This API returns data about the specific importTnOrder id specified as the resource
+                get:
+                    description: Retrieve information about a importTnOrder with specified ID.
+                    responses:
+                        200:
+                            description: The information has been successfully retrieved and displayed in the payload.
+                            body:
+                                application/xml:
+                /history: 
+                    description: This resource retrieves the history of a importTnOrder. 
+                    get:
+                        description: Retrieves the history of the specified importTnOrder.
+                        responses:
+                            200:
+                                description: The history has been successfully retrieved and displayed in the payload.
+                                body:
+                                    application/xml:
         /inserviceNumbers: 
             description: |
                 This API call will find the in-service numbers on the indicated account. <br>
@@ -8129,9 +8634,9 @@ securitySchemes:
                             204:
                                 description: No Content - there are no Notes associated with the order.  Since the notes resource is an aggregate rather than addressed resource the generic no content response is used, rather than a 404 as would be used if the resource was addressed with an identifier
                 /history: 
-                    description: This resource retrieves the history of a port-in order. 
+                    description: This resource retrieves the history of a port-in order. Obtaining history for a draft port-in is not supported.
                     get:
-                        description: Retrieves the history of the specified port-in order.
+                        description: Retrieves the history of the specified port-in order. Obtaining history for a draft port-in is not supported.
                         responses:
                             200:
                                 description: The history has been successfully retrieved and displayed in the payload.
@@ -8170,6 +8675,13 @@ securitySchemes:
                                                     <Author>System</Author>
                                                     <Status>COMPLETE</Status>
                                                 </OrderHistory>
+                                            </OrderHistoryWrapper>
+                                            <!--The following response will be returned when the port-in is in DRAFT state-->
+                                            <OrderHistoryWrapper>
+                                                <IrisStatus>
+                                                    <Code>7710</Code>
+                                                    <Description>History is not supported for bulk port-ins or individual port-ins in draft status.</Description>
+                                                </IrisStatus>
                                             </OrderHistoryWrapper>
                             404:
                                 description: NOT FOUND - the order id does not exist in the system
@@ -8288,7 +8800,7 @@ securitySchemes:
                         <br>
                         The file upload is equivalent of the use of CURL to upload a file...<br>
                             <br>
-                        <code> curl -H 'Content-Type: {MIME Type}' --data-binary "@{Filename}" –iv {Base URL}/[portins | bulkPortins]/{order-id}/loas<br>
+                        <code> curl -H 'Content-Type: {MIME Type}' --data-binary "@{Filename}" –iv {Base URL}/[portins | bulkPortins | importtnorders]/{order-id}/loas<br>
                         </code>
                             <br>
                         an example for the upload of a pdf file is...<br>
@@ -8647,6 +9159,9 @@ securitySchemes:
                                         <Products>
                                             <Product>
                                                 <Name>Termination</Name>
+                                                <Features>
+                                                    <Feature>TermHttpVoice</Feature>
+                                                </Features>
                                             </Product>
                                             <Product>
                                                 <Name>VirtualInventory</Name>
@@ -8660,6 +9175,7 @@ securitySchemes:
                                                     <Feature>CallForwarding</Feature>
                                                     <Feature>DlDa</Feature>
                                                     <Feature>CNAM</Feature>
+                                                    <Feature>OrigHttpVoice</Feature>
                                                 </Features>
                                             </Product>
                                             <Product>
@@ -8686,6 +9202,184 @@ securitySchemes:
                                             </Product>
                                         </Products>
                                     </AccountProductsResponse>
+        /removeImportedTnOrders: 
+            description: |
+                The removeImportedTnOrders endpoint is used to manage requests to remove an imported number into the Bandwidth Dashboard API.  The removeImportedTnOrders endpoint causes the creation of an <b>order</b> that is used to manage the remove imported tn event throughout the lifecycle of the request.
+            get:
+                description: Retrieves the removeImportedTnOrders requests for the given account ID.
+                queryParameters:
+                    status:
+                        description: The status of the removeImportedTnOrders being searched for.
+                        type: string
+                        example: PARTIAL
+                        enum: [PROCESSING, COMPLETE, PARTIAL, FAILED]
+                        repeat: true
+                    tn:
+                        description: A Telephone Number (TN) that is referenced in the order
+                        type: string
+                        example: 9199918388
+                    customerOrderId:
+                        description: The Customer Order ID is an ID assigned by the account owner to provide a reference number for the removeImportedTnOrders.
+                        type: string
+                        example: ABCCorp12345
+                    createdDateFrom:
+                        description: Checks the order's creation date against this value. Orders that have a creation date after this date will be included. Format is yyyy-MM-dd
+                        type: string
+                        example: 2013-10-22
+                    createdDateTo:
+                        description: Checks the order's creation date against this value. Orders that have a creation date before this date will be included. Format is yyyy-MM-dd
+                        type: string
+                        example: 2013-10-25
+                responses:
+                    200:
+                        description: The descriptive payload for the removeImportedTnOrders query provides information about the orders found by the query, including the data associated with the order, the state of the order, and a list of the successfully removed Telephone Numbers, and decriptions of any encountered errors.
+                        body:
+                            application/xml:
+            post:
+                description: |
+                    Creates a removeImportedTnOrders request to remove imported telephone numbers from the given site ID and sippeer ID as specified in the body. A successfully submitted order will have a status of "PROCESSING". A successfully completed order will have a status of "COMPLETE" if all of the telephone numbers were successfully removed and  "PARTIAL" if some of the telephone numbers were removed. A failed order with will have a staus of "FAILED" and no telephone numbers would have been removed.
+                    The elements supplied in the payloads are described in the following table:
+                    <table border="1" cellspacing="0" cellpadding="0" width="624">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        <strong>Parameter</strong>
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p>
+                                        <strong>Required</strong>
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        <strong>Description</strong>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        accountId (URL Parameter)
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        The account ID for porting the numbers.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        CustomerOrderId
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        No
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Internal customer order id for tracking the order
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <p>
+                                        TelephoneNumber
+                                    </p>
+                                </td>
+                                <td valign="top">
+                                    <p align="center">
+                                        Yes
+                                    </p>
+                                </td>
+                                <td width="351" valign="top">
+                                    <p>
+                                        Ten digit phone number with no dots or dashes. One or more is required. Use a PhoneNumber tag for each phone number in the list.
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                body:
+                    application/xml:
+                        example: |
+                            <RemoveImportedTnOrder>
+                                <CustomerOrderID>ICPA123ABC</CustomerOrderID>
+                                <TelephoneNumbers>
+                                    <TelephoneNumber>9199918388</TelephoneNumber>
+                                    <TelephoneNumber>4158714245</TelephoneNumber>
+                                    <TelephoneNumber>4352154439</TelephoneNumber>
+                                    <TelephoneNumber>4352154466</TelephoneNumber>
+                                </TelephoneNumbers>
+                            </RemoveImportedTnOrder>
+                responses:
+                    201:
+                        description: The order has been created and an order ID will be specified in the payload and in the header.
+                        body:
+                            application/xml:
+                                example: 
+                                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                    <RemoveImportedTnOrderResponse>
+                                        <RemoveImportedTnOrder>
+                                            <CustomerOrderId>SJM000001</CustomerOrderId>
+                                            <OrderCreateDate>2018-01-20T02:59:54.000Z</OrderCreateDate>
+                                            <AccountId>9900012</AccountId>
+                                            <CreatedByUser>smckinnon</CreatedByUser>
+                                            <OrderId>b05de7e6-0cab-4c83-81bb-9379cba8efd0</OrderId>
+                                            <LastModifiedDate>2018-01-20T02:59:54.000Z</LastModifiedDate>
+                                            <TelephoneNumbers>
+                                                <TelephoneNumber>9199918388</TelephoneNumber>
+                                                <TelephoneNumber>4158714245</TelephoneNumber>
+                                                <TelephoneNumber>4352154439</TelephoneNumber>
+                                                <TelephoneNumber>4352154466</TelephoneNumber>
+                                            </TelephoneNumbers>
+                                            <ProcessingStatus>PROCESSING</ProcessingStatus>
+                                            <Errors/>
+                                        </RemoveImportedTnOrder>
+                                    </RemoveImportedTnOrderResponse>
+                    400:
+                        description: The order failed; one of the input parameters is invalid. The error text and an error code will be provided in the ErrorList element.
+                        body:
+                            application/xml:
+                                example: 
+                                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                    <RemoveImportedTnOrderResponse>
+                                        <ProcessingStatus>FAILED</ProcessingStatus>
+                                        <Errors>
+                                            <Code>1234</Code>
+                                            <Description>The customer order id is invalid.</Description>
+                                        </Errors>
+                                    </RemoveImportedTnOrderResponse>
+            /{orderid}: 
+                description: |
+                    This API returns data about the specific removeImportedTnOrder id specified as the resource
+                get:
+                    description: Retrieve information about a removeImportedTnOrder with specified ID.
+                    responses:
+                        200:
+                            description: The information has been successfully retrieved and displayed in the payload.
+                            body:
+                                application/xml:
+                /history: 
+                    description: This resource retrieves the history of a removeImportedTnOrder.
+                    get:
+                        description: Retrieves the history of the specified removeImportedTnOrder.
+                        responses:
+                            200:
+                                description: The history has been successfully retrieved and displayed in the payload.
+                                body:
+                                    application/xml:
         /reports: 
             description: |
                 Bandwidth provides a reporting infrastructure that will allow the creation
@@ -9511,6 +10205,11 @@ securitySchemes:
                         example: true
                     sipPeerDetails:
                         description: Provides response payload with list of detailed information about every SipPeer for every Site on Account if specified as true
+                        type: boolean
+                        default: false
+                        example: true
+                    summary:
+                        description: Provides response payload with list of basic information about every SipPeer for every Site on Account if specified as true. If true, overrides sipPeerDetails parameter.
                         type: boolean
                         default: false
                         example: true
@@ -10496,22 +11195,26 @@ securitySchemes:
                                                         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                                                         <SipPeerOriginationSettingsResponse>
                                                           <SipPeerOriginationSettings>
+                                                            <VoiceProtocol>HTTP</VoiceProtocol>
                                                             <HttpSettings>
-                                                              <VoiceV2ProxyPeerId>500166</VoiceV2ProxyPeerId>
                                                               <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
                                                             </HttpSettings>
                                                           </SipPeerOriginationSettings>
                                                         </SipPeerOriginationSettingsResponse>
                                 post:
                                     description: |
-                                        Set sippeer origination settings
+                                        Set sippeer origination settings<br>
+                                        <ul>
+                                            <li>VoiceProtocol is required with possible values: HTTP, SIP</li>
+                                            <li>HttpSettings and HttpVoiceV2AppId are optional fields and only allowed if VoiceProtocol is HTTP</li>
+                                        </ul>
                                     body:
                                         application/xml:
                                             example: |
                                                 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
                                                 <SipPeerOriginationSettings>
+                                                  <VoiceProtocol>HTTP</VoiceProtocol>
                                                   <HttpSettings>
-                                                    <VoiceV2ProxyPeerId>500166</VoiceV2ProxyPeerId>
                                                     <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
                                                   </HttpSettings>
                                                 </SipPeerOriginationSettings>
@@ -10524,8 +11227,8 @@ securitySchemes:
                                                         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                                                         <SipPeerOriginationSettingsResponse>
                                                           <SipPeerOriginationSettings>
+                                                            <VoiceProtocol>HTTP</VoiceProtocol>
                                                             <HttpSettings>
-                                                              <VoiceV2ProxyPeerId>500166</VoiceV2ProxyPeerId>
                                                               <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
                                                             </HttpSettings>
                                                           </SipPeerOriginationSettings>
@@ -10547,17 +11250,104 @@ securitySchemes:
                                                             </ResponseStatus>
                                                         </SipPeerSmsFeatureResponse>
                                 put:
-                                    description: update origination settings
+                                    description: |
+                                         update origination settings<br>
+                                         <ul>
+                                            <li>VoiceProtocol is required with possible values: HTTP, SIP</li>
+                                            <li>HttpSettings and HttpVoiceV2AppId are optional fields and only allowed if VoiceProtocol is HTTP</li>
+                                         </ul>
                                     body:
                                         application/json:
                                             example: |
                                                 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
                                                 <SipPeerOriginationSettings>
+                                                  <VoiceProtocol>HTTP</VoiceProtocol>
                                                   <HttpSettings>
-                                                    <VoiceV2ProxyPeerId>500165</VoiceV2ProxyPeerId>
                                                     <HttpVoiceV2AppId>867b923b-8a92-4579-b29b-405f165b8124</HttpVoiceV2AppId>
                                                   </HttpSettings>
                                                 </SipPeerOriginationSettings>
+                                    responses:
+                                        200:
+                                            description: settings were successfully updated
+                            /termination/settings: 
+                                get:
+                                    description: |
+                                        Retrieve termination settings for sippeer
+                                    responses:
+                                        200:
+                                            description: A successful result that contains the response data
+                                            body:
+                                                application/xml:
+                                                    example: |
+                                                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                                        <SipPeerTerminationSettingsResponse>
+                                                          <SipPeerTerminationSettings>
+                                                            <VoiceProtocol>HTTP</VoiceProtocol>
+                                                            <HttpSettings>
+                                                              <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
+                                                            </HttpSettings>
+                                                          </SipPeerTerminationSettings>
+                                                        </SipPeerTerminationSettingsResponse>
+                                post:
+                                    description: |
+                                        Set sippeer termination settings<br>
+                                        <ul>
+                                            <li>VoiceProtocol is required with possible values: HTTP, SIP</li>
+                                            <li>HttpSettings and HttpVoiceV2AppId are optional fields and only allowed if VoiceProtocol is HTTP</li>
+                                        </ul>
+                                    body:
+                                        application/xml:
+                                            example: |
+                                                <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                                                <SipPeerTerminationSettings>
+                                                  <VoiceProtocol>HTTP</VoiceProtocol>
+                                                  <HttpSettings>
+                                                    <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
+                                                  </HttpSettings>
+                                                </SipPeerTerminationSettings>
+                                    responses:
+                                        201:
+                                            description: setting were successfully added
+                                            body:
+                                                application/xml:
+                                                    example: |
+                                                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                                        <SipPeerTerminationSettingsResponse>
+                                                          <SipPeerTerminationSettings>
+                                                            <VoiceProtocol>HTTP</VoiceProtocol>
+                                                            <HttpSettings>
+                                                              <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
+                                                            </HttpSettings>
+                                                          </SipPeerTerminationSettings>
+                                                        </SipPeerTerminationSettingsResponse>
+                                        400:
+                                            description: |
+                                                Bad Request. Possible errors in response:
+                                                <ul>
+                                                   <li>Account level settings don`t exist</li>
+                                                </ul>
+                                            body:
+                                                application/xml:
+                                                    example: |
+                                                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                                        <SipPeerSmsFeatureResponse>
+                                                            <ResponseStatus>
+                                                                <ErrorCode>13609</ErrorCode>
+                                                                <Description>Can't create sip peer http protocol sms feature without account level http settings.</Description>
+                                                            </ResponseStatus>
+                                                        </SipPeerSmsFeatureResponse>
+                                put:
+                                    description: update termination settings
+                                    body:
+                                        application/json:
+                                            example: |
+                                                <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                                                <SipPeerTerminationSettings>
+                                                  <VoiceProtocol>HTTP</VoiceProtocol>
+                                                  <HttpSettings>
+                                                    <HttpVoiceV2AppId>867b923b-8a92-4579-b29b-405f165b8124</HttpVoiceV2AppId>
+                                                  </HttpSettings>
+                                                </SipPeerTerminationSettings>
                                     responses:
                                         200:
                                             description: settings were successfully updated
