@@ -31,6 +31,7 @@ securitySchemes:
                                         <CompanyName>CWI Hosting</CompanyName>
                                         <AccountType>Business</AccountType>
                                         <NenaId></NenaId>
+                                        <CustomerSegment>Trial</CustomerSegment>
                                         <Tiers>
                                             <Tier>0</Tier>
                                         </Tiers>
@@ -312,16 +313,16 @@ securitySchemes:
                             </Application>
                             <!--Voice-V2 application-->
                             <Application>
-                                <ServiceType>Voice-V2</ServiceType>
-                                <AppName>v1</AppName>
-                                <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
-                                <CallInitiatedMethod>GET</CallInitiatedMethod>
-                                <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
-                                <CallStatusMethod>GET</CallStatusMethod>
-                                <CallbackCreds>
-                                    <UserId>login123</UserId>
-                                    <Password>password123</Password>
-                                </CallbackCreds>
+                              <ServiceType>Voice-V2</ServiceType>
+                              <AppName>v1</AppName>
+                              <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+                              <CallInitiatedMethod>GET</CallInitiatedMethod>
+                              <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+                              <CallStatusMethod>GET</CallStatusMethod>
+                              <CallbackCreds>
+                                <UserId>login123</UserId>
+                                <Password>password123</Password>
+                              </CallbackCreds>
                             </Application>
                 responses:
                     201:
@@ -343,23 +344,23 @@ securitySchemes:
                                     </ApplicationProvisioningResponse>
                                     <!--Voice-V2 application-->
                                     <ApplicationProvisioningResponse>
-                                        <Application>
-                                            <ApplicationId>d3e418e9-1833-49c1-b6c7-ca1700f79586</ApplicationId>
-                                            <ServiceType>Voice-V2</ServiceType>
-                                            <AppName>v1</AppName>
-                                            <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
-                                            <CallInitiatedMethod>GET</CallInitiatedMethod>
-                                            <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
-                                            <CallStatusMethod>GET</CallStatusMethod>
-                                            <CallbackCreds>
-                                                <UserId>login123</UserId>
-                                            </CallbackCreds>
-                                        </Application>
+                                      <Application>
+                                        <ApplicationId>d3e418e9-1833-49c1-b6c7-ca1700f79586</ApplicationId>
+                                        <ServiceType>Voice-V2</ServiceType>
+                                        <AppName>v1</AppName>
+                                        <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+                                        <CallInitiatedMethod>GET</CallInitiatedMethod>
+                                        <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+                                        <CallStatusMethod>GET</CallStatusMethod>
+                                        <CallbackCreds>
+                                          <UserId>login123</UserId>
+                                        </CallbackCreds>
+                                      </Application>
                                     </ApplicationProvisioningResponse>
             get:
                 description: |
                     Lists all Applications<br>
-                    <p>For ServiceType of Messaging-V2 <br>
+                    <p><br>
                       <ul>
                         <li> CallbackCreds Password is not returned in response for security reasons </li>
                       </ul>
@@ -370,23 +371,23 @@ securitySchemes:
                             application/xml:
                                 example:
                                     <ApplicationProvisioningResponse>
-                                        <ApplicationList>
-                                            <Application>
-                                                <ApplicationId>2cfcb382-161c-46d4-8c67-87ca09a72c85</ApplicationId>
-                                                <ServiceType>Messaging-V2</ServiceType>
-                                                <AppName>app1</AppName>
-                                                <MsgCallbackUrl>http://a.com</MsgCallbackUrl>
-                                            </Application>
-                                            <Application>
-                                                <ApplicationId>0cb0112b-5998-4c81-999a-0d3fb5e3f8e2</ApplicationId>
-                                                <ServiceType>Messaging-V2</ServiceType>
-                                                <AppName>app2</AppName>
-                                                <MsgCallbackUrl>http://b.com</MsgCallbackUrl>
-                                                <CallbackCreds>
-                                                    <UserId>15jPWZmXdm</UserId>
-                                                </CallbackCreds>
-                                            </Application>
-                                        </ApplicationList>
+                                      <ApplicationList>
+                                        <Application>
+                                          <ApplicationId>2cfcb382-161c-46d4-8c67-87ca09a72c85</ApplicationId>
+                                          <ServiceType>Messaging-V2</ServiceType>
+                                          <AppName>app1</AppName>
+                                          <MsgCallbackUrl>http://a.com</MsgCallbackUrl>
+                                        </Application>
+                                        <Application>
+                                          <ApplicationId>0cb0112b-5998-4c81-999a-0d3fb5e3f8e2</ApplicationId>
+                                          <ServiceType>Voice-V2</ServiceType>
+                                          <AppName>app2</AppName>
+                                          <CallInitiatedCallbackUrl>http://b.com</CallInitiatedCallbackUrl>
+                                          <CallbackCreds>
+                                            <UserId>15jPWZmXdm</UserId>
+                                          </CallbackCreds>
+                                        </Application>
+                                      </ApplicationList>
                                     </ApplicationProvisioningResponse>
             /{applicationId}:
               get:
@@ -397,12 +398,25 @@ securitySchemes:
                             application/xml:
                                 example:
                                     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                    <!--Messaging-V2 application example-->
                                     <ApplicationProvisioningResponse>
                                       <Application>
                                         <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
                                         <ServiceType>Messaging-V2</ServiceType>
                                         <AppName>qMmmTT</AppName>
                                         <MsgCallbackUrl>http://example.com</MsgCallbackUrl>
+                                        <CallbackCreds>
+                                          <UserId>15jPWZmXdm</UserId>
+                                        </CallbackCreds>
+                                      </Application>
+                                    </ApplicationProvisioningResponse>
+                                    <!--Voice-V2 application example-->
+                                    <ApplicationProvisioningResponse>
+                                      <Application>
+                                        <ApplicationId>e5a9e103-097e-4ec4-87a0-50109fb7b4b1</ApplicationId>
+                                        <ServiceType>Voice-V2</ServiceType>
+                                        <AppName>qMmmTT</AppName>
+                                        <CallInitiatedCallbackUrl>http://example.com</CallInitiatedCallbackUrl>
                                         <CallbackCreds>
                                           <UserId>15jPWZmXdm</UserId>
                                         </CallbackCreds>
@@ -450,16 +464,16 @@ securitySchemes:
                             </Application>
                             <!--Voice-V2 application-->
                             <Application>
-                                <ServiceType>Voice-V2</ServiceType>
-                                <AppName>v1</AppName>
-                                <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
-                                <CallInitiatedMethod>GET</CallInitiatedMethod>
-                                <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
-                                <CallStatusMethod>GET</CallStatusMethod>
-                                <CallbackCreds>
-                                    <UserId>login123</UserId>
-                                    <Password>password123</Password>
-                                </CallbackCreds>
+                              <ServiceType>Voice-V2</ServiceType>
+                              <AppName>v1</AppName>
+                              <CallInitiatedCallbackUrl>https://a.com</CallInitiatedCallbackUrl>
+                              <CallInitiatedMethod>GET</CallInitiatedMethod>
+                              <CallStatusCallbackUrl>https://b.com</CallStatusCallbackUrl>
+                              <CallStatusMethod>GET</CallStatusMethod>
+                              <CallbackCreds>
+                                <UserId>login123</UserId>
+                                <Password>password123</Password>
+                              </CallbackCreds>
                             </Application>
                 responses:
                     200:
@@ -1872,7 +1886,7 @@ securitySchemes:
                         example: 2014-08-05
                     modifiedDateTo:
                         description: |
-                            The latest date that the order was last modified. If no modifiedDateTo is specified when a modifiedDateFrom is specified then 'now' will be presumed to be the modifiedDateTo
+                            The latest date that the order was last modified. If modified date is not earlier than today - response poyload will contain it's subtending portins. If no modifiedDateTo is specified when a modifiedDateFrom is specified then 'now' will be presumed to be the modifiedDateTo
                         type: date
                         example: 2014-08-05
                     orderDetails:
@@ -1900,6 +1914,10 @@ securitySchemes:
                                             <RequestedFocDate>2016-03-25T21:15:00.000Z</RequestedFocDate>
                                             <CustomerOrderId>SJM00002</CustomerOrderId>
                                             <LoaAuthorizingPerson>The Authguy</LoaAuthorizingPerson>
+                                            <PortinList>
+                                                <PortinOrderId>10f48fec-9db0-4f68-8bcb-c8a6a230a2d9</PortinOrderId>
+                                                <PortinOrderId>059cf2d9-a004-4a88-866c-082c97fb7d5f</PortinOrderId>
+                                            </PortinList>
                                             <Subscriber>
                                                 <SubscriberType>[RESIDENTIAL|BUSINESS]</SubscriberType>
                                                 <FirstName>First</FirstName>
@@ -1922,7 +1940,6 @@ securitySchemes:
                                                 <TnAttribute>Protected</TnAttribute>
                                             </TnAttributes>
                                             <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                            <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                             <SiteId>2857</SiteId>
                                             <PeerId>317771</PeerId>
                                         </BulkPortinResponse>
@@ -2010,7 +2027,6 @@ securitySchemes:
                                                 <TnAttribute>Protected</TnAttribute>
                                             </TnAttributes>
                                             <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                            <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                             <SiteId>2857</SiteId>
                                             <PeerId>317771</PeerId>
                                         </BulkPortin>
@@ -2069,7 +2085,6 @@ securitySchemes:
                                                     <TnAttribute>Protected</TnAttribute>
                                                 </TnAttributes>
                                                 <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                                <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                                 <SiteId>2857</SiteId>
                                                 <PeerId>317771</PeerId>
                                             </BulkPortin>
@@ -2151,7 +2166,6 @@ securitySchemes:
                                                     <TnAttribute>Protected</TnAttribute>
                                                 </TnAttributes>
                                                 <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                                <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                                 <SiteId>2857</SiteId>
                                                 <PeerId>317771</PeerId>
                                             </BulkPortin>
@@ -2267,7 +2281,6 @@ securitySchemes:
                                                     <TnAttribute>Protected</TnAttribute>
                                                 </TnAttributes>
                                                 <BillingTelephoneNumber>9195551234</BillingTelephoneNumber>
-                                                <NewBillingTelephoneNumber>9175131245</NewBillingTelephoneNumber>
                                                 <SiteId>2857</SiteId>
                                                 <PeerId>317771</PeerId>
                                             </BulkPortin>
@@ -3210,6 +3223,10 @@ securitySchemes:
                           <td>Address</td>
                           <td>This field is required. Inner fields: HousePrefix, HouseNumber, HouseSuffix, PreDirectional, StreetName, StreetSuffix, PostDirectional, AddressLine2, City, StateCode, Zip, PlusFour and AddressType=DLDA.<br>City, HouseNumber, StreetName, City, State and Zipcode are required fields.</td>
                         </tr>
+                        <tr>
+                          <td>CustomerOrderId</td>
+                          <td>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
+                        </tr>
                       </tbody>
                     </table>
                     <b>Business Listings...</b> <br>Business Listings sort differently than Residential Listings, and must be submitted accordingly.  Since Business Listings sort starting at the beginning of the name, where Residential Listings sort on Last Name, the parts of the business name that will govern the sorting need to be entered in the LastName field.  For example, Joe's Pizza sorts starting with Joe, so the entire business name would be entered in the LastName field, and the Firstname could be left blank.  If there was a portion of the name that was not important from a sorting perspective (perhaps "the best pizza in town"), that portion could be placed in the FirstName field.<br>
@@ -3495,6 +3512,10 @@ securitySchemes:
                                   <td>Address</td>
                                   <td>This field is required. Inner fields: HousePrefix, HouseNumber, HouseSuffix, PreDirectional, StreetName, StreetSuffix, PostDirectional, AddressLine2, City, StateCode, Zip, PlusFour, AddressType</td>
                                 </tr>
+                                <tr>
+                                  <td>CustomerOrderId</td>
+                                  <td>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
+                                </tr>
                               </tbody>
                             </table>
                     body:
@@ -3683,20 +3704,31 @@ securitySchemes:
                                             </DldaOrderReportResponse>
         /e911s: 
             description: |
-                The E911s Resource represents the requests made to the Bandwidth Dashboard API to add or otherwise manage a request to associate a postal address with an endpoint (a telephone number, ACID (alternate caller identifier), or some other unique identifier . This API allows the creation and observation of a "E911" work order that causes an update of a address information in a network database.<br><br>
+                The E911s Resource represents the requests made to the Bandwidth Dashboard API to add or otherwise manage a request to associate a postal address with an endpoint (a telephone number, ACID (alternate caller identifier), or some other unique identifier. This API allows the creation and observation of a "E911" work order that causes an update of a address information in a network database.<br><br>
                 The E911 order processing model is consistent with the overall model of creating an order or request with the initial POST, and then checking on the status of that order using callbacks and / or GET while that order progresses through the various steps in the process.<br><br>
-                The E911 order supports several 911 use cases:<br>
+                The E911 order supports several 911 use cases:
                 <ol>
-                  <li><strong>CONVENTIONAL e911</strong> - Telephone number/address combination - For UC Trunking and most applicable wholesale customers, this method associates a telephone number in the customer’s Bandwidth Dashboard API TN inventory to a postal address. Caller name can also be specified in the request. At 911 call time, the address that is associated with the telephone number in the SIP 'from' header will be seen by the Public Safety Answering Point (PSAP).</li>
-                  <li><strong>PIDF-LO</strong> (aka Presence Information Data Format-Location Object or Dynamic Location Routing) endpoints and addresses - For customers utilizing Bandwidth’s Dynamic Louting Routing capability, addresses are first added to an "address pool", then endpoints are provisioned using one of the addresses as a default for taxation purposes. Each endpoint is represented by an Alternate End User Identifier consisting of a unique identifier (could be TN, ACID, or other identifier), callback number and caller name (if not being passed in at 911 call time), and preferred language (French or English, with English as the default). At 911 call time, the customer can pass any address in the SIP header of the call and the sip 'from' header will contain the identifier of the endpoint. If the address in the call matches an address in the address pool, then the call is routed to the PSAP. Otherwise, the call is routed to an Emergency Call Center.</li>
-                  <li><strong>SIMPLE AEUI</strong> - This is similar to telephone number/address combination in that there is a 1 to 1 mapping between endpoint and address. Each endpoint is represented by an Alternate End User Identifier(AEUI) consisting of a unique identifier and callback number. At 911 call time, the endpoint identifier is passed in the SIP from header and the address that is associated with that endpoint will be seen by the PSAP.</li>
+                  <li><strong>CONVENTIONAL E911: </strong><br>
+                    Telephone number/address combination. For UC Trunking and most applicable wholesale customers, this method associates a telephone number in the customer’s Bandwidth Dashboard API TN inventory to a postal address. Caller name can also be specified in the request.
+                    At 911 call time, the address that is associated with the telephone number in the SIP 'from' header will be seen by the Public Safety Answering Point (PSAP).
+                  </li>
+                  <li><strong>PIDF-LO (Presence Information Data Format-Location Object or Dynamic Location Routing) Endpoints and Addresses: </strong><br>
+                    For customers utilizing Bandwidth’s Dynamic Routing capability, addresses are first added to an "address pool", then endpoints are provisioned using one of the addresses as a default for taxation purposes.
+                    Each endpoint is represented by an Alternate End User Identifier consisting of a unique identifier (could be TN, ACID, or other identifier), callback number and caller name (if not being passed in at 911 call time), and preferred language (French or English, with English as the default).
+                    At 911 call time, the customer can pass any address in the SIP header of the call and the sip 'from' header will contain the identifier of the endpoint.
+                    If the address in the call matches an address in the address pool, then the call is routed to the PSAP. Otherwise, the call is routed to an Emergency Call Center.
+                  </li>
+                  <li><strong>SIMPLE AEUI: </strong>
+                    This is similar to telephone number/address combination in that there is a 1 to 1 mapping between endpoint and address. Each endpoint is represented by an Alternate End User Identifier(AEUI) consisting of a unique identifier and callback number.
+                    At 911 call time, the endpoint identifier is passed in the SIP from header and the address that is associated with that endpoint will be seen by the PSAP.
+                  </li>
                 </ol>
-                The states that the order may reside in are...
-                RECEIVED, PROCESSING, COMPLETE, PARTIAL, FAILED, ADJUSTED\_COMPLETE, and ADJUSTED\_PARTIAL
-                where the "ADJUSTED" indicates that the provisioning was successful, but that the street address was subtly changed to reflect a geocodable address. As in other order-types, PARTIAL indicates that there were some errors detected, but that all elements of the order that could be processed were processed. In this case, the order record will need to be examined to determine the items that failed.
+                The states that the order may reside in are <b>RECEIVED</b>, <b>PROCESSING</b>, <b>COMPLETE</b>, <b>PARTIAL</b>, <b>FAILED</b>, <b>ADJUSTED\_COMPLETE</b>, and <b>ADJUSTED\_PARTIAL</b>.<br>
+                "ADJUSTED" indicates that the provisioning was successful, but that the street address was subtly changed to reflect a geocodable address.
+                As with other order types, PARTIAL indicates that there were some errors detected, but that all elements of the order that could be processed were processed.
+                In this case, the order record will need to be examined to determine the items that failed.
             get:
-                description: |
-                    Retrieve a list of the E911 orders that are associated with the account.
+                description: Retrieve a list of the E911 orders that are associated with the account.
                 queryParameters:
                     status:
                         description: The status of the E911 order being searched for.
@@ -3840,13 +3872,14 @@ securitySchemes:
                                         </E911Order>
                                     </E911Orders>
                     404:
-                        description: Not Found.  If any errors are found in the processing of the query string a 404 will be returned.  Note that parameters that are not recognized are not considered errors, and are just ignored.
+                        description: |
+                            Not Found. If any errors are found in the processing of the query string a 404 will be returned.  Note that parameters that are not recognized are not considered errors, and are just ignored.
             post:
                 description: |
                     Create E911 order to associate the address with the telephone number.
-                    The key data elements in the submission are -
+                    The key data elements in the submission are as follows.
                      <table style="text-align: left; width: 80%;"
-                     border="1" cellpadding="2" cellspacing="2">
+                      border="1" cellpadding="2" cellspacing="2">
                       <tbody>
                         <tr>
                           <td>TelephoneNumbers</td>
@@ -3872,365 +3905,381 @@ securitySchemes:
                           <td>AdditionalAddresses</td>
                           <td>A list of Address sections. This address information for all potential endpoints which will be provisioned to the Bandwidth 911 system. At call time, the customer will submit this address information within the SIP header and, if a match is determined, the call will be routed to the PSAP nearest to that address. Otherwise, the call will be routed to an ECC. These Address sections will be the same in format to the Address section in the top-level of the E911Order payload. It replaces the TelephoneNumbers and AlternateEndUserIdentifiers payload element. </td>
                         </tr>
+                        <tr>
+                          <td>CustomerOrderId</td>
+                          <td>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
+                        </tr>
                       </tbody>
                     </table>
-                    <br />Examples of POST requests:
+                    <br/>Examples of POST requests:
                     <table>
-                        <tbody>
+                      <tbody>
                         <tr>
-                            <th width="20%">Description</th>
-                            <th width="80%">Example</th>
+                          <th width="20%">Description</th>
+                          <th width="80%">Example</th>
                         </tr>
                         <tr>
-                            <td>
-                                <strong>CONVENTIONAL e911</strong><br>
-                                TN/address combination provisioning order.
-                                <b>TelephoneNumbers</b>, <b>TelephoneNumber</b>, <b>Address</b> are required.
-                            </td>
-                            <td>
-                                <pre>
+                          <td>
+                            <strong>CONVENTIONAL E911</strong><br>
+                            TN/Address-provisioning order.<br>
+                            <b>TelephoneNumbers</b>, <b>TelephoneNumber</b>, and <b>Address</b> are required.
+                          </td>
+                          <td>
+                            <!-- We have to leave this indent as-is because the <pre> tag is stupid and uses non-relative whitespacing.-->
+                            <pre>
                     &lt;E911Order&gt;
-                        &lt;TelephoneNumbers&gt;
-                          &lt;TelephoneNumber&gt;9706542332&lt;/TelephoneNumber&gt;
-                          &lt;TelephoneNumber&gt;9706542333&lt;/TelephoneNumber&gt;
-                        &lt;/TelephoneNumbers&gt;
-                        &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                      &lt;TelephoneNumbers&gt;
+                        &lt;TelephoneNumber&gt;9706542332&lt;/TelephoneNumber&gt;
+                        &lt;TelephoneNumber&gt;9706542333&lt;/TelephoneNumber&gt;
+                      &lt;/TelephoneNumbers&gt;
+                      &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                      &lt;Address&gt;
+                        &lt;HouseNumber&gt;915&lt;/HouseNumber&gt;
+                        &lt;HouseSuffix/&gt;
+                        &lt;PreDirectional/&gt;
+                        &lt;StreetName&gt;Elm&lt;/StreetName&gt;
+                        &lt;StreetSuffix&gt;Ave&lt;/StreetSuffix&gt;
+                        &lt;PostDirectional/&gt;
+                        &lt;AddressLine2/&gt;
+                        &lt;City&gt;Carpinteria&lt;/City&gt;
+                        &lt;StateCode&gt;CA&lt;/StateCode&gt;
+                        &lt;Zip&gt;93013&lt;/Zip&gt;
+                        &lt;PlusFour/&gt;
+                        &lt;County/&gt;
+                        &lt;Country&gt;United States&lt;/Country&gt;
+                      &lt;/Address&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong>CONVENTIONAL E911</strong><br>
+                            TN/address-deletion order.<br>
+                            <b>TelephoneNumbers</b> and <b>TelephoneNumber</b> are required.<br>
+                            <b>DeleteTNSpecificE911Address</b> is required and must be set to 'true'.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;TelephoneNumbers&gt;
+                        &lt;TelephoneNumber&gt;9706542332&lt;/TelephoneNumber&gt;
+                        &lt;TelephoneNumber&gt;9706542333&lt;/TelephoneNumber&gt;
+                      &lt;/TelephoneNumbers&gt;
+                      &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong>PIDF-LO</strong><br>
+                            PIDF-LO AEUI endpoint-provisioning order with additional address provisioning and without pre-defined location id.<br>
+                            <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, and <b>Identifier</b> are required.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, underscores, dashes, dots, and @ symbols and must be between 1 and 32 characters.<br>
+                            <b>PIDFLOEnabled</b> is required and must be 'true'.<br>
+                            Default value of <b>PreferredLanguage</b> is 'en'.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;Address&gt;
+                        &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
+                        &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
+                        &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
+                        &lt;City&gt;RALEIGH&lt;/City&gt;
+                        &lt;StateCode&gt;NC&lt;/StateCode&gt;
+                        &lt;Zip&gt;27606&lt;/Zip&gt;
+                        &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
+                        &lt;Country&gt;United States&lt;/Country&gt;
+                        &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                      &lt;/Address&gt;
+                      &lt;AlternateEndUserIdentifiers&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                          &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
+                          &lt;Identifier&gt;blep123@.-_blop&lt;/Identifier&gt;
+                          &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
+                          &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                      &lt;/AlternateEndUserIdentifiers&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong>PIDF-LO</strong><br>
+                            PIDF-LO AEUI endpoint-provisioning order with additional address provisioning and with pre-defined location id.<br>
+                            <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, and <b>Identifier</b> are required.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, underscores, dashes, dots, and @ symbols and must be between 1 and 32 characters.<br>
+                            <b>PIDFLOEnabled</b> is required and must be 'true'.<br>
+                            Default value of <b>PreferredLanguage</b> is 'en'.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;Address&gt;
+                        &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                        &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
+                        &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
+                        &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
+                        &lt;City&gt;RALEIGH&lt;/City&gt;
+                        &lt;StateCode&gt;NC&lt;/StateCode&gt;
+                        &lt;Zip&gt;27606&lt;/Zip&gt;
+                        &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
+                        &lt;Country&gt;United States&lt;/Country&gt;
+                        &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                      &lt;/Address&gt;
+                      &lt;AlternateEndUserIdentifiers&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                          &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
+                          &lt;Identifier&gt;blep123@.-_blop&lt;/Identifier&gt;
+                          &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
+                          &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                      &lt;/AlternateEndUserIdentifiers&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong>PIDF-LO</strong><br>
+                            PIDF-LO AEUI endpoint-provisioning order with provisioned location id.<br>
+                            <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>LocationId</b>, and <b>Identifier</b> are required.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, underscores, dashes, dots, and @ symbols and must be between 1 and 32 characters.<br>
+                            <b>PIDFLOEnabled</b> is required and must be 'true'.<br>
+                            Default value of <b>PreferredLanguage</b> is 'en'.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;AlternateEndUserIdentifiers&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
+                          &lt;Identifier&gt;blep123@.-_blop&lt;/Identifier&gt;
+                          &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
+                          &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                      &lt;/AlternateEndUserIdentifiers&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>PIDF-LO</strong> and <strong>SIMPLE AEUI</strong><br>
+                            Mixed PIDF-LO AEUI and Non-PIDF-LO AEUI endpoint-provisioning order.<br>
+                            <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, and <b>Identifier</b> are required.<br>
+                            Default value of <b>PreferredLanguage</b> is 'en'.<br>
+                            <strong>Non-PIDF-LO:</strong><br>
+                            <b>CallbackNumber</b> is required.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, must contain at least one letter, and must be between 6 and 32 characters.<br>
+                            <strong>PIDF-LO:</strong><br>
+                            <b>PIDFLOEnabled</b> is required and must be 'true'.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, underscores, dashes, dots, and @ symbols and must be between 1 and 32 characters.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                      &lt;Address&gt;
+                        &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                        &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
+                        &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
+                        &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
+                        &lt;City&gt;RALEIGH&lt;/City&gt;
+                        &lt;StateCode&gt;NC&lt;/StateCode&gt;
+                        &lt;Zip&gt;27606&lt;/Zip&gt;
+                        &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
+                        &lt;Country&gt;United States&lt;/Country&gt;
+                        &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                      &lt;/Address&gt;
+                      &lt;AlternateEndUserIdentifiers&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
+                          &lt;Identifier&gt;blep123@.-_blop&lt;/Identifier&gt;
+                          &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
+                          &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;CallbackNumber&gt;9706542334&lt;/CallbackNumber&gt;
+                          &lt;Identifier&gt;blepblop&lt;/Identifier&gt;
+                          &lt;PIDFLOEnabled&gt;false&lt;/PIDFLOEnabled&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                      &lt;/AlternateEndUserIdentifiers&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>PIDF-LO</strong> and <strong>SIMPLE AEUI</strong><br>
+                            PIDF-LO and Non-PIDF-LO endpoint-deletion order.<br>
+                            <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, and <b>Identifier</b> are required.<br>
+                            <b>DeleteTNSpecificE911Address</b> is required and must be 'true'.<br>
+                            <strong>Non-PIDF-LO:</strong><br>
+                            <b>CallbackNumber</b> is required.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters 6 and 32 characters.<br>
+                            <strong>PIDF-LO:</strong><br>
+                            <b>PIDFLOEnabled</b> is required and must be 'true'.<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, underscores, dashes, dots, and @ symbols and must be between 1 and 32 characters.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;AlternateEndUserIdentifiers&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;Identifier&gt;a1&lt;/Identifier&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                      &lt;/AlternateEndUserIdentifiers&gt;
+                      &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>PIDF-LO</strong><br>
+                            PIDF-LO address-provisioning order.<br>
+                            <b>AdditionalAddresses</b> and <b>Address</b> are required.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;AdditionalAddresses&gt;
                         &lt;Address&gt;
-                          &lt;HouseNumber&gt;915&lt;/HouseNumber&gt;
-                          &lt;HouseSuffix/&gt;
-                          &lt;PreDirectional/&gt;
-                          &lt;StreetName&gt;Elm&lt;/StreetName&gt;
-                          &lt;StreetSuffix&gt;Ave&lt;/StreetSuffix&gt;
-                          &lt;PostDirectional/&gt;
-                          &lt;AddressLine2/&gt;
-                          &lt;City&gt;Carpinteria&lt;/City&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
+                          &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
+                          &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
+                          &lt;City&gt;RALEIGH&lt;/City&gt;
+                          &lt;StateCode&gt;NC&lt;/StateCode&gt;
+                          &lt;Zip&gt;27606&lt;/Zip&gt;
+                          &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
+                          &lt;Country&gt;United States&lt;/Country&gt;
+                          &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                        &lt;/Address&gt;
+                        &lt;Address&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                          &lt;HouseNumber&gt;645&lt;/HouseNumber&gt;
+                          &lt;PreDirectional&gt;E&lt;/PreDirectional&gt;
+                          &lt;StreetName&gt;MANCHESTER&lt;/StreetName&gt;
+                          &lt;StreetSuffix&gt;AVE&lt;/StreetSuffix&gt;
+                          &lt;City&gt;LOS ANGELES&lt;/City&gt;
+                          &lt;StateCode&gt;United States&lt;/StateCode&gt;
+                          &lt;Zip&gt;90001&lt;/Zip&gt;
+                          &lt;Country&gt;United States&lt;/Country&gt;
+                        &lt;/Address&gt;
+                      &lt;/AdditionalAddresses&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>PIDF-LO</strong> <br>
+                            PIDF-LO address-editing order.<br>
+                            <b>Address</b> and <b>LocationId</b> are required.<br>
+                            Allows a user to update all address fields except <b>PlusFour</b> and <b>Country</b>.
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;AdditionalAddresses&gt;
+                        &lt;Address&gt;
+                          &lt;HouseNumber&gt;645&lt;/HouseNumber&gt;
+                          &lt;PreDirectional&gt;E&lt;/PreDirectional&gt;
+                          &lt;HouseSuffix&gt;1/2&lt;/HouseSuffix&gt;
+                          &lt;PostDirectional&gt;S&lt;/PostDirectional&gt;
+                          &lt;StreetName&gt;Manchester&lt;/StreetName&gt;
+                          &lt;StreetSuffix&gt;AVE&lt;/StreetSuffix&gt;
+                          &lt;AddressLine2&gt;test address line 2&lt;/AddressLine2&gt;
+                          &lt;City&gt;Los Angeles&lt;/City&gt;
                           &lt;StateCode&gt;CA&lt;/StateCode&gt;
-                          &lt;Zip&gt;93013&lt;/Zip&gt;
-                          &lt;PlusFour/&gt;
-                          &lt;County/&gt;
-                          &lt;Country&gt;United States&lt;/Country&gt;
-                        &lt;/Address&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>CONVENTIONAL e911</strong><br>
-                                TN/address combination deletion.
-                                <b>TelephoneNumbers</b>, <b>TelephoneNumber</b> are required. <b>DeleteTNSpecificE911Address</b> is
-                                required and must be set to 'true'.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;TelephoneNumbers&gt;
-                          &lt;TelephoneNumber&gt;9706542332&lt;/TelephoneNumber&gt;
-                          &lt;TelephoneNumber&gt;9706542333&lt;/TelephoneNumber&gt;
-                        &lt;/TelephoneNumbers&gt;
-                        &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>PIDF-LO</strong> <br>
-                                PIDF-LO AEUI endpoint provisioning with additional Address provisioning without pre-defined location
-                                id. <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, <b>Identifier</b>
-                                are
-                                required.
-                                <b>PIDFLOEnabled</b> is required and have to be 'true'. Default value of <b>PreferredLanguage</b> is 'en'.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;Address&gt;
-                          &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
-                          &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
-                          &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
-                          &lt;City&gt;RALEIGH&lt;/City&gt;
-                          &lt;StateCode&gt;NC&lt;/StateCode&gt;
-                          &lt;Zip&gt;27606&lt;/Zip&gt;
-                          &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
-                          &lt;Country&gt;United States&lt;/Country&gt;
-                          &lt;AddressType&gt;E911&lt;/AddressType&gt;
-                        &lt;/Address&gt;
-                        &lt;AlternateEndUserIdentifiers&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
-                            &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
-                            &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
-                            &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
-                            &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                        &lt;/AlternateEndUserIdentifiers&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>PIDF-LO</strong> <br>
-                                PIDF-LO AEUI endpoint provisioning with additional Address provisioning with pre-defined location
-                                id. <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, <b>Identifier</b>
-                                are
-                                required.
-                                <b>PIDFLOEnabled</b> is required and have to be 'true'. Default value of <b>PreferredLanguage</b> is 'en'.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;Address&gt;
+                          &lt;Zip&gt;90001&lt;/Zip&gt;
                           &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                          &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
-                          &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
-                          &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
-                          &lt;City&gt;RALEIGH&lt;/City&gt;
-                          &lt;StateCode&gt;NC&lt;/StateCode&gt;
-                          &lt;Zip&gt;27606&lt;/Zip&gt;
-                          &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
-                          &lt;Country&gt;United States&lt;/Country&gt;
-                          &lt;AddressType&gt;E911&lt;/AddressType&gt;
                         &lt;/Address&gt;
-                        &lt;AlternateEndUserIdentifiers&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
-                            &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
-                            &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
-                            &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
-                            &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                        &lt;/AlternateEndUserIdentifiers&gt;
+                      &lt;/AdditionalAddresses&gt;
                     &lt;/E911Order&gt;
-                                </pre>
-                            </td>
+                              </pre>
+                          </td>
                         </tr>
                         <tr>
-                            <td>
-                                <strong>PIDF-LO</strong> <br>
-                                PIDF-LO AEUI endpoint provisioning order with provisioned location id. <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>,
-                                <b>LocationId</b>, <b>Identifier</b> are required.
-                                <b>PIDFLOEnabled</b> is required and have to be 'true'. Default value of <b>PreferredLanguage</b> is 'en'.
-                            </td>
-                            <td>
-                                <pre>
+                          <td><strong>PIDF-LO</strong><br>
+                            PIDF-LO address-deletion order.<br>
+                            <b>AdditionalAddresses</b>, <b>Address</b>, and <b>LocationId</b> are required.<br>
+                            <b>DeleteTNSpecificE911Address</b> is required and must be 'true'.
+                          </td>
+                          <td>
+                            <pre>
                     &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;AlternateEndUserIdentifiers&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
-                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                            &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
-                            &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
-                            &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
-                            &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                        &lt;/AlternateEndUserIdentifiers&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>PIDF-LO</strong> and <strong>SIMPLE AEUI</strong> <br>
-                                Mixed PIDF-LO AEUI and Non-PIDF-LO AEUI endpoint provisioning order.
-                                <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, <b>Identifier</b> are
-                                required.
-                                For non-PIDF-LO <b>CallbackNumber</b> is required.
-                                For PIDF-LO <b>PIDFLOEnabled</b> is required and have to be 'true'. Default value of
-                                <b>PreferredLanguage</b> is 'en'.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;AdditionalAddresses&gt;
                         &lt;Address&gt;
-                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                          &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
-                          &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
-                          &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
-                          &lt;City&gt;RALEIGH&lt;/City&gt;
-                          &lt;StateCode&gt;NC&lt;/StateCode&gt;
-                          &lt;Zip&gt;27606&lt;/Zip&gt;
-                          &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
-                          &lt;Country&gt;United States&lt;/Country&gt;
-                          &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString1&lt;/LocationId&gt;
                         &lt;/Address&gt;
-                        &lt;AlternateEndUserIdentifiers&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
-                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                            &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
-                            &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
-                            &lt;PIDFLOEnabled&gt;true&lt;/PIDFLOEnabled&gt;
-                            &lt;PreferredLanguage&gt;en&lt;/PreferredLanguage&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;CallbackNumber&gt;9706542334&lt;/CallbackNumber&gt;
-                            &lt;Identifier&gt;alphanumeric&lt;/Identifier&gt;
-                            &lt;PIDFLOEnabled&gt;false&lt;/PIDFLOEnabled&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                        &lt;/AlternateEndUserIdentifiers&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>PIDF-LO</strong> and <strong>SIMPLE AEUI</strong> <br>
-                                PIDF-LO and Non-PIDF-LO endpoint deletion order.
-                                <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b> are required/. <b>DeleteTNSpecificE911Address</b>
-                                is required and have to be 'true'.
-                                <b>Identifier</b> is required.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;AlternateEndUserIdentifiers&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;Identifier&gt;alphanumeric_or.:-_@_6_32_chars&lt;/Identifier&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                        &lt;/AlternateEndUserIdentifiers&gt;
-                        &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>PIDF-LO</strong> <br>
-                                PIDF-LO address provisioning order.
-                                <b>AdditionalAddresses</b>, <b>Address</b> are required.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;AdditionalAddresses&gt;
-                          &lt;Address&gt;
-                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                            &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
-                            &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
-                            &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
-                            &lt;City&gt;RALEIGH&lt;/City&gt;
-                            &lt;StateCode&gt;NC&lt;/StateCode&gt;
-                            &lt;Zip&gt;27606&lt;/Zip&gt;
-                            &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
-                            &lt;Country&gt;United States&lt;/Country&gt;
-                            &lt;AddressType&gt;E911&lt;/AddressType&gt;
-                          &lt;/Address&gt;
-                          &lt;Address&gt;
-                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                            &lt;HouseNumber&gt;645&lt;/HouseNumber&gt;
-                            &lt;PreDirectional&gt;E&lt;/PreDirectional&gt;
-                            &lt;StreetName&gt;MANCHESTER&lt;/StreetName&gt;
-                                &lt;StreetSuffix&gt;AVE&lt;/StreetSuffix&gt;
-                            &lt;City&gt;LOS ANGELES&lt;/City&gt;
-                            &lt;StateCode&gt;United States&lt;/StateCode&gt;
-                            &lt;Zip&gt;90001&lt;/Zip&gt;
-                            &lt;Country&gt;United States&lt;/Country&gt;
-                          &lt;/Address&gt;
-                        &lt;/AdditionalAddresses&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>PIDF-LO</strong> <br>
-                                PIDF-LO address editing order.
-                                <b>Address</b>, <b>LocationId</b> are required.
-                                Allows to update all address fields except <b>PlusFour</b> and <b>Country</b>
-                            </td>
-                            <td>
-                                <pre>
-                                &lt;E911Order&gt;
-                                       &lt;AdditionalAddresses&gt;
-                                        &lt;Address&gt;
-                                            &lt;HouseNumber&gt;645&lt;/HouseNumber&gt;
-                                            &lt;PreDirectional&gt;E&lt;/PreDirectional&gt;
-                                            &lt;HouseSuffix&gt;1/2&lt;/HouseSuffix&gt;
-                                            &lt;PostDirectional&gt;S&lt;/PostDirectional&gt;
-                                            &lt;StreetName&gt;Manchester&lt;/StreetName&gt;
-                                            &lt;StreetSuffix&gt;AVE&lt;/StreetSuffix&gt;
-                                            &lt;AddressLine2&gt;test address line 2&lt;/AddressLine2&gt;
-                                            &lt;City&gt;Los Angeles&lt;/City&gt;
-                                            &lt;StateCode&gt;CA&lt;/StateCode&gt;
-                                            &lt;Zip&gt;90001&lt;/Zip&gt;
-                                            &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                                         &lt;/Address&gt;
-                                   &lt;/AdditionalAddresses&gt;
-                                 &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>PIDF-LO</strong> <br>
-                                PIDF-LO address deletion order.
-                                <b>AdditionalAddresses</b>, <b>Address</b>, <b>LocationId</b> are required.
-                                <b>DeleteTNSpecificE911Address</b> is required and have to be 'true'.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;AdditionalAddresses&gt;
-                          &lt;Address&gt;
-                            &lt;LocationId&gt;Some32CharacterOrLessString1&lt;/LocationId&gt;
-                          &lt;/Address&gt;
-                          &lt;Address&gt;
-                            &lt;LocationId&gt;Some32CharacterOrLessString1&lt;/LocationId&gt;
-                          &lt;/Address&gt;
-                        &lt;/AdditionalAddresses&gt;
-                        &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
-                    &lt;/E911Order&gt;
-                                </pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>SIMPLE AEUI</strong> <br>
-                                Non-PIDF-LO endpoint provisioning order.
-                                <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, <b>CallbackNumber</b>
-                                <b>Identifier</b> is required.
-                            </td>
-                            <td>
-                                <pre>
-                    &lt;E911Order&gt;
-                        &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
-                        &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
                         &lt;Address&gt;
-                          &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
-                          &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
-                          &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
-                          &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
-                          &lt;City&gt;RALEIGH&lt;/City&gt;
-                          &lt;StateCode&gt;NC&lt;/StateCode&gt;
-                          &lt;Zip&gt;27606&lt;/Zip&gt;
-                          &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
-                          &lt;Country&gt;United States&lt;/Country&gt;
-                          &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                          &lt;LocationId&gt;Some32CharacterOrLessString1&lt;/LocationId&gt;
                         &lt;/Address&gt;
-                        &lt;AlternateEndUserIdentifiers&gt;
-                          &lt;AlternateEndUserIdentifier&gt;
-                            &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
-                            &lt;Identifier&gt;alphanumeric&lt;/Identifier&gt;
-                            &lt;PIDFLOEnabled&gt;false&lt;/PIDFLOEnabled&gt;
-                          &lt;/AlternateEndUserIdentifier&gt;
-                        &lt;/AlternateEndUserIdentifiers&gt;
+                      &lt;/AdditionalAddresses&gt;
+                      &lt;DeleteTNSpecificE911Address&gt;true&lt;/DeleteTNSpecificE911Address&gt;
                     &lt;/E911Order&gt;
-                                </pre>
-                            </td>
+                            </pre>
+                          </td>
                         </tr>
-                        </tbody>
+                        <tr>
+                          <td><strong>SIMPLE AEUI</strong><br>
+                            Non-PIDF-LO endpoint-provisioning order.<br>
+                            <b>AlternateEndUserIdentifiers</b>, <b>AlternateEndUserIdentifier</b>, <b>Address</b>, <b>CallbackNumber</b>, and <b>Identifier</b> are required<br>
+                            <b>Identifier</b> can only contain alphanumeric characters, must contain at least one letter, and must be between 6 and 32 characters.<br>
+                          </td>
+                          <td>
+                            <pre>
+                    &lt;E911Order&gt;
+                      &lt;CustomerOrderId&gt;CustomOrderId1&lt;/CustomerOrderId&gt;
+                      &lt;CallerName&gt;OptionalCallerName&lt;/CallerName&gt;
+                      &lt;Address&gt;
+                        &lt;LocationId&gt;Some32CharacterOrLessString&lt;/LocationId&gt;
+                        &lt;HouseNumber&gt;901&lt;/HouseNumber&gt;
+                        &lt;StreetName&gt;MAIN CAMPUS&lt;/StreetName&gt;
+                        &lt;StreetSuffix&gt;DR&lt;/StreetSuffix&gt;
+                        &lt;City&gt;RALEIGH&lt;/City&gt;
+                        &lt;StateCode&gt;NC&lt;/StateCode&gt;
+                        &lt;Zip&gt;27606&lt;/Zip&gt;
+                        &lt;PlusFour&gt;5244&lt;/PlusFour&gt;
+                        &lt;Country&gt;United States&lt;/Country&gt;
+                        &lt;AddressType&gt;E911&lt;/AddressType&gt;
+                      &lt;/Address&gt;
+                      &lt;AlternateEndUserIdentifiers&gt;
+                        &lt;AlternateEndUserIdentifier&gt;
+                          &lt;CallbackNumber&gt;9706542333&lt;/CallbackNumber&gt;
+                          &lt;Identifier&gt;abc123&lt;/Identifier&gt;
+                          &lt;PIDFLOEnabled&gt;false&lt;/PIDFLOEnabled&gt;
+                        &lt;/AlternateEndUserIdentifier&gt;
+                      &lt;/AlternateEndUserIdentifiers&gt;
+                    &lt;/E911Order&gt;
+                            </pre>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
-                    <br /><b>Error Codes.</b>
-                    <br />For all possible error codes that can be returned in an E911 order, refer to section 6.4 of the Error Code Reference.
+                    <br/><b>Error Codes.</b>
+                    <br/>For all possible error codes that can be returned in an E911 order, refer to section 6.4 of the Error Code Reference.
                 responses:
                     201:
                         description: |
-                            Created <br> A 201 response indicates that an order has been created.
+                            Created<br>
+                            A 201 response indicates that an order has been created.
                         body:
                             application/xml:
                                 example: 
@@ -4264,7 +4313,8 @@ securitySchemes:
                                     </E911OrderResponse>
                     400:
                         description: |
-                            Bad Request <br> A 400 response Indicates that the order could not be created.
+                            Bad Request<br>
+                            A 400 response indicates that the order could not be created.<br>
                             Error text and an error code will be provided in the ErrorList element.
                         body:
                             application/xml:
@@ -4508,7 +4558,7 @@ securitySchemes:
                       <tbody>
                         <tr>
                           <td>CustomerOrderID</td>
-                          <td>An order ID created by the customer for their tracking purposes</td>
+                          <td>An order ID created by the customer for their tracking purposes. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
                         </tr>
                         <tr>
                           <td>SiteId</td>
@@ -4830,6 +4880,70 @@ securitySchemes:
                                             </SiteHost>
                                         </SiteHosts>
                                     </SiteHostsResponse>
+        /importTnChecker: 
+            description: | 
+                The import tn checker resource performs a portability analysis for a set ot TNs, returning information about availability to import TNs and list of TNs that cannot be imported grouped by errors.
+            post:
+                description: |
+                    Request portability information on a set of TNs
+                body:
+                    application/xml:
+                        example: |
+                            <ImportTnCheckerPayload>
+                                <TelephoneNumbers>
+                                    <TelephoneNumber>3032281000</TelephoneNumber>
+                                    <TelephoneNumber>4109235436</TelephoneNumber>
+                                    <TelephoneNumber>4104685864</TelephoneNumber>
+                                </TelephoneNumbers>
+                            </ImportTnCheckerPayload>
+                responses:
+                    200:
+                        description: A successful check has been performed.
+                        body: 
+                            application/xml:
+                                example: |
+                                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                        <ImportTnCheckerResponse>
+                                            <ImportTnCheckerPayload>
+                                                <TelephoneNumbers>
+                                                    <TelephoneNumber>3032281000</TelephoneNumber>
+                                                </TelephoneNumbers>
+                                                <ImportTnErrors>
+                                                    <ImportTnError>
+                                                        <Code>19006</Code>
+                                                        <Description>Bandwidth numbers cannot be imported by this account at this time.</Description>
+                                                        <TelephoneNumbers>
+                                                            <TelephoneNumber>4109235436</TelephoneNumber>
+                                                            <TelephoneNumber>4104685864</TelephoneNumber>
+                                                        </TelephoneNumbers>
+                                                    </ImportTnError>
+                                                </ImportTnErrors>
+                                            </ImportTnCheckerPayload>
+                                        </ImportTnCheckerResponse>
+                    400:
+                        description: | 
+                            Bad Response - there were errors in evaluating the body of the request
+                            Potential errors include:
+                            <ul>
+                              <li> List of TNs is empty.
+                              <li> List of TNs is more than 5000 TNs.
+                              <li> The account does not have the necessary (IMPORT_TNS) flag.
+                              <li> TNs are invalid (they are not actual TNs, and there are duplicates).
+                            </ul>
+                        body: 
+                            application/xml:
+                                example: |
+                                    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                    <ImportTnCheckerResponse>
+                                        <Errors>
+                                            <Code>7201</Code>
+                                            <Description>61746052083 is not a valid NANPA telephone number.</Description>
+                                        </Errors>
+                                        <Errors>
+                                            <Code>7201</Code>
+                                            <Description>61746052082 is not a valid NANPA telephone number.</Description>
+                                        </Errors>
+                                    </ImportTnCheckerResponse>
         /importTnOrders: 
             description: |
                 The importtnorders endpoint is used to manage requests to import a number into the Bandwidth Dashboard API.  The importtnorders endpoint causes the creation of an <b>order</b> that is used to manage the import tn event throughout the lifecycle of the request.
@@ -4840,7 +4954,7 @@ securitySchemes:
                         description: The status of the importTnOrder being searched for.
                         type: string
                         example: PARTIAL
-                        enum: [PROCESSING, COMPLETE, PARTIAL, FAILED]
+                        enum: [RECEIVED, PROCESSING, COMPLETE, PARTIAL, FAILED]
                         repeat: true
                     tn:
                         description: A Telephone Number (TN) that is referenced in the order
@@ -4866,7 +4980,7 @@ securitySchemes:
             post:
                 description: |
                     Creates a importTnOrders request to add or remove telephone numbers under the given site ID and sippeer ID as specified in the body. Note: the attempt to import a telephone number that is already present in the account will *not* create an error, but will reset all of the  attributes of that telephone number in the Dashboard system as if the telephone number was being imported for the first time
-                    A successfully submitted order will have a status of "PROCESSING". A successfully completed order will have a status of "COMPLETE" if all of the telephone numbers were successfully imported and  "PARTIAL" if some of the telephone numbers were imported. A failed order with will have a staus of "FAILED" and no telephone numbers would have been imported. 
+                    A successfully submitted order will have a status of "RECEIVED". A successfully completed order will have a status of "COMPLETE" if all of the telephone numbers were successfully imported and  "PARTIAL" if some of the telephone numbers were imported. A failed order with will have a staus of "FAILED" and no telephone numbers would have been imported.
                     The elements supplied in the payloads are described in the following table:
                     <table border="1" cellspacing="0" cellpadding="0" width="624">
                         <tbody>
@@ -4917,7 +5031,7 @@ securitySchemes:
                                 </td>
                                 <td width="351" valign="top">
                                     <p>
-                                        Internal customer order id for tracking the order
+                                        Internal customer order id for tracking the order.  Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.
                                     </p>
                                 </td>
                             </tr>
@@ -5378,7 +5492,7 @@ securitySchemes:
                           <tbody>
                             <tr>
                               <td>TelephoneNumbers</td>
-                              <td>A list of telephone numbers that will all assume the SubscriberInformation that is listed in the payload.  In an enterprise context it is not uncommon for all of the served telephone numbers to use the same string for the Subscriber Information.</td>
+                              <td>A list of telephone numbers that will all assume the SubscriberInformation that is listed in the payload. In an enterprise context it is not uncommon for all of the served telephone numbers to use the same string for the Subscriber Information.</td>
                             </tr>
                             <tr>
                               <td>SubscriberInformation</td>
@@ -5386,15 +5500,15 @@ securitySchemes:
                             </tr>
                             <tr>
                               <td>UseType</td>
-                              <td>Can be RESIDENTIAL or BUSINESS.  The element is required.</td>
+                              <td>Can be RESIDENTIAL or BUSINESS. The element is required.</td>
                             </tr>
                             <tr>
                               <td>Visibility</td>
-                              <td>Can be PRIVATE or PUBLIC.   If it is tagged as PRIVATE then the data will be provided, but the display will not be provided on a standard phone call.  The element is required</td>
+                              <td>Can be PRIVATE or PUBLIC. If it is tagged as PRIVATE then the data will be provided, but the display will not be provided on a standard phone call.  The element is required</td>
                             </tr>
                             <tr>
                               <td>CustomerOrderId</td>
-                              <td>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order.  The element is optional.</td>
+                              <td>The Customer Order ID is an ID assigned by the account owner to provide a reference number for the Order. The element is optional. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
                             </tr>
                           </tbody>
                         </table>
@@ -5610,12 +5724,26 @@ securitySchemes:
                                   <Tn>4103431313</Tn>
                                   <Tn>4103154313</Tn>
                                   <Tn>4103431561</Tn>
+                                  <Tn>2174101103</Tn>
                                </TnList>
                             </NumberPortabilityRequest>
                 responses:
                     200:
-                        description: A successful check has been performed.
-                        body: 
+                        description: |
+                             A successful check has been performed. Note: For users of Enterprise Telephony accounts SupportedLosingCarriers
+                             and UnsupportedLosingCarriers will be omitted from the success output even when query parameter
+                             fullCheck has values of true, onnetportability, or offnetportability.
+                             <table>
+                                 <tr>
+                                     <th>Tag</th>
+                                     <th>Values</th>
+                                 </tr>
+                                 <tr>
+                                     <td>PortType</td>
+                                     <td> AUTOMATED, AUTOMATEDOFFNET, INTERNAL, MANUAL_ON_NET, MANUALOFFNET, MANUAL_TOLLFREE, MIXED</td>
+                                 </tr>
+                             </table>
+                        body:
                             application/xml:
                                 example: |
                                         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -5657,6 +5785,20 @@ securitySchemes:
                                                         <Tn>4109235436</Tn>
                                                     </TnList>
                                                 </RateCenterGroup>
+                                                <RateCenterGroup>
+                                                    <Vendor>Level 3</Vendor>
+                                                    <AutomatedPort>true</AutomatedPort> <!-- Only available when 'Automated Level 3 port-ins' is enabled -->
+                                                    <RateCenter>BEASON</RateCenter>
+                                                    <City>BEASON</City>
+                                                    <State>IL</State>
+                                                    <LATA>366</LATA>
+                                                    <Tiers>
+                                                        <Tier>3</Tier>
+                                                    </Tiers>
+                                                    <TnList>
+                                                        <Tn>2174101103</Tn>
+                                                    </TnList>
+                                                </RateCenterGroup>
                                             </PartnerSupportedRateCenters>
                                             <SupportedLosingCarriers>
                                                 <LosingCarrierTnList>
@@ -5670,6 +5812,16 @@ securitySchemes:
                                                         <Tn>4104685864</Tn>
                                                         <Tn>4103431313</Tn>
                                                         <Tn>4103431561</Tn>
+                                                    </TnList>
+                                                </LosingCarrierTnList>
+                                                <LosingCarrierTnList>
+                                                    <LosingCarrierSPID>7482</LosingCarrierSPID>
+                                                    <LosingCarrierName>IntegraTelecom</LosingCarrierName>
+                                                    <LosingCarrierIsWireless>false</LosingCarrierIsWireless>
+                                                    <LosingCarrierAccountNumberRequired>false</LosingCarrierAccountNumberRequired>
+                                                    <LosingCarrierMinimumPortingInterval>1</LosingCarrierMinimumPortingInterval>
+                                                    <TnList>
+                                                        <Tn>2174101103</Tn>
                                                     </TnList>
                                                 </LosingCarrierTnList>
                                             </SupportedLosingCarriers>
@@ -6558,7 +6710,7 @@ securitySchemes:
                       <tbody>
                         <tr>
                           <td>CustomerOrderID</td>
-                          <td>An order ID created by the customer for their tracking purposes</td>
+                          <td>An order ID created by the customer for their tracking purposes. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
                         </tr>
                         <tr>
                           <td>Action</td>
@@ -6847,7 +6999,7 @@ securitySchemes:
                         </tr>
                         <tr>
                             <td>CustomerOrderId</td>
-                            <td>Optional value for Id set by customer</td>
+                            <td>Optional value for Id set by customer. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
                         </tr>
                         <tr>
                             <td>SiteId</td>
@@ -7377,7 +7529,7 @@ securitySchemes:
                                 <?xml version="1.0" encoding="UTF-8"?>
                                 <Order>
                                     <Name>Available Telephone Number order</Name>    
-                                    <CustomerOrderId>123456789</CustomerOrderId>
+                                    <CustomerOrderId>123456789</CustomerOrderId><!-- Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters. -->
                                     <CloseOrder>true</CloseOrder>
                                 </Order>
                     responses:
@@ -7613,7 +7765,7 @@ securitySchemes:
                             </td>
                             <td width="351" valign="top">
                                 <p>
-                                    Internal customer order id for tracking the order
+                                    Internal customer order id for tracking the order.  Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.
                                 </p>
                             </td>
                         </tr>
@@ -7652,7 +7804,7 @@ securitySchemes:
                             </td>
                             <td width="351" valign="top">
                                 <p>
-                                    Unique customer SPID associated with Bandwidth.
+                                    Unique customer SPID associated with Bandwidth. Would be ignored in provisioning of toll free numbers for RespOrg Exception customer.
                                 </p>
                             </td>
                         </tr>
@@ -7688,6 +7840,7 @@ securitySchemes:
                                 <p>
                                     This field is used to specify a new billing telephone number on the losing carrier account.
                                     Cannot be the same as BillingTelephoneNumber or be present in the list of ported numbers.
+                                    Would be ignored in provisioning of toll free numbers for RespOrg Exception customer.
                                 </p>
                             </td>
                         </tr>
@@ -8133,7 +8286,7 @@ securitySchemes:
                             <td width="351" valign="top">
                                 <p>
                                     By default all portin orders are classified as full ports. If the attribute PartialPort is specified as true, the order will be submitted
-                                    as a partial port
+                                    as a partial port. Would be ignored in provisioning of toll free numbers for RespOrg Exception customer.
                                 </p>
                             </td>
                         </tr>
@@ -8154,7 +8307,8 @@ securitySchemes:
                                     <br/>
                                     If present and set to true, this port will be treated as one that will be manually activated. If this value is set it is assumed that the
                                     customer will manually activate the port, and that the Bandwidth Dashboard API will activate the port at a default activation time if the
-                                    customer does not manually activate the port. This is not supported for wireless ports, and cannot be changed via a SUPP.
+                                    customer does not manually activate the port. This is not supported for wireless ports, and cannot be changed via a SUPP. Would be ignored
+                                    in provisioning of toll free numbers for RespOrg Exception customer.
                                 </p>
                             </td>
                         </tr>
@@ -8172,7 +8326,8 @@ securitySchemes:
                             <td width="351" valign="top">
                                 <p>
                                     <br/>
-                                     Attributes to be assigned to the telephone number. Optional parameter. Possible values - "Protected"
+                                     Attributes to be assigned to the telephone number. Optional parameter. Possible values - "Protected".
+                                     Would be ignored in provisioning of toll free numbers for RespOrg Exception customer.
                                 </p>
                             </td>
                         </tr>
@@ -8403,7 +8558,7 @@ securitySchemes:
                 description: |
                     This resource retrieves information associated with the port-in associated with the ID number specified.
                 get:
-                    description: Retrieves the information associated with the specified port-in ID number.
+                    description: 'Retrieves the information associated with the specified port-in ID number. Note: For users of Enterprise Telephony accounts, AlternateSpid, LosingCarrierSPID, LosingCarrierName, and LosingCarrierIsWireless, shall be omitted from the success output.'
                     responses:
                         200:
                             description: The information has been successfully retrieved and displayed in the payload.
@@ -9104,7 +9259,7 @@ securitySchemes:
                         example: 2014-08-05
                 responses:
                     200:
-                        description: the port-outs have been successfully retrieved and displayed in the payload.
+                        description: 'the port-outs have been successfully retrieved and displayed in the payload. Note: For users of Enterprise Telephony accounts, VendorId is omitted from the success output.'
                         body:
                             application/xml:
                                 example: |
@@ -9131,7 +9286,7 @@ securitySchemes:
                     description: Retrieves the information associated with the specified port-out ID number.
                     responses:
                         200:
-                            description: The information has been successfully retrieved and displayed out to the payload.
+                            description: 'The information has been successfully retrieved and displayed out to the payload. Note: For users of Enterprise Telephony accounts, SPID is omitted from the success output.'
                             body:
                                 application/xml:
                                     example: |
@@ -9219,7 +9374,7 @@ securitySchemes:
                         type: string
                         example: 9199918388
                     customerOrderId:
-                        description: The Customer Order ID is an ID assigned by the account owner to provide a reference number for the removeImportedTnOrders.
+                        description: The Customer Order Id is an Id assigned by the account owner to provide a reference number for the removeImportedTnOrder.
                         type: string
                         example: ABCCorp12345
                     createdDateFrom:
@@ -9288,7 +9443,7 @@ securitySchemes:
                                 </td>
                                 <td width="351" valign="top">
                                     <p>
-                                        Internal customer order id for tracking the order
+                                        Internal customer order id for tracking the order.  Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.
                                     </p>
                                 </td>
                             </tr>
@@ -9315,7 +9470,7 @@ securitySchemes:
                     application/xml:
                         example: |
                             <RemoveImportedTnOrder>
-                                <CustomerOrderID>ICPA123ABC</CustomerOrderID>
+                                <CustomerOrderId>ICPA123ABC</CustomerOrderId>
                                 <TelephoneNumbers>
                                     <TelephoneNumber>9199918388</TelephoneNumber>
                                     <TelephoneNumber>4158714245</TelephoneNumber>
@@ -11160,8 +11315,9 @@ securitySchemes:
                         /products: 
                             description:  |
                                 This API will expose products that are associated directly with the SIP Peer.
-                                At this time all of these products are limited to Admin access, and not exposed to the normal user base
                                 The current products that can be associated with a SIP Peer are: <br>
+                                * Termination <br>
+                                * EdgeManagement <br>
                                 * Messaging <br>
                                 * Origination <br>
                             get:
@@ -11180,6 +11336,12 @@ securitySchemes:
                                                             <Product>
                                                                 <Name>EdgeManagement</Name>
                                                             </Product>
+                                                            <Product>
+                                                                <Name>Messaging</Name>
+                                                            </Product>
+                                                            <Product>
+                                                                <Name>Origination</Name>
+                                                            </Product>
                                                         </Products>
                                                     </SipPeerProductResponse>
                             /origination/settings: 
@@ -11193,12 +11355,19 @@ securitySchemes:
                                                 application/xml:
                                                     example: |
                                                         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                                        <!--HTTP Voice-->
                                                         <SipPeerOriginationSettingsResponse>
                                                           <SipPeerOriginationSettings>
                                                             <VoiceProtocol>HTTP</VoiceProtocol>
                                                             <HttpSettings>
                                                               <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
                                                             </HttpSettings>
+                                                          </SipPeerOriginationSettings>
+                                                        </SipPeerOriginationSettingsResponse>
+                                                        <!--SIP Voice-->
+                                                        <SipPeerOriginationSettingsResponse>
+                                                          <SipPeerOriginationSettings>
+                                                            <VoiceProtocol>SIP</VoiceProtocol>
                                                           </SipPeerOriginationSettings>
                                                         </SipPeerOriginationSettingsResponse>
                                 post:
@@ -11212,11 +11381,16 @@ securitySchemes:
                                         application/xml:
                                             example: |
                                                 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                                                <!--HTTP Voice-->
                                                 <SipPeerOriginationSettings>
                                                   <VoiceProtocol>HTTP</VoiceProtocol>
                                                   <HttpSettings>
                                                     <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
                                                   </HttpSettings>
+                                                </SipPeerOriginationSettings>
+                                                <!--SIP Voice-->
+                                                <SipPeerOriginationSettings>
+                                                  <VoiceProtocol>SIP</VoiceProtocol>
                                                 </SipPeerOriginationSettings>
                                     responses:
                                         201:
@@ -11256,15 +11430,21 @@ securitySchemes:
                                             <li>VoiceProtocol is required with possible values: HTTP, SIP</li>
                                             <li>HttpSettings and HttpVoiceV2AppId are optional fields and only allowed if VoiceProtocol is HTTP</li>
                                          </ul>
+                                         <br>Note: Changing the Voice Protocol from SIP to HTTP will remove Voice Hosts or Voice Host Groups and Termination Hosts, which are configured using API /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}.
                                     body:
                                         application/json:
                                             example: |
                                                 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                                                <!--HTTP Voice-->
                                                 <SipPeerOriginationSettings>
                                                   <VoiceProtocol>HTTP</VoiceProtocol>
                                                   <HttpSettings>
                                                     <HttpVoiceV2AppId>867b923b-8a92-4579-b29b-405f165b8124</HttpVoiceV2AppId>
                                                   </HttpSettings>
+                                                </SipPeerOriginationSettings>
+                                                <!--SIP Voice-->
+                                                <SipPeerOriginationSettings>
+                                                  <VoiceProtocol>SIP</VoiceProtocol>
                                                 </SipPeerOriginationSettings>
                                     responses:
                                         200:
@@ -11280,6 +11460,7 @@ securitySchemes:
                                                 application/xml:
                                                     example: |
                                                         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                                        <!--HTTP Voice-->
                                                         <SipPeerTerminationSettingsResponse>
                                                           <SipPeerTerminationSettings>
                                                             <VoiceProtocol>HTTP</VoiceProtocol>
@@ -11288,6 +11469,12 @@ securitySchemes:
                                                             </HttpSettings>
                                                           </SipPeerTerminationSettings>
                                                         </SipPeerTerminationSettingsResponse>
+                                                        <!--SIP Voice-->
+                                                        <SipPeerOriginationSettingsResponse>
+                                                          <SipPeerOriginationSettings>
+                                                            <VoiceProtocol>SIP</VoiceProtocol>
+                                                          </SipPeerOriginationSettings>
+                                                        </SipPeerOriginationSettingsResponse>
                                 post:
                                     description: |
                                         Set sippeer termination settings<br>
@@ -11299,11 +11486,16 @@ securitySchemes:
                                         application/xml:
                                             example: |
                                                 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                                                <!--HTTP Voice-->
                                                 <SipPeerTerminationSettings>
                                                   <VoiceProtocol>HTTP</VoiceProtocol>
                                                   <HttpSettings>
                                                     <HttpVoiceV2AppId>469ebbac-4459-4d98-bc19-a038960e787f</HttpVoiceV2AppId>
                                                   </HttpSettings>
+                                                </SipPeerTerminationSettings>
+                                                <!--SIP Voice-->
+                                                <SipPeerTerminationSettings>
+                                                  <VoiceProtocol>SIP</VoiceProtocol>
                                                 </SipPeerTerminationSettings>
                                     responses:
                                         201:
@@ -11337,16 +11529,23 @@ securitySchemes:
                                                             </ResponseStatus>
                                                         </SipPeerSmsFeatureResponse>
                                 put:
-                                    description: update termination settings
+                                    description: |
+                                        update termination settings
+                                        <br>Note: Changing the Voice Protocol from SIP to HTTP will remove Voice Hosts or Voice Host Groups and Termination Hosts, which are configured using API /accounts/{accountId}/sites/{siteId}/sippeers/{sippeerId}.
                                     body:
                                         application/json:
                                             example: |
                                                 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+                                                <!--HTTP Voice-->
                                                 <SipPeerTerminationSettings>
                                                   <VoiceProtocol>HTTP</VoiceProtocol>
                                                   <HttpSettings>
                                                     <HttpVoiceV2AppId>867b923b-8a92-4579-b29b-405f165b8124</HttpVoiceV2AppId>
                                                   </HttpSettings>
+                                                </SipPeerTerminationSettings>
+                                                <!--SIP Voice-->
+                                                <SipPeerTerminationSettings>
+                                                  <VoiceProtocol>SIP</VoiceProtocol>
                                                 </SipPeerTerminationSettings>
                                     responses:
                                         200:
@@ -12118,9 +12317,9 @@ securitySchemes:
         /subscriptions: 
             description:   |
                 The *+subscriptions+* resource is used to create e-mail or callback subscriptions. The subscriptions will notify the user about events
-                concerning specific orders or orders of a specific type.<br>
-                E-mail subscriptions can be configured to sent emails immediately after an event occurred or on daily basis as a digest with all events
-                of the previous day. Callback notifications will always be send immediately.
+                concerning specific orders, orders of a specific type or specific event type.<br>
+                E-mail subscriptions can be configured to send emails immediately after an event occurred or on daily basis as a digest with all events
+                of the previous day. Callback notifications will always be sent immediately.
                 Notified states for order types:
                 <table style = "width 100%">
                               <tr>
@@ -12172,6 +12371,8 @@ securitySchemes:
                                  <td>DRAFT, IN_PROGRESS, NEEDS_ATTENTION, PARTIAL, COMPLETED, CANCELLED</td>
                               </tr>
                            </table>
+                Notified events: MESSAGING_LOST
+                The event notifications occur when TNs in your account are impacted due to orders outside of your account. For example, a MESSAGING_LOST event is reported on a TN with hosted messaging service in your account when a port in order placed by another account on the same TN is executed. An order placed in your account to remove the TN will NOT report a MESSAGING_LOST event. 
             get:
                 description: |
                     GET is used to retrieve all subscriptions for the account (including email and callback subscriptions).
@@ -12206,6 +12407,28 @@ securitySchemes:
                                                         </CallbackCredentials>
                                                     </CallbackSubscription>
                                                 </Subscription>
+                                                <Subscription>
+                                                    <SubscriptionId>1b2av54d-0ce5-4f5b-bd75-1c30967b197f</SubscriptionId>
+                                                    <EventType>MESSAGING_LOST</EventType>
+                                                    <EmailSubscription>
+                                                        <Email>bwtest@gmail.com</Email>
+                                                        <DigestRequested>DAILY</DigestRequested>
+                                                    </EmailSubscription>
+                                                </Subscription>
+                                                <Subscription>
+                                                    <SubscriptionId>1cf05927-780f-4f8f-89ab-e581f52f5e12</SubscriptionId>
+                                                    <EventType>MESSAGING_LOST</EventType>
+                                                    <CallbackSubscription>
+                                                        <URL>"https://company.com/iriscallback"</URL>
+                                                        <Expiry>30000</Expiry>
+                                                        <Status>some message containing status code and response body of last callback</Status>
+                                                        <CallbackCredentials>
+                                                            <BasicAuthentication>
+                                                                <Username>iris</Username>
+                                                            </BasicAuthentication>
+                                                        </CallbackCredentials>
+                                                    </CallbackSubscription>
+                                                </Subscription>
                                             </Subscriptions>
                                         </SubscriptionsResponse>
                     400:
@@ -12218,7 +12441,7 @@ securitySchemes:
                     The user should submit the desired e-mail address for notifications and the frequency with which he wants to get the updates:
                     DAILY (for daily digests) or NONE (immediately after events). OrderId is optional. If OrderId is specified only notifications will
                     be sent for events related to that order. If OrderId is omitted, notifications will be sent related to events of all orders of the specified type.<br>
-                    For email subscriptions use a body like this:<br>
+                    For email subscriptions on order status notification use a body like this:<br>
                     ```
                     <Subscription>
                         <OrderType> [ portins | portouts | orders | disconnects | dldas | lsrorders | e911s | tnoptions | externalTns | lidb | bulkPortins] </OrderType> <!-- required -->
@@ -12229,7 +12452,17 @@ securitySchemes:
                         </EmailSubscription>
                     </Subscription>
                     ```
-                    For callback subscriptions use a body like this:<br>
+                    For email subscriptions on event notification use a body like this:<br>
+                    ```
+                    <Subscription>
+                        <EventType> [ MESSAGING_LOST ] </EventType> <!-- required -->
+                        <EmailSubscription>
+                            <Email> [ email address] </Email>
+                            <DigestRequested> [ NONE | DAILY ] </DigestRequested> <!-- required -->
+                        </EmailSubscription>
+                    </Subscription>
+                    ```
+                    For callback subscriptions on order status notification use a body like this:<br>
                     ```
                     <Subscription>
                         <OrderType> [portins | portouts | orders | disconnects | dldas | lsrorders | e911s | tnoptions | externalTns | lidb] </OrderType> <!-- same rules and values as above -->
@@ -12248,8 +12481,26 @@ securitySchemes:
                         </CallbackSubscription>
                     </Subscription>
                     ```
+                    For callback subscriptions on event notification use a body like this:<br>
+                    ```
+                    <Subscription>
+                        <EventType> [ MESSAGING_LOST ] </EventType> <!-- required -->
+                        <CallbackSubscription>
+                            <URL> [valid publically addressable URL] </URL> <!-- the URL that notifications should get POSTed to, HTTPS is highly recommended -->
+                            <Expiry> [time in seconds] </Expiry> <!-- the number of seconds after which to expire this subscription -->
+                            <CallbackCredentials> <!-- optional, but recommended; these credentials will be used to when authenticating with the notification receiving server -->
+                                <BasicAuthentication> <!-- optional, the endpoint may be secured with BASIC auth -->
+                                    <Username> [username] </Username> <!-- max 100 characters -->
+                                    <Password> [password] </Password> <!-- the password will be stored encrypted and never returned via the API -->
+                                </BasicAuthentication>
+                                <!-- optional, a BASE64 encoded public key matching the notification receiving server -->
+                                <PublicKey>LS0tLS1CRUdJTiBDRVJUSUZJ [...] kQgQ0VSVElGSUNBVEUtLS0tLQ0K</PublicKey>
+                            </CallbackCredentials>
+                        </CallbackSubscription>
+                    </Subscription>
+                    ```
                     The credentials used to impose security on the callbacks are defined in the <CallbackCredentials> element.  The Basic authentication is straightforward, but the <PublicKey> requires a little more explanation.  Please see the document to the left on Mutual Authentication for CallBacks.<p>
-                    When an event happens that had been subscribed to with a callback subscription (order update, note added to order), the following payload
+                    When status changes on an order that had been subscribed to with a callback subscription (order update, note added to order), the following payload
                     will be POSTed to the URL of the callback subscription.<br>More detail can be found in the API documentation for the fictitious endpoint /callbacks
                     ```xml
                     <Notification>
@@ -12269,10 +12520,22 @@ securitySchemes:
                         </CompletedTelephoneNumbers>
                     </Notification>
                     ```
+                    When a event happens that had been subscribed to with a callback subscription (messaging lost, messaging gained etc.), the following payload
+                    will be POSTed to the URL of the callback subscription.<br>More detail can be found in the API documentation for the fictitious endpoint /callbacks
+                    ```xml
+                    <Notification>
+                        <SubscriptionId>...</SubscriptionId>
+                        <EventType>MESSAGING_LOST</EventType>
+                        <CompletedTelephoneNumbers>
+                            <TelephoneNumber>9192345678</TelephoneNumber>
+                            <TelephoneNumber>9192345679</TelephoneNumber>
+                        </CompletedTelephoneNumbers>
+                    </Notification>
+                    ```
                 body:
                     application/xml:
                         example: |
-                            <!-- for an email subscription -->
+                            <!-- for an email subscription on order type -->
                             <?xml version="1.0"?>
                             <Subscription>
                                 <OrderType>portins</OrderType>
@@ -12282,9 +12545,34 @@ securitySchemes:
                                     <DigestRequested>DAILY</DigestRequested>
                                 </EmailSubscription>
                             </Subscription>
-                            <!-- and for a callback subscription -->
+                            <!-- for an email subscription on event type -->
+                            <?xml version="1.0"?>
+                            <Subscription>
+                                <EventType>MESSAGING_LOST</EventType>
+                                <EmailSubscription>
+                                    <Email>newtest@gmail.com</Email>
+                                    <DigestRequested>DAILY</DigestRequested>
+                                </EmailSubscription>
+                            </Subscription>
+                            <!-- and for a callback subscription on order type -->
                             <Subscription>
                                 <OrderType>orders</OrderType>
+                                <CallbackSubscription>
+                                    <URL>"http://yourhost:8080/path/to/resource"</URL>
+                                    <User>bandwidth-dashboard-user-id</User>
+                                    <Expiry>12000</Expiry>
+                                    <CallbackCredentials>
+                                        <BasicAuthentication>
+                                            <Username>superuser</Username>
+                                            <Password>s3cure</Password>
+                                        </BasicAuthentication>
+                                        <PublicKey>LS0tLS1CRUdJTiBDRVJUSU [...] kQgQ0VSVElGSUNBVEUtLS0tLQ0K</PublicKey>
+                                    </CallbackCredentials>
+                                </CallbackSubscription>
+                            </Subscription>
+                            <!-- and for a callback subscription on event type -->
+                            <Subscription>
+                                <EventType>MESSAGING_LOST</EventType>
                                 <CallbackSubscription>
                                     <URL>"http://yourhost:8080/path/to/resource"</URL>
                                     <User>bandwidth-dashboard-user-id</User>
@@ -12332,9 +12620,32 @@ securitySchemes:
                                             </Subscriptions>
                                         </SubscriptionsResponse>
                                         <!-- *** or *** -->
+                                        <SubscriptionsResponse>
+                                            <Subscriptions>
+                                                <Subscription>
+                                                    <SubscriptionId>957f9be6-2e81-47bb-afd9-b8c184e9e247</SubscriptionId>
+                                                    <EventType>MESSAGING_LOST</EventType>
+                                                    <EmailSubscription>
+                                                        <Email>newtest@gmail.com</Email>
+                                                        <DigestRequested>DAILY</DigestRequested>
+                                                    </EmailSubscription>
+                                                </Subscription>
+                                            </Subscriptions>
+                                        </SubscriptionsResponse>
+                                        <!-- *** or *** -->
                                         <Subscription>
                                             <SubscriptionId>991a60d7-a612-48a5-a86e-326b51997cac</SubscriptionId>
                                             <OrderType>portins</OrderType>
+                                            <CallbackSubscription>
+                                                <URL>http://customer.com:8087/path/BandwidthHandler</URL>
+                                                <Expiry>4283455101</Expiry>
+                                                <Status>200 OK</Status>
+                                            </CallbackSubscription>
+                                        </Subscription>
+                                        <!-- *** or *** -->
+                                        <Subscription>
+                                            <SubscriptionId>091a60d7-a612-48a5-a86e-326b51997cad</SubscriptionId>
+                                            <EventType>MESSAGING_LOST</EventType>
                                             <CallbackSubscription>
                                                 <URL>http://customer.com:8087/path/BandwidthHandler</URL>
                                                 <Expiry>4283455101</Expiry>
@@ -12356,6 +12667,7 @@ securitySchemes:
                                 <Subscription>
                                     <OrderType> [portins | portouts | orders | disconnects | dldas | lsrorders | e911s | tnoptions | externalTns] </OrderType>
                                     <OrderId> [UUID] </OrderId>
+                                    <EventType> [MESSAGING_LOST] </EventType>
                                     <CallbackSubscription>
                                         <URL> [valid publically addressable URL] </URL>
                                         <Expiry> [time in seconds] </Expiry>
@@ -12561,6 +12873,10 @@ securitySchemes:
                           <td>TnOptionGroup</td>
                           <td>Contains list of telephone numbers and set of TN options you want to assign to all TNs in the list.</td>
                         </tr>
+                        <tr>
+                            <td>CustomerOrderId</td>
+                            <td>Optional value for Id set by customer. Only alphanumeric values, dashes and spaces are allowed. Max length is 40 characters.</td>
+                        </tr>
                       </tbody>
                     </table>
                     There are TN Option values:
@@ -12659,6 +12975,7 @@ securitySchemes:
                     application/xml:
                         example: |
                              <TnOptionOrder>
+                             <CustomerOrderId>TnOptionOrder1</CustomerOrderId>
                                  <TnOptionGroups>
                                      <TnOptionGroup>
                                          <NumberFormat>10digit</NumberFormat>
@@ -13310,6 +13627,10 @@ securitySchemes:
                                             </Features>
                                             <MessagingSettings>
                                                 <SmsEnabled>true</SmsEnabled>
+                                                <AssignedNNRoute>
+                                                    <Nnid>101601</Nnid>>
+                                                    <Name>USA Mobility</Name>
+                                                </AssignedNNRoute>
                                             </MessagingSettings>
                                             <TnAttributes>
                                                 <TnAttribute>Protected</TnAttribute>
@@ -13519,6 +13840,39 @@ securitySchemes:
                                         <ReservationExpires>14346</ReservationExpires>
                                         <ReservedTN>6136211234</ReservedTN>
                                     </TNReservation>
+        /availableNnRoutes: 
+            description: The get method retrieves information about available NnRoutes for the phone number.
+            get:
+                description: |
+                    Retrieves information about available NnRoutes for the phone number.
+                responses:
+                    200:
+                        description: |
+                            OK - the detailed information about available NnRoutes has been successfully retrieved and displayed.<br>
+                        body:
+                            application/xml:
+                                example: 
+                                    <AvailableNNRoutes>
+                                       <NNRoute>
+                                          <Nnid>101601</Nnid>>
+                                          <Name>USA Mobility</Name>
+                                       </NNRoute>
+                                       <NNRoute>
+                                          <Nnid>102787</Nnid>
+                                          <Name>Globe Wireless - Bandwidth.com - SVR</Name>
+                                       </NNRoute>
+                                    </AvailableNNRoutes>
+                    400:
+                        description: Bad Request - failed to get available NnRoutes information for the current phone number.
+                        body:
+                            application/xml:
+                                example: 
+                                    <AvailableNNRoutes>
+                                       <ResponseStatus>
+                                          <ErrorCode>12512</ErrorCode>
+                                          <Description>Telephone number '123456789' is not valid</Description>
+                                       </ResponseStatus>
+                                    </AvailableNNRoutes>
 /users: 
     description: |
         The /users API also enables resetting but not retrieving credential information 
@@ -14070,7 +14424,7 @@ securitySchemes:
                   </p>
                   </td>
                   <td valign="top">
-                  <p>One of the values [ZipCodes, Cities, NpaNxxX, AvailableNumberCount, LocalRateCenters].
+                  <p>One of the values [ZipCodes, Cities, NpaNxxX, AvailableNumberCount, LimitedAvailableNumberCount, LocalRateCenters].
                   <br>
                     This repeatable query parameter will force a list (or multiple lists)
                     of the indicated data to be provided in the response. For
@@ -14101,10 +14455,10 @@ securitySchemes:
             embed:
                 displayName: embed
                 type: string
-                enum: [ZipCodes, Cities, Vendors, Npa, NpaNxxX, AvailableNumberCount, LocalRateCenters]
+                enum: [ZipCodes, Cities, Vendors, Npa, NpaNxxX, AvailableNumberCount, LimitedAvailableNumberCount, LocalRateCenters]
                 description: | 
                     a set of fields that needs to be included in response. 
-                    A lists of zip codes, cities, vendors, NpaNxxXs and count of available TNs are not included for each rate center by default.
+                    A lists of zip codes, cities, vendors, NpaNxxXs and count of available/limited available TNs are not included for each rate center by default.
                     A list of vendors is available only for admin users. LocalRateCenters can't be combined with any filter parameter.
                 repeat: true
             state:
@@ -14188,6 +14542,7 @@ securitySchemes:
                                     <State>CA</State>
                                     <Lata>730</Lata>
                                     <AvailableNumberCount>1</AvailableNumberCount>
+                                    <LimitedAvailableNumberCount>1</LimitedAvailableNumberCount>
                                     <ZipCodes>
                                         <ZipCode>90731</ZipCode>
                                     </ZipCodes>
@@ -14221,6 +14576,7 @@ securitySchemes:
                                     <State>CA</State>
                                     <Lata>730</Lata>
                                     <AvailableNumberCount>25</AvailableNumberCount>
+                                    <LimitedAvailableNumberCount>20</LimitedAvailableNumberCount>
                                     <ZipCodes>
                                         <ZipCode>90013</ZipCode>
                                         <ZipCode>90014</ZipCode>
@@ -14328,6 +14684,7 @@ securitySchemes:
                                     <State>CA</State>
                                     <Lata>730</Lata>
                                     <AvailableNumberCount>5536</AvailableNumberCount>
+                                    <LimitedAvailableNumberCount>5236</LimitedAvailableNumberCount>
                                     <ZipCodes>
                                         <ZipCode>90044</ZipCode>
                                         <ZipCode>90059</ZipCode>
@@ -14617,8 +14974,8 @@ securitySchemes:
                 Numbers <b>will be ported out</b> if a 5xx series response is received by Bandwidth
     /notificationCallbackApi: 
         description: |
-            The notification callback API is used notify customers of events and changes that occur with various feature and service orders that are being processed by the Bandwidth Dashboard API on their behalf.  In general this notification callback will be called whenever an order that is in-scope changes state or has a note added to it.<br><br>
-            When an order changes the Bandwidth Dashboard API will POST a pre-defined payload to our customer at the URL that they have defined by use of the /accounts/<account-id>/subscriptions API call.  Please see the documentation on that API call to understand how to register the notification callback API with the Bandwidth Dashboard API.<br><br>
+            The notification callback API is used to notify customers of events and changes that occur with various feature and service orders that are being processed by the Bandwidth Dashboard API on their behalf.  In general this notification callback will be called whenever an order that is in-scope changes state or has a note added to it. Alternatively, notification callback will be called whenever a subscribed event occurs <br><br>
+            When an order changes OR when numbers in customer account are impacted due to orders placed outside of their account the Bandwidth Dashboard API will POST a pre-defined payload to our customer at the URL that they have defined by use of the /accounts/<account-id>/subscriptions API call.  Please see the documentation on that API call to understand how to register the notification callback API with the Bandwidth Dashboard API.<br><br>
             Notified states for order types:
                 <table style = "width 100%">
                               <tr>
@@ -14666,44 +15023,51 @@ securitySchemes:
                                  <td>PROCESSING, COMPLETE, PARTIAL, FAILED</td>
                               </tr>
                            </table>
+            Notified events: MESSAGING_LOST
+            The event notifications occur when TNs in your account are impacted due to orders outside of your account. For example, a MESSAGING_LOST event is reported on a TN with hosted messaging service in your account when a port in order placed by another account on the same TN is executed. An order placed in your account to remove the TN will NOT report a MESSAGING_LOST event.
         post:
             description: |
-                The POST to the callback API contains a summary of the order that is independent of the type of the order that caused the event that in turn caused the notification callback.  This requires that the customer's end system place an API call to the Bandwidth Dashboard API to gather additional details on the change to the order if that is important.  <br><br>
-                This approach was taken for two reasons:
-                <ul>
-                <li>some (or many) of the notifications might not require action.</li>
-                <li>since orders contain different information, providing order-specific information would cause an undesirable tight linkage between notifications and every type of order, mandating API changes whenever the data associated with an order changed. </li>
-                </ul><br><br>
-                The payload of the POST contains:
+                The POST to the callback API contains a summary of the order that is independent of the type of the order or event that caused the notification callback.  This requires that the customer's end system place an API call to the Bandwidth Dashboard API to gather additional details on the change to the order or change to the TN due to the event, if that is important.  <br><br>
+                The payload of the POST for order notifications contains:
                 <ul>
                 <li> the Subscription ID that the notification is in response to.</li>
                 <li> the type of order that the notification applies to.</li>
                 <li> the order ID of the order that has changed </li>
+                <li> the customer order ID of the order that has changed (the element is considered optional, and will only be provided if the related order has a Customer Order Id)</li>
                 <li> the new state of the order </li>
                 <li> a message if one was attached as part of the state change.  This will often be present in error cases.</li>
                 <li> the body of any note that was attached to the order, if applicable</li>
                 <li> list of the completed telephone numbers for Port-in/Port-out/New Number/Disconnect orders in terminal state</li>
                 </ul><br><br>
-                The Payload follows
+                The payload of the POST for event notifications contains:
+                <ul>
+                <li> the Subscription ID that the notification is in response to.</li>
+                <li> the type of event that the notification applies to.</li>
+                <li> list of the impacted telephone numbers for event notifications </li>
+                </ul><br><br>
             body:
                 application/xml:
                     example: |
                         <?xml version="1.0"?>
                         <Notification>
                             <SubscriptionId>...</SubscriptionId>
+                            <!-- for order updates -->
                             <OrderType>portins | portouts | orders | disconnects | dldas | lsrorders | e911s | tnoptions</OrderType>
                             <OrderId>...</OrderId>
-                            <!-- for order update events -->
-                            <Status>COMPLETE | FAILED | PARTIAL | EXCEPTION ... </Status>
-                            <!-- for order update events -->
-                            <Message>...</Message>
-                            <!-- for note events -->
-                            <Note>...</Note>
-                            <!-- for portins/portouts/orders/disconnects OrderTypes -->
-                            <CompletedTelephoneNumbers>
+                            <CustomerOrderId>...</CustomerOrderId>
+                            <Status>COMPLETE | FAILED | PARTIAL | EXCEPTION ... </Status> <!-- for order state updates -->
+                            <Message>...</Message> <!-- for order state updates -->
+                            <Note>...</Note> <!-- for note events -->
+                            <CompletedTelephoneNumbers> <!-- for portins/portouts/orders/disconnects OrderTypes -->
                                 <TelephoneNumber> ... </TelephoneNumber>
                                 <!-- ... -->
                             </CompletedTelephoneNumbers>
+                            <!-- for event updates -->
+                            <EventType> [MESSAGING_LOST] </EventType>
+                            <ImpactedTelephoneNumbers>
+                                <TelephoneNumber> ... </TelephoneNumber>
+                                <!-- ... -->
+                            </ImpactedTelephoneNumbers>
                         </Notification>
             responses:
                 200:
