@@ -833,6 +833,14 @@
     <td>5161</td>
     <td>Updating of sms attribute is not allowed for %s</td>
   </tr>
+    <tr>
+    <td>5162</td>
+    <td>Tollfree telephone numbers cannot be used unless Tollfree is enabled on SipPeer</td>
+  </tr>
+    <tr>
+    <td>5163</td>
+    <td>The account %s does not own messaging service on the number %s.</td>
+  </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
 <table class="fixed">
@@ -854,7 +862,7 @@
   </tr>
     <tr>
     <td>25030</td>
-    <td>Telephone numbers does not belong to this account.</td>
+    <td>Telephone numbers do not all belong to this account.</td>
   </tr>
     <tr>
     <td>25040</td>
@@ -887,6 +895,14 @@
     <tr>
     <td>25110</td>
     <td>LoaType is absent or invalid. Possible values: carrier, subscriber</td>
+  </tr>
+    <tr>
+    <td>25120</td>
+    <td>The TNs provided are not external.</td>
+  </tr>
+    <tr>
+    <td>25130</td>
+    <td>Telephone numbers do not have Messaging settings defined.</td>
   </tr>
   </table>
 <h2>ReservationErrors</h2>
@@ -1807,6 +1823,10 @@
     <td>Portins in terminal status are not allowed for portin list update.</td>
   </tr>
     <tr>
+    <td>7715</td>
+    <td>This port-in cannot be associated with this bulk port-in because its earliest estimate date needs to be earlier than the bulk port-in requested FOC date.</td>
+  </tr>
+    <tr>
     <td>7510</td>
     <td>Required Account Code missing</td>
   </tr>
@@ -1987,11 +2007,19 @@
   </tr>
     <tr>
     <td>7403</td>
-    <td>Error: requestMessageHeader is required</td>
+    <td>Error: Request does not contains %s.</td>
   </tr>
     <tr>
     <td>7404</td>
-    <td>Error: Message ID is required</td>
+    <td>Error: %s field is missing.</td>
+  </tr>
+    <tr>
+    <td>7405</td>
+    <td>Error: notification is required</td>
+  </tr>
+    <tr>
+    <td>7406</td>
+    <td>Error: Invalid E911CoverageIndicator</td>
   </tr>
   </table>
 
@@ -2287,8 +2315,28 @@
     <td>Messaging route of %s is not configured.</td>
   </tr>
     <tr>
+    <td>19006</td>
+    <td>Bandwidth numbers cannot be imported by this account at this time.</td>
+  </tr>
+    <tr>
+    <td>19007</td>
+    <td>Account is not contracted for importing external numbers.</td>
+  </tr>
+    <tr>
+    <td>19008</td>
+    <td>Non Bandwidth numbers cannot be imported by this account at this time.</td>
+  </tr>
+    <tr>
     <td>19009</td>
     <td>No messaging route found</td>
+  </tr>
+    <tr>
+    <td>19010</td>
+    <td>Unable to provision telephone numbers. Please contact Bandwidth Support.</td>
+  </tr>
+    <tr>
+    <td>19011</td>
+    <td>Messaging provisioning  is disable for this account.</td>
   </tr>
     <tr>
     <td>19012</td>
@@ -5508,6 +5556,14 @@
     <td>The Country in the URL is different than the 3 letter country code in the payload</td>
   </tr>
     <tr>
+    <td>12990</td>
+    <td>Call Admission Control Settings Calls Per Second Limits must be between %s and %s</td>
+  </tr>
+    <tr>
+    <td>12991</td>
+    <td>Call Admission Control Settings Concurrency Limits must be between %s and %s</td>
+  </tr>
+    <tr>
     <td>12992</td>
     <td>TnTypeId in request body must match id in URL</td>
   </tr>
@@ -5526,6 +5582,70 @@
     <tr>
     <td>12996</td>
     <td>Invalid Source specified. Valid Source values: %s</td>
+  </tr>
+    <tr>
+    <td>12997</td>
+    <td>International vendor settings for vendor with id=%d already exist</td>
+  </tr>
+    <tr>
+    <td>12998</td>
+    <td>Vendor with id=%d does not exist.</td>
+  </tr>
+    <tr>
+    <td>12999</td>
+    <td>Account contains SIP Peers that have a Proxy Peer that has not been migrated.</td>
+  </tr>
+    <tr>
+    <td>13000</td>
+    <td>One of the SIP Peers is used as proxy for migrated account.</td>
+  </tr>
+    <tr>
+    <td>13001</td>
+    <td>Proxy Peer %s has not been migrated.</td>
+  </tr>
+    <tr>
+    <td>13002</td>
+    <td>Unable to assign %s [%s] to account, as it is disabled.</td>
+  </tr>
+    <tr>
+    <td>13003</td>
+    <td>Please verify you are using the correct telephone number type. ID %s is not defined.</td>
+  </tr>
+    <tr>
+    <td>13004</td>
+    <td>Duplicate MigrationId : %s</td>
+  </tr>
+    <tr>
+    <td>13005</td>
+    <td>Exceeded Max length %s for field %s</td>
+  </tr>
+    <tr>
+    <td>13006</td>
+    <td>Cannot remove TnType as it is enabled on at least 1 account</td>
+  </tr>
+    <tr>
+    <td>13007</td>
+    <td>The specified two letter country code is not valid: %s</td>
+  </tr>
+    <tr>
+    <td>13008</td>
+    <td>The specified vendor id %d is a valid international vendor but is currently flagged as unsupported.</td>
+  </tr>
+    <tr>
+    <td>13009</td>
+    <td>The specified vendor id %d is not a valid international vendor.</td>
+  </tr>
+    <tr>
+    <td>13011</td>
+    <td>The format of the requested country %s is not valid</td>
+  </tr>
+    <tr>
+    <td>13012</td>
+    <td>The requested operation is not valid</td>
+  </tr>
+    <tr>
+    <td>13013</td>
+    <td>Account (%s) must be a proxy peer owner in order to use sippeer (%s) as a proxy.</td>
   </tr>
   </table>
 <h2>TerminationError</h2>
@@ -6183,11 +6303,11 @@
   </tr>
     <tr>
     <td>13654</td>
-    <td>Conflicting host/subnet found</td>
+    <td>Termination IP %s overlaps with an address that is already in use</td>
   </tr>
     <tr>
     <td>13655</td>
-    <td>Found conflicting host/subnet(s): %s</td>
+    <td>Termination IP %s overlaps with addresses that are already in use: %s</td>
   </tr>
     <tr>
     <td>13656</td>
@@ -6212,6 +6332,14 @@
     <tr>
     <td>13671</td>
     <td>Updating without attributes or moving is not allowed for %s</td>
+  </tr>
+    <tr>
+    <td>13672</td>
+    <td>Can not disable TollFree on SipPeer because some TollFree Telephone Numbers on this SipPeer currently have A2P Settings overrides</td>
+  </tr>
+    <tr>
+    <td>13674</td>
+    <td>Configuring subnet values larger than %s requires Bandwidth staff intervention</td>
   </tr>
   </table>
 <h2>PotValidationError</h2>
