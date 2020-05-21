@@ -14297,49 +14297,6 @@ securitySchemes:
                     responses:
                         200:
                             description: A reservation has been successfully deleted.
-        /users: 
-            get:
-                description: Retrieves a list of users as specified by the account ID.
-                body:
-                    application/xml:
-                        example: |
-                            <?xml version="1.0"?>
-                            <UsersResponse>
-                                <Users>
-                                    <User>
-                                        <Username>testcustomer</Username>
-                                        <FirstName>Jane</FirstName>
-                                        <LastName>Doe</LastName>
-                                        <EmailAddress>janedoe@bandwidth.com</EmailAddress>
-                                        <TelephoneNumber>9199999999</TelephoneNumber>
-                                        <Roles>
-                                            <Role>
-                                                <RoleName>ROLE_API_ORDERING</RoleName>
-                                                <Permissions>
-                                                    <Permission>
-                                                        <PermissionName>VIEW</PermissionName>
-                                                    </Permission>
-                                                    <Permission>
-                                                        <PermissionName>UPDATE</PermissionName>
-                                                    </Permission>
-                                                </Permissions>
-                                            </Role>
-                                                        <! --- SNIP --- >
-                                            <Role>
-                                                <RoleName>ROLE_API_SEARCH</RoleName>
-                                                <Permissions>
-                                                    <Permission>
-                                                        <PermissionName>VIEW</PermissionName>
-                                                    </Permission>
-                                                </Permissions>
-                                            </Role>
-                                        </Roles>
-                                    </User>
-                                    <User>
-                                                        <! --- SNIP --- >
-                                    </User>
-                                </Users>
-                            </UsersResponse>
         /emergencyNotificationRecipients: 
             description: |
                 <p> An emergency notification recipient is someone who is notified when an emergency call is placed.
