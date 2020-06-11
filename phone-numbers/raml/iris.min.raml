@@ -1157,6 +1157,8 @@ securitySchemes:
                       <li>TRANSCRIPTIONSTMTBDR</li>
                       <li>CNAMBDR</li>
                       <li>CNAMSTMTBDR</li>
+                      <li>CONFBDR</li>
+                      <li>CONFSTMTBDR</li>
                       </ul>
                 queryParameters:
                     kind:
@@ -1166,7 +1168,7 @@ securitySchemes:
                         example: DIDSNAP
                 responses:
                     200:
-                        description: The list of all billing report instances. (Not supported for BDR, MDR, INVOICE, STMTBDR, RECORDINGBDR, RECORDINGSTMTBDR, TRANSCRIPTIONBDR, TRANSCRIPTIONSTMTBDR, CNAMBDR, CNAMSTMTBDR  as status history not implemented yet for these billing types)
+                        description: The list of all billing report instances. (Not supported for BDR, MDR, INVOICE, STMTBDR, RECORDINGBDR, RECORDINGSTMTBDR, TRANSCRIPTIONBDR, TRANSCRIPTIONSTMTBDR, CNAMBDR, CNAMSTMTBDR, CONFBDR, CONFSTMTBDR  as status history not implemented yet for these billing types)
                         body:
                             application/xml:
                                 example: |
@@ -12051,7 +12053,21 @@ securitySchemes:
                                     responses:
                                         200:
                                             description: |
-                                                There is no body response when request is successful
+                                                There is no body response when request is successful or with warnings list
+                                            body:
+                                                application/xml:
+                                                    example: |
+                                                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                                                        <SipPeerTelephoneNumberResponse>
+                                                            <SipPeerTelephoneNumber>
+                                                               <Warnings>
+                                                                  <Warning>
+                                                                      <TelephoneNumber>2174101601</TelephoneNumber>
+                                                                      <Description>SMS is already Enabled or number is in processing.</Description>
+                                                                  </Warning>
+                                                               </Warnings>
+                                                            </SipPeerTelephoneNumber>
+                                                        </SipPeerTelephoneNumberResponse>
                                         400:
                                             description: |
                                                 Bad Request. Possible errors in response:
@@ -14165,6 +14181,7 @@ securitySchemes:
                                 The descriptive payload for the TN Option Orders query provides a broad range of information about the TN Option Order identified in the URL.  Included amongst the information is:
                                 <ul>
                                 <li>ErrorList - the errors discovered with codes and explanations</li>
+                                <li>Warnings - the warnings discovered with explanations</li>
                                 <li>ProcessingStatus(RECEIVED, PROCESSING, COMPLETE, PARTIAL, FAILED) - the overall status of the order</li>
                                 </ul>
                             body:
@@ -14181,6 +14198,7 @@ securitySchemes:
                                             <TnOptionGroups>
                                                 <TnOptionGroup>
                                                     <CallingNameDisplay>on</CallingNameDisplay>
+                                                    <Sms>on</Sms>
                                                     <TelephoneNumbers>
                                                         <TelephoneNumber>2174101601</TelephoneNumber>
                                                     </TelephoneNumbers>
@@ -14200,6 +14218,12 @@ securitySchemes:
                                                 </TnOptionGroup>
                                             </TnOptionGroups>
                                             <ErrorList/>
+                                            <Warnings>
+                                                <Warning>
+                                                    <TelephoneNumber>2174101601</TelephoneNumber>
+                                                    <Description>SMS is already Enabled or number is in processing.</Description>
+                                                </Warning>
+                                            </Warnings>
                                         </TnOptionOrder>
                         404:
                             description: NOT FOUND - the order id does not exist in the system
@@ -16780,7 +16804,7 @@ securitySchemes:
                                                     <AddedEmergencyNotificationRecipients>
                                                     <ErrorList />
                                                 <EmergencyNotificationGroup>
-                                            <AddedEmergencyNotificationGroup>
+                                            </AddedEmergencyNotificationGroup>
                                         </EmergencyNotificationGroup>
                                     </EmergencyNotificationGroupOrderResponse>
                     404:

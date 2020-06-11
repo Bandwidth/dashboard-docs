@@ -878,10 +878,6 @@
     <td>International customer segment cannot import NANP telephone numbers.</td>
   </tr>
     <tr>
-    <td>5173</td>
-    <td>SMS is already %s or number is in processing.</td>
-  </tr>
-    <tr>
     <td>5174</td>
     <td>A purge disconnect type is required for Short Code TNs</td>
   </tr>
@@ -984,6 +980,10 @@
     <tr>
     <td>5199</td>
     <td>TollFreeVanitySearchAndOrderType requires both TollFreeVanity and Quantity values.</td>
+  </tr>
+    <tr>
+    <td>5200</td>
+    <td>Origination route plan is not enabled for the account</td>
   </tr>
   </table>
 <h2>ExternalTnsErrorType</h2>
@@ -3663,7 +3663,7 @@
   </tr>
     <tr>
     <td>15600</td>
-    <td>Billing Report Type '%s' is invalid. Valid values: [BDR, MDR, INVOICE, STMTBDR, DIDSNAP, DIDSNAP_MSG, RECORDINGBDR, RECORDINGSTMTBDR, TRANSCRIPTIONBDR, TRANSCRIPTIONSTMTBDR, CNAMBDR, CNAMSTMTBDR].</td>
+    <td>Billing Report Type '%s' is invalid. Valid values: [BDR, MDR, INVOICE, STMTBDR, DIDSNAP, DIDSNAP_MSG, RECORDINGBDR, RECORDINGSTMTBDR, TRANSCRIPTIONBDR, TRANSCRIPTIONSTMTBDR, CNAMBDR, CNAMSTMTBDR, CONFBDR, CONFSTMTBDR].</td>
   </tr>
     <tr>
     <td>15601</td>
@@ -4324,7 +4324,7 @@
   </tr>
     <tr>
     <td>12019</td>
-    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, IMPORT_TNS, PROTECTED_FROM_IMPORT_TNS, TermHttpVoice, OrigHttpVoice, CSR, LnpFalloutManagement, OPTIONAL_CALLBACK_INFORMATION, NOTIFICATIONS, WebRtc, MessagingAnalytics, LATITUDE_LONGITUDE_PROVISIONING, LATITUDE_LONGITUDE_PROVISIONING_911, OriginationRoutePlan, PortOutPasscodeProtection</td>
+    <td>Feature '%s' does not exist. Valid values: DlDa, CNAM, CallForwarding, LIDB, SMS, MMS, HTTP, TollFree, ShortCode, A2pLongCode, LNP, Ordering, ExternalTNs, ProtectedTNs, TNAssignment, Reservation, LSR, CnamDip, AEUI, PIDFLO, Cloud, Seats, Premise, Burstable, Basic, Full, SipAuth, HTTPV2, IMPORT_TNS, PROTECTED_FROM_IMPORT_TNS, TermHttpVoice, OrigHttpVoice, CSR, LnpFalloutManagement, OPTIONAL_CALLBACK_INFORMATION, NOTIFICATIONS, WebRtc, MessagingAnalytics, LATITUDE_LONGITUDE_PROVISIONING, LATITUDE_LONGITUDE_PROVISIONING_911, OriginationRoutePlan, PortOutPasscodeProtection, NOTIFICATIONS_911_UC</td>
   </tr>
     <tr>
     <td>12020</td>
@@ -7254,10 +7254,6 @@
     <tr>
     <td>13674</td>
     <td>Configuring subnet values larger than %s requires Bandwidth staff intervention</td>
-  </tr>
-    <tr>
-    <td>13675</td>
-    <td>SMS is already %s or number is in processing.</td>
   </tr>
     <tr>
     <td>13676</td>
